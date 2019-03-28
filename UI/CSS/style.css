@@ -434,7 +434,7 @@ a, a:hover {
 	
 
 
-.transaction, .watch,.create-account,.allAccount, 
+.transaction, .watch,.create-account,.allAccount,.user-profile,
 .deleteAccount,.changeStatus,.accRecord,.debitAccount,.creditAccount, .userAccount{
   /* position: fixed; */
   top: 10%;
