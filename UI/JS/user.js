@@ -1,22 +1,26 @@
 const createAccount = document.querySelector('.create-account');
 const userProfile = document.querySelector('.user-profile');
 const userTransactionHistory = document.querySelector('.transaction');
+const adminChangeStatus= document.querySelector('.change-status');
+
 
 document.addEventListener('click', (e) => {
-    userTransactionHistory.style.display = 'none';
-    createAccount.style.display = 'none';
     if (e.target.className === 'create-account-page') {
         createAccount.style.display = 'block';
         userProfile.style.display = 'none';
+        userTransactionHistory.style.display = 'none';
     }
     if (e.target.className === 'user-transaction-history-page') {
         userTransactionHistory.style.display = 'block';
         userProfile.style.display = 'none';
+        createAccount.style.display = 'none';
     }
- 
+    if (e.target.className === 'change-account-status') {
+        adminChangeStatus.style.display = 'block';
+    }
+   
+    
 })
-
-
 
 // Add active class to the current button (highlight it)
 var header = document.getElementById("menu");

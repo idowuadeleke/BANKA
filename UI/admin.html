@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+  <div class = "main-container">
+    <div class="header">
+          <div  class="alat-logo" tabindex="0"></div>
+        <div  class="profile">
+            <div  class="avatar">
+                <i  class="mdi mdi-account-outline"></i>
+                <img  src="images/placeholder.png" width=100%>
+            </div>
+            <p class="username" >Hi idowu,</p>
+            <div  class="logout">
+            <button class="btn-logout">logout</button>
+            </div>
+        </div>
+    </div>
+      
+    <div class="admin-side-bar">
+      <div  class="wrappers">
+        <div  class="row">
+          <div  class="side-bar col s1 m3" id="menu">
+            <ul  class="nav">
+              <li >
+                <a >
+                  <i class="fa fa-bars"></i>
+                  <span >Menu</span>
+                </a>
+              </li>
+              <!----><li >
+                <a  href="" class="btn active-link">
+                  <i  class="fa fa-user"></i>
+                  <span >Profile</span>
+                </a>
+              </li>
+              <li >
+                <a  class="btn ">
+                  <i  class="fa fa-certificate"></i>
+                  <span class="change-account-status" >Change account status</span>
+                </a>
+              </li>
+              <li >
+                <a  class="btn ">
+                  <i  class="fa fa-chart-line"></i>
+                  <span >Transaction History</span>
+                </a>
+              </li>
+              <li >
+                <a   class="btn ">
+                  <i  class="fa fa-newspaper"></i>
+                  <span >News Feeds</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     <div class="change-status" style="display:none" >
+      <div class="mini-profile-container">
+        <div class="manage-profile-wrapper">
+          <div class="main-content statusAccountContainer">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Activate Account</h4>
+              </div>
+
+              <form class = "form-fields">
+                <div class = "input" style="margin-bottom: 50px" >
+                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to activate</p>
+                <label for="accNo" style="text-align:left; padding-left: 4%;"> Account Number : </label>
+                <input type="number" name="accNo" class="activatenumber"required /></br>
+                </div>
+                <div class="bottom">
+                  <button type="submit" class="submit-account">
+                    <span>Activate</span>
+                  </button>
+                </div>	
+              </form>
+            </div>
+          </div>
+            
+        <div class="main-content statusAccountContainer">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Deactivate Account</h4>
+              </div>
+
+              <form class = "form-fields">
+                <div class = "input" style="margin-bottom: 50px" >
+                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to deactivate</p>
+                <label for="accNo" style="text-align:left; padding-left: 4%;"> Account Number : </label>
+                <input type="number" name="accNo" class="deactivateNumber"required /></br>
+                </div>
+                <div class="bottom">
+                  <button type="submit" class="submit-account">
+                    <span>Deactivate</span>
+                  </button>
+                </div>	
+              </form>
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="JS/user.js"></script>
+</body>
+</html>
