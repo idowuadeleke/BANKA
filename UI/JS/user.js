@@ -1,11 +1,19 @@
 const createAccount = document.querySelector('.create-account');
 const userProfile = document.querySelector('.user-profile');
+const userTransactionHistory = document.querySelector('.transaction');
 
 document.addEventListener('click', (e) => {
+    userTransactionHistory.style.display = 'none';
+    createAccount.style.display = 'none';
     if (e.target.className === 'create-account-page') {
         createAccount.style.display = 'block';
         userProfile.style.display = 'none';
     }
+    if (e.target.className === 'user-transaction-history-page') {
+        userTransactionHistory.style.display = 'block';
+        userProfile.style.display = 'none';
+    }
+ 
 })
 
 
