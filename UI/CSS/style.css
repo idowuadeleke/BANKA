@@ -303,9 +303,6 @@ a {
 		width: 100%
 	}
 
-
-
-
 	.row .col.s1 {
 		/* width: 8.3333333333%;
 		margin-left: auto;
@@ -340,14 +337,6 @@ a {
     font-size: 12px;
 }}
 
-/* 
-html {
-    box-sizing: border-box;
-    line-height: 1.5;
-		font-family:  "Sarabun", sans-serif;
-    font-weight: 400;
-    color: rgba(0,0,0,.87);
-} */
 
 @media only screen and (min-width: 0)
 {html {
@@ -382,8 +371,6 @@ a, a:hover {
 .wrappers .side-bar .nav li a .fa::before {
     padding-left: 10px;
 }
-
-
 
 .mdi-set, .fa:before {
     display: inline-block;
@@ -429,10 +416,6 @@ a, a:hover {
     margin-top: 10px;
     margin-left: 10px;
 }}
-
-
-	
-
 
 .transaction, .watch,.create-account,.allAccount,.user-profile,
 .deleteAccount,.changeStatus,.accRecord,.debitAccount,.creditAccount, .userAccount{

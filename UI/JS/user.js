@@ -6,7 +6,6 @@ document.addEventListener('click', (e) => {
         createAccount.style.display = 'block';
         userProfile.style.display = 'none';
     }
-    
 })
 
 
