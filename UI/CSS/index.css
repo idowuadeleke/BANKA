@@ -1,0 +1,218 @@
+header{
+    background-color:#fff;
+    padding:16px;position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    box-shadow:2px 2px 6px rgba(0,0,0,.5)}
+
+.main-container{
+    background-image:url(../images/backg.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:100%}
+
+.form-container{
+    width:40%;
+    height:100%;
+    padding:0 5%;
+    padding:0;
+    margin:0;
+    top:0;
+    float:left;
+    position:relative;
+}
+
+@media screen and (max-width:1500px){.main-container .form-container .reg-progress{min-width:339.516px}.main-container .form-container .reg-progress .level{margin-left:14%;max-width:156px}}
+
+@media screen and (max-width:992px){.main-container .form-container{width:50%}.main-container .form-container .reg-progress{width:97%}.main-container .form-container .reg-progress .level{margin-left:17.5%;max-width:156px}.main-container .image-holder{display:none}}
+
+
+.header-text{padding-bottom:0;
+    font-family: "sarabun";
+  font-weight: bolder;
+  font-weight: 5em;
+  font-size: 15px;
+    text-align: center;
+    font-size:2.3571428571rem;
+    color: #ffffff;
+    letter-spacing:-.75px;
+    line-height:30px}
+    
+ .image-holder{
+    width:60%;
+    height:100%;
+    float:left;
+    position: relative;
+    background-size:cover;
+    object-fit: cover;
+    border-radius:7px 0 0 7px;
+    background-size: cover;
+    background-repeat:no-repeat;
+
+}
+    
+.center-container{
+    width:90%;
+    border-radius:7px;
+    height:90%;
+    max-height:562px;
+    background:#fff;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto}
+    
+@media screen and (max-width:992px){.center-container{width:40.5%;min-width:487.672px}}
+
+.header-text{
+    text-align:center;
+    margin-bottom:.8rem}
+    
+.form-header{
+    background-image:linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+    border: 5px solid transparent;
+    border-radius:0 7px 0 0;
+    border-left: none;
+    border-right: none;
+}
+
+.bottom{
+    text-align: center;
+}
+
+
+.Login{
+    background-image:linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 25px 0 15px 0;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    border-radius: 3px;
+    font-size: 18px;
+  }
+
+.Signup{
+    background-image:linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 7px 0 15px 0;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    border-radius: 3px;
+    font-size: 18px;
+  }
+
+a{text-decoration: none;
+color: #034f50;
+} 
+
+.signup-link, .login-link{
+    font-family: "sarabun";
+    text-align: center;
+}
+
+
+a:hover{
+    text-decoration:underline;
+    }
+
+.Login:hover{opacity: 1}
+
+.Signup:hover{opacity: 1}
+
+.input{
+    text-align: center;
+    
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+  text-align: left;
+  width: 70%;
+  margin: 15px 30px 5px 30px;
+  padding: 10px 15px 15px 15px;
+  display: inline-block;
+  border: none;
+  border-bottom: solid  #034f50 ;
+  outline: 0;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    color: #fff;
+    border: 5px solid transparent;
+    border-radius:0 7px 0 0;
+  }
+
+  .my-imagery {
+      position: relative;
+      object-fit: cover;
+      width:100%;
+        height:100%;
+        border-radius:7px 0 0 7px;
+       
+  }
+
+  .my-image{
+    height:100%;
+  }
+
+  .banner-text {
+    width: 60%;
+    position: absolute;
+    bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.banner-text h2 {
+    color: #A8E6CF;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.h2, h2 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    font-family: inherit;
+    text-align: left;
+}
+
+.banner-text p {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.my-image {display:none;}
+
+.alat-logo{
+    background-image: url(../images/banka2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    position: absolute;
+    right: 5px;
+    height: 90px;
+    /* max-width: 90px; */
+    width: 30%;
+    cursor: pointer;
+    top: 10px;
+  }
