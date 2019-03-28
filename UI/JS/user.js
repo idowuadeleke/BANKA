@@ -1,9 +1,10 @@
 const createAccount = document.querySelector('.create-account');
-
+const userProfile = document.querySelector('.user-profile');
 
 document.addEventListener('click', (e) => {
     if (e.target.className === 'create-account-page') {
         createAccount.style.display = 'block';
+        userProfile.style.display = 'none';
     }
 })
 
