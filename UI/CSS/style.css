@@ -418,7 +418,7 @@ a, a:hover {
 }}
 
 .transaction, .watch,.create-account,.allAccount,.user-profile,
-.deleteAccount,.change-status,.accRecord,.debitAccount,.creditAccount, .userAccount{
+.deleteAccount,.change-status,.accRecord,.debitAccount,.creditAccount, .user-account{
   /* position: fixed; */
   top: 10%;
   color: #034f50;

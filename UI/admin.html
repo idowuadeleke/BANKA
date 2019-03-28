@@ -36,9 +36,9 @@
                 </a>
               </li>
               <!----><li >
-                <a  href="" class="btn active-link">
-                  <i  class="fa fa-user"></i>
-                  <span >Profile</span>
+                <a class="btn active-link">
+                  <i  class="fa fa-users-cog"></i>
+                  <span class="admin-create-user-account" >Create User Account</span>
                 </a>
               </li>
               <li >
@@ -112,6 +112,40 @@
             
           </div>
 
+        </div>
+      </div>
+    </div>
+    
+    <div class= "user-account" style="display:none" >
+      <div class="mini-profile-container">
+        <div class="manage-profile-wrapper">
+          <div class="main-content userAccountContainer">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Create User Account</h4>
+              </div>
+
+              <form class = "form-fields ">
+                <div class = "input "  >
+                <label for="userAccountUserType"> User Type : </label>
+                <input type="text"  name="userAccountUserType" class="accountInputField" required /><br/>
+                 <label for="userAccountFirstName"> First Name : </label>
+                <input type="text"  name="userAccountFirstName" class="accountInputField" required /><br/>
+                 <label for="userAccountLastName"> Last Name : </label>
+                <input type="text"  name="userAccountLastName" class="accountInputField" required /><br/>
+                <label for="userAccountEmail">Email Address : </label>
+                <input type="email"  name="userAccountEmail" class="accountInputField" required /><br/>
+                <label for="userAccountPassword">Password : </label>
+                <input type="password"  name="userAccountPassword" class="accountInputField" required />
+                </div>
+                <div class="bottom">
+                  <button type="submit" class="submit-user">
+                    <span>Create User</span>
+                  </button>
+                </div>	
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
