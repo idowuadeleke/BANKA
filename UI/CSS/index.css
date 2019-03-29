@@ -121,6 +121,7 @@ color: #034f50;
 .signup-link, .login-link{
     font-family: "sarabun";
     text-align: center;
+    cursor: pointer;
 }
 
 
@@ -180,6 +181,7 @@ textarea {
     padding-left: 20px;
     padding-right: 20px;
     background: rgba(0, 0, 0, 0.6);
+    
 }
 
 .banner-text h2 {
@@ -199,11 +201,12 @@ textarea {
     color: #fff;
     margin-top: 0;
     margin-bottom: 1rem;
+    font-size: 18px;
 }
 
 .my-image {display:none;}
 
-.alat-logo{
+.banka-logo{
     background-image: url(../images/banka2.png);
     background-repeat: no-repeat;
     background-size: contain;
