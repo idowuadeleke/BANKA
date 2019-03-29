@@ -3,6 +3,7 @@ const userProfile = document.querySelector('.user-profile');
 const userTransactionHistory = document.querySelector('.transaction');
 const adminChangeStatus= document.querySelector('.change-status');
 const adminCreateUserAccount= document.querySelector('.user-account');
+const adminViewAllAccounts= document.querySelector('.all-bank-accounts');
 
 
 document.addEventListener('click', (e) => {
@@ -19,12 +20,18 @@ document.addEventListener('click', (e) => {
     if (e.target.className === 'admin-create-user-account') {
         adminCreateUserAccount.style.display = 'block';
         adminChangeStatus.style.display = 'none';
+        adminViewAllAccounts.style.display = 'none';
     }
     if (e.target.className === 'change-account-status') {
         adminChangeStatus.style.display = 'block';
         adminCreateUserAccount.style.display = 'none';
+        adminViewAllAccounts.style.display = 'none';
     }
-    
+    if (e.target.className === 'admin-all-accounts') {
+        adminViewAllAccounts.style.display = 'block';
+        adminChangeStatus.style.display = 'none';
+        adminCreateUserAccount.style.display = 'none';
+    }
    
     
 })
