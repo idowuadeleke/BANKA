@@ -418,7 +418,7 @@ a, a:hover {
 }}
 
 .transaction, .watch,.create-account,.all-bank-accounts,.user-profile,
-.deleteAccount,.change-status,.accRecord,.debitAccount,.creditAccount, .user-account{
+.deleteAccount,.change-status,.user-account-record,.debitAccount,.creditAccount, .user-account{
   /* position: fixed; */
   top: 10%;
   color: #034f50;
@@ -731,6 +731,15 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
   text-align: center;
 }
 
+.view-record-btn{
+  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 5px;
+}
+
 .submit-user{
   width:30%;
 }
@@ -757,12 +766,22 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
 
 
 .accNumber{
-  margin-left: 36%;
+  margin-left: 32%;
 }
 
 .accStatus{
-  margin-left: 69%;
+  margin-left: 55%;
 }
+
+.account-type{
+  margin-left: 75%;
+}
+
+.account-button{
+  margin-left: 90%;
+}
+
+
 
 .account-list-container{
   width: 75%;
@@ -839,3 +858,41 @@ a:hover {
   width:22%
 }
 
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
