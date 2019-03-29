@@ -10,6 +10,7 @@ const staffCreditAcccountPage = document.querySelector('.credit-account');
 const staffDebitAcccountPage = document.querySelector('.debit-account');
 const staffViewAllAccounts= document.querySelector('.staff-all-bank-accounts');
 const staffViewAccountRecord= document.querySelector('.user-account-record-staffpage');
+const staffDeleteAccount= document.querySelector('.staff-delete-account');
 
 document.addEventListener('click', (e) => {
     if (e.target.className === 'create-account-page') {
@@ -61,20 +62,31 @@ document.addEventListener('click', (e) => {
         staffDebitAcccountPage.style.display='none';
         staffViewAllAccounts.style.display= 'none';
         staffViewAccountRecord.style.display= 'none';
+        staffDeleteAccount.style.display= 'none';
     }
     if (e.target.className === 'staff-debit-account') {
         staffDebitAcccountPage.style.display= 'block';
         staffCreditAcccountPage.style.display='none';
         staffViewAllAccounts.style.display= 'none';
+        staffDeleteAccount.style.display= 'none';
     }
     if (e.target.className === 'staff-all-accounts') {
         staffViewAllAccounts.style.display= 'block';
         staffDebitAcccountPage.style.display='none';
         staffCreditAcccountPage.style.display='none';
         staffViewAccountRecord.style.display= 'none';
+        staffDeleteAccount.style.display= 'none';
     }
     if (e.target.className === 'staff-view-record') {
         staffViewAccountRecord.style.display= 'block';
+        staffViewAllAccounts.style.display= 'none';
+        staffDebitAcccountPage.style.display='none';
+        staffCreditAcccountPage.style.display='none';
+        staffDeleteAccount.style.display= 'none';
+    }
+    if (e.target.className === 'staff-delete-accountpage') {
+        staffDeleteAccount.style.display= 'block';
+        staffViewAccountRecord.style.display= 'none';
         staffViewAllAccounts.style.display= 'none';
         staffDebitAcccountPage.style.display='none';
         staffCreditAcccountPage.style.display='none';
