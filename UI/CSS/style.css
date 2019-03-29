@@ -418,7 +418,7 @@ a, a:hover {
 }}
 
 .transaction, .watch,.create-account,.staff-all-bank-accounts,.all-bank-accounts,.user-profile,
-.delete-account,.change-status,.user-account-record,.debit-account,.credit-account,
+.delete-account,.staff-delete-account,.change-status,.user-account-record,.debit-account,.credit-account,
  .user-account,.user-account-record-staffpage{
   /* position: fixed; */
   top: 10%;
