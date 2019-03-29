@@ -1,0 +1,861 @@
+@media only screen and (min-width: 0)
+{html {
+    font-size: 14px;
+}}
+
+html {
+  box-sizing: border-box;
+  line-height: 1.5;
+  font-family: "Sarabun", sans-serif;
+  font-weight: 400;
+  color: rgba(0,0,0,.87);
+}
+
+@media screen and (max-width: 480px)
+{body {
+    font-size: 12px;
+}}
+
+
+body {
+  font-family: "Sarabun", sans-serif;
+  color: #fff;
+  font-weight: 300;
+  background: #f4f4f4;
+}
+
+*, :after, :before {
+  box-sizing: inherit;
+}
+
+body {
+  display: block;
+  margin: 8px;
+}
+
+.main-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #f4f4f4;
+}
+
+.header{
+  height: 75px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1001;
+  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.1);
+}
+
+.header .banka-logo{
+  background-image: url(../images/banka.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  position: absolute;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 6.9571428571rem;
+  height: 60px;
+  max-width: 90px;
+  width: 12%;
+  cursor: pointer;
+  size: 14%;
+}
+
+@media only screen and (max-width: 600px)
+{.header .banka-logo {
+    left: 3.957143rem;
+}}
+
+.profile {
+  float: right;
+  width: 30%;
+  height: 40px;
+  margin: 20px 0;
+}
+
+@media only screen and (max-width: 600px)
+{.header .profile{
+    width: 30%;
+}}
+
+@media only screen and (max-width: 320px)
+{.header .profile {
+    width: 50%;
+}
+}
+
+@media only screen and (max-width: 480px)
+{.header .profile {
+    width: 44%;
+}}
+
+@media only screen and (max-width: 992px)
+{.header .profile {
+    width: 40%;
+}}
+
+@media only screen and (max-width: 600px)
+{.header .profile .avatar {
+    margin-right: 10px;
+}}
+
+.header .profile .avatar {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 20px;
+  border: 1px solid #fff;
+  background-color: #fff;
+  float: left;
+  text-align: center;
+}
+
+.username {
+  float: left;
+  color: #fff;
+  margin-right: 20px;
+  line-height: 10px;
+  text-transform: capitalize;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.header .profile .logout {
+  width: 70px;
+  height: 100%;
+  float: left;
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 600px)
+{.header .profile .logout{
+    margin-right: 0;
+}}
+
+div {
+  display: block;
+}
+
+.btn-logout {
+  width: 100%;
+  height: 35px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 4px;
+  margin: 2px 0;
+  padding: 0;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+input, textarea, select, button, meter, progress {
+  -webkit-writing-mode: horizontal-tb !important;
+}
+
+input, textarea, select, button {
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+}
+
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.general-side-bar {
+  /* border: solid black 5px; */
+  position: absolute;
+  top: 12%;
+  width: 100%;
+  height: 88%;
+}
+
+.wrappers {
+	height: 100%;
+}
+
+.wrappers .row {
+    margin: 0;
+}
+
+.row {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 992px)
+{
+.wrappers .side-bar {
+    width: 230px;
+}}
+
+
+ul:not(.browser-default) {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+
+.wrappers .side-bar .nav li {
+    position: relative;
+    display: block;
+	width: 250px;
+
+}
+
+li:hover{
+	background-image: linear-gradient(to right ,#034f50,#204e5f, #50A5A6);
+	transform: scale(1.01) 
+}
+
+.wrappers .side-bar .nav li a:hover {
+	color:#ffffff;
+}
+
+.wrappers .side-bar .nav li a {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #204e5f;
+    text-decoration: none;
+    -webkit-transform: translateZ(0) scale(1,1);
+    transition: .1s linear;
+}
+
+a {
+    background-color: transparent;
+    color: #039be5;
+    -webkit-tap-highlight-color: transparent;
+	text-decoration: none;}
+	
+	.wrappers .side-bar .nav li a .mdi {
+		position: relative;
+		display: table-cell;
+		width: 35px;
+		height: 45px;
+		text-align: center;
+		vertical-align: middle;
+		font-size: 24px;
+	
+	}
+
+	i {
+		line-height: inherit;
+	}
+
+	i, cite, em, var, address, dfn {
+		font-style: italic;
+	}
+
+	.wrappers .side-bar .nav li a span {
+		position: relative;
+		display: table-cell;
+		vertical-align: middle;
+		width: 190px;
+		text-transform: capitalize;
+	}
+
+	.wrappers .side-bar .nav li a.active-link {
+		background-image: linear-gradient(to right ,#034f50,#204e5f, #50A5A6);
+		outline: 0;
+		color: #fff;
+		transition: .2s;
+		width: 100%
+	}
+
+	.row .col.s1 {
+		/* width: 8.3333333333%;
+		margin-left: auto;
+		left: auto; */
+		right: auto;
+	}
+
+	.row .col {
+		padding-left: 0;
+	}
+
+	.row .col {
+		float: left;
+		box-sizing: border-box;
+		padding: 0 .75rem;
+		min-height: 1px;
+	}
+
+	/* *, :after, :before {
+		box-sizing: inherit;
+	}
+
+	body {
+		font-family:  "Sarabun", sans-serif;
+		color: #fff;
+		font-weight: 300;
+		background: #f4f4f4;
+	} */
+
+	@media screen and (max-width: 480px)
+{body {
+    font-size: 12px;
+}}
+
+
+@media only screen and (min-width: 0)
+{html {
+    font-size: 14px;
+}}
+
+*, :after, :before {
+    box-sizing: inherit;
+}
+
+
+ul:not(.browser-default) li {
+    list-style-type: none;
+}
+
+a, a:hover {
+    color: #fff;
+}
+
+.wrappers .side-bar .nav li a .fa {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+	font-size: 24px;
+	padding-right: 10px;
+	
+}
+
+.wrappers .side-bar .nav li a .fa::before {
+    padding-left: 10px;
+}
+
+.mdi-set, .fa:before {
+    display: inline-block;
+    /* font: 24px/1 "Material Design Icons"; */
+    font-size: inherit;
+    text-rendering: auto;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (max-width: 992px)
+{
+.wrappers .side-bar .nav li a .fa{
+    padding-right: 12px;
+    width: 32px;
+    height: 31px;
+}}
+
+.wrappers .side-bar {
+  left: 0;
+  overflow: hidden;
+  transition: width .05s linear;
+  -webkit-transform: translateZ(0) scale(1,1);
+  z-index: 1000;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+  color: #034f50;
+  position: fixed;
+  top: 80px;
+  bottom: 0;
+  padding: 0;
+  float: left;
+  background: #fff;
+  margin-top: 20px;
+  margin-left: 30px;
+  border-radius: 6px;
+  height: 490px;
+}
+
+@media screen and (max-width: 480px)
+{.wrappers .side-bar {
+    width: 44px;
+    margin-top: 10px;
+    margin-left: 10px;
+}}
+
+.transaction, .watch,.create-account,.staff-all-bank-accounts,.all-bank-accounts,.user-profile,
+.delete-account,.staff-delete-account,.change-status,.user-account-record,.debit-account,.credit-account,
+ .user-account,.user-account-record-staffpage{
+  /* position: fixed; */
+  top: 10%;
+  color: #034f50;
+  font-size: 15px;
+  /* border: solid blue; */
+  margin-left: 20%;
+  height: 80%;
+  width: 75%;
+  text-align: center;
+}
+
+.manage-profile-wrapper {
+  width: 94%;
+  height: auto;
+  margin: 0 auto;
+  margin-left: 6%;
+  margin-top: 90px;
+}
+
+.manage-profile-wrapper .title {
+  width: 100%;
+  margin: auto;
+  text-transform: capitalize;
+}
+
+.center, .center-align {
+  text-align: center;
+}
+
+.manage-profile-wrapper .title .user-details {
+  text-transform: none;
+  margin: 2px;
+  font-weight: 400;
+}
+
+.manage-profile-wrapper .title .fullname {
+  color: #034f50;
+  font-size: 1.75rem;
+}
+
+.manage-profile-wrapper .main-content {
+  background: #fff;
+  padding: 65px 0 5px 0;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,.1);
+  position: relative;
+}
+
+@media screen and (max-width: 600px)
+{.manage-profile-wrapper .main-content {
+    padding: 35px 25px;
+}}
+
+@media screen and (max-width: 320px)
+{.manage-profile-wrapper .main-content {
+    padding: 30px 20px;
+}}
+
+.top-menu {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  height: 50px;
+  margin-bottom: 15px;
+  line-height: 60px;
+  padding-left: 8px;
+  color: #ffffff;
+  font-size: 1em;
+  transition: .2s;
+  text-transform: capitalize;
+  font-weight: 400;
+  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+}
+
+.manage-profile-wrapper .main-content .top-menu .icon-container {
+  position: absolute;
+  left: 30px;
+  font-size: 1.2rem;
+  padding-left: 10px;
+}
+
+.Debits {
+  margin-left: 20%;
+}
+
+@media screen and (max-width: 480px)
+{.manage-profile-wrapper .main-content .each-menu {
+    padding-left: 0;
+    height: 50px;
+    line-height: 50px;
+}}
+
+.manage-profile-wrapper .main-content .each-menu {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+  border-radius: 4px;
+  cursor: pointer;
+  height: 50px;
+  margin-bottom: 6px;
+  line-height: 50px;
+  padding-left: 8px;
+  color: #034f50;
+  /* font-size: 0.7em; */
+  transition: .2s;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 480px)
+{.manage-profile-wrapper .main-content .each-menu {
+    padding-left: 0;
+    height: 50px;
+    line-height: 50px;
+}}
+
+@media screen and (max-width: 480px)
+{.manage-profile-wrapper .main-content .each-menu .icon-container {
+    left: 10px;
+}}
+
+.manage-profile-wrapper .main-content .each-menu .icon-container {
+  position: absolute;
+  left: 30px;
+  font-size: 1.2rem;
+  padding-left: 10px;
+}
+
+
+.manage-profile-wrapper .main-content .each-menu .link-name {
+  /* margin-left: 50px; */
+  font-size: 1.2rem;
+  text-align: left;
+  /* margin-left: 50%; */
+  position: absolute;
+}
+
+@media screen and (max-width: 480px)
+{.manage-profile-wrapper .main-content .each-menu .link-name {
+    font-size: 14px;
+}}
+
+@media screen and (max-width: 320px)
+{.manage-profile-wrapper .main-content .each-menu .link-name {
+    font-size: 12px;
+    margin-left: 45px;
+}}
+
+.Credits {
+  margin-left: 40%;
+}
+
+.Balance {
+  margin-left: 60%;
+}
+
+.Branch {
+  margin-left: 80%;
+}
+
+.manage-profile-wrapper .main-content .top-menu .link-name {
+  /* margin-left: 50px; */
+  font-size: 1.2rem;
+  text-align: left;
+  /* margin-left: 50%; */
+  position: absolute;
+}
+
+
+
+
+
+/*..........test style.......*/
+.profileMargin {
+  margin-left: 50%;
+}
+
+.account-details {
+  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  color: #ffffff;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+  height: 70px;
+  border-radius: 5px 5px 0 0;
+}
+
+.manage-profile-wrapper .main-content .each-menu i.mdi {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background: #4cd321;
+  color: #fff;
+}
+
+.manage-profile-wrapper .title .image-container {
+  position: relative;
+  width: 100px;
+  margin: auto;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #fff;
+  font-size: 5.333rem;
+  color: #034f50;
+  line-height: 89px;
+  border: 1px solid #d6d6d6;
+}
+
+.manage-profile-wrapper .title .image-container .edit-class {
+  line-height: 18px;
+  position: absolute;
+  right: 11px;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 50%;
+  height: 20px;
+  border: 1px solid #e2e2e2;
+  padding: 1px 2px 0;
+  font-size: 13px;
+  color: #272727;
+}
+
+.manage-profile-wrapper .title .image-container .dp-input {
+  display: none;
+}
+
+input[type="hidden" i], input[type="image" i], input[type="file" i] {
+  -webkit-appearance: initial;
+  background-color: initial;
+  cursor: default;
+  padding: initial;
+  border: initial;
+}
+
+input[type="file" i] {
+  align-items: baseline;
+  color: inherit;
+  text-align: start !important;
+}
+
+input {
+  line-height: normal;
+}
+
+input, textarea, select, button {
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+}
+
+.account-details-container{
+  width: 70%;
+  margin: 0 auto;
+}
+
+
+.account-details {
+  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  color: #ffffff;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+  height: 70px;
+  border-radius: 5px 5px 0 0;
+}
+
+.input {
+  text-align: center;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="text"],input[type="number"],textarea {
+  text-align: left;
+  width: 70%;
+  margin: 15px 10px 0px 10px;
+  padding: 10px 7px 10px 7px;
+  display: inline-block;
+  border: none;
+  border-bottom: solid #034f50;
+  outline: 0;
+}
+
+.submit-account, .submit-user {
+  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  color: white;
+  padding: 10px 20px;
+  margin: 15px 0 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  border-radius: 3px;
+  font-size: 18px;
+  opacity: 0.85;
+  text-align: center;
+}
+
+.view-record-btn{
+  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 5px;
+}
+
+.submit-user{
+  width:30%;
+}
+
+.header-text {
+  padding-bottom: 0;
+  font-family: "Sarabun", sans-serif;
+  font-weight: bolder;
+  font-weight: 5em;
+  font-size: 15px;
+  text-align: center;
+  font-size: 2.3571428571rem;
+  color: #fff;
+  letter-spacing: -.75px;
+  line-height: 30px;
+  margin-top: 16px;
+}
+
+.create-account-container,.debit-account-container,.credit-account-container,.userAccountContainer,
+.deleteAccountContainer,.statusAccountContainer{
+  width: 70%;
+  margin: 0 auto;
+}
+
+
+.accNumber{
+  margin-left: 32%;
+}
+
+.accStatus{
+  margin-left: 55%;
+}
+
+.account-type{
+  margin-left: 75%;
+}
+
+.account-button{
+  margin-left: 90%;
+}
+
+
+
+.account-list-container{
+  width: 75%;
+  margin: 0 auto;
+}
+
+.deletenumber,.activatenumber, .deactivateNumber{
+  border:solid 2px;
+  width: 50%;
+  height: 37px;
+  font-size: larger;
+  float:left;
+  margin-left:10px;
+  /* margin-bottom: 40px; */
+}
+
+label{
+  /* display: inline-block; */
+  float: left;
+  clear: left;
+  text-align: left;}
+
+  .changeUserStatus {
+    /* background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f); */
+    color: black;
+    padding: 10px 10px 10px 10px;
+    margin: 5px 5px 10px 5px;
+    cursor: pointer;
+    width: 10%;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.transactionAnchor{
+  padding-bottom:25px;
+  position: relative;
+  color:#034f50;
+}
+
+a:hover {
+  color: #034f50;}
+
+.debit-account-container input[type="text"],.debit-account-container input[type="number"],
+.credit-account-container input[type="text"],.credit-account-container input[type="number"],
+.debit-account-container textarea,.credit-account-container textarea, .deleteAccountContainer input[type="number"],
+.statusAccountContainer input[type="number"]{
+  border: solid 1px #034f50;
+  border-radius: 4px;
+  position: relative;
+  float: left;
+  width: 60%;
+}
+
+.userAccountContainer input[type="email"],.userAccountContainer input[type="text"],
+.userAccountContainer input[type="password"]{
+  border: solid 1px #034f50;
+  border-radius: 4px;
+  position: relative;
+  float: left;
+  width: 70%;
+}
+
+.debit-account-container label,.credit-account-container label,.userAccountContainer label,
+.deleteAccountContainer label, .create-account-container label, .statusAccountContainer label{
+  text-align: left;
+  padding-left: 4%;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 32%
+}
+
+.userAccountContainer label{
+  width:22%
+}
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign-in to BANKA</title>
+		<link rel="stylesheet" href="CSS/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Coiny|Encode+Sans+Condensed|Sarabun"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="" type="image/x-icon" />
+</head>
+<body>
+	<div class = "main-container">
+	<div class = "container">
+		<div class = "center-container">
+			<div class= "image-holder" >
+			
+				<div class="my-image">
+					<img  class= "my-imagery" src="images/beverage.jpg">
+					<div class= "banka-logo" ></div>
+					<div class="banner-text">
+						<h2>Bank with comfort...</h2>
+						<p>Wherever you are, regardless of your schedules you can relax and bank with
+						comfort. Banking is made enjoyable and easy with Banka....
+						</p>
+					</div>
+				</div>
+				<div class="my-image">
+					<img class= "my-imagery"  src="images/coffee.jpg">
+					<div class= "banka-logo" ></div>
+					<div class="banner-text">
+						<h2>Customer Satisfaction</h2>
+						<p>At Banka, we are all about providing excellent services
+							to our customers and ensuring we deliver maximum value 
+							at all times.We are rated number one by the World Smart bankers
+							association as the bank with the happiest customers.</p>
+					</div>
+				</div>
+				<div class="my-image">
+					<img class= "my-imagery"  src="images/account.jpg">
+					<div class= "banka-logo" ></div>
+					<div class="banner-text">
+						<h2>WorldClass Solutions!</h2>
+						<p> We are transforming the financial sector with cutting
+						edge technologies and innovative products that is suitable for everyone.
+						Whether you are an individual, small business or large organization we have just the 
+						right solutions for you.</p>
+					</div>
+					
+				</div>
+			</div>
+			<div class = "form-container"  id= "signup" >
+				<div class = "form-header">
+					<h3 class="header-text" >
+						Join <span><em>B</em></span>ANKA 
+					</h3>
+				</div>
+				<form action="user.html" class = "form-fields" >
+
+					<div class = "input"  >
+						<input type="text" placeholder="First Name" name="Firstname" required />
+
+						<input type="text" placeholder="Last Name" name="Lastname" required />
+
+						<input type="email" placeholder="Email Address" name="email" required />
+						
+						<input type="password" placeholder="Enter Password" name="psw" required />
+
+						<input type="password" placeholder="Confirm Password" name="psw2" required />
+					
+					</div>
+					<div class="bottom">
+						<button type="submit" class="Signup" formaction="user.html">
+							<!---->
+							<!----><span>Sign Up</span>
+						</button>
+					</div>	
+						
+						<div class="login-link" >
+							<a onclick="showHide('login','signup')">Log In</a>
+						</div>
+				</form>
+			</div>
+			<div class = "form-container" id="login" style="display:none"  >
+				<div class = "form-header">
+					<h3 class="header-text" >
+						<span><em>W</em></span>elcome back 
+					</h3>
+				</div>
+				<form class = "form-fields">
+
+					<div class = "input"  >
+						<input type="email" placeholder="Email Address" name="email" required />
+						
+						<input type="password" placeholder="Enter Password" name="psw" required />
+					
+					</div>
+					<div class="bottom">
+						<button type="submit" class="Login" formaction="user.html">
+							<!---->
+							<!----><span>Log In</span>
+						</button>
+					</div>	
+						
+						<div class="signup-link" >
+							<a onclick="showHide('signup','login')">Sign Up</a>
+						</div>
+						<div style="padding: 15px; text-align:center">
+							<a href="" target=""><small>Forgot your password?</small></a>
+						</div>
+				</form>
+			</div>
+	</div>
+	</div>
+	<script src="JS/signup.js"></script>
+</body>
+</html>
+

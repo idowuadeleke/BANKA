@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+  <div class = "main-container">
+    <div class="header">
+          <div  class="banka-logo" tabindex="0"></div>
+        <div  class="profile">
+            <div  class="avatar">
+                <img  src="images/placeholder.png" width=100%>
+            </div>
+            <p class="username" >Hi idowu,</p>
+            <div  class="logout">
+            <a href="index.html"><button class="btn-logout">logout</button></a>
+            </div>
+        </div>
+    </div>
+      
+    <div class="general-side-bar">
+      <div  class="wrappers">
+        <div  class="row">
+          <div  class="side-bar col s1 m3" id="menu">
+            <ul  class="nav">
+              <li  >
+                <a  >
+                  <i class="fa fa-bars"></i>
+                  <span >Menu</span>
+                </a>
+              </li>
+              <!----><li >
+                <a  href="" class="btn active-link">
+                  <i  class="fa fa-user"></i>
+                  <span class="user-profile-page">Profile</span>
+                </a>
+              </li>
+              <li >
+                <a  class="btn ">
+                  <i  class="fa fa-certificate"></i>
+                  <span class="create-account-page" >Create Account</span>
+                </a>
+              </li>
+              <li>
+                <a  class="btn ">
+                  <i  class="fa fa-chart-line"></i>
+                  <span class="user-transaction-history-page" >Transaction History</span>
+                </a>
+              </li>
+              <li >
+                <a class="btn ">
+                  <i  class="fa fa-newspaper"></i>
+                  <span >News Feeds</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class= "create-account" id="Page" style="display:none">
+      <div class="mini-profile-container">
+        <div class="manage-profile-wrapper">
+          <div class="main-content create-account-container">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Create Bank Account</h4>
+              </div>
+
+              <form class = "form-fields">
+                <div class = "input"  >
+                <input type="text" placeholder="First Name" name="Firstname" required />
+                  <input type="text" placeholder="Last Name" name="lastname" required />
+                  <input type="text" placeholder="City" name="city" required />
+                  <input type="text" placeholder="Branch Name" name="branch" required />
+                  <input type="text" placeholder="Account Type" name="account-type" required />
+                </div>
+                <div class="bottom">
+                  <button type="submit" class="submit-account">
+                    <span>Submit</span>
+                  </button>
+                </div>	
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class= user-profile >
+      <div  class="mini-profile-container">
+          <div  class="manage-profile-wrapper">
+            <div  class="title center-align">
+              <div >
+
+                <div  class="image-container">
+                  <span  class="edit-class" for="dp">
+                  <i  class="fa fa-pencil"></i>
+                  </span>
+                  <input  class="dp-input" name="utility-bill-image" type="file">
+                    <!----><i  class="fa fa-user"></i>
+                    <div  class="image-wrapper">
+                      <!---->
+                    </div>
+                </div>
+
+                  <h2 class="user-details fullname"><b>IDOWU ADELEKE</b></h2>
+                  <p  class="user-details">adelekeidowu30@gmail.com</p>
+                  <p  class="user-details">Last Login: 23rd - March - 2019, 2:39:03 pm</p>
+              </div>
+            </div>
+              
+            <div  class="main-content account-details-container">
+              <div >
+                <div class="account-details">
+                  <h1 > Account Details</h1>
+                </div>
+
+                <div  class="each-menu" tabindex="0">
+                  <div  class="icon-container"><i  class="mdi mdi-check complete"></i></div>
+                  <div  class="link-name profileMargin">Active</div><!---->
+                </div>
+
+                <div  class="each-menu" tabindex="0">
+                  <div  class="icon-container">Account Number</div>
+                  <div  class="link-name profileMargin">0123456789</div><!---->
+                </div>
+
+                <div  class="each-menu" tabindex="0">
+                  <div  class="icon-container">Account Balance</div>
+                  <div  class="link-name profileMargin">₦ 0</div><!---->
+                </div>
+
+                <div  class="each-menu" tabindex="0">
+                  <div  class="icon-container">Branch</div>
+                  <div  class="link-name profileMargin">EPIC</div><!---->
+                </div>
+
+                <div  class="each-menu" tabindex="0">
+                  <div  class="icon-container">Next of kin</div>
+                  <div  class="link-name profileMargin">Next of kin</div><!---->
+                </div>
+
+              </div>
+            </div>
+          
+          <h2  class="user-details fullname">Top 3 Transactions</h2>
+          <div class="main-content account-details-container" style="margin-bottom:5px;">
+            <div>
+                   <div class="top-menu" tabindex="0" >
+                <div class="icon-container">Date</div>
+                <div class="link-name Debits">Debits</div><!---->
+                <div class="link-name Credits">Credits</div><!---->
+                <div class="link-name Balance">Balance</div><!---->
+                <div class="link-name Branch"> Branch</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">15/03/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                <div class="link-name Credits">₦10,000.00</div><!---->
+                <div class="link-name Balance">₦260,000.00</div><!---->
+                <div class="link-name Branch"> Maryland</div><!---->                
+              </div>
+              <div class="each-menu" tabindex="0">
+               <!----><div class="icon-container">12/03/2019</div>
+                <div class="link-name Debits">₦100,000.00</div><!---->
+                 <div class="link-name Credits">--------</div><!---->
+                  <div class="link-name Balance">₦250,000.00</div><!---->
+                  <div class="link-name Branch"> Ilupeju</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">10/03/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                 <div class="link-name Credits">₦79,000</div><!---->
+                  <div class="link-name Balance">₦350,000.00</div><!---->
+                  <div class="link-name Branch"> Ikoyi</div><!---->
+              </div>
+            </div>
+            </div>
+            <a class="transactionAnchor"> View all transaction history</a>
+        </div>
+      </div>
+    </div>
+    <div class= "transaction" style="display:none" >
+      <div class="mini-profile-container">
+        <div class="manage-profile-wrapper" >
+          <div class="title center-align">
+            <div>
+              <div class="user-transaction" style="position:relative;text-align: left;">
+                
+                <img src=images/diagram.png width="35%" height="150" style="margin-left:10%;margin-right:5%;">  
+                <img src=images/graph.png width="35%" height="150" style="margin-right:10%;">          
+              </div>
+              <p class="user-details fullname"><b>Account Transactions</b></p>
+              
+          </div>
+        
+          <div class="main-content" >
+            <div>
+                   <div class="top-menu" tabindex="0" >
+                <div class="icon-container">Date</div>
+                <div class="link-name Debits">Debits</div><!---->
+                <div class="link-name Credits">Credits</div><!---->
+                <div class="link-name Balance">Balance</div><!---->
+                <div class="link-name Branch"> Branch</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">15/03/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                <div class="link-name Credits">₦10,000.00</div><!---->
+                <div class="link-name Balance">₦260,000.00</div><!---->
+                <div class="link-name Branch"> Maryland</div><!---->                
+              </div>
+              <div class="each-menu" tabindex="0">
+               <!----><div class="icon-container">12/03/2019</div>
+                <div class="link-name Debits">₦100,000.00</div><!---->
+                 <div class="link-name Credits">--------</div><!---->
+                  <div class="link-name Balance">₦250,000.00</div><!---->
+                  <div class="link-name Branch"> Ilupeju</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">10/03/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                 <div class="link-name Credits">₦79,000</div><!---->
+                  <div class="link-name Balance">₦350,000.00</div><!---->
+                  <div class="link-name Branch"> Ikoyi</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">03/03/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                <div class="link-name Credits">₦200,000</div><!---->
+                <div class="link-name Balance">₦271,000.00</div><!---->
+                <div class="link-name Branch"> Marina</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">22/02/2019</div>
+                <div class="link-name Debits">₦1,000.00</div><!---->
+                <div class="link-name Credits">--------</div><!---->
+                <div class="link-name Balance">₦71,000</div><!---->
+                <div class="link-name Branch"> Ilupeju</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">04/02/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                <div class="link-name Credits">₦22,000.00</div><!---->
+                <div class="link-name Balance">#72,000.00</div><!---->
+                <div class="link-name Branch"> Ikeja</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">27/01/2019</div>
+                <div class="link-name Debits">₦10,000.00</div><!---->
+                <div class="link-name Credits">--------</div><!---->
+                <div class="link-name Balance">₦50,000.00</div><!---->
+                <div class="link-name Branch"> Marina</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">25/01/2019</div>
+                <div class="link-name Debits">₦4,000</div><!---->
+                <div class="link-name Credits">--------</div><!---->
+                <div class="link-name Balance">₦60,000.00</div><!---->
+                <div class="link-name Branch"> Ikoyi</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">16/01/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                <div class="link-name Credits">₦40,000.00</div><!---->
+                <div class="link-name Balance">₦64,000.00</div><!---->
+                <div class="link-name Branch"> Ilupeju</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">10/02/2019</div>
+                <div class="link-name Debits">₦3,000.00</div><!---->
+                <div class="link-name Credits">--------</div><!---->
+                <div class="link-name Balance">₦21,000.00</div><!---->
+                <div class="link-name Branch"> Ikeja</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">07/01/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                <div class="link-name Credits">₦12,000.00</div><!---->
+                <div class="link-name Balance">₦24,000.00</div><!---->
+                <div class="link-name Branch"> Ikoyi</div><!---->
+              </div>
+              <div class="each-menu" tabindex="0">
+                <div class="icon-container">01/01/2019</div>
+                <div class="link-name Debits">--------</div><!---->
+                <div class="link-name Credits">₦12,000.00</div><!---->
+                <div class="link-name Balance">₦12,000.00</div><!---->
+                <div class="link-name Branch"> Maryland</div><!---->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div> 
+  
+  <script src="JS/user.js"></script>
+ 
+</body>
+</html>
