@@ -5,6 +5,7 @@ const adminChangeStatus= document.querySelector('.change-status');
 const adminCreateUserAccount= document.querySelector('.user-account');
 const adminViewAllAccounts= document.querySelector('.all-bank-accounts');
 const adminViewAccountRecord= document.querySelector('.user-account-record');
+const adminDeleteAccount= document.querySelector('.delete-account');
 
 document.addEventListener('click', (e) => {
     if (e.target.className === 'create-account-page') {
@@ -28,20 +29,29 @@ document.addEventListener('click', (e) => {
         adminCreateUserAccount.style.display = 'none';
         adminViewAllAccounts.style.display = 'none';
         adminViewAccountRecord.style.display = 'none';
+        adminDeleteAccount.style.display='none';
     }
     if (e.target.className === 'admin-all-accounts') {
         adminViewAllAccounts.style.display = 'block';
         adminChangeStatus.style.display = 'none';
         adminCreateUserAccount.style.display = 'none';
         adminViewAccountRecord.style.display = 'none';
+        adminDeleteAccount.style.display='none';
     }
     if (e.target.className === 'each-menu' || e.target.className === 'view-record' ) {
         adminViewAccountRecord.style.display = 'block';
         adminViewAllAccounts.style.display = 'none';
         adminChangeStatus.style.display = 'none';
         adminCreateUserAccount.style.display = 'none';
+        adminDeleteAccount.style.display='none';
     }
-    
+    if (e.target.className === 'admin-delete-account') {
+        adminDeleteAccount.style.display='block';
+        adminViewAllAccounts.style.display = 'none';
+        adminChangeStatus.style.display = 'none';
+        adminCreateUserAccount.style.display = 'none';
+        adminViewAccountRecord.style.display = 'none';
+    }
 })
 
 // Add active class to the current button (highlight it)
