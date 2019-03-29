@@ -48,8 +48,8 @@
               </li>
               <li>
                 <a  class="btn ">
-                  <i  class="fa fa-chart-line"></i>
-                  <span class="user-transaction-history-page" >Transaction History</span>
+                  <i  class="fa fa-minus-square"></i>
+                  <span class="staff-debit-account" >Debit Account</span>
                 </a>
               </li>
               <li >
@@ -97,7 +97,38 @@
       </div>
     </div>
 
-  
+    <div class= debit-account style="display:none" >
+      <div class="mini-profile-container">
+        <div class="manage-profile-wrapper">
+          <div class="main-content debit-account-container">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Debit Account</h4>
+              </div>
+
+              <form class = "form-fields ">
+                <div class = "input "  >
+                 <label for="debitAccountNumber"> Account Number : </label>
+                <input type="number"  name="debitAccountNumber" required /><br/>
+                 <label for="debitAmount"> Amount to Debit (Naira): </label>
+                <input type="number"  name="debitAmount" required /><br/>
+                 <label for="debitDesription" > Description : </label>
+                <textarea rows = "5" cols = "60"  name="creditDesription" style="height:100px;resize: none;" required />
+                </textarea><br/>
+
+                </div>
+                <div class="bottom">
+                  <button type="submit" class="submit-account">
+                    <span>Debit</span>
+                  </button>
+                </div>	
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   </div> 
   <script src="JS/user.js"></script>
