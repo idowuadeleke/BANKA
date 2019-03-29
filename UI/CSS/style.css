@@ -190,7 +190,7 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
-.admin-side-bar {
+.general-side-bar {
   /* border: solid black 5px; */
   position: absolute;
   top: 12%;
@@ -418,7 +418,7 @@ a, a:hover {
 }}
 
 .transaction, .watch,.create-account,.all-bank-accounts,.user-profile,
-.delete-account,.change-status,.user-account-record,.debitAccount,.creditAccount, .user-account{
+.delete-account,.change-status,.user-account-record,.debitAccount,.credit-account, .user-account{
   /* position: fixed; */
   top: 10%;
   color: #034f50;

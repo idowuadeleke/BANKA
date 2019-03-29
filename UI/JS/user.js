@@ -6,6 +6,7 @@ const adminCreateUserAccount= document.querySelector('.user-account');
 const adminViewAllAccounts= document.querySelector('.all-bank-accounts');
 const adminViewAccountRecord= document.querySelector('.user-account-record');
 const adminDeleteAccount= document.querySelector('.delete-account');
+const staffCreditAcccountPage = document.querySelector('.credit-account');
 
 document.addEventListener('click', (e) => {
     if (e.target.className === 'create-account-page') {
@@ -51,6 +52,9 @@ document.addEventListener('click', (e) => {
         adminChangeStatus.style.display = 'none';
         adminCreateUserAccount.style.display = 'none';
         adminViewAccountRecord.style.display = 'none';
+    }
+    if (e.target.className === 'staff-credit-account') {
+        staffCreditAcccountPage.style.display='block';
     }
 })
 
