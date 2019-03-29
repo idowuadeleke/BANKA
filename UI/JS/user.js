@@ -9,6 +9,7 @@ const adminDeleteAccount= document.querySelector('.delete-account');
 const staffCreditAcccountPage = document.querySelector('.credit-account');
 const staffDebitAcccountPage = document.querySelector('.debit-account');
 const staffViewAllAccounts= document.querySelector('.staff-all-bank-accounts');
+const staffViewAccountRecord= document.querySelector('.user-account-record-staffpage');
 
 document.addEventListener('click', (e) => {
     if (e.target.className === 'create-account-page') {
@@ -59,6 +60,7 @@ document.addEventListener('click', (e) => {
         staffCreditAcccountPage.style.display='block';
         staffDebitAcccountPage.style.display='none';
         staffViewAllAccounts.style.display= 'none';
+        staffViewAccountRecord.style.display= 'none';
     }
     if (e.target.className === 'staff-debit-account') {
         staffDebitAcccountPage.style.display= 'block';
@@ -67,6 +69,13 @@ document.addEventListener('click', (e) => {
     }
     if (e.target.className === 'staff-all-accounts') {
         staffViewAllAccounts.style.display= 'block';
+        staffDebitAcccountPage.style.display='none';
+        staffCreditAcccountPage.style.display='none';
+        staffViewAccountRecord.style.display= 'none';
+    }
+    if (e.target.className === 'staff-view-record') {
+        staffViewAccountRecord.style.display= 'block';
+        staffViewAllAccounts.style.display= 'none';
         staffDebitAcccountPage.style.display='none';
         staffCreditAcccountPage.style.display='none';
     }
