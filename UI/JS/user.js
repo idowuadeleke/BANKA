@@ -8,6 +8,7 @@ const adminViewAccountRecord= document.querySelector('.user-account-record');
 const adminDeleteAccount= document.querySelector('.delete-account');
 const staffCreditAcccountPage = document.querySelector('.credit-account');
 const staffDebitAcccountPage = document.querySelector('.debit-account');
+const staffViewAllAccounts= document.querySelector('.staff-all-bank-accounts');
 
 document.addEventListener('click', (e) => {
     if (e.target.className === 'create-account-page') {
@@ -57,9 +58,16 @@ document.addEventListener('click', (e) => {
     if (e.target.className === 'staff-credit-account') {
         staffCreditAcccountPage.style.display='block';
         staffDebitAcccountPage.style.display='none';
+        staffViewAllAccounts.style.display= 'none';
     }
     if (e.target.className === 'staff-debit-account') {
         staffDebitAcccountPage.style.display= 'block';
+        staffCreditAcccountPage.style.display='none';
+        staffViewAllAccounts.style.display= 'none';
+    }
+    if (e.target.className === 'staff-all-accounts') {
+        staffViewAllAccounts.style.display= 'block';
+        staffDebitAcccountPage.style.display='none';
         staffCreditAcccountPage.style.display='none';
     }
 })
