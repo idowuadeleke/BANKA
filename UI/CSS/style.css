@@ -54,7 +54,7 @@ body {
   box-shadow: 0 2px 10px 0 rgba(0,0,0,.1);
 }
 
-.header .alat-logo{
+.header .banka-logo{
   background-image: url(../images/banka.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -72,7 +72,7 @@ body {
 }
 
 @media only screen and (max-width: 600px)
-{.header[_ngcontent-c2] .alat-logo[_ngcontent-c2] {
+{.header .banka-logo {
     left: 3.957143rem;
 }}
 
