@@ -11,32 +11,39 @@ const staffDebitAcccountPage = document.querySelector('.debit-account');
 const staffViewAllAccounts= document.querySelector('.staff-all-bank-accounts');
 const staffViewAccountRecord= document.querySelector('.user-account-record-staffpage');
 const staffDeleteAccount= document.querySelector('.staff-delete-account');
+const menuBar1=document.querySelector('.general-side-bar');
+const menuBar2=document.querySelector('.general-side-bar2');
 
 document.addEventListener('click', (e) => {
-    if (e.target.className === 'create-account-page') {
+    if (e.target.className === 'create-account-page' || e.target.className === "fa fa-certificate") {
         createAccount.style.display = 'block';
         userProfile.style.display = 'none';
         userTransactionHistory.style.display = 'none';
     }
-    if (e.target.className === 'user-transaction-history-page') {
+    if (e.target.className === "user-profile-page" || e.target.className === "fa fa-user") {
+        userProfile.style.display = 'block';
+        userTransactionHistory.style.display = 'none';
+        createAccount.style.display = 'none';
+    }
+    if (e.target.className === 'user-transaction-history-page'||e.target.className ==="fa fa-chart-line") {
         userTransactionHistory.style.display = 'block';
         userProfile.style.display = 'none';
         createAccount.style.display = 'none';
     }
-    if (e.target.className === 'admin-create-user-account') {
+    if (e.target.className === 'admin-create-user-account' ||e.target.className ==="fa fa-users-cog") {
         adminCreateUserAccount.style.display = 'block';
         adminChangeStatus.style.display = 'none';
         adminViewAllAccounts.style.display = 'none';
         adminViewAccountRecord.style.display = 'none';
     }
-    if (e.target.className === 'change-account-status') {
+    if (e.target.className === 'change-account-status' || e.target.className === "admin fa fa-certificate") {
         adminChangeStatus.style.display = 'block';
         adminCreateUserAccount.style.display = 'none';
         adminViewAllAccounts.style.display = 'none';
         adminViewAccountRecord.style.display = 'none';
         adminDeleteAccount.style.display='none';
     }
-    if (e.target.className === 'admin-all-accounts') {
+    if (e.target.className === 'admin-all-accounts' || e.target.className === "fa fa-gem") {
         adminViewAllAccounts.style.display = 'block';
         adminChangeStatus.style.display = 'none';
         adminCreateUserAccount.style.display = 'none';
@@ -50,27 +57,27 @@ document.addEventListener('click', (e) => {
         adminCreateUserAccount.style.display = 'none';
         adminDeleteAccount.style.display='none';
     }
-    if (e.target.className === 'admin-delete-account') {
+    if (e.target.className === 'admin-delete-account' || e.target.className === "fa fa-cut") {
         adminDeleteAccount.style.display='block';
         adminViewAllAccounts.style.display = 'none';
         adminChangeStatus.style.display = 'none';
         adminCreateUserAccount.style.display = 'none';
         adminViewAccountRecord.style.display = 'none';
     }
-    if (e.target.className === 'staff-credit-account') {
+    if (e.target.className === 'staff-credit-account' || e.target.className === "fa fa-plus-square") {
         staffCreditAcccountPage.style.display='block';
         staffDebitAcccountPage.style.display='none';
         staffViewAllAccounts.style.display= 'none';
         staffViewAccountRecord.style.display= 'none';
         staffDeleteAccount.style.display= 'none';
     }
-    if (e.target.className === 'staff-debit-account') {
+    if (e.target.className === 'staff-debit-account' || e.target.className === "fa fa-minus-square") {
         staffDebitAcccountPage.style.display= 'block';
         staffCreditAcccountPage.style.display='none';
         staffViewAllAccounts.style.display= 'none';
         staffDeleteAccount.style.display= 'none';
     }
-    if (e.target.className === 'staff-all-accounts') {
+    if (e.target.className === 'staff-all-accounts' || e.target.className === "staff fa fa-gem") {
         staffViewAllAccounts.style.display= 'block';
         staffDebitAcccountPage.style.display='none';
         staffCreditAcccountPage.style.display='none';
@@ -84,13 +91,15 @@ document.addEventListener('click', (e) => {
         staffCreditAcccountPage.style.display='none';
         staffDeleteAccount.style.display= 'none';
     }
-    if (e.target.className === 'staff-delete-accountpage') {
+    if (e.target.className === 'staff-delete-accountpage' || e.target.className === "staff fa fa-cut") {
         staffDeleteAccount.style.display= 'block';
         staffViewAccountRecord.style.display= 'none';
         staffViewAllAccounts.style.display= 'none';
         staffDebitAcccountPage.style.display='none';
         staffCreditAcccountPage.style.display='none';
     }
+    if (e.target.className === 'menu-link' || e.target.className ==="fa fa-bars" ) {
+        document.getElementById("menu").classList.toggle("reduce-sidebar");}
 })
 
 // Add active class to the current button (highlight it)
@@ -103,5 +112,3 @@ for (var i = 0; i < btns.length; i++) {
   this.className += " active-link";
   });
 }
-
-
