@@ -1,3 +1,25 @@
+const userLogin = document.getElementById("user-login-btn");
+const userRole = document.getElementById("user-role");
+
+var role;
+userRole.onchange = function() {
+  role = document.getElementById("user-role").value;
+};
+
+userLogin.onclick = function(e) {
+    gotoUserPage();
+  };
+  
+function gotoUserPage() {
+  if (role == "customer") {
+    userLogin.formAction = "user.html";
+  } else if (role == "staff") {
+    userLogin.formAction = "staff.html";
+  } else if (role == "admin") {
+    userLogin.formAction = "admin.html";
+  }
+}
+
 var myIndex = 0;
 carousel();
 
