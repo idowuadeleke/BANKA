@@ -11,7 +11,8 @@ const staffDebitAcccountPage = document.querySelector('.debit-account');
 const staffViewAllAccounts= document.querySelector('.staff-all-bank-accounts');
 const staffViewAccountRecord= document.querySelector('.user-account-record-staffpage');
 const staffDeleteAccount= document.querySelector('.staff-delete-account');
-var debitModal = document.getElementById('debit-modal');
+const debitModal = document.getElementById('debit-modal');
+const creditModal = document.getElementById('credit-modal');
 
 
 // modal.style.display = "block";
@@ -101,13 +102,22 @@ document.addEventListener('click', (e) => {
         staffCreditAcccountPage.style.display='none';
     }
     if (e.target.className === 'menu-link' || e.target.className ==="fa fa-bars" ) {
-        document.getElementById("menu").classList.toggle("reduce-sidebar");}
+        document.getElementById("menu").classList.toggle("reduce-sidebar");
+    }
     if (e.target.className === "submit-account debit-button"){
         debitModal.style.display = "block";
     }
     if (e.target.className === "close"){
         debitModal.style.display = "none";
+        creditModal.style.display = "none";
     }  
+    if (e.target.className === "submit-account modal-button"){
+        debitModal.style.display = "none";
+        creditModal.style.display = "none";
+    }  
+    if (e.target.className === "submit-account credit-button"){
+        creditModal.style.display = "block";
+    }
 })
 
 // Add active class to the current button (highlight it)
