@@ -11,8 +11,10 @@ const staffDebitAcccountPage = document.querySelector('.debit-account');
 const staffViewAllAccounts= document.querySelector('.staff-all-bank-accounts');
 const staffViewAccountRecord= document.querySelector('.user-account-record-staffpage');
 const staffDeleteAccount= document.querySelector('.staff-delete-account');
-const menuBar1=document.querySelector('.general-side-bar');
-const menuBar2=document.querySelector('.general-side-bar2');
+var debitModal = document.getElementById('debit-modal');
+
+
+// modal.style.display = "block";
 
 document.addEventListener('click', (e) => {
     if (e.target.className === 'create-account-page' || e.target.className === "fa fa-certificate") {
@@ -100,6 +102,12 @@ document.addEventListener('click', (e) => {
     }
     if (e.target.className === 'menu-link' || e.target.className ==="fa fa-bars" ) {
         document.getElementById("menu").classList.toggle("reduce-sidebar");}
+    if (e.target.className === "submit-account debit-button"){
+        debitModal.style.display = "block";
+    }
+    if (e.target.className === "close"){
+        debitModal.style.display = "none";
+    }  
 })
 
 // Add active class to the current button (highlight it)
@@ -112,3 +120,9 @@ for (var i = 0; i < btns.length; i++) {
   this.className += " active-link";
   });
 }
+
+  window.onclick = () => {
+    if (event.target == debitModal) {
+        debitModal.style.display = "none";
+      }
+  };
