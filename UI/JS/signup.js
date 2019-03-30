@@ -6,6 +6,7 @@ userRole.onchange = function() {
   role = document.getElementById("user-role").value;
 };
 
+
 userLogin.onclick = function(e) {
     gotoUserPage();
   };

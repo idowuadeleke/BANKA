@@ -128,16 +128,16 @@
 
               <form class = "form-fields ">
                 <div class = "input "  >
-                <label for="userAccountUserType"> User Type : </label>
-                <input type="text"  name="userAccountUserType" class="accountInputField" required /><br/>
-                 <label for="userAccountFirstName"> First Name : </label>
-                <input type="text"  name="userAccountFirstName" class="accountInputField" required /><br/>
-                 <label for="userAccountLastName"> Last Name : </label>
-                <input type="text"  name="userAccountLastName" class="accountInputField" required /><br/>
-                <label for="userAccountEmail">Email Address : </label>
-                <input type="email"  name="userAccountEmail" class="accountInputField" required /><br/>
-                <label for="userAccountPassword">Password : </label>
-                <input type="password"  name="userAccountPassword" class="accountInputField" required />
+                <select id="user-role" name="create-account-role" required>
+                  <option value="" disabled selected>Account Role</option>
+                  <option value="customer">Customer</option>
+                  <option value="staff">Staff</option>
+                  <option value="admin">Admin</option>
+                </select>
+                <input type="text"  name="userAccountFirstName" placeholder="First Name" required /><br/>
+                <input type="text"  name="userAccountLastName" placeholder="Last Name" required /><br/>
+                <input type="email"  name="userAccountEmail" placeholder="Email Address" required /><br/>
+                <input type="password"  name="userAccountPassword" placeholder="Password" required />
                 </div>
                 <div class="bottom">
                   <button type="submit" class="submit-user">
