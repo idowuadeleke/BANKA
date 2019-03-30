@@ -166,7 +166,7 @@ div {
   text-align: center;
 }
 
-input, textarea, select, button, meter, progress {
+input, textarea, select, button, meter,select {
   -webkit-writing-mode: horizontal-tb !important;
 }
 
@@ -190,7 +190,7 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
-.general-side-bar {
+.general-side-bar,.general-side-bar2 {
   /* border: solid black 5px; */
   position: absolute;
   top: 12%;
@@ -395,7 +395,7 @@ a, a:hover {
   overflow: hidden;
   transition: width .05s linear;
   -webkit-transform: translateZ(0) scale(1,1);
-  z-index: 1000;
+  /* z-index: 1000; */
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
   color: #034f50;
   position: fixed;
@@ -707,7 +707,8 @@ input, textarea, select, button {
   text-align: center;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="text"],input[type="number"],textarea {
+input[type="text"], input[type="password"], input[type="email"], input[type="text"],input[type="number"],textarea,
+select {
   text-align: left;
   width: 70%;
   margin: 15px 10px 0px 10px;
@@ -716,6 +717,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
   border: none;
   border-bottom: solid #034f50;
   outline: 0;
+  -ms-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  -webkit-box-sizing:content-box; 
+  box-sizing:content-box;
+  color:  #034f50;
 }
 
 .submit-account, .submit-user {
@@ -730,6 +736,9 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
   font-size: 18px;
   opacity: 0.85;
   text-align: center;
+}
+.admin-modal-button{
+  width:30%;
 }
 
 .view-record-btn{
@@ -837,14 +846,14 @@ a:hover {
   width: 60%;
 }
 
-.userAccountContainer input[type="email"],.userAccountContainer input[type="text"],
+/* .userAccountContainer input[type="email"],.userAccountContainer input[type="text"],
 .userAccountContainer input[type="password"]{
   border: solid 1px #034f50;
   border-radius: 4px;
   position: relative;
   float: left;
   width: 70%;
-}
+} */
 
 .debit-account-container label,.credit-account-container label,.userAccountContainer label,
 .deleteAccountContainer label, .create-account-container label, .statusAccountContainer label{
@@ -859,3 +868,110 @@ a:hover {
   width:22%
 }
 
+.reduce-sidebar{
+  width: 49px !important;
+}
+
+a{
+  cursor: pointer !important;
+}
+
+/* add overlay */
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:black !important ; /* Black background with opacity */
+  /* z-index: 2; Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  text-align: center;
+  padding-top: 90px;
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  width: 40%;
+  color: #034f50;
+  border-radius:6px 6px;
+}
+
+/* The Close Button */
+.close, .admin-close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus,
+.admin-close:hover,
+.admin-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 2px;
+  width:100%;
+  color: #034f50;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.modal-body {padding: 2px 16px;}
+.modal-bottom{
+  text-align: center;
+  
+}
+.modal-button, .admin-modal-button{
+  margin-right: 20px
+}

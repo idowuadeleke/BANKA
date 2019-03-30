@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
+
   <div class = "main-container">
     <div class="header">
           <div  class="banka-logo" tabindex="0"></div>
@@ -26,16 +27,18 @@
     <div class="general-side-bar">
       <div  class="wrappers">
         <div  class="row">
-          <div  class="side-bar col s1 m3" id="menu">
+          <div  class="side-bar" id="menu">
             <ul  class="nav">
               <li  >
-                <a  >
+                <a >
+                <div>
                   <i class="fa fa-bars"></i>
-                  <span >Menu</span>
+                  <span class="menu-link">Menu</span>
+                  </div>
                 </a>
               </li>
               <!----><li >
-                <a  href="" class="btn active-link">
+                <a   class="btn active-link">
                   <i  class="fa fa-user"></i>
                   <span class="user-profile-page">Profile</span>
                 </a>
@@ -79,7 +82,11 @@
                   <input type="text" placeholder="Last Name" name="lastname" required />
                   <input type="text" placeholder="City" name="city" required />
                   <input type="text" placeholder="Branch Name" name="branch" required />
-                  <input type="text" placeholder="Account Type" name="account-type" required />
+                 <select id="account-type" name="account-type" required>
+                  <option value="" disabled selected>Account type</option>
+                  <option value="savings">Savings</option>
+                  <option value="current">Current</option>
+                </select>
                 </div>
                 <div class="bottom">
                   <button type="submit" class="submit-account">
@@ -144,8 +151,8 @@
                 </div>
 
                 <div  class="each-menu" tabindex="0">
-                  <div  class="icon-container">Next of kin</div>
-                  <div  class="link-name profileMargin">Next of kin</div><!---->
+                  <div  class="icon-container">Account Type </div>
+                  <div  class="link-name profileMargin">Savings</div><!---->
                 </div>
 
               </div>
