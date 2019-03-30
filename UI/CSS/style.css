@@ -190,7 +190,7 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
-.general-side-bar {
+.general-side-bar,.general-side-bar2 {
   /* border: solid black 5px; */
   position: absolute;
   top: 12%;
@@ -865,3 +865,10 @@ a:hover {
   width:22%
 }
 
+.reduce-sidebar{
+  width: 49px !important;
+}
+
+a{
+  cursor: pointer !important;
+}
