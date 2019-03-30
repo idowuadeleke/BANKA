@@ -737,6 +737,9 @@ select {
   opacity: 0.85;
   text-align: center;
 }
+.admin-modal-button{
+  width:30%;
+}
 
 .view-record-btn{
   background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
@@ -940,7 +943,7 @@ overlay {
 }
 
 /* The Close Button */
-.close {
+.close, .admin-close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -948,7 +951,9 @@ overlay {
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+.admin-close:hover,
+.admin-close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -967,6 +972,6 @@ overlay {
   text-align: center;
   
 }
-.modal-button{
+.modal-button, .admin-modal-button{
   margin-right: 20px
 }
