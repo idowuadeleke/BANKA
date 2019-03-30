@@ -14,7 +14,9 @@ const staffDeleteAccount= document.querySelector('.staff-delete-account');
 const debitModal = document.getElementById('debit-modal');
 const creditModal = document.getElementById('credit-modal');
 const staffDeleteModal = document.getElementById('staff-delete-modal');
-
+const adminDeleteModal = document.getElementById('admin-delete-modal');
+const adminDeactivateModal = document.getElementById('admin-deactivate-modal');
+const adminActivateModal = document.getElementById('admin-activate-modal');
 
 // modal.style.display = "block";
 
@@ -112,17 +114,38 @@ document.addEventListener('click', (e) => {
         debitModal.style.display = "none";
         creditModal.style.display = "none";
         staffDeleteModal.style.display = "none";
+        
     }  
+    if (e.target.className === "admin-close"){
+        adminDeleteModal.style.display = "none";
+        adminDeactivateModal.style.display = "none";
+        adminActivateModal.style.display = "none";
+    } 
+    if (e.target.className === "submit-account admin-modal-button"){
+        adminDeleteModal.style.display = "none";
+        adminDeactivateModal.style.display = "none";
+        adminActivateModal.style.display = "none";
+    }   
     if (e.target.className === "submit-account modal-button"){
         debitModal.style.display = "none";
         creditModal.style.display = "none";
         staffDeleteModal.style.display = "none";
+        
     }  
     if (e.target.className === "submit-account credit-button"){
         creditModal.style.display = "block";
     }
     if (e.target.className === "submit-account staff-delete-button" || e.target.className === "changeUserStatus submit-account staff-delete-button"){
         staffDeleteModal.style.display = "block";
+    }
+    if (e.target.className === "submit-account admin-delete-button" || e.target.className === "changeUserStatus submit-account admin-delete-button"){
+        adminDeleteModal.style.display = "block";
+    }
+    if (e.target.className === "submit-account deactivate-button" || e.target.className === "changeUserStatus submit-account deactivate-button"){
+        adminDeactivateModal.style.display = "block";
+    }
+    if (e.target.className === "submit-account activate-button" || e.target.className === "changeUserStatus submit-account activate-button"){
+        adminActivateModal.style.display = "block";
     }
 })
 
