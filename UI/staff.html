@@ -86,10 +86,8 @@
 
                 </div>
                 <div class="bottom">
-                  <button type="submit" class="submit-account">
-                    <span>Credit</span>
-                  </button>
-                </div>	
+                <input type="button" value="Debit" class="submit-account credit-button" />
+                </div>
               </form>
             </div>
           </div>
@@ -115,10 +113,9 @@
                  <label for="debitDesription" > Description : </label>
                 <textarea rows = "5" cols = "60"  name="creditDesription" style="height:100px;resize: none;" required />
                 </textarea><br/>
-
                 </div>
                 <div class="bottom">
-                <input type="button" value="Debit" class="submit-account debit-button" />
+                <input type="button" value="Credit" class="submit-account debit-button" />
                 </div>	
               </form>
             </div>
@@ -140,11 +137,29 @@
         <p>Amount: ₦100,000</p>
       </div>
       <div class= "modal-bottom">
-      <input type="button" value="Debit" class="submit-account modal-button " />
-      <input type="button" value="Cancel" class="submit-account modal-button" />	
+      <input type="submit" value="Debit" class="submit-account modal-button" />
+      <input type="submit" value="Cancel" class="submit-account modal-button" />	
       </div>
     </div>
+    </div>
 
+     <div id="credit-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Credit confirmation</h2>
+      </div>
+      <div class="modal-body">
+        <p>Account name: Idowu Adeleke</p>
+        <p>Account number: 0123456789</p>
+        <p>Amount: ₦100,000</p>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Debit" class="submit-account modal-button" />
+      <input type="submit" value="Cancel" class="submit-account modal-button" />	
+      </div>
+    </div>
     </div>
 
 
