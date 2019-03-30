@@ -121,7 +121,7 @@ document.addEventListener('click', (e) => {
     if (e.target.className === "submit-account credit-button"){
         creditModal.style.display = "block";
     }
-    if (e.target.className === "submit-account staff-delete-button"){
+    if (e.target.className === "submit-account staff-delete-button" || e.target.className === "changeUserStatus submit-account staff-delete-button"){
         staffDeleteModal.style.display = "block";
     }
 })
