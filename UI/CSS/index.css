@@ -114,6 +114,18 @@ header{
     font-size: 18px;
   }
 
+  .recover{
+    background-image:linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 25px 0 15px 0;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    border-radius: 3px;
+    font-size: 18px;
+  }
+
 a{text-decoration: none;
 color: #034f50;
 } 
@@ -124,6 +136,9 @@ color: #034f50;
     cursor: pointer;
 }
 
+.recover-password .login-link{
+    margin-top: 20px;
+}
 
 a:hover{
     text-decoration:underline;
