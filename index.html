@@ -102,10 +102,18 @@
 						<input type="email" placeholder="Email Address" name="email" required />
 						
 						<input type="password" placeholder="Enter Password" name="psw" required />
+
+						<select id="user-role" name="login-account-type" required>
+							<option value="" disabled selected>Account Type</option>
+							<option value="customer">Customer</option>
+							<option value="staff">Staff</option>
+							<option value="admin">Admin</option>
+						</select>
+					
 					
 					</div>
 					<div class="bottom">
-						<button type="submit" class="Login" formaction="user.html">
+						<button type="submit" id="user-login-btn" class="Login" formaction="">
 							<!---->
 							<!----><span>Log In</span>
 						</button>

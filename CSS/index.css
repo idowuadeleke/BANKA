@@ -141,7 +141,7 @@ a:hover{
 input[type="text"],
 input[type="password"],
 input[type="email"],
-textarea {
+textarea, select {
   text-align: left;
   width: 70%;
   margin: 15px 30px 5px 30px;
@@ -150,6 +150,11 @@ textarea {
   border: none;
   border-bottom: solid  #034f50 ;
   outline: 0;
+  -ms-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  -webkit-box-sizing:content-box; 
+  box-sizing:content-box;
+  color:  #034f50;
 }
 
 .bottom-right {
