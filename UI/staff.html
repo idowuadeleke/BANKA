@@ -97,7 +97,7 @@
       </div>
     </div>
 
-    <div class= debit-account style="display:none" >
+    <div class= "debit-account" style="display:none" >
       <div class="mini-profile-container">
         <div class="manage-profile-wrapper">
           <div class="main-content debit-account-container">        
@@ -118,9 +118,7 @@
 
                 </div>
                 <div class="bottom">
-                  <button type="submit" class="submit-account">
-                    <span>Debit</span>
-                  </button>
+                <input type="button" value="Debit" class="submit-account debit-button" />
                 </div>	
               </form>
             </div>
@@ -128,6 +126,28 @@
         </div>
       </div>
     </div>
+
+    <div id="debit-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Debit confirmation</h2>
+      </div>
+      <div class="modal-body">
+        <p>Account name: Idowu Adeleke</p>
+        <p>Account number: 0123456789</p>
+        <p>Amount: ₦100,000</p>
+      </div>
+      <div class= "modal-bottom">
+      <input type="button" value="Debit" class="submit-account modal-button " />
+      <input type="button" value="Cancel" class="submit-account modal-button" />	
+      </div>
+    </div>
+
+    </div>
+
+
 
     <div class="staff-all-bank-accounts" >
       <div class="mini-profile-container"style="margin-top: 100px">
