@@ -12,16 +12,16 @@
 
   <div class = "main-container">
     <div class="header">
-          <div  class="banka-logo" tabindex="0"></div>
-        <div  class="profile">
-            <div  class="avatar">
-                <img  src="images/placeholder.png" width=100%>
-            </div>
-            <p class="username" >Hi idowu,</p>
-            <div  class="logout">
-            <a href="index.html"><button class="btn-logout">logout</button></a>
-            </div>
-        </div>
+        <div  class="banka-logo" tabindex="0"></div>
+        <div class="navbar">
+        <ul class="dropdown">
+          <i class="far fa-user">  <h5 class="user">Idowu <i class="fas fa-caret-down"></i></h5> <div class="dropdown-content">
+           
+           <a class="user-reset-password" >reset password</a>
+           <a href="index.html">logout</a>
+          </div></i>
+        </ul>
+      </div>
     </div>
       
     <div class="general-side-bar">
@@ -37,7 +37,7 @@
                   </div>
                 </a>
               </li>
-              <!----><li >
+              <li >
                 <a   class="btn active-link">
                   <i  class="fa fa-user"></i>
                   <span class="user-profile-page">Profile</span>
@@ -89,16 +89,55 @@
                 </select>
                 </div>
                 <div class="bottom">
-                  <button type="submit" class="submit-account">
-                    <span>Submit</span>
-                  </button>
-                </div>	
+                <input type="button" value="Create" class="submit-account create-bank-account" />
+                </div>
                 
               </form>
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+
+    <div id="user-resetpass-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="bank-account-close">&times;</span>
+        <h2>Reset Password</h2>
+      </div>
+      <div class="modal-body">
+        <p> Kindly enter your new password details</p>
+        <input type="password" placeholder="Enter Password" name="psw" required /><br/>
+				<input type="password" placeholder="Confirm Password" name="psw2" required />
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Reset" class="submit-account account-modal-button" />
+      <input type="submit" value="Cancel" class="submit-account account-modal-button" />
+      </div>
+    </div>
+    </div>
+
+     <div id="create-bankaccount-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="bank-account-close">&times;</span>
+        <h2>Account Created !</h2>
+      </div>
+      <div class="modal-body">
+        <p> Welcome to Banka, below are your account details</p>
+        <p>Account name: Idowu Adeleke</p>
+        <p>Account number: 0123456789</p>
+        <p>Account type: Savings</p>
+        <p></p>
+        <p>Kindly visit any branch to credit your account</p>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Okay" class="submit-account account-modal-button" />
+      </div>
+    </div>
     </div>
 
     <div class= user-profile >
@@ -108,16 +147,14 @@
               <div >
 
                 <div  class="image-container">
-                  <span  class="edit-class" for="dp">
-                  <i  class="fa fa-pencil"></i>
-                  </span>
-                  <input  class="dp-input" name="utility-bill-image" type="file">
-                    <!----><i  class="fa fa-user"></i>
+                
+                  
+                    <i  class="fa fa-user"></i>
                     <div  class="image-wrapper">
-                      <!---->
+                      
                     </div>
                 </div>
-
+                   <input  class="dp-input" name="utility-bill-image" type="file">
                   <h2 class="user-details fullname"><b>IDOWU ADELEKE</b></h2>
                   <p  class="user-details">adelekeidowu30@gmail.com</p>
                   <p  class="user-details">Last Login: 23rd - March - 2019, 2:39:03 pm</p>
@@ -132,62 +169,62 @@
 
                 <div  class="each-menu" tabindex="0">
                   <div  class="icon-container"><i  class="mdi mdi-check complete"></i></div>
-                  <div  class="link-name profileMargin">Active</div><!---->
+                  <div  class="link-name profileMargin">Active</div>
                 </div>
 
                 <div  class="each-menu" tabindex="0">
                   <div  class="icon-container">Account Number</div>
-                  <div  class="link-name profileMargin">0123456789</div><!---->
+                  <div  class="link-name profileMargin">0123456789</div>
                 </div>
 
                 <div  class="each-menu" tabindex="0">
                   <div  class="icon-container">Account Balance</div>
-                  <div  class="link-name profileMargin">₦ 0</div><!---->
+                  <div  class="link-name profileMargin">₦ 0</div>
                 </div>
 
                 <div  class="each-menu" tabindex="0">
                   <div  class="icon-container">Branch</div>
-                  <div  class="link-name profileMargin">EPIC</div><!---->
+                  <div  class="link-name profileMargin">EPIC</div>
                 </div>
 
                 <div  class="each-menu" tabindex="0">
                   <div  class="icon-container">Account Type </div>
-                  <div  class="link-name profileMargin">Savings</div><!---->
+                  <div  class="link-name profileMargin">Savings</div>
                 </div>
 
               </div>
             </div>
-          
+         
           <h2  class="user-details fullname">Top 3 Transactions</h2>
           <div class="main-content account-details-container" style="margin-bottom:5px;">
             <div>
                    <div class="top-menu" tabindex="0" >
                 <div class="icon-container">Date</div>
-                <div class="link-name Debits">Debits</div><!---->
-                <div class="link-name Credits">Credits</div><!---->
-                <div class="link-name Balance">Balance</div><!---->
-                <div class="link-name Branch"> Branch</div><!---->
+                <div class="link-name Debits">Debits</div>
+                <div class="link-name Credits">Credits</div>
+                <div class="link-name Balance">Balance</div>
+                <div class="link-name Branch"> Branch</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">15/03/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                <div class="link-name Credits">₦10,000.00</div><!---->
-                <div class="link-name Balance">₦260,000.00</div><!---->
-                <div class="link-name Branch"> Maryland</div><!---->                
+                <div class="link-name Debits">--------</div>
+                <div class="link-name Credits">₦10,000.00</div>
+                <div class="link-name Balance">₦260,000.00</div>
+                <div class="link-name Branch"> Maryland</div>                
               </div>
               <div class="each-menu" tabindex="0">
-               <!----><div class="icon-container">12/03/2019</div>
-                <div class="link-name Debits">₦100,000.00</div><!---->
-                 <div class="link-name Credits">--------</div><!---->
-                  <div class="link-name Balance">₦250,000.00</div><!---->
-                  <div class="link-name Branch"> Ilupeju</div><!---->
+               <div class="icon-container">12/03/2019</div>
+                <div class="link-name Debits">₦100,000.00</div>
+                 <div class="link-name Credits">--------</div>
+                  <div class="link-name Balance">₦250,000.00</div>
+                  <div class="link-name Branch"> Ilupeju</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">10/03/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                 <div class="link-name Credits">₦79,000</div><!---->
-                  <div class="link-name Balance">₦350,000.00</div><!---->
-                  <div class="link-name Branch"> Ikoyi</div><!---->
+                <div class="link-name Debits">--------</div>
+                 <div class="link-name Credits">₦79,000</div>
+                  <div class="link-name Balance">₦350,000.00</div>
+                  <div class="link-name Branch"> Ikoyi</div>
               </div>
             </div>
             </div>
@@ -213,94 +250,94 @@
             <div>
                    <div class="top-menu" tabindex="0" >
                 <div class="icon-container">Date</div>
-                <div class="link-name Debits">Debits</div><!---->
-                <div class="link-name Credits">Credits</div><!---->
-                <div class="link-name Balance">Balance</div><!---->
-                <div class="link-name Branch"> Branch</div><!---->
+                <div class="link-name Debits">Debits</div>
+                <div class="link-name Credits">Credits</div>
+                <div class="link-name Balance">Balance</div>
+                <div class="link-name Branch"> Branch</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">15/03/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                <div class="link-name Credits">₦10,000.00</div><!---->
-                <div class="link-name Balance">₦260,000.00</div><!---->
-                <div class="link-name Branch"> Maryland</div><!---->                
+                <div class="link-name Debits">--------</div>
+                <div class="link-name Credits">₦10,000.00</div>
+                <div class="link-name Balance">₦260,000.00</div>
+                <div class="link-name Branch"> Maryland</div>                
               </div>
               <div class="each-menu" tabindex="0">
-               <!----><div class="icon-container">12/03/2019</div>
-                <div class="link-name Debits">₦100,000.00</div><!---->
-                 <div class="link-name Credits">--------</div><!---->
-                  <div class="link-name Balance">₦250,000.00</div><!---->
-                  <div class="link-name Branch"> Ilupeju</div><!---->
+               <div class="icon-container">12/03/2019</div>
+                <div class="link-name Debits">₦100,000.00</div>
+                 <div class="link-name Credits">--------</div>
+                  <div class="link-name Balance">₦250,000.00</div>
+                  <div class="link-name Branch"> Ilupeju</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">10/03/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                 <div class="link-name Credits">₦79,000</div><!---->
-                  <div class="link-name Balance">₦350,000.00</div><!---->
-                  <div class="link-name Branch"> Ikoyi</div><!---->
+                <div class="link-name Debits">--------</div>
+                 <div class="link-name Credits">₦79,000</div>
+                  <div class="link-name Balance">₦350,000.00</div>
+                  <div class="link-name Branch"> Ikoyi</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">03/03/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                <div class="link-name Credits">₦200,000</div><!---->
-                <div class="link-name Balance">₦271,000.00</div><!---->
-                <div class="link-name Branch"> Marina</div><!---->
+                <div class="link-name Debits">--------</div>
+                <div class="link-name Credits">₦200,000</div>
+                <div class="link-name Balance">₦271,000.00</div>
+                <div class="link-name Branch"> Marina</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">22/02/2019</div>
-                <div class="link-name Debits">₦1,000.00</div><!---->
-                <div class="link-name Credits">--------</div><!---->
-                <div class="link-name Balance">₦71,000</div><!---->
-                <div class="link-name Branch"> Ilupeju</div><!---->
+                <div class="link-name Debits">₦1,000.00</div>
+                <div class="link-name Credits">--------</div>
+                <div class="link-name Balance">₦71,000</div>
+                <div class="link-name Branch"> Ilupeju</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">04/02/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                <div class="link-name Credits">₦22,000.00</div><!---->
-                <div class="link-name Balance">#72,000.00</div><!---->
-                <div class="link-name Branch"> Ikeja</div><!---->
+                <div class="link-name Debits">--------</div>
+                <div class="link-name Credits">₦22,000.00</div>
+                <div class="link-name Balance">#72,000.00</div>
+                <div class="link-name Branch"> Ikeja</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">27/01/2019</div>
-                <div class="link-name Debits">₦10,000.00</div><!---->
-                <div class="link-name Credits">--------</div><!---->
-                <div class="link-name Balance">₦50,000.00</div><!---->
-                <div class="link-name Branch"> Marina</div><!---->
+                <div class="link-name Debits">₦10,000.00</div>
+                <div class="link-name Credits">--------</div>
+                <div class="link-name Balance">₦50,000.00</div>
+                <div class="link-name Branch"> Marina</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">25/01/2019</div>
-                <div class="link-name Debits">₦4,000</div><!---->
-                <div class="link-name Credits">--------</div><!---->
-                <div class="link-name Balance">₦60,000.00</div><!---->
-                <div class="link-name Branch"> Ikoyi</div><!---->
+                <div class="link-name Debits">₦4,000</div>
+                <div class="link-name Credits">--------</div>
+                <div class="link-name Balance">₦60,000.00</div>
+                <div class="link-name Branch"> Ikoyi</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">16/01/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                <div class="link-name Credits">₦40,000.00</div><!---->
-                <div class="link-name Balance">₦64,000.00</div><!---->
-                <div class="link-name Branch"> Ilupeju</div><!---->
+                <div class="link-name Debits">--------</div>
+                <div class="link-name Credits">₦40,000.00</div>
+                <div class="link-name Balance">₦64,000.00</div>
+                <div class="link-name Branch"> Ilupeju</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">10/02/2019</div>
-                <div class="link-name Debits">₦3,000.00</div><!---->
-                <div class="link-name Credits">--------</div><!---->
-                <div class="link-name Balance">₦21,000.00</div><!---->
-                <div class="link-name Branch"> Ikeja</div><!---->
+                <div class="link-name Debits">₦3,000.00</div>
+                <div class="link-name Credits">--------</div>
+                <div class="link-name Balance">₦21,000.00</div>
+                <div class="link-name Branch"> Ikeja</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">07/01/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                <div class="link-name Credits">₦12,000.00</div><!---->
-                <div class="link-name Balance">₦24,000.00</div><!---->
-                <div class="link-name Branch"> Ikoyi</div><!---->
+                <div class="link-name Debits">--------</div>
+                <div class="link-name Credits">₦12,000.00</div>
+                <div class="link-name Balance">₦24,000.00</div>
+                <div class="link-name Branch"> Ikoyi</div>
               </div>
               <div class="each-menu" tabindex="0">
                 <div class="icon-container">01/01/2019</div>
-                <div class="link-name Debits">--------</div><!---->
-                <div class="link-name Credits">₦12,000.00</div><!---->
-                <div class="link-name Balance">₦12,000.00</div><!---->
-                <div class="link-name Branch"> Maryland</div><!---->
+                <div class="link-name Debits">--------</div>
+                <div class="link-name Credits">₦12,000.00</div>
+                <div class="link-name Balance">₦12,000.00</div>
+                <div class="link-name Branch"> Maryland</div>
               </div>
             </div>
           </div>
