@@ -14,16 +14,15 @@
     <div class="header">
           <div  class="banka-logo" tabindex="0"></div>
 
-        <div  class="profile">
-            <div  class="avatar">
-                <i  class="mdi mdi-account-outline"></i>
-                <img  src="images/placeholder.png" width=100%>
-            </div>
-            <p class="username" >Admin</p>
-            <div  class="logout">
-            <a href="index.html"><button class="btn-logout">logout</button></a>
-            </div>
-        </div>
+        <div class="navbar">
+        <ul class="dropdown">
+          <i class="far fa-user">  <h5 class="user">Admin <i class="fas fa-caret-down"></i></h5> <div class="dropdown-content">
+           
+           <a class="admin-reset-password" >reset password</a>
+           <a href="index.html">logout</a>
+          </div></i>
+        </ul>
+      </div>
     </div>
       
     <div class="general-side-bar">
@@ -123,6 +122,26 @@
       </div>
     </div>
     </div>
+
+    <div id="admin-resetpass-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="admin-close">&times;</span>
+        <h2>Reset Password</h2>
+      </div>
+      <div class="modal-body">
+        <p> Kindly enter your new password details</p>
+        <input type="password" placeholder="Enter Password" name="psw" required /><br/>
+				<input type="password" placeholder="Confirm Password" name="psw2" required />
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Reset" class="submit-account admin-modal-button" />
+      <input type="submit" value="Cancel" class="submit-account admin-modal-button" />
+      </div>
+    </div>
+    </div>
+
 
     <div id="admin-delete-modal" class="modal">
     <!-- Modal content -->

@@ -943,7 +943,7 @@ overlay {
 }
 
 /* The Close Button */
-.close, .admin-close {
+.close, .admin-close,.bank-account-close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -953,7 +953,9 @@ overlay {
 .close:hover,
 .close:focus,
 .admin-close:hover,
-.admin-close:focus {
+.admin-close:focus,
+.bank-account-close:hover,
+.bank-account-close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -972,6 +974,105 @@ overlay {
   text-align: center;
   
 }
-.modal-button, .admin-modal-button{
+.modal-button, .admin-modal-button, .account-modal-button{
   margin-right: 20px
+}
+
+.navbar {
+  width: 10%;
+  height: 75px;
+  box-sizing: border-box;
+  padding: 9px 0px;
+  font-family: "sarabun";
+  font-weight: bolder;
+  font-weight: 5em;
+  font-size: 20px;
+  color: #fff;
+  margin-left: 0px;
+  float: right;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0px 10px 10px 0px;
+  text-align: center;
+  padding: 0px;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.navbar ul li a:hover {
+  color: #fff;
+  opacity: 0.7;
+}
+
+.navbar ul li {
+  display: inline;
+  margin: 0 0px;
+}
+
+@media only screen and (min-width: 802px) {
+  .top__nav {
+    display: none;
+  }
+  .main__body,
+  .main__body__height {
+    margin-top: 0px;
+  }
+
+  .dropdown {
+    cursor: pointer;
+    padding-left: 20%;
+  }
+  .navbar {
+    width: 30%;
+    box-sizing: border-box;
+    padding: 9px 0px;
+    color: #fff;
+    margin-left: 0px;
+  }
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown_label {
+  width: 10%;
+  text-align: right;
+}
+
+.dropdown_label {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 98px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown_label:hover .dropdown-content {
+  display: block;
+}
+
+.user {
+  display: inline-block;
 }

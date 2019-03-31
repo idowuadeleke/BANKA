@@ -19,6 +19,9 @@ const adminDeactivateModal = document.getElementById('admin-deactivate-modal');
 const adminActivateModal = document.getElementById('admin-activate-modal');
 const bankAccountModal= document.getElementById('create-bankaccount-modal');
 const createLoginUserModal= document.getElementById('create-user-modal');
+const userResetPasswordModal = document.getElementById('user-resetpass-modal');
+const staffResetPasswordModal = document.getElementById('staff-resetpass-modal');
+const adminResetPasswordModal = document.getElementById('admin-resetpass-modal');
 
 
 // modal.style.display = "block";
@@ -107,6 +110,7 @@ document.addEventListener('click', (e) => {
         staffViewAllAccounts.style.display= 'none';
         staffDebitAcccountPage.style.display='none';
         staffCreditAcccountPage.style.display='none';
+        
     }
     if (e.target.className === 'menu-link' || e.target.className ==="fa fa-bars" ) {
         document.getElementById("menu").classList.toggle("reduce-sidebar");
@@ -118,6 +122,7 @@ document.addEventListener('click', (e) => {
         debitModal.style.display = "none";
         creditModal.style.display = "none";
         staffDeleteModal.style.display = "none";
+        staffResetPasswordModal.style.display = "none";
         
     }  
     if (e.target.className === "admin-close"){
@@ -125,17 +130,20 @@ document.addEventListener('click', (e) => {
         adminDeactivateModal.style.display = "none";
         adminActivateModal.style.display = "none";
         createLoginUserModal.style.display = "none";
+        adminResetPasswordModal.style.display = "none";
     } 
     if (e.target.className === "submit-account admin-modal-button"){
         adminDeleteModal.style.display = "none";
         adminDeactivateModal.style.display = "none";
         adminActivateModal.style.display = "none";
         createLoginUserModal.style.display = "none";
+        adminResetPasswordModal.style.display = "none";
     }   
     if (e.target.className === "submit-account modal-button"){
         debitModal.style.display = "none";
         creditModal.style.display = "none";
         staffDeleteModal.style.display = "none";
+        staffResetPasswordModal.style.display = "none";
         
     }  
     if (e.target.className === "submit-account credit-button"){
@@ -158,15 +166,27 @@ document.addEventListener('click', (e) => {
     }
     if (e.target.className === "bank-account-close"){
         bankAccountModal.style.display = "none";
+        userResetPasswordModal.style.display = "none";
     } 
     if (e.target.className === "submit-account account-modal-button"){
         bankAccountModal.style.display = "none";
+        userResetPasswordModal.style.display = "none";
     }  
     if (e.target.className === "submit-account create-user-button"){
         createLoginUserModal.style.display = "block";
         adminDeleteModal.style.display = "none";
         adminDeactivateModal.style.display = "none";
         adminActivateModal.style.display = "none";
+    }  
+    if (e.target.className === "user-reset-password"){
+        userResetPasswordModal.style.display = "block";
+
+    }  
+    if (e.target.className === "staff-reset-password"){
+        staffResetPasswordModal.style.display = "block";
+    }  
+    if (e.target.className === "admin-reset-password"){
+        adminResetPasswordModal.style.display = "block";
     }  
 })
 
@@ -205,5 +225,14 @@ for (var i = 0; i < btns.length; i++) {
       }
       if (event.target == bankAccountModal) {
         bankAccountModal.style.display = "none";
+      }
+      if (event.target == userResetPasswordModal) {
+        userResetPasswordModal.style.display = "none";
+      }
+      if (event.target == staffResetPasswordModal) {
+        staffResetPasswordModal.style.display = "none";
+      }
+      if (event.target == adminResetPasswordModal) {
+        adminResetPasswordModal.style.display = "none";
       }
   };
