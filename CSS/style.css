@@ -862,8 +862,11 @@ a:hover {
   margin-right: 10px;
   margin-top: 10px;
   width: 32%
-} */
+}
 
+.userAccountContainer label{
+  width:22%
+} */
 
 .reduce-sidebar{
   width: 49px !important;
@@ -1087,7 +1090,7 @@ overlay {
   color: #ffffff;
 }
 
-#activate-button:hover{
+#deactivate-button:hover{
   border: solid #4da475;
   background: #ffffff;
   color: #4da475;
