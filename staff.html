@@ -64,8 +64,7 @@
       </div>
     </div>
 
-
-    <div class= "credit-account" style="display:none">
+    <div class= "credit-account" >
       <div class="mini-profile-container">
         <div class="manage-profile-wrapper">
           <div class="main-content credit-account-container">        
@@ -73,12 +72,11 @@
               <div class="account-details">
                 <h4 class="header-text"> Credit Account</h4>
               </div>
-
               <form class = "form-fields ">
                 <div class = "input "  >
                 <input type="number" placeholder="Account Number" name="creditAccountNumber" required /><br/>
                 <input type="number" placeholder="Amount" name="creditAmount" required /><br/>
-                <textarea rows = "5" cols = "60" placeholder="Description..." name="creditDesription" style="height:100px;resize: none;" required /></textarea><br/>
+                <textarea  placeholder="Enter Credit Description" name="creditDesription" required /></textarea><br/>
                 </div>
                 <div class="bottom">
                 <input type="button" value="Credit" class="submit-account credit-button" />
@@ -90,7 +88,7 @@
       </div>
     </div>
 
-    <div class= "debit-account" style="display:none" >
+    <div class= "debit-account"  >
       <div class="mini-profile-container">
         <div class="manage-profile-wrapper">
           <div class="main-content debit-account-container">        
@@ -98,12 +96,11 @@
               <div class="account-details">
                 <h4 class="header-text"> Debit Account</h4>
               </div>
-
               <form class = "form-fields ">
                 <div class = "input "  >
                 <input type="number"  placeholder="Account Number" name="debitAccountNumber" required /><br/>
                 <input type="number" placeholder="Amount" name="debitAmount" required /><br/>
-                <textarea rows = "5" cols = "60" placeholder="Description..." name="debit-desription" style="height:100px;resize: none;" required /></textarea><br/>
+                <textarea placeholder="Enter Debit Description" name="debit-desription" required /></textarea><br/>
                 </div>
                 <div class="bottom">
                 <input type="button" value="Debit" class="submit-account debit-button" />
@@ -153,7 +150,7 @@
     </div>
     </div>
 
-     <div id="credit-modal" class="modal">
+    <div id="credit-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
@@ -191,10 +188,8 @@
     </div>
     </div>
 
-
-
     <div class="staff-all-bank-accounts" >
-      <div class="mini-profile-container"style="margin-top: 100px">
+      <div class="mini-profile-container all-bank">
         <div class="manage-profile-wrapper account-list-container" >
           <div class="main-content" >
             <div>
@@ -453,7 +448,7 @@
       </div>
     </div>
 
-    <div class="staff-delete-account" style="display:none">
+    <div class="staff-delete-account" >
       <div class="mini-profile-container">
         <div class="manage-profile-wrapper">
           <div class="main-content deleteAccountContainer">        
@@ -464,7 +459,7 @@
 
               <form class = "form-fields">
                 <div class = "input" >
-                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to delete</p>
+                <p class="text-format"> Enter the account number you want to delete</p>
                 <input type="number" placeholder="Account Number" name="debitAccountNumber" required /><br/>
                 </div>
                 <div class="bottom">
@@ -477,30 +472,23 @@
       </div>
     </div>
 
-    <div class= "user-account-record-staffpage" style="display:none" >
+    <div class= "user-account-record-staffpage" >
       <div  class="mini-profile-container">
           <div  class="manage-profile-wrapper">
-            <div  class="title center-align">
-              <div>
-
+          <div  class="title center-align">
+              <div >
                 <div  class="image-container">
-                 
-                  <input  class="dp-input" name="utility-bill-image" type="file">
-                    <i  class="fa fa-user"></i>
-                    <div  class="image-wrapper">
-                      
-                    </div>
+                  <img src="images/idowu.jpg" alt="Avatar" class="avatar">
                 </div>
-
-                  <p  class="user-details fullname">IDOWU ADELEKE</p>
+                  <h2 class="user-details fullname"><b>IDOWU ADELEKE</b></h2>
                   <p  class="user-details">adelekeidowu30@gmail.com</p>
                   <p  class="user-details">Last Login: 23rd - March - 2019, 2:39:03 pm</p>
-                  <div class="adminButton" style="position:relative">
-                  <input type="button" value="Delete" class="changeUserStatus submit-account staff-delete-button" style="background:red; color:white;" />
-            </div>
+                
               </div>
             </div>
-            
+            <div class="admin-button">
+                <input type="button" value="Delete" class="change-user-status submit-account staff-delete-button" id="delete-button" />
+            </div> 
             <div  class="main-content account-details-container">
               <div >
                 <div class="account-details">
@@ -534,7 +522,7 @@
               </div>
             </div>
             <h2  class="user-details fullname">Top 3 Transactions</h2>
-          <div class="main-content account-details-container" style="margin-bottom:5px;">
+          <div class="main-content account-details-container" id="space-trans">
             <div>
                    <div class="top-menu" tabindex="0" >
                 <div class="icon-container">Date</div>

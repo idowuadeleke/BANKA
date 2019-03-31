@@ -240,12 +240,13 @@ ul, menu, dir {
 .wrappers .side-bar .nav li {
     position: relative;
     display: block;
-	width: 250px;
+  width: 250px;
+  cursor: pointer;
 
 }
 
 li:hover{
-  background: #1433c4;
+  background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
 	transform: scale(1.01) 
 }
 
@@ -294,11 +295,12 @@ a {
 		display: table-cell;
 		vertical-align: middle;
 		width: 190px;
-		text-transform: capitalize;
+    text-transform: capitalize;
+    cursor: pointer;
 	}
 
 	.wrappers .side-bar .nav li a.active-link {
-    background: #1433c4 ;
+  background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
 		outline: 0;
 		color: #fff;
 		transition: .2s;
@@ -423,6 +425,7 @@ a, a:hover {
 .delete-account,.staff-delete-account,.change-status,.user-account-record,.debit-account,.credit-account,
  .user-account,.user-account-record-staffpage{
   /* position: fixed; */
+  display:none;
   top: 10%;
   color: #000000; 
   font-size: 15px;
@@ -430,6 +433,15 @@ a, a:hover {
   height: 80%;
   width: 75%;
   text-align: center;
+}
+
+.text-format{
+  text-align:left; 
+  padding-left: 4%;
+}
+
+.all-bank-accounts,.staff-all-bank-accounts,.user-profile{
+  display:block;
 }
 
 .manage-profile-wrapper {
@@ -634,7 +646,7 @@ a, a:hover {
   font-size: 5.333rem;
   color: #1433c4 ;
   line-height: 89px;
-  border: 1px solid #d6d6d6;
+  /* border: 1px solid #d6d6d6; */
 }
 
 .manage-profile-wrapper .title .image-container .edit-class {
@@ -821,7 +833,7 @@ label{
   clear: left;
   text-align: left;}
 
-  .changeUserStatus {
+  .change-user-status {
     /* background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f); */
     color: black;
     padding: 10px 10px 10px 10px;
@@ -850,18 +862,6 @@ a:hover {
   margin-right: 10px;
   margin-top: 10px;
   width: 32%
-}
-
-.userAccountContainer label{
-  width:22%
-} */
-
-.reduce-sidebar{
-  width: 49px !important;
-}
-
-a{
-  cursor: pointer !important;
 }
 
 /* add overlay */
@@ -948,6 +948,11 @@ overlay {
   text-decoration: none;
   cursor: pointer;
 }
+
+.admin-button{
+  position:relative;
+}
+
 
 .modal-header {
   padding: 2px 2px;
@@ -1065,15 +1070,73 @@ overlay {
   display: inline-block;
 }
 
-.engineer-team-building-banner-section {
-  background: #1433c4;
-  background: -moz-linear-gradient(-45deg, #1433c4 0%, #101444 100%, #000564 100%);
-  background: -webkit-linear-gradient(-45deg, #1433c4 0%,#101444 100%,#000564 100%);
-  background: linear-gradient(135deg, #1433c4 0%,#101444 100%,#000564 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1433c4', endColorstr='#000564',GradientType=1 );
-  background-repeat: no-repeat;
+
+.all-bank{
+  margin-top:100px;
 }
 
-.team-building-main-div .new-home-Announces-section {
-  background: #FFAF30;
+#activate-button{
+  background: #4da475;
+  color: #ffffff;
+}
+
+#activate-button:hover{
+  border: solid #4da475;
+  background: #ffffff;
+  color: #4da475;
+}
+
+#deactivate-button{
+  background:#FFAF30;
+  color: #ffffff;
+}
+
+#deactivate-button:hover{
+  border: solid #FFAF30;
+  background: #ffffff;
+  color: #FFAF30;
+}
+
+#delete-button{
+  background:#ff003a;
+  color: #ffffff;
+}
+
+#delete-button:hover{
+  border: solid #ff003a;
+  color:#ff003a;
+  background: #ffffff;
+}
+
+#space-trans{margin-bottom:5px;}
+
+textarea{
+height:100px;
+resize: none;
+}
+
+.user-transaction{
+  position:relative;
+  text-align: left;
+}
+
+.trans-image1{
+  width:35%;
+  height:150px;
+  margin-left:10%;
+  margin-right:5%;
+}
+
+.trans-image2{
+  width:35%;
+  height:150px;
+  margin-right:10%;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  
 }
