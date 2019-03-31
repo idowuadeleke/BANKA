@@ -464,7 +464,7 @@ a, a:hover {
   background: #fff;
   padding: 65px 0 5px 0;
   border-radius: 5px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 20px 0 rgba(0,0,0,.1);
   position: relative;
 }
@@ -770,7 +770,7 @@ select {
 
 .create-account-container,.debit-account-container,.credit-account-container,.userAccountContainer,
 .deleteAccountContainer,.statusAccountContainer{
-  width: 70%;
+  width: 65%;
   margin: 0 auto;
 }
 
@@ -798,15 +798,15 @@ select {
   margin: 0 auto;
 }
 
-.deletenumber,.activatenumber, .deactivateNumber{
+/* .deletenumber,.activatenumber, .deactivateNumber{
   border:solid 2px;
   width: 50%;
   height: 37px;
   font-size: larger;
   float:left;
-  margin-left:10px;
+  margin-left:10px; */
   /* margin-bottom: 40px; */
-}
+/* } */
 
 label{
   /* display: inline-block; */
@@ -835,7 +835,7 @@ label{
 a:hover {
   color: #034f50;}
 
-.debit-account-container input[type="text"],.debit-account-container input[type="number"],
+/* .debit-account-container input[type="text"],.debit-account-container input[type="number"],
 .credit-account-container input[type="text"],.credit-account-container input[type="number"],
 .debit-account-container textarea,.credit-account-container textarea, .deleteAccountContainer input[type="number"],
 .statusAccountContainer input[type="number"]{
@@ -844,7 +844,7 @@ a:hover {
   position: relative;
   float: left;
   width: 60%;
-}
+} */
 
 /* .userAccountContainer input[type="email"],.userAccountContainer input[type="text"],
 .userAccountContainer input[type="password"]{
@@ -855,18 +855,18 @@ a:hover {
   width: 70%;
 } */
 
-.debit-account-container label,.credit-account-container label,.userAccountContainer label,
+/* .debit-account-container label,.credit-account-container label,.userAccountContainer label,
 .deleteAccountContainer label, .create-account-container label, .statusAccountContainer label{
   text-align: left;
   padding-left: 4%;
   margin-right: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 32%
 }
 
 .userAccountContainer label{
   width:22%
-}
+} */
 
 .reduce-sidebar{
   width: 49px !important;

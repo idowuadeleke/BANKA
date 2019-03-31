@@ -18,6 +18,8 @@ const adminDeleteModal = document.getElementById('admin-delete-modal');
 const adminDeactivateModal = document.getElementById('admin-deactivate-modal');
 const adminActivateModal = document.getElementById('admin-activate-modal');
 const bankAccountModal= document.getElementById('create-bankaccount-modal');
+const createLoginUserModal= document.getElementById('create-user-modal');
+
 
 // modal.style.display = "block";
 
@@ -70,6 +72,7 @@ document.addEventListener('click', (e) => {
         adminChangeStatus.style.display = 'none';
         adminCreateUserAccount.style.display = 'none';
         adminViewAccountRecord.style.display = 'none';
+        
     }
     if (e.target.className === 'staff-credit-account' || e.target.className === "fa fa-plus-square") {
         staffCreditAcccountPage.style.display='block';
@@ -121,11 +124,13 @@ document.addEventListener('click', (e) => {
         adminDeleteModal.style.display = "none";
         adminDeactivateModal.style.display = "none";
         adminActivateModal.style.display = "none";
+        createLoginUserModal.style.display = "none";
     } 
     if (e.target.className === "submit-account admin-modal-button"){
         adminDeleteModal.style.display = "none";
         adminDeactivateModal.style.display = "none";
         adminActivateModal.style.display = "none";
+        createLoginUserModal.style.display = "none";
     }   
     if (e.target.className === "submit-account modal-button"){
         debitModal.style.display = "none";
@@ -156,6 +161,12 @@ document.addEventListener('click', (e) => {
     } 
     if (e.target.className === "submit-account account-modal-button"){
         bankAccountModal.style.display = "none";
+    }  
+    if (e.target.className === "submit-account create-user-button"){
+        createLoginUserModal.style.display = "block";
+        adminDeleteModal.style.display = "none";
+        adminDeactivateModal.style.display = "none";
+        adminActivateModal.style.display = "none";
     }  
 })
 
