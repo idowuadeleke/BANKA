@@ -42,6 +42,7 @@ body {
   height: 100%;
   width: 100%;
   background-color: #f4f4f4;
+  
 }
 
 .header{
@@ -50,7 +51,8 @@ body {
   position: fixed;
   top: 0;
   z-index: 1001;
-  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
+  border-bottom: solid 5px #FFAF30;
   box-shadow: 0 2px 10px 0 rgba(0,0,0,.1);
 }
 
@@ -190,7 +192,7 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
-.general-side-bar,.general-side-bar2 {
+.general-side-bar {
   /* border: solid black 5px; */
   position: absolute;
   top: 12%;
@@ -243,7 +245,7 @@ ul, menu, dir {
 }
 
 li:hover{
-	background-image: linear-gradient(to right ,#034f50,#204e5f, #50A5A6);
+  background: #1433c4;
 	transform: scale(1.01) 
 }
 
@@ -256,7 +258,7 @@ li:hover{
     display: table;
     border-collapse: collapse;
     border-spacing: 0;
-    color: #204e5f;
+    color: #1433c4;
     text-decoration: none;
     -webkit-transform: translateZ(0) scale(1,1);
     transition: .1s linear;
@@ -296,7 +298,7 @@ a {
 	}
 
 	.wrappers .side-bar .nav li a.active-link {
-		background-image: linear-gradient(to right ,#034f50,#204e5f, #50A5A6);
+    background: #1433c4 ;
 		outline: 0;
 		color: #fff;
 		transition: .2s;
@@ -397,7 +399,7 @@ a, a:hover {
   -webkit-transform: translateZ(0) scale(1,1);
   /* z-index: 1000; */
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
-  color: #034f50;
+  color: #1433c4 ;
   position: fixed;
   top: 80px;
   bottom: 0;
@@ -422,9 +424,8 @@ a, a:hover {
  .user-account,.user-account-record-staffpage{
   /* position: fixed; */
   top: 10%;
-  color: #034f50 !important;
+  color: #000000; 
   font-size: 15px;
-  /* border: solid blue; */
   margin-left: 20%;
   height: 80%;
   width: 75%;
@@ -456,7 +457,7 @@ a, a:hover {
 }
 
 .manage-profile-wrapper .title .fullname {
-  color: #034f50;
+  color: #000000;
   font-size: 1.75rem;
 }
 
@@ -496,7 +497,7 @@ a, a:hover {
   transition: .2s;
   text-transform: capitalize;
   font-weight: 400;
-  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  background: #1433c4 ;
 }
 
 .manage-profile-wrapper .main-content .top-menu .icon-container {
@@ -527,7 +528,7 @@ a, a:hover {
   margin-bottom: 6px;
   line-height: 50px;
   padding-left: 8px;
-  color: #034f50;
+  color: #000000;
   /* font-size: 0.7em; */
   transition: .2s;
   text-transform: capitalize;
@@ -603,7 +604,7 @@ a, a:hover {
 }
 
 .account-details {
-  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  background: #1433c4;
   color: #ffffff;
   top: 0px;
   left: 0px;
@@ -631,7 +632,7 @@ a, a:hover {
   border-radius: 50%;
   background-color: #fff;
   font-size: 5.333rem;
-  color: #034f50;
+  color: #1433c4 ;
   line-height: 89px;
   border: 1px solid #d6d6d6;
 }
@@ -692,8 +693,8 @@ input, textarea, select, button {
 }
 
 
-.account-details {
-  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+/* .account-details {
+  background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
   color: #ffffff;
   top: 0px;
   left: 0px;
@@ -701,7 +702,7 @@ input, textarea, select, button {
   position: absolute;
   height: 70px;
   border-radius: 5px 5px 0 0;
-}
+} */
 
 .input {
   text-align: center;
@@ -715,17 +716,17 @@ select {
   padding: 10px 7px 10px 7px;
   display: inline-block;
   border: none;
-  border-bottom: solid #034f50;
+  border-bottom: solid #1433c4;
   outline: 0;
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;
   -webkit-box-sizing:content-box; 
   box-sizing:content-box;
-  color:  #034f50;
+  color:  #000000;
 }
 
 .submit-account, .submit-user {
-  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  background:#FFAF30;
   color: white;
   padding: 10px 20px;
   margin: 15px 0 10px 0;
@@ -734,15 +735,21 @@ select {
   width: 20%;
   border-radius: 3px;
   font-size: 18px;
-  opacity: 0.85;
   text-align: center;
 }
+
+.submit-account:hover, .submit-user:hover {
+  background:#ffffff;
+  color: #FFAF30;
+  border: solid #FFAF30;
+}
+
 .admin-modal-button{
   width:30%;
 }
 
 .view-record-btn{
-  background-image: linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+  background:#DF1995;
   color: white;
   cursor: pointer;
   border: none;
@@ -829,11 +836,11 @@ label{
 .transactionAnchor{
   padding-bottom:25px;
   position: relative;
-  color:#034f50;
+  color:#1433c4;
 }
 
 a:hover {
-  color: #034f50;}
+  color:#1433c4;}
 
 
 /* .debit-account-container label,.credit-account-container label,.userAccountContainer label,
@@ -919,7 +926,7 @@ overlay {
   margin: auto;
   padding: 20px;
   width: 40%;
-  color: #034f50;
+  color: #1433c4;
   border-radius:6px 6px;
 }
 
@@ -945,7 +952,7 @@ overlay {
 .modal-header {
   padding: 2px 2px;
   width:100%;
-  color: #034f50;
+  color: #1433c4;
   border-radius: 6px;
   text-align: center;
 }
@@ -968,7 +975,7 @@ overlay {
   font-weight: bolder;
   font-weight: 5em;
   font-size: 20px;
-  color: #fff;
+  color: #FFAF30;
   margin-left: 0px;
   float: right;
 }
@@ -1011,7 +1018,7 @@ overlay {
     width: 30%;
     box-sizing: border-box;
     padding: 9px 0px;
-    color: #fff;
+    color: #FFAF30;
     margin-left: 0px;
   }
 }
@@ -1056,4 +1063,17 @@ overlay {
 
 .user {
   display: inline-block;
+}
+
+.engineer-team-building-banner-section {
+  background: #1433c4;
+  background: -moz-linear-gradient(-45deg, #1433c4 0%, #101444 100%, #000564 100%);
+  background: -webkit-linear-gradient(-45deg, #1433c4 0%,#101444 100%,#000564 100%);
+  background: linear-gradient(135deg, #1433c4 0%,#101444 100%,#000564 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1433c4', endColorstr='#000564',GradientType=1 );
+  background-repeat: no-repeat;
+}
+
+.team-building-main-div .new-home-Announces-section {
+  background: #FFAF30;
 }

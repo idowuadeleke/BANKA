@@ -15,8 +15,10 @@ header{
     left:0;
     bottom:0;
     right:0;
+    box-shadow: inset 0 0 0 1000px rgba(51,102,255,0.2);
     height:100%;
     width:100%}
+
 
 .form-container{
     width:40%;
@@ -78,7 +80,7 @@ header{
     margin-bottom:.8rem}
     
 .form-header{
-    background-image:linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+    background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
     border: 5px solid transparent;
     border-radius:0 7px 0 0;
     border-left: none;
@@ -90,8 +92,8 @@ header{
 }
 
 
-.Login{
-    background-image:linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
+.Login,.Signup,.recover{
+    background: #FFAF30;
     color: #ffffff;
     padding: 10px 20px;
     margin: 25px 0 15px 0;
@@ -103,31 +105,22 @@ header{
   }
 
 .Signup{
-    background-image:linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
-    color: #ffffff;
-    padding: 10px 20px;
     margin: 7px 0 15px 0;
-    border: none;
-    cursor: pointer;
-    width: 25%;
-    border-radius: 3px;
-    font-size: 18px;
   }
 
   .recover{
-    background-image:linear-gradient(to right,#50A5A6 ,#034f50,#204e5f);
-    color: #ffffff;
-    padding: 10px 20px;
-    margin: 25px 0 15px 0;
-    border: none;
-    cursor: pointer;
     width: 40%;
-    border-radius: 3px;
-    font-size: 18px;
+  }
+
+
+  .Login:hover, .Signup:hover, .recover:hover{
+    background: #ffffff;
+    color: #FFAF30;
+    border: solid #FFAF30;
   }
 
 a{text-decoration: none;
-color: #034f50;
+color:#1433c4 ; 
 } 
 
 .signup-link, .login-link{
@@ -163,13 +156,13 @@ textarea, select {
   padding: 10px 15px 15px 15px;
   display: inline-block;
   border: none;
-  border-bottom: solid  #034f50 ;
+  border-bottom: solid  #1433c4  ;
   outline: 0;
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;
   -webkit-box-sizing:content-box; 
   box-sizing:content-box;
-  color:  #034f50;
+  color:  #000564;
 }
 
 .bottom-right {
@@ -190,6 +183,10 @@ textarea, select {
        
   }
 
+  .a{
+      cursor: pointer !important;
+  }
+
   .my-image{
     height:100%;
   }
@@ -198,13 +195,14 @@ textarea, select {
     width: 60%;
     position: absolute;
     bottom: 40px;
+    border-radius: 0px 4px 4px 0px;
     padding-left: 20px;
     padding-right: 20px;
     background: rgba(0, 0, 0, 0.6);
 }
 
 .banner-text h2 {
-    color: #A8E6CF;
+    color: #FFAF30; 
     font-weight: 600;
     margin-top: 10px;
 }
