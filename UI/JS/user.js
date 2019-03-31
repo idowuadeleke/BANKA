@@ -55,18 +55,19 @@ document.addEventListener('click', (e) => {
         adminViewAccountRecord.style.display = 'none';
         adminDeleteAccount.style.display='none';
     }
+    if (e.target.className === 'each-menu' || e.target.className === 'view-record' ) {
+        adminViewAllAccounts.style.display = 'none';
+        adminChangeStatus.style.display = 'none';
+        adminCreateUserAccount.style.display = 'none';
+        adminViewAccountRecord.style.display = 'block';
+        adminDeleteAccount.style.display='none';
+        
+    }
     if (e.target.className === 'admin-all-accounts' || e.target.className === "fa fa-gem") {
         adminViewAllAccounts.style.display = 'block';
         adminChangeStatus.style.display = 'none';
         adminCreateUserAccount.style.display = 'none';
         adminViewAccountRecord.style.display = 'none';
-        adminDeleteAccount.style.display='none';
-    }
-    if (e.target.className === 'each-menu' || e.target.className === 'view-record' ) {
-        adminViewAccountRecord.style.display = 'block';
-        adminViewAllAccounts.style.display = 'none';
-        adminChangeStatus.style.display = 'none';
-        adminCreateUserAccount.style.display = 'none';
         adminDeleteAccount.style.display='none';
     }
     if (e.target.className === 'admin-delete-account' || e.target.className === "fa fa-cut") {
