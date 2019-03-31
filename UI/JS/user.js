@@ -150,16 +150,16 @@ document.addEventListener('click', (e) => {
     if (e.target.className === "submit-account credit-button"){
         creditModal.style.display = "block";
     }
-    if (e.target.className === "submit-account staff-delete-button" || e.target.className === "changeUserStatus submit-account staff-delete-button"){
+    if (e.target.className === "submit-account staff-delete-button" || e.target.className === "change-user-status submit-account staff-delete-button"){
         staffDeleteModal.style.display = "block";
     }
-    if (e.target.className === "submit-account admin-delete-button" || e.target.className === "changeUserStatus submit-account admin-delete-button"){
+    if (e.target.className === "submit-account admin-delete-button" || e.target.className === "change-user-status submit-account admin-delete-button"){
         adminDeleteModal.style.display = "block";
     }
-    if (e.target.className === "submit-account deactivate-button" || e.target.className === "changeUserStatus submit-account deactivate-button"){
+    if (e.target.className === "submit-account deactivate-button" || e.target.className === "change-user-status submit-account deactivate-button"){
         adminDeactivateModal.style.display = "block";
     }
-    if (e.target.className === "submit-account activate-button" || e.target.className === "changeUserStatus submit-account activate-button"){
+    if (e.target.className === "submit-account activate-button" || e.target.className === "change-user-status submit-account activate-button"){
         adminActivateModal.style.display = "block";
     }
     if (e.target.className === "submit-account create-bank-account"){

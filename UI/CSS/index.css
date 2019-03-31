@@ -133,6 +133,18 @@ color:#1433c4 ;
     margin-top: 20px;
 }
 
+
+#signup, #forgot_password{
+    display: none;
+}
+
+.forgot-password-link{
+padding: 15px; 
+text-align:center; 
+cursor:pointer;
+}
+
+
 a:hover{
     text-decoration:underline;
     }
