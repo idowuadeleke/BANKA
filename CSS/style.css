@@ -862,7 +862,14 @@ a:hover {
   margin-right: 10px;
   margin-top: 10px;
   width: 32%
+} */
+
+
+.reduce-sidebar{
+  width: 49px !important;
 }
+
+
 
 /* add overlay */
 .overlay {
