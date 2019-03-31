@@ -865,12 +865,6 @@ a:hover {
 }
 
 
-.reduce-sidebar{
-  width: 49px !important;
-}
-
-
-
 /* add overlay */
 .overlay {
   position: fixed; /* Sit on top of the page content */
