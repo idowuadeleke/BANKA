@@ -160,7 +160,7 @@
     </div>
     </div>
     
-    <div class= "user-account" style="display:none" >
+    <div class= "user-account">
       <div class="mini-profile-container">
         <div class="manage-profile-wrapper">
           <div class="main-content userAccountContainer">        
@@ -189,8 +189,8 @@
         </div>
       </div>
     </div>
-    <div class="all-bank-accounts" >
-      <div class="mini-profile-container"style="margin-top: 100px">
+    <div class="all-bank-accounts all-bank" >
+      <div class="mini-profile-container">
         <div class="manage-profile-wrapper account-list-container" >
           <div class="main-content" >
             <div>
@@ -448,7 +448,7 @@
         </div>
       </div>
     </div>
-    <div class="delete-account" style="display:none">
+    <div class="delete-account">
       <div class="mini-profile-container">
         <div class="manage-profile-wrapper">
           <div class="main-content deleteAccountContainer">        
@@ -459,7 +459,7 @@
 
               <form class = "form-fields">
                 <div class = "input"  >
-                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to delete</p>
+                <p class="text-format" > Enter the account number you want to delete</p>
                 <input type="number"  placeholder="Account Number" required /><br/>
                 </div>
                 <input type="button" value="Delete" class="submit-account admin-delete-button" />	
@@ -470,7 +470,7 @@
       </div>
     </div>
     
-    <div class="change-status" style="display:none" >
+    <div class="change-status" >
       <div class="mini-profile-container">
         <div class="manage-profile-wrapper">
           <div class="main-content statusAccountContainer">        
@@ -481,7 +481,7 @@
 
               <form class = "form-fields">
                 <div class = "input">
-                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to activate</p>
+                <p class="text-format"> Enter the account number you want to activate</p>
                 <input type="number" name="account-number" placeholder="Account Number" required /></br>
                 </div>
                 <input type="button" value="Activate" class="submit-account activate-button" />	
@@ -496,7 +496,7 @@
 
               <form class = "form-fields">
                 <div class = "input">
-                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to deactivate</p>
+                <p class="text-format"> Enter the account number you want to deactivate</p>
                 <input type="number" name="account-number" placeholder="Account Number" required /></br>
                 </div>
                 <input type="button" value="Deactivate" class="submit-account deactivate-button" />	
@@ -507,7 +507,7 @@
       </div>
     </div>
     
-    <div class= 'user-account-record' style="display:none">
+    <div class= 'user-account-record' >
       <div  class="mini-profile-container">
           <div  class="manage-profile-wrapper">
             <div  class="title center-align">
@@ -524,10 +524,10 @@
                 
               </div>
             </div>
-            <div class="adminButton" style="position:relative">
-                <input type="button" value="Activate" class="changeUserStatus submit-account activate-button" style="background: #4cd321; text-align:center;" />
-                <input type="button" value="Deactivate" class="changeUserStatus submit-account deactivate-button" style="background:yellow; text-align:center;" />
-                <input type="button" value="Delete" class="changeUserStatus submit-account admin-delete-button" style="background:red; color:white;" />
+            <div class="admin-button" >
+                <input type="button" value="Activate" class="change-user-status submit-account activate-button" id="activate-button" />
+                <input type="button" value="Deactivate" class="change-user-status submit-account deactivate-button" id="deactivate-button" />
+                <input type="button" value="Delete" class="change-user-status submit-account admin-delete-button" id="delete-button"/>
             </div>
             <div  class="main-content account-details-container">
               <div >
@@ -562,7 +562,7 @@
               </div>
             </div>
             <h2  class="user-details fullname">Top 3 Transactions</h2>
-          <div class="main-content account-details-container" style="margin-bottom:5px;">
+          <div class="main-content account-details-container" id="space-trans">
             <div>
                    <div class="top-menu" tabindex="0" >
                 <div class="icon-container">Date</div>
