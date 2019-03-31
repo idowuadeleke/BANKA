@@ -835,25 +835,6 @@ label{
 a:hover {
   color: #034f50;}
 
-/* .debit-account-container input[type="text"],.debit-account-container input[type="number"],
-.credit-account-container input[type="text"],.credit-account-container input[type="number"],
-.debit-account-container textarea,.credit-account-container textarea, .deleteAccountContainer input[type="number"],
-.statusAccountContainer input[type="number"]{
-  border: solid 1px #034f50;
-  border-radius: 4px;
-  position: relative;
-  float: left;
-  width: 60%;
-} */
-
-/* .userAccountContainer input[type="email"],.userAccountContainer input[type="text"],
-.userAccountContainer input[type="password"]{
-  border: solid 1px #034f50;
-  border-radius: 4px;
-  position: relative;
-  float: left;
-  width: 70%;
-} */
 
 /* .debit-account-container label,.credit-account-container label,.userAccountContainer label,
 .deleteAccountContainer label, .create-account-container label, .statusAccountContainer label{
