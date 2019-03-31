@@ -82,19 +82,40 @@
                   <input type="text" placeholder="Last Name" name="lastname" required />
                   <input type="text" placeholder="City" name="city" required />
                   <input type="text" placeholder="Branch Name" name="branch" required />
-                  <input type="text" placeholder="Account Type" name="account-type" required />
+                 <select id="account-type" name="account-type" required>
+                  <option value="" disabled selected>Account type</option>
+                  <option value="savings">Savings</option>
+                  <option value="current">Current</option>
+                </select>
                 </div>
                 <div class="bottom">
-                  <button type="submit" class="submit-account">
-                    <span>Submit</span>
-                  </button>
-                </div>	
+                <input type="button" value="Create" class="submit-account create-bank-account" />
+                </div>
                 
               </form>
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+     <div id="create-bankaccount-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Account Created !</h2>
+      </div>
+      <div class="modal-body">
+        <p> Welcome to Banka, below are your account details</p>
+        <p>Account name: Idowu Adeleke</p>
+        <p>Account number: 0123456789</p>
+        <p>Account type: Savings</p>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Okay" class="submit-account account-modal-button" />
+      </div>
+    </div>
     </div>
 
     <div class= user-profile >
@@ -147,8 +168,8 @@
                 </div>
 
                 <div  class="each-menu" tabindex="0">
-                  <div  class="icon-container">Next of kin</div>
-                  <div  class="link-name profileMargin">Next of kin</div><!---->
+                  <div  class="icon-container">Account Type </div>
+                  <div  class="link-name profileMargin">Savings</div><!---->
                 </div>
 
               </div>

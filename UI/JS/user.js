@@ -17,6 +17,7 @@ const staffDeleteModal = document.getElementById('staff-delete-modal');
 const adminDeleteModal = document.getElementById('admin-delete-modal');
 const adminDeactivateModal = document.getElementById('admin-deactivate-modal');
 const adminActivateModal = document.getElementById('admin-activate-modal');
+const bankAccountModal= document.getElementById('create-bankaccount-modal');
 
 // modal.style.display = "block";
 
@@ -147,6 +148,15 @@ document.addEventListener('click', (e) => {
     if (e.target.className === "submit-account activate-button" || e.target.className === "changeUserStatus submit-account activate-button"){
         adminActivateModal.style.display = "block";
     }
+    if (e.target.className === "submit-account create-bank-account"){
+        bankAccountModal.style.display = "block";
+    }
+    if (e.target.className === "bank-account-close"){
+        bankAccountModal.style.display = "none";
+    } 
+    if (e.target.className === "submit-account account-modal-button"){
+        bankAccountModal.style.display = "none";
+    }  
 })
 
 // Add active class to the current button (highlight it)
@@ -163,5 +173,26 @@ for (var i = 0; i < btns.length; i++) {
   window.onclick = () => {
     if (event.target == debitModal) {
         debitModal.style.display = "none";
+      }
+      if (event.target == creditModal) {
+        creditModal.style.display = "none";
+      }
+      if (event.target == creditModal) {
+        creditModal.style.display = "none";
+      }
+      if (event.target == staffDeleteModal) {
+        staffDeleteModal.style.display = "none";
+      }
+      if (event.target == adminDeleteModal) {
+        adminDeleteModal.style.display = "none";
+      }
+      if (event.target == adminDeactivateModal) {
+        adminDeactivateModal.style.display = "none";
+      }
+      if (event.target == adminActivateModal) {
+        adminActivateModal.style.display = "none";
+      }
+      if (event.target == bankAccountModal) {
+        bankAccountModal.style.display = "none";
       }
   };
