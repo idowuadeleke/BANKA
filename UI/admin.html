@@ -66,46 +66,6 @@
       </div>
     </div>
 
-     <div class="change-status" style="display:none" >
-      <div class="mini-profile-container">
-        <div class="manage-profile-wrapper">
-          <div class="main-content statusAccountContainer">        
-            <div>
-              <div class="account-details">
-                <h4 class="header-text"> Activate Account</h4>
-              </div>
-
-              <form class = "form-fields">
-                <div class = "input">
-                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to activate</p>
-                <input type="number" name="account-number" placeholder="Account Number" required /></br>
-                </div>
-                <input type="button" value="Activate" class="submit-account activate-button" />	
-              </form>
-            </div>
-          </div>
-            
-        <div class="main-content statusAccountContainer">        
-            <div>
-              <div class="account-details">
-                <h4 class="header-text"> Deactivate Account</h4>
-              </div>
-              <form class = "form-fields">
-                <div class = "input" >
-                <p style="text-align:left; margin-left: 10px;"> Enter the account number you want to deactivate</p>
-                <input type="number" name="account-number" placeholder="Account Number" required /></br>
-                </div>
-                <input type="button" value="Deactivate" class="submit-account deactivate-button" />	
-                </div>	
-              </form>
-            </div>
-            
-          </div>
-
-        </div>
-      </div>
-    </div>
-
      <div id="create-user-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -509,24 +469,59 @@
         </div>
       </div>
     </div>
+    
+    <div class="change-status" style="display:none" >
+      <div class="mini-profile-container">
+        <div class="manage-profile-wrapper">
+          <div class="main-content statusAccountContainer">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Activate Account</h4>
+              </div>
+
+              <form class = "form-fields">
+                <div class = "input">
+                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to activate</p>
+                <input type="number" name="account-number" placeholder="Account Number" required /></br>
+                </div>
+                <input type="button" value="Activate" class="submit-account activate-button" />	
+              </form>
+            </div>
+          </div>
+          <div class="main-content statusAccountContainer">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Deactivate Account</h4>
+              </div>
+
+              <form class = "form-fields">
+                <div class = "input">
+                <p style="text-align:left; padding-left: 4%;"> Enter the account number you want to deactivate</p>
+                <input type="number" name="account-number" placeholder="Account Number" required /></br>
+                </div>
+                <input type="button" value="Deactivate" class="submit-account deactivate-button" />	
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div class= 'user-account-record' style="display:none">
       <div  class="mini-profile-container">
           <div  class="manage-profile-wrapper">
             <div  class="title center-align">
-              <div>
-
+              <div >
                 <div  class="image-container">
-                 
-                  <input  class="dp-input" name="utility-bill-image" type="file">
                     <i  class="fa fa-user"></i>
                     <div  class="image-wrapper">
-                      
                     </div>
                 </div>
-
-                  <p  class="user-details fullname">IDOWU ADELEKE</p>
+                   <input  class="dp-input" name="utility-bill-image" type="file">
+                  <h2 class="user-details fullname"><b>IDOWU ADELEKE</b></h2>
                   <p  class="user-details">adelekeidowu30@gmail.com</p>
                   <p  class="user-details">Last Login: 23rd - March - 2019, 2:39:03 pm</p>
+                
               </div>
             </div>
             <div class="adminButton" style="position:relative">

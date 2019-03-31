@@ -422,7 +422,7 @@ a, a:hover {
  .user-account,.user-account-record-staffpage{
   /* position: fixed; */
   top: 10%;
-  color: #034f50;
+  color: #034f50 !important;
   font-size: 15px;
   /* border: solid blue; */
   margin-left: 20%;
