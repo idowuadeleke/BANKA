@@ -10,37 +10,56 @@ header{
     background-image:url(../images/backg.jpg);
     background-repeat:no-repeat;
     background-size: cover;
-    position:absolute;
+    position: fixed;
     top:0;
     left:0;
     bottom:0;
     right:0;
     box-shadow: inset 0 0 0 1000px rgba(51,102,255,0.2);
     height:100%;
-    width:100%}
+    width:100%;
+
+}
 
 
 .form-container{
     width:40%;
     height:100%;
-    padding:0 5%;
+    padding: 5%;
     padding:0;
     margin:0;
     top:0;
     float:left;
     position:relative;
+    overflow-x: auto;
+   
 }
 
 @media screen and (max-width:1500px){.main-container .form-container .reg-progress{min-width:339.516px}.main-container .form-container .reg-progress .level{margin-left:14%;max-width:156px}}
 
 @media screen and (max-width:992px){.main-container .form-container{width:50%}.main-container .form-container .reg-progress{width:97%}.main-container .form-container .reg-progress .level{margin-left:17.5%;max-width:156px}.main-container .image-holder{display:none}}
 
+@media screen and (max-width:1024px){
+    .main-container .image-holder{display:none}
+    .main-container .form-container{width:100%; }
+    .form-header{border-radius:7px 7px 0 0 !important}
+}
+
+@media screen and (max-width:510px){
+    .main-container .center-container{min-width: 320px;margin: auto;}
+    .Signup,.Login{width:40%!important}
+   
+}
+
+
+
+
 
 .header-text{padding-bottom:0;
     font-family: "sarabun";
   font-weight: bolder;
   font-weight: 5em;
-  font-size: 15px;
+
     text-align: center;
     font-size:2.3571428571rem;
     color: #ffffff;
@@ -64,14 +83,17 @@ header{
     width:90%;
     border-radius:7px;
     height:90%;
-    max-height:562px;
     background:#fff;
     position:absolute;
     top:0;
     bottom:0;
     left:0;
     right:0;
-    margin:auto}
+    margin:auto;
+    
+    
+    
+    }
     
 @media screen and (max-width:992px){.center-container{width:40.5%;min-width:487.672px}}
 
@@ -96,6 +118,7 @@ header{
     background: #FFAF30;
     color: #ffffff;
     padding: 10px 20px;
+    margin: auto;
     margin: 25px 0 15px 0;
     border: none;
     cursor: pointer;
@@ -139,7 +162,7 @@ color:#1433c4 ;
 }
 
 .forgot-password-link{
-padding: 15px; 
+padding: 5%;
 text-align:center; 
 cursor:pointer;
 }
@@ -164,8 +187,9 @@ input[type="email"],
 textarea, select {
   text-align: left;
   width: 70%;
-  margin: 15px 30px 5px 30px;
-  padding: 10px 15px 15px 15px;
+  /* margin: 15px 30px 5px 30px; */
+  /* padding: 20px 15px 15px 15px; */
+  padding: 4%;
   display: inline-block;
   border: none;
   border-bottom: solid  #1433c4  ;
