@@ -791,6 +791,7 @@ select {
 .deleteAccountContainer,.statusAccountContainer{
   width: 65%;
   margin: 0 auto;
+  margin-top: 50px;
 }
 
 

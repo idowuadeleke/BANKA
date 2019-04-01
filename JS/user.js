@@ -22,8 +22,12 @@ const createLoginUserModal= document.getElementById('create-user-modal');
 const userResetPasswordModal = document.getElementById('user-resetpass-modal');
 const staffResetPasswordModal = document.getElementById('staff-resetpass-modal');
 const adminResetPasswordModal = document.getElementById('admin-resetpass-modal');
-
-
+const creditSucessModal = document.getElementById('credit-success-modal');
+const debitSucessModal = document.getElementById('debit-success-modal');
+const deleteSucessModal = document.getElementById('delete-success-modal');
+const adminDeleteSucess = document.getElementById('delete-success-modal-admin');
+const adminDeactivateSucess = document.getElementById('deactivate-success-modal');
+const adminActivateSucess = document.getElementById('activate-success-modal');
 // modal.style.display = "block";
 
 document.addEventListener('click', (e) => {
@@ -124,6 +128,9 @@ document.addEventListener('click', (e) => {
         creditModal.style.display = "none";
         staffDeleteModal.style.display = "none";
         staffResetPasswordModal.style.display = "none";
+        creditSucessModal.style.display = "none";
+        debitSucessModal.style.display = "none";
+        deleteSucessModal.style.display = "none";
         
     }  
     if (e.target.className === "admin-close"){
@@ -132,6 +139,9 @@ document.addEventListener('click', (e) => {
         adminActivateModal.style.display = "none";
         createLoginUserModal.style.display = "none";
         adminResetPasswordModal.style.display = "none";
+        adminDeleteSucess.style.display = "none";
+        adminDeactivateSucess.style.display = "none";
+        adminActivateSucess.style.display = "none";
     } 
     if (e.target.className === "submit-account admin-modal-button"){
         adminDeleteModal.style.display = "none";
@@ -139,12 +149,18 @@ document.addEventListener('click', (e) => {
         adminActivateModal.style.display = "none";
         createLoginUserModal.style.display = "none";
         adminResetPasswordModal.style.display = "none";
+        adminDeleteSucess.style.display = "none";
+        adminDeactivateSucess.style.display = "none";
+        adminActivateSucess.style.display = "none";
     }   
     if (e.target.className === "submit-account modal-button"){
         debitModal.style.display = "none";
         creditModal.style.display = "none";
         staffDeleteModal.style.display = "none";
         staffResetPasswordModal.style.display = "none";
+        creditSucessModal.style.display = "none";
+        debitSucessModal.style.display = "none";
+        deleteSucessModal.style.display = "none";
         
     }  
     if (e.target.className === "submit-account credit-button"){
@@ -188,7 +204,26 @@ document.addEventListener('click', (e) => {
     }  
     if (e.target.className === "admin-reset-password"){
         adminResetPasswordModal.style.display = "block";
-    }  
+    }
+    if (e.target.id === "debit-success"){
+        debitSucessModal.style.display = "block";
+    } 
+    if (e.target.id === "credit-success"){
+        creditSucessModal.style.display = "block";
+    } 
+    if (e.target.id === "delete-success"){
+        deleteSucessModal.style.display = "block";
+    } 
+    if (e.target.id === "admin-delete-success"){
+        adminDeleteSucess.style.display = "block";
+    } 
+    if (e.target.id === "admin-deactivate-success"){
+        adminDeactivateSucess.style.display = "block";
+    } 
+    if (e.target.id === "admin-activate-success"){
+        adminActivateSucess.style.display = "block";
+    } 
+    
 })
 
 // Add active class to the current button (highlight it)

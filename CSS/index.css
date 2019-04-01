@@ -192,6 +192,7 @@ textarea, select {
       width:100%;
         height:100%;
         border-radius:7px 0 0 7px;
+        opacity:0.9;
        
   }
 
