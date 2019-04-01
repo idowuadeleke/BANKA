@@ -791,6 +791,7 @@ select {
 .deleteAccountContainer,.statusAccountContainer{
   width: 65%;
   margin: 0 auto;
+  margin-top: 50px;
 }
 
 
@@ -863,6 +864,15 @@ a:hover {
   margin-top: 10px;
   width: 32%
 }
+
+.userAccountContainer label{
+  width:22%
+} */
+
+.reduce-sidebar{
+  width: 49px !important;
+}
+
 
 
 /* add overlay */
@@ -1081,7 +1091,7 @@ overlay {
   color: #ffffff;
 }
 
-#activate-button:hover{
+#deactivate-button:hover{
   border: solid #4da475;
   background: #ffffff;
   color: #4da475;
