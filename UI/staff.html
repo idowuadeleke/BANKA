@@ -144,7 +144,7 @@
         <p>Amount: ₦100,000</p>
       </div>
       <div class= "modal-bottom">
-      <input type="submit" value="Debit" class="submit-account modal-button" />
+      <input type="submit" value="Debit" class="submit-account modal-button" id="debit-success" />
       <input type="submit" value="Cancel" class="submit-account modal-button" />	
       </div>
     </div>
@@ -163,8 +163,48 @@
         <p>Amount: ₦100,000</p>
       </div>
       <div class= "modal-bottom">
-      <input type="submit" value="Credit" class="submit-account modal-button" />
+      <input type="submit" value="Credit" class="submit-account modal-button" id="credit-success" />
       <input type="submit" value="Cancel" class="submit-account modal-button" />	
+      </div>
+    </div>
+    </div>
+
+    <div id="credit-success-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2 id="message">Account credited</h2>
+        <p id="message"></p>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Okay" class="submit-account modal-button"  />	
+      </div>
+    </div>
+    </div>
+
+    <div id="debit-success-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Account debited</h2>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Okay" class="submit-account modal-button"  />	
+      </div>
+    </div>
+    </div>
+
+    <div id="delete-success-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Account deleted</h2>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Okay" class="submit-account modal-button"  />	
       </div>
     </div>
     </div>
@@ -182,7 +222,7 @@
         <p> Are you sure you want to delete this account ?</p>
       </div>
       <div class= "modal-bottom">
-      <input type="submit" value="Delete" class="submit-account modal-button" />
+      <input type="submit" value="Delete" class="submit-account modal-button" id="delete-success"/>
       <input type="submit" value="Cancel" class="submit-account modal-button" />	
       </div>
     </div>
@@ -459,8 +499,7 @@
 
               <form class = "form-fields">
                 <div class = "input" >
-                <p class="text-format"> Enter the account number you want to delete</p>
-                <input type="number" placeholder="Account Number" name="debitAccountNumber" required /><br/>
+                <input type="number" placeholder="Enter Bank account number to delete" name="debitAccountNumber" required /><br/>
                 </div>
                 <div class="bottom">
                 <input type="button" value="Delete" class="submit-account staff-delete-button" />

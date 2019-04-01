@@ -39,11 +39,7 @@ setTimeout(carousel, 7000); // Change image every 2 seconds
 function showHide(desiredPage,currentPage) {
     var desiredPage = document.getElementById(desiredPage);
     var currentPage= document.getElementById(currentPage);
-    if( desiredPage && desiredPage.style.display == 'none'){
-        desiredPage.style.display = 'block';
-        currentPage.style.display = 'none';
-    }
-    else {
-        currentPage.style.display = 'block';
-    }
+    desiredPage.style.display = 'block';
+    currentPage.style.display = 'none';
+   
 }
