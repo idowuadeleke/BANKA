@@ -166,10 +166,10 @@ document.addEventListener('click', (e) => {
     if (e.target.className === "submit-account credit-button"){
         creditModal.style.display = "block";
     }
-    if (e.target.className === "submit-account staff-delete-button" || e.target.className === "change-user-status submit-account staff-delete-button"){
+    if (e.target.className === "submit-account staff-delete-button" ||e.target.className==="staff-delete-record" || e.target.className === "change-user-status submit-account staff-delete-button"){
         staffDeleteModal.style.display = "block";
     }
-    if (e.target.className === "submit-account admin-delete-button" || e.target.className === "change-user-status submit-account admin-delete-button"){
+    if (e.target.className === "submit-account admin-delete-button"||e.target.className==="delete-record" || e.target.className === "change-user-status submit-account admin-delete-button"){
         adminDeleteModal.style.display = "block";
     }
     if (e.target.className === "submit-account deactivate-button" || e.target.className === "change-user-status submit-account deactivate-button"){

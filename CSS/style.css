@@ -761,7 +761,16 @@ select {
 }
 
 .view-record-btn{
-  background:#DF1995;
+  background:green;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 5px;
+}
+
+.delete-record-btn{
+  background:crimson;
   color: white;
   cursor: pointer;
   border: none;
@@ -796,21 +805,23 @@ select {
 
 
 .accNumber{
-  margin-left: 32%;
+  margin-left: 26%;
 }
 
 .accStatus{
-  margin-left: 55%;
+  margin-left: 47%;
 }
 
 .account-type{
-  margin-left: 75%;
+  margin-left: 65%;
 }
 
 .account-button{
+  margin-left: 83%;
+}
+.delete-account-button{
   margin-left: 90%;
 }
-
 
 
 .account-list-container{
@@ -1091,7 +1102,7 @@ overlay {
   color: #ffffff;
 }
 
-#deactivate-button:hover{
+#activate-button:hover{
   border: solid #4da475;
   background: #ffffff;
   color: #4da475;
