@@ -1,7 +1,3 @@
-@media only screen and (min-width: 0)
-{html {
-    font-size: 14px;
-}}
 
 html {
   box-sizing: border-box;
@@ -22,11 +18,10 @@ body {
   color: #fff;
   font-weight: 300;
   background: #f4f4f4;
+  
 }
 
-*, :after, :before {
-  box-sizing: inherit;
-}
+
 
 body {
   display: block;
@@ -38,10 +33,12 @@ body {
   top: 0;
   left: 0;
   bottom: 0;
-  right: 0;
+  right: 15%;
   height: 100%;
   width: 100%;
   background-color: #f4f4f4;
+  overflow: auto;
+  
   
 }
 
@@ -73,10 +70,10 @@ body {
   size: 14%;
 }
 
-@media only screen and (max-width: 600px)
+/* @media only screen and (max-width: 600px)
 {.header .banka-logo {
     left: 3.957143rem;
-}}
+}} */
 
 .profile {
   float: right;
@@ -218,7 +215,10 @@ button, input, optgroup, select, textarea {
 {
 .wrappers .side-bar {
     width: 230px;
-}}
+}
+
+
+}
 
 
 ul:not(.browser-default) {
@@ -325,16 +325,6 @@ a {
 		min-height: 1px;
 	}
 
-	/* *, :after, :before {
-		box-sizing: inherit;
-	}
-
-	body {
-		font-family:  "Sarabun", sans-serif;
-		color: #fff;
-		font-weight: 300;
-		background: #f4f4f4;
-	} */
 
 	@media screen and (max-width: 480px)
 {body {
@@ -346,10 +336,6 @@ a {
 {html {
     font-size: 14px;
 }}
-
-*, :after, :before {
-    box-sizing: inherit;
-}
 
 
 ul:not(.browser-default) li {
@@ -376,16 +362,6 @@ a, a:hover {
     padding-left: 10px;
 }
 
-.mdi-set, .fa:before {
-    display: inline-block;
-    /* font: 24px/1 "Material Design Icons"; */
-    font-size: inherit;
-    text-rendering: auto;
-    line-height: inherit;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 @media screen and (max-width: 992px)
 {
 .wrappers .side-bar .nav li a .fa{
@@ -399,7 +375,7 @@ a, a:hover {
   overflow: hidden;
   transition: width .05s linear;
   -webkit-transform: translateZ(0) scale(1,1);
-  /* z-index: 1000; */
+  z-index: 1000;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
   color: #1433c4 ;
   position: fixed;
@@ -412,14 +388,28 @@ a, a:hover {
   margin-left: 30px;
   border-radius: 6px;
   height: 490px;
+
 }
 
-@media screen and (max-width: 480px)
+@media screen and (max-width: 1020px)
 {.wrappers .side-bar {
-    width: 44px;
+    width: 44px!important;
     margin-top: 10px;
     margin-left: 10px;
-}}
+}
+.wrappers .side-bar:hover{
+  width: 200px !important;
+}
+.transaction, .watch,.create-account,.staff-all-bank-accounts,.all-bank-accounts,.user-profile,
+.delete-account,.staff-delete-account,.change-status,.user-account-record,.debit-account,.credit-account,
+ .user-account,.user-account-record-staffpage{
+  width: 95%!important
+
+
+ }
+}
+
+
 
 .transaction, .watch,.create-account,.staff-all-bank-accounts,.all-bank-accounts,.user-profile,
 .delete-account,.staff-delete-account,.change-status,.user-account-record,.debit-account,.credit-account,
@@ -429,10 +419,12 @@ a, a:hover {
   top: 10%;
   color: #000000; 
   font-size: 15px;
-  margin-left: 20%;
+  margin:auto;
   height: 80%;
-  width: 75%;
+  width: 80%;
   text-align: center;
+  float: right;
+  
 }
 
 .text-format{
@@ -450,6 +442,7 @@ a, a:hover {
   margin: 0 auto;
   margin-left: 6%;
   margin-top: 90px;
+ 
 }
 
 .manage-profile-wrapper .title {
@@ -480,6 +473,10 @@ a, a:hover {
   margin-bottom: 20px;
   box-shadow: 0 4px 20px 0 rgba(0,0,0,.1);
   position: relative;
+}
+
+.manage-profile-wrapper .trans {
+  padding: 0px !important;
 }
 
 @media screen and (max-width: 600px)
@@ -545,6 +542,7 @@ a, a:hover {
   transition: .2s;
   text-transform: capitalize;
   font-weight: 400;
+  
 }
 
 @media screen and (max-width: 480px)
@@ -565,6 +563,55 @@ a, a:hover {
   font-size: 1.2rem;
   padding-left: 10px;
 }
+
+
+
+
+/* media queries */
+@media screen and (max-width: 680px)
+{.account-details {
+    height:40px!important;
+}
+.header-text{
+  font-size: 1.3571428571rem!important;
+  margin-top: 6px!important;
+}
+
+}
+
+@media screen and (max-width: 770px)
+{.submit-account{
+  width: 45%!important;
+  font-size: 13px!important;
+  padding: 5px 5px!important;
+  text-align: center;
+}
+}
+
+@media screen and (max-width: 700px){
+/* {.main-content .trans-table, .trans-header{
+  display: none!important;
+} */
+#myTable th, #myTable td{
+  font-size:12px!important;
+  /* overflow: auto !important; */
+  /* padding: 2px!important; */
+}
+.main-container .search{
+  width:70%;
+}
+}
+
+
+
+.trans-header{
+  font-size: 20px;}
+
+
+
+
+
+
 
 
 .manage-profile-wrapper .main-content .each-menu .link-name {
@@ -783,6 +830,7 @@ select {
 }
 
 .header-text {
+  margin: auto;
   padding-bottom: 0;
   font-family: "Sarabun", sans-serif;
   font-weight: bolder;
@@ -882,6 +930,8 @@ a:hover {
 
 .reduce-sidebar{
   width: 49px !important;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 
@@ -935,6 +985,7 @@ overlay {
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
+  z-index: 3000;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
@@ -947,7 +998,7 @@ overlay {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
-  width: 40%;
+  width: 50%;
   color: #1433c4;
   border-radius:6px 6px;
 }
@@ -994,17 +1045,18 @@ overlay {
 }
 
 .navbar {
-  width: 10%;
+  width: 100px;
   height: 75px;
   box-sizing: border-box;
-  padding: 9px 0px;
+  padding: 0px 0px;
   font-family: "sarabun";
   font-weight: bolder;
   font-weight: 5em;
-  font-size: 20px;
+  font-size: 17px;
   color: #FFAF30;
-  margin-left: 0px;
+  margin-right: 20px;
   float: right;
+  max-width: 150px;
 }
 
 .navbar ul {
@@ -1162,3 +1214,77 @@ resize: none;
   border-radius: 50%;
   
 }
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 90%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  /* border: 1px solid #ddd; */
+  margin-bottom: 2px;
+  margin-top:0px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+ 
+  /* border: 1px solid #ddd; */
+  /* font-size: 18px; */
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 5px 10px 5px 20px ;
+  font-size: 1.2rem;
+  /* left: 40px; */
+  font-size: 1.2rem;
+  padding-left: 16px;
+  
+}
+
+#myTable th {
+  background:#1433c4;
+  padding: 13px 10px 13px 20px !important;
+  color:#ffffff;
+
+}
+
+#myTable td {
+  background:#ffffff;
+
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+ #myTable tr:hover {
+  background-color: #f1f1f1 !important;
+}
+
+.overflow{overflow-x:auto;}
+
+.tabledata1, .tabledata2{
+  width:20%;
+  }
+
+.tabledata3, .tabledata4,.tabledata5{
+  width:15%;
+  }
+
+.tdfirst{
+  border-radius:3px 0 0 0 !important;}
+  
+.tdend{
+    border-radius:0 3px 0 0 !important;}
+
+.profiletransheader{
+  text-align:center;
+  border-radius:3px 3px 0 0 ;}
