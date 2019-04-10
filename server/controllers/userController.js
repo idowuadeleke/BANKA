@@ -3,7 +3,7 @@ import validateSignUpInput from '../validation/signup';
 import userData from '../data/users';
 // import contactData from '../data/contacts';
 import helper from '../helper/helper';
-// import validateLoginInput from '../validation/login';
+import validateLoginInput from '../validation/login';
 import Auth from '../middleswares/is-Auth';
 // import DB from '../db/index';
 
@@ -78,6 +78,53 @@ class UserController {
       });
     }
   }
+
+   /**
+   * login a user
+   * @param {*} req
+   * @param {*} res
+   */
+  static login(req, res) {
+    // check if user pass valid and required data
+    const { errors, isValid } = validateLoginInput(req.body);
+    const { email, password } = req.body;
+
+    // check if user inputs are valid
+    if (!isValid) {
+      return res.status(400).json({
+        status: 400,
+        errors,
+      });
+    }
+
+    // find user by email
+    const UserExists = findUserByEmail(userData, email);
+
+    // check if user exists in our data structure
+    if (!UserExists) {
+      return res.status(404).json({
+        status: 404,
+        error: 'User does not exist',
+      });
+    }
+
+    // check if user provided password matches user's hashed password in data structure
+    if (!compareSync(password, UserExists.password)) {
+      return res.status(401).json({
+        status: 401,
+        error: 'Invalid Email/Password',
+      });
+    }
+    // create token
+    const token = createToken(UserExists.email, UserExists.id);
+
+    return res.status(200).json({
+      status: 200,
+      data: {
+        token,
+      },
+    });
+  }   
 
 }
 
