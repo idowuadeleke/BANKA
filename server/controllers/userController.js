@@ -53,7 +53,7 @@ class UserController {
         firstname: body.firstname,
         lastname: body.lastname,
         email: body.email,
-        number: body.number,
+        type: 'client',
         password: hash,
         isAdmin: false,
       };
