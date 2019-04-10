@@ -1,65 +1,30 @@
 {
   "name": "banka",
   "version": "1.0.0",
-  "description": "Banka is a light-weight core banking application that powers banking operations",
-  "main": "user.js",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "chai": "^4.2.0",
-    "chai-http": "^4.2.1",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "faker": "^4.1.0",
-    "gh-pages": "^2.0.1",
-    "jsonwebtoken": "^8.5.0",
-    "pg": "^7.8.2",
-    "pg-pool": "^2.0.6",
-    "validator": "^10.11.0"
-  },
+  "description": "Banka is a light-weight core banking application that powers banking operations like account creation, customer deposit and withdrawals. This app is meant to support a single bank, where users can signup and create bank accounts online, but must visit the branch to withdraw or deposit money..",
+  "main": "index.js",
+  "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.2.0",
-    "@babel/core": "^7.2.0",
-    "@babel/node": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "@babel/register": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.0.5",
-    "babel-polyfill": "^6.26.0",
-    "babel-register": "^6.26.0",
-    "coffeescript": "^2.3.2",
-    "coveralls": "^3.0.2",
-    "cross-env": "^5.2.0",
-    "eslint": "^5.12.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "istanbul": "^0.4.5",
-    "markdownlint": "^0.11.0",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.18.9",
-    "nyc": "^13.1.0",
-    "webpack": "^4.28.3"
+    "eslint-plugin-import": "^2.16.0",
+    "mocha": "^6.1.2"
   },
   "scripts": {
-    "deploy": "gh-pages -d UI"
+    "test": "mocha",
+    "lint": "./node_modules/.bin/eslint UI --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/idowuadeleke/BANKA.git"
   },
   "keywords": [
-    "banka",
-    "andela_challenge"
+    "banka"
   ],
-  "author": "Idowu",
+  "author": "idowu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/idowuadeleke/BANKA/issues"
   },
-  "homepage": "https://github.com/idowuadeleke/BANKA/UI"
+  "homepage": "https://github.com/idowuadeleke/BANKA#readme"
 }
