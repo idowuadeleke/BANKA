@@ -9,10 +9,10 @@ const validateSignUpInput = (data) => {
   body.email = !isEmpty(body.email) ? body.email : '';
   body.firstname = !isEmpty(body.firstname) ? body.firstname : '';
   body.lastname = !isEmpty(body.lastname) ? body.lastname : '';
-//   body.number = !isEmpty(body.number) ? body.number : '';
+  //   body.number = !isEmpty(body.number) ? body.number : '';
   body.password = !isEmpty(body.password) ? body.password : '';
   // body.type = !isEmpty(body.type) ? body.type : '';
-//   body.isAdmin = !isEmpty(body.type) ? body.type : '';
+  //   body.isAdmin = !isEmpty(body.type) ? body.type : '';
 
 
   if (!validator.isLength(body.firstname, { min: 2, max: 30 })) {

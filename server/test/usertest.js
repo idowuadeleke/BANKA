@@ -2,31 +2,11 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import faker from 'faker';
 import app from '../app';
-// import messageData from '../data/messages.json';
-
-// const { id } = messageData[0];
 
 const { expect } = chai;
 
 // using chai-http middleware
 chai.use(chaiHttp);
-
-// const validMessage = {
-//   id: 26,
-//   sender: 'andela.giwa1@epic.com',
-//   subject: 'Welcome home',
-//   message: 'New message',
-//   status: 'sent',
-//   reciever: 'matti@epics.com',
-// };
-
-// const invalidMessage = {
-//   sender: 'matti@epics.com',
-//   subject: 'Welcome home',
-//   message: 'New message',
-//   status: 'sent',
-//   reciever: 'Layne80@hotmailwrong.com',
-// };
 
 const newUser = {
   firstname: faker.name.firstName(),
@@ -35,11 +15,6 @@ const newUser = {
   password: 'dele1989',
 };
 
-// let UserToken;
-// let DbToken;
-// let groupId;
-// let DbnewUserToken;
-// let userToDelete;
 // Test suite for home route
 describe('GET /', () => {
   it('Should redirect to home route', (done) => {
@@ -169,70 +144,69 @@ describe('POST api/v1/auth/login', () => {
       });
   });
 
-// Test suite for POST /login user email does not exists
-describe('POST api/v1/auth/login', () => {
-  it('Should return an error if login email inputs is invalid', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/auth/login')
-      .send({
-        email: 'wrongemail@epicmail.com',
-        password: 'cent46',
-      })
-      .end((err, res) => {
-        if (err) done();
-        const { body } = res;
-        expect(body).to.be.an('object');
-        expect(body.status).to.be.a('number');
-        expect(body.status).to.be.equal(404);
-        expect(body.error).to.be.a('string');
-        expect(body.error).to.be.equals('User does not exist');
-        done();
-      });
+  // Test suite for POST /login user email does not exists
+  describe('POST api/v1/auth/login', () => {
+    it('Should return an error if login email inputs is invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({
+          email: 'wrongemail@epicmail.com',
+          password: 'cent46',
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(404);
+          expect(body.error).to.be.a('string');
+          expect(body.error).to.be.equals('User does not exist');
+          done();
+        });
+    });
   });
-});
 
-// Test suite for POST /login password invalid
-describe('POST api/v1/auth/login', () => {
-  it('Should return an error if login password inputs is invalid', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/auth/login')
-      .send({
-        email: 'idowu@andela.com',
-        password: 'wrongpassword',
-      })
-      .end((err, res) => {
-        if (err) done();
-        const { body } = res;
-        expect(body).to.be.an('object');
-        expect(body.status).to.be.a('number');
-        expect(body.status).to.be.equal(401);
-        expect(body.error).to.be.a('string');
-        expect(body.error).to.be.equals('Invalid Email/Password');
-        done();
-      });
+  // Test suite for POST /login password invalid
+  describe('POST api/v1/auth/login', () => {
+    it('Should return an error if login password inputs is invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({
+          email: 'idowu@andela.com',
+          password: 'wrongpassword',
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(401);
+          expect(body.error).to.be.a('string');
+          expect(body.error).to.be.equals('Invalid Email/Password');
+          done();
+        });
+    });
   });
-});
 
-// Test suite for POST /login route invalid
-describe('POST api/v1/auth/login', () => {
-  it('Should return an error if login inputs are invalid', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/auth/login')
-      .send({})
-      .end((err, res) => {
-        if (err) done();
-        const { body } = res;
-        expect(body).to.be.an('object');
-        expect(body.status).to.be.a('number');
-        expect(body.status).to.be.equal(400);
-        expect(body.errors).to.be.a('object');
+  // Test suite for POST /login route invalid
+  describe('POST api/v1/auth/login', () => {
+    it('Should return an error if login inputs are invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({})
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.a('object');
 
-        done();
-      });
+          done();
+        });
+    });
   });
-});
-
 });

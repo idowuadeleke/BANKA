@@ -25,7 +25,6 @@ class Helper {
   static findUserByEmail(objArr, userEmail) {
     return objArr.find(element => element.email === userEmail);
   }
-
 }
 
 export default Helper;

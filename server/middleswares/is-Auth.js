@@ -69,7 +69,6 @@ class Auth {
       });
     }
   }
-
 }
 
 // expose auth

@@ -57,18 +57,18 @@ class UserController {
         password: hash,
         isAdmin: false,
       };
-      
+
       const filePath = 'server/data/users.json';
       const savedData = saveDataToFile(filePath, userData, values);
 
       // create token
       const token = createToken(values.email, values.id);
-     
+
       return res.status(201).json({
         status: 201,
         data: {
           username: savedData.lastname,
-          token: token,
+          token,
         },
       });
     } catch (e) {
@@ -79,7 +79,7 @@ class UserController {
     }
   }
 
-   /**
+  /**
    * login a user
    * @param {*} req
    * @param {*} res
@@ -124,8 +124,7 @@ class UserController {
         token,
       },
     });
-  }   
-
+  }
 }
 
 export default UserController;
