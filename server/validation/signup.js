@@ -11,7 +11,7 @@ const validateSignUpInput = (data) => {
   body.lastname = !isEmpty(body.lastname) ? body.lastname : '';
 //   body.number = !isEmpty(body.number) ? body.number : '';
   body.password = !isEmpty(body.password) ? body.password : '';
-  body.type = !isEmpty(body.type) ? body.type : '';
+  // body.type = !isEmpty(body.type) ? body.type : '';
 //   body.isAdmin = !isEmpty(body.type) ? body.type : '';
 
 
@@ -39,9 +39,9 @@ const validateSignUpInput = (data) => {
     errors.firstname = 'Last Name field cannot contain numbers and symbols';
   }
 
-//   if (validator.isEmpty(body.number)) {
-//     errors.phonenumber = 'Phone Number field is required';
-//   }
+  // if (validator.isEmpty(body.number)) {
+  //   errors.type = 'Phone Number field is required';
+  // }
 
   if (validator.isEmpty(body.email)) {
     errors.email = 'Email field is required';

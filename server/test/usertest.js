@@ -33,7 +33,6 @@ const newUser = {
   lastname: faker.name.lastName(),
   email: faker.internet.email(),
   password: 'dele1989',
-  type: 'client',
 };
 
 // let UserToken;
@@ -85,13 +84,7 @@ describe('POST api/v1/auth/signup', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstname: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        email: faker.internet.email(),
-        number: '08067678787',
-        password: 'dele1989',
-      })
+      .send(newUser)
       .end((err, res) => {
         if (err) done();
         const { body } = res;
