@@ -312,8 +312,43 @@ describe('POST api/v1/auth/login', () => {
         });
     });
 
+    it('Should return an error if login password inputs is invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({
+          email: 'idowu@andela.com',
+          password: 'wrongpassword',
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(401);
+          expect(body.error).to.be.a('string');
+          expect(body.error).to.be.equals('Invalid Email/Password');
+          done();
+        });
+    });
 
-    
+    it('Should return an error if login inputs are invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send({})
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.a('object');
+
+          done();
+        });
+    });
+
   });
 
 
