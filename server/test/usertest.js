@@ -17,10 +17,9 @@ const newUser = {
   isAdmin: false,
 };
 
-let UserToken;
-let adminToken;
 
 describe('Test user login and signup', () => {
+  let UserToken;
     // Test suite for POST /signup route
   describe('POST api/v1/auth/signup', () => {
         it('Should successfully create a user account if inputs are valid', (done) => {
@@ -350,9 +349,5 @@ describe('POST api/v1/auth/login', () => {
     });
 
   });
-
-
-
-
 
 });
