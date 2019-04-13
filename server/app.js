@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import users from './routes/api/users';
 
 
 // Initialize express app
@@ -18,6 +19,15 @@ app.get('/', (req, res) => res.status(200).json({
       message: 'Welcome to BANKA',
     },
   ],
+}));
+
+// user routes
+app.use('/api/v1/auth', users);
+
+// Handle non existing route with with proper message
+app.all('*', (req, res) => res.status(404).json({
+  status: 404,
+  error: 'Route does not exist',
 }));
 
 
