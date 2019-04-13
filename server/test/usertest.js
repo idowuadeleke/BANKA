@@ -40,8 +40,23 @@ describe('Test user login and signup', () => {
             done();
             });
         });
-        
 
+        it('Should return an error if signup inputs are invalid', (done) => {
+          chai
+            .request(app)
+            .post('/api/v1/auth/signup')
+            .send({})
+            .end((err, res) => {
+              if (err) done();
+              const { body } = res;
+              expect(body).to.be.an('object');
+              expect(body.status).to.be.a('number');
+              expect(body.status).to.be.equal(422);
+              expect(body.errors).to.be.a('object');
+      
+              done();
+            });
+        });
 
   });
 
