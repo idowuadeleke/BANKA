@@ -58,6 +58,31 @@ describe('Test user login and signup', () => {
             });
         });
 
+        // test suite for POST /signup user already exists
+        it('should return an error if email already exists', (done) => {
+          chai
+            .request(app)
+            .post('/api/v1/auth/signup')
+            .send({
+              firstname: 'Idowu',
+              lastname: 'Adeleke',
+              email: 'idowu@andela.com',
+              password: 'dele1989',
+              type: 'client',
+              isAdmin:false,
+            })
+            .end((err, res) => {
+              if (err) done();
+              const { body } = res;
+              expect(body).to.be.an('object');
+              expect(body.status).to.be.a('number');
+              expect(body.status).to.be.equals(409);
+              expect(body.error).to.be.a('string');
+              
+              done();
+            });
+        });
+
   });
 
 });
