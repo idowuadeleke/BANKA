@@ -20,6 +20,12 @@ app.get('/', (req, res) => res.status(200).json({
   ],
 }));
 
+// Handle non existing route with with proper message
+app.all('*', (req, res) => res.status(404).json({
+  status: 404,
+  error: 'Route does not exist',
+}));
+
 
 // Define application port number
 const port = process.env.PORT || 3000;
