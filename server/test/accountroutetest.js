@@ -170,8 +170,58 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 //       });
 //   });
 // });
-
-
       });
+
+    /**
+   * Test the GET /accounts/ routes
+   */
+  describe('GET /accounts', () => {
+    it('it should throw permission error if user is not an admin', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/accounts')
+        .set('token', UserToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(403);
+          expect(body).to.be.an('object');
+          expect(body.error).to.be.equals('only a staff has the permission to get all bank accounts');
+          done();
+        });
+    });
+
+    it('it should get all the bank accounts', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/accounts')
+        .set('token', adminToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(200);
+          expect(body.data.accounts).to.be.an('array');
+          done();
+        });
+    });
+
+    before('Sign in as an admin/staff ', (done) => {
+      const userCredential = {
+        email: 'Jennings_Heathcote57@gmail.com',
+        password: 'dele1989',
+      };
+
+      chai
+        .request(app)
+        .post('/api/v1/auth/login')
+        .send(userCredential)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(200);
+          if (!err) {
+            adminToken = body.data.token;
+          }
+          done();
+        });
+    });
+  });
 
 });
