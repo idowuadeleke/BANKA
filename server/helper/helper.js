@@ -42,10 +42,10 @@ class Helper {
     return objArr.find(element => element.accountNumber === accountNumber);
   }
 
-  // find a user by IDfoundAccount.id, status,accountData
-  static updateAccountStatus(objArr, accountNumber, status) {
-    objArr.find(element => element.accountNumber === accountNumber).status = status;
-  }
+  // // find a user by IDfoundAccount.id, status,accountData
+  // static updateAccountStatus(objArr, accountNumber, status) {
+  //   objArr.find(element => element.accountNumber === accountNumber).status = status;
+  // }
 
   static generateAccountNumber(data) {
     const lastAcc = data[0].accountNumber;

@@ -52,7 +52,7 @@
     "start": "cross-env NODE_ENV=production nodemon ./server/app.js --exec babel-node",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "showcoverage": "start ./coverage/index.html",
-    "lint": "./node_modules/.bin/eslint UI --fix"
+    "lint": "./node_modules/.bin/eslint server --fix"
   },
   "repository": {
     "type": "git",
