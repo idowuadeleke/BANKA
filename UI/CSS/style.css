@@ -12,16 +12,12 @@ html {
     font-size: 12px;
 }}
 
-
 body {
   font-family: "Sarabun", sans-serif;
   color: #fff;
   font-weight: 300;
-  background: #f4f4f4;
-  
+  background: #f4f4f4; 
 }
-
-
 
 body {
   display: block;
@@ -38,8 +34,6 @@ body {
   width: 100%;
   background-color: #f4f4f4;
   overflow: auto;
-  
-  
 }
 
 .header{
@@ -913,20 +907,6 @@ label{
 
 a:hover {
   color:#1433c4;}
-
-
-/* .debit-account-container label,.credit-account-container label,.userAccountContainer label,
-.deleteAccountContainer label, .create-account-container label, .statusAccountContainer label{
-  text-align: left;
-  padding-left: 4%;
-  margin-right: 10px;
-  margin-top: 10px;
-  width: 32%
-}
-
-.userAccountContainer label{
-  width:22%
-} */
 
 .reduce-sidebar{
   width: 49px !important;

@@ -2,63 +2,49 @@ const userLogin = document.getElementById('user-login-btn');
 const userRole = document.getElementById('user-role');
 
 let role;
-userRole.onchange = function () {
+userRole.onchange = function changeRole() {
   role = document.getElementById('user-role').value;
 };
 
 
-userLogin.onclick = function (e) {
-  gotoUserPage();
-};
-
 function gotoUserPage() {
-  if (role == 'customer') {
+  if (role === 'customer') {
     userLogin.formAction = 'user.html';
-  } else if (role == 'staff') {
+  } else if (role === 'staff') {
     userLogin.formAction = 'staff.html';
-  } else if (role == 'admin') {
+  } else if (role === 'admin') {
     userLogin.formAction = 'admin.html';
   }
 }
 
+
+userLogin.onclick = function userPage() {
+  gotoUserPage();
+};
+
 let myIndex = 0;
-carousel();
+
 
 function carousel() {
   let i;
   const x = document.getElementsByClassName('my-image');
-  for (i = 0; i < x.length; i++) {
+  for (i = 0; i < x.length; i += 1) {
     x[i].style.display = 'none';
   }
-  myIndex++;
+  myIndex += 1;
   if (myIndex > x.length) { myIndex = 1; }
   x[myIndex - 1].style.display = 'block';
   setTimeout(carousel, 7000); // Change image every 2 seconds
 }
 
-function showHide(desiredPage, currentPage) {
-  var desiredPage = document.getElementById(desiredPage);
-  var currentPage = document.getElementById(currentPage);
+carousel();
+
+/* eslint-disable no-unused-vars */
+function showHide(mydesiredPage, mycurrentPage) {
+  const desiredPage = document.getElementById(mydesiredPage);
+  const currentPage = document.getElementById(mycurrentPage);
   desiredPage.style.display = 'block';
   currentPage.style.display = 'none';
 }
 
-function myFunction() {
-  let input; let filter; let table; let tr; let td; let i; let
-    txtValue;
-  input = document.getElementById('myInput');
-  filter = input.value.toUpperCase();
-  table = document.getElementById('myTable');
-  tr = table.getElementsByTagName('tr');
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName('td')[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = '';
-      } else {
-        tr[i].style.display = 'none';
-      }
-    }
-  }
-}
+/* eslint-disable no-unused-vars */

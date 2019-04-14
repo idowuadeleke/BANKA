@@ -1,3 +1,4 @@
+/* add header style*/
 header{
     background-color:#fff;
     padding:16px;position:fixed;
@@ -6,6 +7,18 @@ header{
     width:100%;
     box-shadow:2px 2px 6px rgba(0,0,0,.5)}
 
+/* add style for the text on the header */
+.header-text{padding-bottom:0;
+    font-family: "sarabun";
+    font-weight: bolder;
+    font-weight: 5em;
+    text-align: center;
+    font-size:2.3571428571rem;
+    color: #ffffff;
+    letter-spacing:-.75px;
+    line-height:30px}
+
+/* add styling to main container */
 .main-container{
     background-image:url(../images/backg.jpg);
     background-repeat:no-repeat;
@@ -18,67 +31,9 @@ header{
     box-shadow: inset 0 0 0 1000px rgba(51,102,255,0.2);
     height:100%;
     width:100%;
-
 }
-
-
-.form-container{
-    width:40%;
-    height:100%;
-    padding: 5%;
-    padding:0;
-    margin:0;
-    top:0;
-    float:left;
-    position:relative;
-    overflow-x: auto;
-   
-}
-
-@media screen and (max-width:1500px){.main-container .form-container .reg-progress{min-width:339.516px}.main-container .form-container .reg-progress .level{margin-left:14%;max-width:156px}}
-
-@media screen and (max-width:992px){.main-container .form-container{width:50%}.main-container .form-container .reg-progress{width:97%}.main-container .form-container .reg-progress .level{margin-left:17.5%;max-width:156px}.main-container .image-holder{display:none}}
-
-@media screen and (max-width:1024px){
-    .main-container .image-holder{display:none}
-    .main-container .form-container{width:100%; }
-    .form-header{border-radius:7px 7px 0 0 !important}
-}
-
-@media screen and (max-width:510px){
-    .main-container .center-container{min-width: 320px;margin: auto;}
-    .Signup,.Login{width:40%!important}
-   
-}
-
-
-
-
-
-.header-text{padding-bottom:0;
-    font-family: "sarabun";
-  font-weight: bolder;
-  font-weight: 5em;
-
-    text-align: center;
-    font-size:2.3571428571rem;
-    color: #ffffff;
-    letter-spacing:-.75px;
-    line-height:30px}
-    
- .image-holder{
-    width:60%;
-    height:100%;
-    float:left;
-    position: relative;
-    background-size:cover;
-    object-fit: cover;
-    border-radius:7px 0 0 7px;
-    background-size: cover;
-    background-repeat:no-repeat;
-
-}
-    
+ 
+/* add styling to center container */
 .center-container{
     width:90%;
     border-radius:7px;
@@ -89,30 +44,71 @@ header{
     bottom:0;
     left:0;
     right:0;
-    margin:auto;
-    
-    
-    
+    margin:auto;  
     }
-    
-@media screen and (max-width:992px){.center-container{width:40.5%;min-width:487.672px}}
 
-.header-text{
-    text-align:center;
-    margin-bottom:.8rem}
-    
+/* media query for center container responsiveness on small screen */
+ @media screen and (max-width:992px){.center-container{width:40.5%;min-width:487.672px}}
+
+
+ /* add styling to form container */
+.form-container{
+    width:40%;
+    height:100%;
+    padding: 5%;
+    padding:0;
+    margin:0;
+    top:0;
+    float:left;
+    position:relative;
+    overflow-x: auto; 
+}
+
+/* media query for form container responsiveness on small screen */
+@media screen and (max-width:1500px){
+    .main-container .form-container .reg-progress{min-width:339.516px}
+    .main-container .form-container .reg-progress .level{margin-left:14%;max-width:156px}}
+
+/* add styling to form container header */
 .form-header{
     background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
     border: 5px solid transparent;
     border-radius:0 7px 0 0;
-    border-left: none;
     border-right: none;
+} 
+
+
+@media screen and (max-width:1024px){
+    .main-container .image-holder{display:none}
+    .main-container .form-container{width:100%; }
+    .form-header{border-radius:7px 7px 0 0 !important}
 }
 
+.image-holder{
+    width:60%;
+    height:100%;
+    float:left;
+    position: relative;
+    background-size:cover;
+    object-fit: cover;
+    border-radius:7px 0 0 7px;
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+
+@media screen and (max-width:992px){
+    .main-container .form-container{width:50%}
+    .main-container .form-container .reg-progress{width:97%}
+    .main-container .form-container .reg-progress .level{margin-left:17.5%;max-width:156px}
+    .main-container .image-holder{display:none}}
+ 
+.header-text{
+    text-align:center;
+    margin-bottom:.8rem}
+    
 .bottom{
     text-align: center;
 }
-
 
 .Login,.Signup,.recover{
     background: #FFAF30;
@@ -127,24 +123,28 @@ header{
     font-size: 18px;
   }
 
-.Signup{
-    margin: 7px 0 15px 0;
-  }
+@media screen and (max-width:510px){
+    .main-container .center-container{min-width: 320px;margin: auto;}
+    .Signup,.Login{width:40%!important} 
+}
 
-  .recover{
-    width: 40%;
-  }
+#signup, #forgot_password{
+    display: none;
+}
 
-
-  .Login:hover, .Signup:hover, .recover:hover{
+.Login:hover, .Signup:hover, .recover:hover{
     background: #ffffff;
     color: #FFAF30;
     border: solid #FFAF30;
   }
 
-a{text-decoration: none;
-color:#1433c4 ; 
-} 
+.Signup{
+    margin: 7px 0 15px 0;
+  }
+
+.recover{
+    width: 40%;
+  }
 
 .signup-link, .login-link{
     font-family: "sarabun";
@@ -157,28 +157,24 @@ color:#1433c4 ;
 }
 
 
-#signup, #forgot_password{
-    display: none;
-}
-
 .forgot-password-link{
 padding: 5%;
 text-align:center; 
 cursor:pointer;
 }
 
+.Signup:hover, .Login:hover{opacity: 1}
 
+a{text-decoration: none;
+    color:#1433c4 ; 
+    } 
+    
 a:hover{
     text-decoration:underline;
     }
 
-.Login:hover{opacity: 1}
-
-.Signup:hover{opacity: 1}
-
 .input{
-    text-align: center;
-    
+    text-align: center;  
 }
 
 input[type="text"],
@@ -187,8 +183,6 @@ input[type="email"],
 textarea, select {
   text-align: left;
   width: 70%;
-  /* margin: 15px 30px 5px 30px; */
-  /* padding: 20px 15px 15px 15px; */
   padding: 4%;
   display: inline-block;
   border: none;
@@ -210,25 +204,24 @@ textarea, select {
     border-radius:0 7px 0 0;
   }
 
-  .my-imagery {
-      position: relative;
-      object-fit: cover;
-      width:100%;
-        height:100%;
-        border-radius:7px 0 0 7px;
-        opacity:0.9;
-       
-  }
-
-  .a{
-      cursor: pointer !important;
-  }
-
-  .my-image{
+.my-imagery {
+    position: relative;
+    object-fit: cover;
+    width:100%;
     height:100%;
-  }
+    border-radius:7px 0 0 7px;
+    opacity:0.9;
+}
 
-  .banner-text {
+.a{
+    cursor: pointer !important;
+}
+
+.my-image{
+    height:100%;
+}
+
+.banner-text {
     width: 60%;
     position: absolute;
     bottom: 40px;
@@ -237,6 +230,14 @@ textarea, select {
     padding-right: 20px;
     background: rgba(0, 0, 0, 0.6);
 }
+
+.banner-text p {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 18px;
+}
+
 
 .banner-text h2 {
     color: #FFAF30; 
@@ -249,13 +250,6 @@ textarea, select {
     margin-bottom: .5rem;
     font-family: inherit;
     text-align: left;
-}
-
-.banner-text p {
-    color: #fff;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 18px;
 }
 
 .my-image {display:none;}
