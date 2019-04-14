@@ -95,7 +95,7 @@ You can see a hosted version of the template at [https://idowuadeleke.github.io/
 
 ## API
 
-The API is currently in version 1 (v1)  is hosted at
+The API is currently in version 1 (v1)  is hosted at [https://bankaapplication.herokuapp.com/](https://bankaapplication.herokuapp.com/)
 
 
 

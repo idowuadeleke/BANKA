@@ -56,7 +56,7 @@ class accountController {
           accountNumber: generateAccountNumber(accountData),
           createdOn: new Date().toUTCString(),
           owner: id,
-          status: 'dormant',
+          status: 'draft',
           type,
           balance,
         };
@@ -70,7 +70,7 @@ class accountController {
             lastName: user.lastname,
             email: user.email,
             type,
-            balance,
+            openingBalance: balance,
           },
         });
       }
@@ -102,7 +102,7 @@ class accountController {
     if (accounts.length > 0) {
       return res.status(200).json({
         status: 200,
-        data: { accounts },
+        data: accounts,
       });
     }
     return res.status(404).json({

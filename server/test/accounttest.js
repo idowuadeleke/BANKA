@@ -197,7 +197,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
-          expect(body.data.accounts).to.be.an('array');
+          expect(body.data).to.be.an('array');
           done();
         });
     });

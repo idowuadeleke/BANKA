@@ -15,12 +15,9 @@ app.use(bodyParser.json());
 // Home page route
 app.get('/', (req, res) => res.status(200).json({
   status: 200,
-  data: [
-    {
-      message: 'Welcome to BANKA',
-    },
-  ],
-}));
+  message: 'Welcome to BANKA'
+    }
+));
 
 // user routes
 app.use('/api/v1/auth', users);
