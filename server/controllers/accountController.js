@@ -38,11 +38,11 @@ class accountController {
       }
       const { type, balance } = req.body;
       const user = findUserByID(userData, id);
-     
-      
+
+
       if (user) {
         // check if user already has a bank account
-        
+
         const account = findAccountByOwner(accountData, id);
         // console.log(account);
         if (account) {
@@ -92,57 +92,54 @@ class accountController {
 
   static fetchAllAccounts(req, res) {
     const accounts = accountData.map((account) => {
-                      const { owner, ...data } = account;
-                      const user = findUserByID(userData,owner);
-                      
-                      return {
-                        ...data,
-                        firstName: user.firstname,
-                        lastName: user.lastname,
-                        email: user.email,
-                      };
-                    });
+      const { owner, ...data } = account;
+      const user = findUserByID(userData, owner);
+
+      return {
+        ...data,
+        firstName: user.firstname,
+        lastName: user.lastname,
+        email: user.email,
+      };
+    });
     if (accounts.length > 0) {
       return res.status(200).json({
         status: 200,
-        data: {accounts},
-      });
-    } else {
-      return res.status(404).json({
-        status: 404,
-        error: 'no account has been created',
+        data: { accounts },
       });
     }
+    return res.status(404).json({
+      status: 404,
+      error: 'no account has been created',
+    });
   }
 
   static getAccount(req, res) {
     const { accountNumber } = req.params;
     try {
       const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
-    
-        if (foundAccount) {
-         
-          const { owner, ...data } = foundAccount;
-    
-          const user = findUserByID(userData,owner);
-    
-          const userAccount = {
-                ...data,
-                firstName: user.firstname,
-                lastName: user.lastname,
-                email: user.email,
-              };
-          return res.status(200).json({
-            status: 200,
-            data: userAccount,
-          }); 
-        }
-        return res.status(404).json({
-          status: 404,
-          error: 'account number doesn\'t exist',
-        }); 
-    }
-    catch (e) {
+
+      if (foundAccount) {
+        const { owner, ...data } = foundAccount;
+
+        const user = findUserByID(userData, owner);
+
+        const userAccount = {
+          ...data,
+          firstName: user.firstname,
+          lastName: user.lastname,
+          email: user.email,
+        };
+        return res.status(200).json({
+          status: 200,
+          data: userAccount,
+        });
+      }
+      return res.status(404).json({
+        status: 404,
+        error: 'account number doesn\'t exist',
+      });
+    } catch (e) {
       return res.status(500).json({
         status: 500,
         error: 'Sorry, something went wrong, try again',
@@ -163,7 +160,7 @@ class accountController {
         });
       }
 
-      const {status} = req.body;
+      const { status } = req.body;
       const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
       if (foundAccount) {
         foundAccount.status = status;
@@ -171,19 +168,18 @@ class accountController {
         const filePath = 'server/data/accounts.json';
         updateData(filePath, accountData);
         return res.status(200).json({
-        status: 200,
-        data:{
-          accountNumber: foundAccount.accountNumber,
-          status : status
-        }
-      }); 
+          status: 200,
+          data: {
+            accountNumber: foundAccount.accountNumber,
+            status,
+          },
+        });
       }
       return res.status(404).json({
         status: 404,
         error: 'account number doesn\'t exist',
-      }); 
-    }
-    catch (e) {
+      });
+    } catch (e) {
       return res.status(500).json({
         status: 500,
         error: 'Sorry, something went wrong, try again',
@@ -201,16 +197,15 @@ class accountController {
         const filePath = 'server/data/accounts.json';
         updateData(filePath, accountData);
         return res.status(200).json({
-        status: 200,
-        message:"Account successfully deleted"
-      }); 
+          status: 200,
+          message: 'Account successfully deleted',
+        });
       }
       return res.status(404).json({
         status: 404,
         error: 'account number doesn\'t exist',
-      }); 
-    }
-    catch (e) {
+      });
+    } catch (e) {
       return res.status(500).json({
         status: 500,
         error: 'Sorry, something went wrong, try again',
@@ -220,4 +215,3 @@ class accountController {
 }
 
 export default accountController;
-

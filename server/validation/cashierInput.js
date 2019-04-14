@@ -7,11 +7,11 @@ const validateCashierInput = (data) => {
 
   body.amount = !isEmpty(body.amount) ? body.amount : '';
 
-//   if (validator.isEmpty(body.amount)) {
-//     errors.amount = 'amount field is required';
-//   }
-  
-  if(!(typeof(body.amount)=='number') ){
+  //   if (validator.isEmpty(body.amount)) {
+  //     errors.amount = 'amount field is required';
+  //   }
+
+  if (!(typeof (body.amount) === 'number')) {
     errors.amount = 'amount field must be a number';
   }
   return {
