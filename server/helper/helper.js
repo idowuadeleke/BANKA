@@ -13,7 +13,7 @@ class Helper {
   }
 
   static updateData(filePath, dataFile) {
-    fs.writeFileSync(filePath,  JSON.stringify(dataFile));
+    fs.writeFileSync(filePath, JSON.stringify(dataFile));
   }
 
   // generate unique id
@@ -43,17 +43,14 @@ class Helper {
   }
 
   // find a user by IDfoundAccount.id, status,accountData
-  static updateAccountStatus(objArr, accountNumber,status) {
+  static updateAccountStatus(objArr, accountNumber, status) {
     objArr.find(element => element.accountNumber === accountNumber).status = status;
-
   }
 
   static generateAccountNumber(data) {
     const lastAcc = data[0].accountNumber;
     return lastAcc + 100;
   }
-
 }
 
 export default Helper;
-

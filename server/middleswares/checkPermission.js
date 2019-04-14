@@ -8,9 +8,7 @@ const {
 } = helper;
 
 
-
 class checkPermissions {
-
   static permissionMiddleWare(req, res, next) {
     if (!req.user) {
       return res.status(401).json({
@@ -31,56 +29,55 @@ class checkPermissions {
       });
     }
     if ((route === '/accounts/:accountNumber') && method === 'get' && type !== 'staff') {
-        
-        const foundAccount = findByAccountNumber(accountData,Number(accountNumber));
-        
-        if (typeof foundAccount === 'undefined'){
-            return res.status(404).json({
-                status: 404,
-                error: 'account number doesn\'t exist',
-                });   
-        }
-        if (foundAccount.owner !== Number(id)){
+      const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
+
+      if (typeof foundAccount === 'undefined') {
+        return res.status(404).json({
+          status: 404,
+          error: 'account number doesn\'t exist',
+        });
+      }
+      if (foundAccount.owner !== Number(id)) {
         return res.status(403).json({
-            status: 403,
-            error: 'only a staff has the permission to get other user\'s account',
-          });
-            }
+          status: 403,
+          error: 'only a staff has the permission to get other user\'s account',
+        });
+      }
     }
-    
+
     if (route === '/accounts/:accountNumber' && method === 'patch' && type !== 'staff') {
-        return res.status(403).json({
-            status: 403,
-            error: 'only a admin has the permission to change account status',
-          });
+      return res.status(403).json({
+        status: 403,
+        error: 'only a admin has the permission to change account status',
+      });
     }
 
     if (route === '/accounts/:accountNumber' && method === 'delete' && type !== 'staff') {
-        return res.status(403).json({
-            status: 403,
-            error: 'only a staffs can delete an account',
-          });
+      return res.status(403).json({
+        status: 403,
+        error: 'only a staffs can delete an account',
+      });
     }
     if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isAdmin)) {
-        return res.status(403).json({
-            status: 403,
-            error: 'only cashier can credit account',
-          });
-      }
+      return res.status(403).json({
+        status: 403,
+        error: 'only cashier can credit account',
+      });
+    }
 
-      if (route === '/transactions/:accountNumber/debit' && method === 'post' && (type !== 'staff' || isAdmin)) {
-        return res.status(403).json({
-            status: 403,
-            error: 'only cashier can debit account',
-          });
-      } 
+    if (route === '/transactions/:accountNumber/debit' && method === 'post' && (type !== 'staff' || isAdmin)) {
+      return res.status(403).json({
+        status: 403,
+        error: 'only cashier can debit account',
+      });
+    }
 
-      if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isAdmin)) {
-        return res.status(403).json({
-            status: 403,
-            error: 'only cashier can credit account',
-          });
-        }
+    if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isAdmin)) {
+      return res.status(403).json({
+        status: 403,
+        error: 'only cashier can credit account',
+      });
+    }
 
     return next();
   }
@@ -88,6 +85,3 @@ class checkPermissions {
 
 // expose checkPermissions
 export default checkPermissions;
-
-   
-   

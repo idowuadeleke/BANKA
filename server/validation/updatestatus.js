@@ -9,8 +9,7 @@ const validateUpdateStatus = (data) => {
 
   if (validator.isEmpty(body.status)) {
     errors.updatestatus = 'Status field is required';
-  }
- else if(!(["active", "dormant"].includes(body.status))) {
+  } else if (!(['active', 'dormant'].includes(body.status))) {
     errors.updatestatus = 'status must be one of [dormant, active]';
   }
   return {

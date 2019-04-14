@@ -53,7 +53,7 @@ class UserController {
         email: body.email,
         type: body.type,
         password: hash,
-        isAdmin: body.isAdmin
+        isAdmin: body.isAdmin,
       };
 
       const filePath = 'server/data/users.json';
@@ -77,7 +77,7 @@ class UserController {
     }
   }
 
-   /**
+  /**
    * login a user
    * @param {*} req
    * @param {*} res
@@ -123,8 +123,6 @@ class UserController {
       },
     });
   }
-
-  
 }
 
 export default UserController;

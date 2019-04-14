@@ -17,51 +17,29 @@ const validateSignUpInput = (data) => {
 
   if ((body.type == 'client') && (body.isAdmin == true)) {
     errors.clientAdmin = 'Client cannot be admin';
-  }
-
-  else if (validator.isEmpty(body.firstname)) {
+  } else if (validator.isEmpty(body.firstname)) {
     errors.firstname = 'First Name field is required';
-  }
-
-  else if (validator.isEmpty(body.lastname)) {
+  } else if (validator.isEmpty(body.lastname)) {
     errors.lastname = 'Last Name field is required';
-  }
-
-  else if (validator.isEmpty(body.email)) {
+  } else if (validator.isEmpty(body.email)) {
     errors.email = 'Email field is required';
-  }
-
-  else if (validator.isEmpty(body.type)) {
+  } else if (validator.isEmpty(body.type)) {
     errors.type = 'Type field is required';
-  }
-  else if (validator.isEmpty(body.password)) {
+  } else if (validator.isEmpty(body.password)) {
     errors.password = 'Password field is required';
-  }
-  else if (!(["client", "staff"].includes(body.type))) {
+  } else if (!(['client', 'staff'].includes(body.type))) {
     errors.type = 'Type must either be client or staff';
-  }
-
-  else if (!validator.isEmail(body.email)) {
+  } else if (!validator.isEmail(body.email)) {
     errors.email = 'Email is invalid';
-  }
-
-  else if (!/^[a-zA-Z ]+$/.test(body.firstname)) {
+  } else if (!/^[a-zA-Z ]+$/.test(body.firstname)) {
     errors.firstname = 'First Name field cannot contain numbers and symbols';
-  }
-
-  else if (!/^[a-zA-Z ]+$/.test(body.lastname)) {
+  } else if (!/^[a-zA-Z ]+$/.test(body.lastname)) {
     errors.firstname = 'Last Name field cannot contain numbers and symbols';
-  }
-
-  else if (!validator.isLength(body.firstname, { min: 2, max: 30 })) {
+  } else if (!validator.isLength(body.firstname, { min: 2, max: 30 })) {
     errors.firstname = 'First Name must be between 2 and 30 characters';
-  }
-
-  else if (!validator.isLength(body.lastname, { min: 2, max: 30 })) {
+  } else if (!validator.isLength(body.lastname, { min: 2, max: 30 })) {
     errors.lastname = 'Last Name must be between 2 and 30 characters';
-  }
-
-  else if (!validator.isLength(body.password, { min: 6, max: 30 })) {
+  } else if (!validator.isLength(body.password, { min: 6, max: 30 })) {
     errors.password = 'Password must be at least 6 characters';
   }
 
