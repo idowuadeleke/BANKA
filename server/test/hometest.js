@@ -20,8 +20,8 @@ describe('GET /', () => {
         expect(body).to.be.an('object');
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(200);
-        expect(body.data[0]).to.haveOwnProperty('message');
-        expect(body.data[0].message).to.be.a('string');
+        expect(body).to.haveOwnProperty('message');
+        expect(body.message).to.be.a('string');
         done();
       });
   });

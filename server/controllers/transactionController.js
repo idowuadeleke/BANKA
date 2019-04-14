@@ -1,4 +1,5 @@
 import accountData from '../data/accounts';
+import transactionData from '../data/transactions';
 import helper from '../helper/helper';
 import validateCashierInput from '../validation/cashierInput';
 
@@ -6,6 +7,7 @@ const {
   findByAccountNumber,
   updateData,
   generateId,
+  saveDataToFile
 } = helper;
 
 
@@ -36,17 +38,30 @@ class transactionController {
           foundAccount.balance = newBalance;
           const filePath = 'server/data/accounts.json';
           updateData(filePath, accountData);
-          return res.status(200).json({
-            status: 200,
-            data: {
-              transactionId: generateId(accountData, 0),
-              accountNumber: foundAccount.accountNumber,
-              amount,
-              cashier: id,
-              transactionType: 'debit',
-              accountBalance: newBalance.toFixed(2),
-            },
-          });
+          const transactionfilepath = 'server/data/transactions.json'
+
+        const value={ id : generateId(transactionData, 0),
+                createdOn: new Date().toUTCString() ,
+                type:"debit",
+                accountNumber,
+                cashier: id,
+                amount,
+                oldBalance: foundAccount.balance,
+                newBalance
+        }
+        const newAccount = saveDataToFile(transactionfilepath, transactionData, value);
+
+        return res.status(200).json({
+          status: 200,
+          data: {
+            transactionId: newAccount.id,
+            accountNumber: newAccount.accountNumber,
+            amount: newAccount.amount,
+            cashier: newAccount.cashier,
+            transactionType:newAccount.type,
+            accountBalance: newAccount.newBalance,
+          },
+        });
         }
         return res.status(400).json({
           status: 400,
@@ -88,17 +103,30 @@ class transactionController {
       if (foundAccount) {
         const newBalance = foundAccount.balance + amount;
         foundAccount.balance = newBalance;
-        const filePath = 'server/data/accounts.json';
-        updateData(filePath, accountData);
+        const accountfilePath = 'server/data/accounts.json';
+        updateData(accountfilePath, accountData);
+        const transactionfilepath = 'server/data/transactions.json'
+
+        const value={ id : generateId(transactionData, 0),
+                createdOn: new Date().toUTCString() ,
+                type:"credit",
+                accountNumber,
+                cashier: id,
+                amount,
+                oldBalance: foundAccount.balance,
+                newBalance
+        }
+        const newAccount = saveDataToFile(transactionfilepath, transactionData, value);
+
         return res.status(200).json({
           status: 200,
           data: {
-            transactionId: generateId(accountData, 0),
-            accountNumber: foundAccount.accountNumber,
-            amount,
-            cashier: id,
-            transactionType: 'credit',
-            accountBalance: newBalance.toFixed(2),
+            transactionId: newAccount.id,
+            accountNumber: newAccount.accountNumber,
+            amount: newAccount.amount,
+            cashier: newAccount.cashier,
+            transactionType:newAccount.type,
+            accountBalance: newAccount.newBalance,
           },
         });
       }

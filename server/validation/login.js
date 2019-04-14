@@ -12,12 +12,12 @@ const validateLoginInput = (data) => {
     errors.email = 'Email field is required';
   }
 
-  if (!validator.isEmail(body.email)) {
-    errors.email = 'Email is invalid';
+  else if (validator.isEmpty(body.password)) {
+    errors.password = 'Password field is required';
   }
 
-  if (validator.isEmpty(body.password)) {
-    errors.password = 'Password field is required';
+  else if (!validator.isEmail(body.email)) {
+    errors.email = 'Email is invalid';
   }
 
   return {

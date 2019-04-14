@@ -17,7 +17,7 @@ const validateSignUpInput = (data) => {
 
   if ((body.type === 'client') && (body.isAdmin === true)) {
     errors.clientAdmin = 'Client cannot be admin';
-  } else if (validator.isEmpty(body.firstname)) {
+  }  if (validator.isEmpty(body.firstname)) {
     errors.firstname = 'First Name field is required';
   } else if (validator.isEmpty(body.lastname)) {
     errors.lastname = 'Last Name field is required';
