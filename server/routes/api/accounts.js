@@ -14,8 +14,8 @@ const { createBankAccount, fetchAllAccounts, getAccount, changeStatus, deleteBan
 router.post('/accounts', verifyToken, createBankAccount);
 router.get('/accounts', verifyToken, permissionMiddleWare, fetchAllAccounts);
 router.get('/accounts/:accountNumber', verifyToken, permissionMiddleWare, getAccount);
-// router.patch('/accounts/:accountNumber', verifyToken, permissionMiddleWare, changeStatus);
-// router.delete('/accounts/:accountNumber', verifyToken, permissionMiddleWare, deleteBankAccount);
+router.patch('/accounts/:accountNumber', verifyToken, permissionMiddleWare, changeStatus);
+router.delete('/accounts/:accountNumber', verifyToken, permissionMiddleWare, deleteBankAccount);
 
 
 // expose router
