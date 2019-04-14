@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import users from './routes/api/users';
 import accounts from './routes/api/accounts';
-
+import transactions from './routes/api/transactions';
 
 // Initialize express app
 const app = express();
@@ -27,6 +27,9 @@ app.use('/api/v1/auth', users);
 
 // account route
 app.use('/api/v1', accounts);
+
+// account route
+app.use('/api/v1', transactions);
 
 // Handle non existing route with with proper message
 app.all('*', (req, res) => res.status(404).json({

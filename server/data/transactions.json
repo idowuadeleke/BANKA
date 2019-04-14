@@ -1,0 +1,23 @@
+[
+    {
+      "transactionId": 3,
+      "accountNumber": 222010772,
+     " cashier": 1,
+      "transactionType": "debit",
+      "accountBalance": "10000.00"
+    },
+    {
+      "transactionId": 2,
+      "accountNumber": 222010772,
+      "cashier": 1,
+      "transactionType": "debit",
+      "accountBalance": "10000.00"
+    },
+    {
+      "transactionId": 1,
+      "accountNumber": 222010772,
+      "cashier": 1,
+      "transactionType": "debit",
+      "accountBalance": "10000.00"
+    }
+  ]
