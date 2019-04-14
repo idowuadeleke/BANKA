@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import faker from 'faker';
+// import faker from 'faker';
 import app from '../app';
 
 const { expect } = chai;
@@ -8,14 +8,14 @@ const { expect } = chai;
 // using chai-http middleware
 chai.use(chaiHttp);
 
-const newUser = {
-  firstname: faker.name.firstName(),
-  lastname: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: 'dele1989',
-  type: 'client',
-  isAdmin: false,
-};
+// const newUser = {
+//   firstname: faker.name.firstName(),
+//   lastname: faker.name.lastName(),
+//   email: faker.internet.email(),
+//   password: 'dele1989',
+//   type: 'client',
+//   isAdmin: false,
+// };
 
 let UserToken;
 let adminToken;

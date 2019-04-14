@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import faker from 'faker';
+// import faker from 'faker';
 import app from '../app';
 
 const { expect } = chai;
@@ -29,7 +29,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         const { body } = res;
         expect(body.status).to.be.equals(200);
         if (!err) {
-          cashierToken = res.body.data.token;
+          cashierToken = body.data.token;
         }
         done();
       });
@@ -63,12 +63,12 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
   describe('POST /transactions/:accountNumber/debit', () => {
     it('it should throw permission error if user is not a cashier', (done) => {
       const accountNumber = 222010872;
-      const body = { amount: 50000 };
+      const details = { amount: 50000 };
       chai
         .request(app)
         .post(`/api/v1/transactions/${accountNumber}/debit`)
         .set('token', UserToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(403);
@@ -81,11 +81,11 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
 
     it('it should throw an insufficient balance error', (done) => {
       const accountNumber = 45678088;
-      const body = { amount: 5000000 };
+      const details = { amount: 5000000 };
       chai.request(app)
         .post(`/api/v1/transactions/${accountNumber}/debit`)
         .set('token', cashierToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
@@ -97,11 +97,11 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
 
     it('it should throw an error when account number is not found', (done) => {
       const accountNumber = 8856578900;
-      const body = { amount: 200000 };
+      const details = { amount: 200000 };
       chai.request(app)
         .post(`/api/v1/transactions/${accountNumber}/debit`)
         .set('token', cashierToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
@@ -129,11 +129,11 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
 
     it('it should throw an error when "amount" is not a number', (done) => {
       const accountNumber = 8856578900;
-      const body = { amount: '20000err0' };
+      const details = { amount: '20000err0' };
       chai.request(app)
         .post(`/api/v1/transactions/${accountNumber}/debit`)
         .set('token', cashierToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(422);
@@ -145,11 +145,11 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
 
     it('it should debit a bank account', (done) => {
       const accountNumber = 45677988;
-      const body = { amount: 500 };
+      const details = { amount: 500 };
       chai.request(app)
         .post(`/api/v1/transactions/${accountNumber}/debit`)
         .set('token', cashierToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
@@ -171,12 +171,12 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
   describe('POST /transactions/:accountNumber/credit', () => {
     it('it should throw permission error if user is not a cashier', (done) => {
       const accountNumber = 222010872;
-      const body = { amount: 50000 };
+      const details = { amount: 50000 };
       chai
         .request(app)
         .post(`/api/v1/transactions/${accountNumber}/credit`)
         .set('token', UserToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(403);
@@ -189,11 +189,11 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
 
     it('it should throw an error when account number is not found', (done) => {
       const accountNumber = 8856578900;
-      const body = { amount: 200000 };
+      const details = { amount: 200000 };
       chai.request(app)
         .post(`/api/v1/transactions/${accountNumber}/credit`)
         .set('token', cashierToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
@@ -221,11 +221,11 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
 
     it('it should throw an error when "amount" is not a number', (done) => {
       const accountNumber = 8856578900;
-      const body = { amount: '20000err0' };
+      const details = { amount: '20000err0' };
       chai.request(app)
         .post(`/api/v1/transactions/${accountNumber}/credit`)
         .set('token', cashierToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(422);
@@ -237,11 +237,11 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
 
     it('it should debit a bank account', (done) => {
       const accountNumber = 45677988;
-      const body = { amount: 50 };
+      const details = { amount: 50 };
       chai.request(app)
         .post(`/api/v1/transactions/${accountNumber}/credit`)
         .set('token', cashierToken)
-        .send(body)
+        .send(details)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);

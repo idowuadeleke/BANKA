@@ -44,14 +44,12 @@ class accountController {
         // check if user already has a bank account
 
         const account = findAccountByOwner(accountData, id);
-        // console.log(account);
         if (account) {
           return res.status(400).json({
             status: 400,
             error: `user already have an account  - ${account.accountNumber}`,
           });
         }
-        // console.log('llllllllllllllllllllvalues');
 
         const values = {
           id: generateId(accountData, 0),
@@ -62,7 +60,6 @@ class accountController {
           type,
           balance,
         };
-        // console.log(values);
         const filePath = 'server/data/accounts.json';
         const newAccount = saveDataToFile(filePath, accountData, values);
         return res.status(201).json({
