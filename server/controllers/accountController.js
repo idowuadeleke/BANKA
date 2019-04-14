@@ -2,7 +2,7 @@ import accountData from '../data/accounts';
 import userData from '../data/users';
 import helper from '../helper/helper';
 import validateAccountInput from '../validation/account';
-// import validateUpdateStatus from '../validation/updatestatus';
+import validateUpdateStatus from '../validation/updatestatus';
 
 
 const {
@@ -150,7 +150,46 @@ class accountController {
     }
   }
 
- 
+  static changeStatus(req, res) {
+    try {
+      const { accountNumber } = req.params;
+      const { errors, isValid } = validateUpdateStatus(req.body);
+
+      // check if user inputs are valid
+      if (!isValid) {
+        return res.status(422).json({
+          status: 422,
+          errors,
+        });
+      }
+
+      const {status} = req.body;
+      const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
+      if (foundAccount) {
+        foundAccount.status = status;
+        // accountData.push(foundAccount);
+        const filePath = 'server/data/accounts.json';
+        updateData(filePath, accountData);
+        return res.status(200).json({
+        status: 200,
+        data:{
+          accountNumber: foundAccount.accountNumber,
+          status : status
+        }
+      }); 
+      }
+      return res.status(404).json({
+        status: 404,
+        error: 'account number doesn\'t exist',
+      }); 
+    }
+    catch (e) {
+      return res.status(500).json({
+        status: 500,
+        error: 'Sorry, something went wrong, try again',
+      });
+    }
+  }
 }
 
 export default accountController;

@@ -315,4 +315,96 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     });
   });
 
+  /**
+   * Test the PATCH /accounts/:accountNumber route
+   */
+  describe('PATCH /accounts/:accountNumber', () => {
+    it('it should throw permission error if user is not an admin', (done) => {
+      const accountNumber = 222010872;
+      const requestBody = { status: 'active' };
+      chai
+        .request(app)
+        .patch(`/api/v1/accounts/${accountNumber}`)
+        .set('token', UserToken)
+        .send(requestBody)
+        .end((err, res) => {
+        const { body } = res;
+        expect(body.status).to.be.equals(403);
+        expect(body).to.be.an('object');
+        expect(body.error).to.be.equals('only a admin has the permission to change account status');
+        done();
+        });
+    });
+
+    it('it should activate a user bank account', (done) => {
+      const accountNumber = 45677988;
+      const requestBody = { status: 'active' };
+      chai
+        .request(app)
+        .patch(`/api/v1/accounts/${accountNumber}`)
+        .set('token',adminToken)
+        .send(requestBody)
+        .end((err, res) => {
+        const { body } = res;
+        expect(body.status).to.be.equals(200);
+        expect(body).to.be.an('object');
+        expect(body.data).to.haveOwnProperty('accountNumber');
+        expect(body.data).to.haveOwnProperty('status');
+        done();
+        });
+    });
+
+    it('it should throw an error when account number is not found', (done) => {
+      const accountNumber = 33333333333333333333;
+      const requestBody = { status: 'dormant' };
+      chai
+        .request(app)
+        .patch(`/api/v1/accounts/${accountNumber}`)
+        .set('token',adminToken)
+        .send(requestBody)
+        .end((err, res) => {
+        const { body } = res;
+        expect(body.status).to.be.equals(404);
+        expect(body).to.be.an('object');
+        expect(body.error).to.be.equals('account number doesn\'t exist');
+        done();
+        });
+    });
+
+    it('it should throw error when request body status is not dormant or active', (done) => {
+      const accountNumber = 222010872;
+      const requestBody = { status: 'waiting' };
+      chai
+        .request(app)
+        .patch(`/api/v1/accounts/${accountNumber}`)
+        .set('token',adminToken)
+        .send(requestBody)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(422);
+          expect(body).to.be.an('object');
+          expect(body.errors.updatestatus).to.be.equals('status must be one of [dormant, active]');
+          done();
+        });
+    });
+
+    it('it should throw error when request body status is empty', (done) => {
+      const accountNumber = 222010872;
+      const requestBody = { status: '' };
+      chai
+        .request(app)
+        .patch(`/api/v1/accounts/${accountNumber}`)
+        .set('token',adminToken)
+        .send(requestBody)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(422);
+          expect(body).to.be.an('object');
+          expect(body.errors.updatestatus).to.be.equals('Status field is required');
+          done();
+        });
+    });
+
+  });
+
 });
