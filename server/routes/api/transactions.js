@@ -12,7 +12,7 @@ const router = express.Router();
 const { debitUserAccount, creditUserAccount } = transactionController;
 
 router.post('/transactions/:accountNumber/debit', verifyToken, permissionMiddleWare, debitUserAccount);
-// router.post('/transactions/:accountNumber/credit', verifyToken, permissionMiddleWare, creditUserAccount);
+router.post('/transactions/:accountNumber/credit', verifyToken, permissionMiddleWare, creditUserAccount);
 
 
 // expose router
