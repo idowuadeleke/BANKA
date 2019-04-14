@@ -190,6 +190,33 @@ class accountController {
       });
     }
   }
+
+  static deleteBankAccount(req, res) {
+    try {
+      const { accountNumber } = req.params;
+      const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
+      if (foundAccount) {
+        const index = accountData.indexOf(foundAccount);
+        accountData.splice(index, 1);
+        const filePath = 'server/data/accounts.json';
+        updateData(filePath, accountData);
+        return res.status(200).json({
+        status: 200,
+        message:"Account successfully deleted"
+      }); 
+      }
+      return res.status(404).json({
+        status: 404,
+        error: 'account number doesn\'t exist',
+      }); 
+    }
+    catch (e) {
+      return res.status(500).json({
+        status: 500,
+        error: 'Sorry, something went wrong, try again',
+      });
+    }
+  }
 }
 
 export default accountController;

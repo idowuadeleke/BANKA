@@ -407,4 +407,54 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
   });
 
+   /**
+     * Test  DELETE /accounts/:accountNumber route
+     */
+    describe('DELETE /accounts/:accountNumber', () => {
+      it('it should throw permission error if user is not an admin', (done) => {
+        const accountNumber = 45678088;
+        chai
+          .request(app)
+          .delete(`/api/v1/accounts/${accountNumber}`)
+          .set('token',UserToken)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(403);
+            expect(body).to.be.an('object');
+            expect(body.error).to.be.equals('only a staffs can delete an account');
+            done();
+          });
+      });
+  
+      // it('it should DELETE a bank record ', (done) => {
+      //   const accountNumber = 45678088;
+      //   chai
+      //     .request(app)
+      //     .delete(`/api/v1/accounts/${accountNumber}`)
+      //     .set('token', adminToken)
+      //     .end((err, res) => {
+      //       const { body } = res;
+      //       expect(body.status).to.be.equals(200);
+      //       expect(body.message).to.be.equals('Account successfully deleted');
+      //       done();
+      //     });
+      // });
+  
+      it('it should throw an error when account number is not found', (done) => {
+        const accountNumber = 211110872;
+        chai
+          .request(app)
+          .delete(`/api/v1/accounts/${accountNumber}`)
+          .set('token',adminToken)
+          .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(404);
+          expect(body).to.be.an('object');
+          expect(body.error).to.be.equals('account number doesn\'t exist');
+          done();
+          });
+      });
+    });
+   
+
 });
