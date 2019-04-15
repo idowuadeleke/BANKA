@@ -85,6 +85,20 @@ Banka is a light-weight core banking application that powers banking operations 
 
 - V1
 
+`- POST /api/v1/auth/signup Create a new user account.`
+`
+`- POST /api/v1/auth/signin log a user in.`
+
+`- POST /api/v1/accounts Create a bank account.`
+
+`- PATCH /api/v1/account/<account-number> Activate or deactivate an account.`
+
+`- DELETE /api/v1/accounts/<account-number> Delete a user account.`
+
+`- POST /api/v1/transactions/<account-number>/debit Debit a bank account.`
+
+`- POST /transactions/<account-number>/credit Credit a bank account..`
+
 ## Pivotal Tracker stories
 
 [https://www.pivotaltracker.com/n/projects/2321237](https://www.pivotaltracker.com/n/projects/2321237)
@@ -100,7 +114,7 @@ The API is currently in version 1 (v1)  is hosted at [https://bankaapplication.h
 
 
 ## API Documentation
-API Documenttion was generated with [swagger](link).
+API Documentation was generated with [swagger](link).
 
 ## Acknowledgments
 

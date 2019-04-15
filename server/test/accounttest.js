@@ -115,7 +115,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(422);
           expect(body).to.be.an('object');
-          expect(body.errors.balance).to.be.equals('Balance field is required');
+          expect(body.errors.balance).to.be.equals('balance field is required and must be a number');
           done();
         });
     });
@@ -135,40 +135,40 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(422);
           expect(body).to.be.an('object');
-          expect(body.errors.balance).to.be.equals('Balance field must be a number');
+          expect(body.errors.balance).to.be.equals('balance field is required and must be a number');
           done();
         });
     });
-    // describe('POST api/v1/accounts', () => {
-    //   it('Should successfully create a bank account if inputs are valid', (done) => {
-    //     const details = {
-    //       type: 'savings',
-    //       balance: 0.00,
-    //     };
-    //     chai
-    //       .request(app)
-    //       .post('/api/v1/accounts')
+    describe('POST api/v1/accounts', () => {
+      // it('Should successfully create a bank account if inputs are valid', (done) => {
+      //   const details = {
+      //     type: 'savings',
+      //     balance: 0.00,
+      //   };
+      //   chai
+      //     .request(app)
+      //     .post('/api/v1/accounts')
 
-    //       .set('token', UserToken)
-    //       .send(details)
+      //     .set('token', UserToken)
+      //     .send(details)
 
-    //       .end((err, res) => {
-    //         if (err) done(err);
-    //         const { body } = res;
-    //         expect(body).to.be.an('object');
-    //         expect(body.status).to.be.a('number');
-    //         expect(body.status).to.be.equals(201);
-    //         expect(body.data).to.be.an('object');
-    //         expect(body.data).to.haveOwnProperty('accountNumber');
-    //         expect(body.data).to.haveOwnProperty('firstName');
-    //         expect(body.data).to.haveOwnProperty('lastName');
-    //         expect(body.data).to.haveOwnProperty('email');
-    //         expect(body.data).to.haveOwnProperty('type');
-    //         expect(body.data).to.haveOwnProperty('balance');
-    //         done();
-    //       });
-    //   });
-    // });
+      //     .end((err, res) => {
+      //       if (err) done(err);
+      //       const { body } = res;
+      //       expect(body).to.be.an('object');
+      //       expect(body.status).to.be.a('number');
+      //       expect(body.status).to.be.equals(201);
+      //       expect(body.data).to.be.an('object');
+      //       expect(body.data).to.haveOwnProperty('accountNumber');
+      //       expect(body.data).to.haveOwnProperty('firstName');
+      //       expect(body.data).to.haveOwnProperty('lastName');
+      //       expect(body.data).to.haveOwnProperty('email');
+      //       expect(body.data).to.haveOwnProperty('type');
+      //       expect(body.data).to.haveOwnProperty('balance');
+      //       done();
+      //     });
+      // });
+    });
   });
 
   /**

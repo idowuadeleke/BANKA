@@ -25,11 +25,8 @@ class accountController {
   static createBankAccount(req, res) {
     try {
       const { id } = req.user;
-
       // check if user pass valid and required data
       const { errors, isValid } = validateAccountInput(req.body);
-
-      // // check if user inputs are valid
       if (!isValid) {
         return res.status(422).json({
           status: 422,
@@ -38,11 +35,8 @@ class accountController {
       }
       const { type, balance } = req.body;
       const user = findUserByID(userData, id);
-
-
       if (user) {
         // check if user already has a bank account
-
         const account = findAccountByOwner(accountData, id);
         if (account) {
           return res.status(400).json({
@@ -50,7 +44,7 @@ class accountController {
             error: `user already have an account  - ${account.accountNumber}`,
           });
         }
-
+        //Generate new account data
         const values = {
           id: generateId(accountData, 0),
           accountNumber: generateAccountNumber(accountData),
@@ -74,7 +68,7 @@ class accountController {
           },
         });
       }
-
+      //return error if requesting user does not exist
       return res.status(404).json({
         status: 404,
         error: 'User not found',
@@ -87,11 +81,11 @@ class accountController {
     }
   }
 
+  //gets all bank accounts
   static fetchAllAccounts(req, res) {
     const accounts = accountData.map((account) => {
       const { owner, ...data } = account;
       const user = findUserByID(userData, owner);
-
       return {
         ...data,
         firstName: user.firstname,
@@ -105,22 +99,21 @@ class accountController {
         data: accounts,
       });
     }
+    //return error if no acccount has been created 
     return res.status(404).json({
       status: 404,
       error: 'no account has been created',
     });
   }
 
+  //get a specific bank account
   static getAccount(req, res) {
     const { accountNumber } = req.params;
     try {
       const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
-
       if (foundAccount) {
         const { owner, ...data } = foundAccount;
-
         const user = findUserByID(userData, owner);
-
         const userAccount = {
           ...data,
           firstName: user.firstname,
@@ -132,6 +125,7 @@ class accountController {
           data: userAccount,
         });
       }
+      //return error if account number does not exist 
       return res.status(404).json({
         status: 404,
         error: 'account number doesn\'t exist',
@@ -144,11 +138,11 @@ class accountController {
     }
   }
 
+  //Activate or deactivate a user account status
   static changeStatus(req, res) {
     try {
       const { accountNumber } = req.params;
       const { errors, isValid } = validateUpdateStatus(req.body);
-
       // check if user inputs are valid
       if (!isValid) {
         return res.status(422).json({
@@ -156,12 +150,10 @@ class accountController {
           errors,
         });
       }
-
       const { status } = req.body;
       const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
       if (foundAccount) {
         foundAccount.status = status;
-        // accountData.push(foundAccount);
         const filePath = 'server/data/accounts.json';
         updateData(filePath, accountData);
         return res.status(200).json({
@@ -184,6 +176,7 @@ class accountController {
     }
   }
 
+//delete a specified user account
   static deleteBankAccount(req, res) {
     try {
       const { accountNumber } = req.params;

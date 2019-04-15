@@ -9,6 +9,7 @@ const {
 
 
 class checkPermissions {
+  //check and give reqired permmision to diffent users
   static permissionMiddleWare(req, res, next) {
     if (!req.user) {
       return res.status(401).json({
@@ -37,6 +38,7 @@ class checkPermissions {
           error: 'account number doesn\'t exist',
         });
       }
+      //check if user wants to access his own or another client account
       if (foundAccount.owner !== Number(id)) {
         return res.status(403).json({
           status: 403,
@@ -78,7 +80,7 @@ class checkPermissions {
         error: 'only cashier can credit account',
       });
     }
-
+    // fire next middleware
     return next();
   }
 }

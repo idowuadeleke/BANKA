@@ -1,6 +1,7 @@
 import validator from 'validator';
 import isEmpty from './is_empty';
 
+//validate input of user when creating new bank account
 const validateAccountInput = (data) => {
   const errors = {};
   const body = data;
@@ -8,14 +9,14 @@ const validateAccountInput = (data) => {
   body.type = !isEmpty(body.type) ? body.type : '';
   body.balance = !isEmpty(body.balance) ? body.balance : '';
 
+  if (!(typeof (body.balance) === 'number')) {
+    errors.balance = 'balance field is required and must be a number';
+  }
+
   if (validator.isEmpty(body.type)) {
     errors.type = 'Type field is required';
   } else if (!(['savings', 'current'].includes(body.type))) {
     errors.type = 'Type must be one of [savings, current]';
-  } else if (validator.isEmpty(body.balance)) {
-    errors.balance = 'Balance field is required';
-  } else if (!(typeof (body.balance) === 'number')) {
-    errors.balance = 'Balance field must be a number';
   }
 
   return {

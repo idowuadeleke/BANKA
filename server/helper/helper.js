@@ -12,6 +12,7 @@ class Helper {
     return values;
   }
 
+  // updata data store
   static updateData(filePath, dataFile) {
     fs.writeFileSync(filePath, JSON.stringify(dataFile));
   }
@@ -31,22 +32,17 @@ class Helper {
     return objArr.find(element => element.id === userID);
   }
 
-  // find a user by ID
+  // find an account by its owner
   static findAccountByOwner(objArr, userID) {
     return objArr.find(element => element.owner === userID);
   }
 
-
-  // find a user by ID
+  // find an object by its account number in the data store
   static findByAccountNumber(objArr, accountNumber) {
     return objArr.find(element => element.accountNumber === accountNumber);
   }
 
-  // // find a user by IDfoundAccount.id, status,accountData
-  // static updateAccountStatus(objArr, accountNumber, status) {
-  //   objArr.find(element => element.accountNumber === accountNumber).status = status;
-  // }
-
+  //generate unique account number
   static generateAccountNumber(data) {
     const lastAcc = data[0].accountNumber;
     return lastAcc + 100;
