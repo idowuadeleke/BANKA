@@ -31,7 +31,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(201);
+          expect(body.status).to.be.equals(200);
           expect(body.data).to.be.an('object');
           expect(body.data.token).to.be.a('string');
           done();
@@ -48,7 +48,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equal(422);
+          expect(body.status).to.be.equal(400);
           expect(body.errors).to.be.a('object');
 
           done();
@@ -97,7 +97,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body.errors.clientAdmin).to.be.equals('Client cannot be admin');
           done();
         });
@@ -121,7 +121,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body.errors.firstname).to.be.equals('First Name field is required');
           done();
         });
@@ -144,7 +144,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body.errors.lastname).to.be.equals('Last Name field is required');
           done();
         });
@@ -167,7 +167,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body.errors.email).to.be.equals('Email field is required');
           done();
         });
@@ -190,7 +190,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body.errors.type).to.be.equals('Type field is required');
           done();
         });
@@ -212,7 +212,7 @@ describe('Test user login and signup', () => {
     //         const { body } = res;
     //         expect(body).to.be.an('object');
     //         expect(body.status).to.be.a('number');
-    //         expect(body.status).to.be.equals(422);
+    //         expect(body.status).to.be.equals(400);
     //         expect(body.errors.isAdmin).to.be.equals('IsAdmin field is required');
     //         done();
     //       });
@@ -235,7 +235,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body.errors.email).to.be.equals('Email is invalid');
           done();
         });
@@ -258,7 +258,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body.errors.type).to.be.equals('Type must either be client or staff');
           done();
         });

@@ -28,8 +28,8 @@ class accountController {
       // check if user pass valid and required data
       const { errors, isValid } = validateAccountInput(req.body);
       if (!isValid) {
-        return res.status(422).json({
-          status: 422,
+        return res.status(400).json({
+          status: 400,
           errors,
         });
       }
@@ -56,8 +56,8 @@ class accountController {
         };
         const filePath = 'server/data/accounts.json';
         const newAccount = saveDataToFile(filePath, accountData, values);
-        return res.status(201).json({
-          status: 201,
+        return res.status(200).json({
+          status: 200,
           data: {
             accountNumber: newAccount.accountNumber,
             firstName: user.firstname,
@@ -145,8 +145,8 @@ class accountController {
       const { errors, isValid } = validateUpdateStatus(req.body);
       // check if user inputs are valid
       if (!isValid) {
-        return res.status(422).json({
-          status: 422,
+        return res.status(400).json({
+          status: 400,
           errors,
         });
       }

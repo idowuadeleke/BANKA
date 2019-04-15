@@ -74,7 +74,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .set('token', UserToken)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.type).to.be.equals('Type field is required');
           done();
@@ -93,7 +93,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .send(details)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.type).to.be.equals('Type must be one of [savings, current]');
           done();
@@ -113,7 +113,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .set('token', UserToken)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.balance).to.be.equals('balance field is required and must be a number');
           done();
@@ -133,7 +133,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .set('token', UserToken)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.balance).to.be.equals('balance field is required and must be a number');
           done();
@@ -157,7 +157,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       //       const { body } = res;
       //       expect(body).to.be.an('object');
       //       expect(body.status).to.be.a('number');
-      //       expect(body.status).to.be.equals(201);
+      //       expect(body.status).to.be.equals(200);
       //       expect(body.data).to.be.an('object');
       //       expect(body.data).to.haveOwnProperty('accountNumber');
       //       expect(body.data).to.haveOwnProperty('firstName');
@@ -380,7 +380,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .send(requestBody)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.updatestatus).to.be.equals('status must be one of [dormant, active]');
           done();
@@ -397,7 +397,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .send(requestBody)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.updatestatus).to.be.equals('Status field is required');
           done();
