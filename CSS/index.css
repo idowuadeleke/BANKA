@@ -80,7 +80,7 @@ header{
 
 @media screen and (max-width:1024px){
     .main-container .image-holder{display:none}
-    .main-container .form-container{width:100%; }
+    .main-container .form-container{width:100% !important; }
     .form-header{border-radius:7px 7px 0 0 !important}
 }
 
