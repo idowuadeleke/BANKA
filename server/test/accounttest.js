@@ -1,21 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-// import faker from 'faker';
 import app from '../app';
 
 const { expect } = chai;
 
 // using chai-http middleware
 chai.use(chaiHttp);
-
-// const newUser = {
-//   firstname: faker.name.firstName(),
-//   lastname: faker.name.lastName(),
-//   email: faker.internet.email(),
-//   password: 'dele1989',
-//   type: 'client',
-//   isAdmin: false,
-// };
 
 let UserToken;
 let adminToken;
@@ -139,36 +129,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           done();
         });
     });
-    describe('POST api/v1/accounts', () => {
-      // it('Should successfully create a bank account if inputs are valid', (done) => {
-      //   const details = {
-      //     type: 'savings',
-      //     balance: 0.00,
-      //   };
-      //   chai
-      //     .request(app)
-      //     .post('/api/v1/accounts')
-
-      //     .set('token', UserToken)
-      //     .send(details)
-
-      //     .end((err, res) => {
-      //       if (err) done(err);
-      //       const { body } = res;
-      //       expect(body).to.be.an('object');
-      //       expect(body.status).to.be.a('number');
-      //       expect(body.status).to.be.equals(200);
-      //       expect(body.data).to.be.an('object');
-      //       expect(body.data).to.haveOwnProperty('accountNumber');
-      //       expect(body.data).to.haveOwnProperty('firstName');
-      //       expect(body.data).to.haveOwnProperty('lastName');
-      //       expect(body.data).to.haveOwnProperty('email');
-      //       expect(body.data).to.haveOwnProperty('type');
-      //       expect(body.data).to.haveOwnProperty('balance');
-      //       done();
-      //     });
-      // });
-    });
+  
   });
 
   /**
@@ -423,20 +384,6 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           done();
         });
     });
-
-    // it('it should DELETE a bank record ', (done) => {
-    //   const accountNumber = 45678088;
-    //   chai
-    //     .request(app)
-    //     .delete(`/api/v1/accounts/${accountNumber}`)
-    //     .set('token', adminToken)
-    //     .end((err, res) => {
-    //       const { body } = res;
-    //       expect(body.status).to.be.equals(200);
-    //       expect(body.message).to.be.equals('Account successfully deleted');
-    //       done();
-    //     });
-    // });
 
     it('it should throw an error when account number is not found', (done) => {
       const accountNumber = 211110872;

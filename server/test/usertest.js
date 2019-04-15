@@ -196,28 +196,6 @@ describe('Test user login and signup', () => {
         });
     });
 
-    //   it('should return an error if isAdmin field is empty', (done) => {
-    //     chai
-    //       .request(app)
-    //       .post('/api/v1/auth/signup')
-    //       .send({
-    //         firstname: 'Idowu',
-    //         lastname: 'Adeleke',
-    //         email: 'idowu@andela.com',
-    //         password: 'dele1989',
-    //         type: 'client'
-    //       })
-    //       .end((err, res) => {
-    //         if (err) done();
-    //         const { body } = res;
-    //         expect(body).to.be.an('object');
-    //         expect(body.status).to.be.a('number');
-    //         expect(body.status).to.be.equals(400);
-    //         expect(body.errors.isAdmin).to.be.equals('IsAdmin field is required');
-    //         done();
-    //       });
-    //   });
-
     it('should return an error if email is invalid', (done) => {
       chai
         .request(app)
