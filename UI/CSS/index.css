@@ -75,12 +75,13 @@ header{
     border: 5px solid transparent;
     border-radius:0 7px 0 0;
     border-right: none;
+    border-left: none;
 } 
 
 
 @media screen and (max-width:1024px){
     .main-container .image-holder{display:none}
-    .main-container .form-container{width:100%; }
+    .main-container .form-container{width:100% !important; }
     .form-header{border-radius:7px 7px 0 0 !important}
 }
 
@@ -267,3 +268,4 @@ textarea, select {
     cursor: pointer;
     top: 10px;
   }
+  

@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-// import faker from 'faker';
 import app from '../app';
 
 const { expect } = chai;
@@ -120,7 +119,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         .send(responseBody)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.amount).to.be.equals('amount field is required and must be a number');
           done();
@@ -136,7 +135,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         .send(details)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.amount).to.be.equals('amount field is required and must be a number');
           done();
@@ -212,7 +211,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         .send(responseBody)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.amount).to.be.equals('amount field is required and must be a number');
           done();
@@ -228,7 +227,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         .send(details)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(422);
+          expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.amount).to.be.equals('amount field is required and must be a number');
           done();

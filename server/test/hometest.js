@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-// import faker from 'faker';
 import app from '../app';
 
 const { expect } = chai;

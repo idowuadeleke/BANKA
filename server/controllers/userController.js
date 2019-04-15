@@ -21,8 +21,8 @@ class UserController {
     // check if user pass valid and required data
     const { errors, isValid } = validateSignUpInput(req.body);
     if (!isValid) {
-      return res.status(422).json({
-        status: 422,
+      return res.status(400).json({
+        status: 400,
         errors,
       });}
     try {
@@ -51,8 +51,8 @@ class UserController {
       // create token
       const token = createToken(values.email, values.id);
       const {isAdmin, password, ...data} = savedData;
-      return res.status(201).json({
-        status: 201,
+      return res.status(200).json({
+        status: 200,
         data: {
           token,
           ...data}

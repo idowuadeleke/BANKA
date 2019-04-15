@@ -211,9 +211,7 @@ button, input, optgroup, select, textarea {
     width: 230px;
 }
 
-
 }
-
 
 ul:not(.browser-default) {
     padding-left: 0;
@@ -388,7 +386,7 @@ a, a:hover {
 @media screen and (max-width: 1020px)
 {.wrappers .side-bar {
     width: 44px!important;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-left: 10px;
 }
 .wrappers .side-bar:hover{
@@ -596,17 +594,8 @@ a, a:hover {
 }
 }
 
-
-
 .trans-header{
   font-size: 20px;}
-
-
-
-
-
-
-
 
 .manage-profile-wrapper .main-content .each-menu .link-name {
   /* margin-left: 50px; */
@@ -943,19 +932,6 @@ a:hover {
   -ms-transform: translate(-50%,-50%);
 }
 
-overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0; 
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
 
 /* The Modal (background) */
 .modal {
@@ -1266,5 +1242,6 @@ resize: none;
     border-radius:0 3px 0 0 !important;}
 
 .profiletransheader{
-  text-align:center;
+  text-align:center !important;
   border-radius:3px 3px 0 0 ;}
+  
