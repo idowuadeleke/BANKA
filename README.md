@@ -100,7 +100,7 @@ The API is currently in version 1 (v1)  is hosted at [https://bankaapplication.h
 
 
 ## API Documentation
-API Documenttion was generated with [swagger](link).
+API Documentation was generated with [swagger](link).
 
 ## Acknowledgments
 

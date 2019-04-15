@@ -22,7 +22,6 @@ class Auth {
       process.env.SECRET,
       { expiresIn: '24h' },
     );
-
     return token;
   }
 
@@ -34,7 +33,6 @@ class Auth {
    */
   static verifyToken(req, res, next) {
     const { token } = req.headers;
-
     // check if token was provided
     if (!token) {
       return res.status(403).json({
@@ -42,11 +40,9 @@ class Auth {
         error: 'Unauthorized!, you have to login',
       });
     }
-
     try {
       // verify user provided token against existing token
       const decoded = jwt.verify(token, process.env.SECRET);
-
       // check if user already exists
       const userExists = helper.findUserByEmail(userData, decoded.email);
       // check for valid user
@@ -56,10 +52,8 @@ class Auth {
           error: 'The token you provided is invalid',
         });
       }
-
       // get user id, email and isAdmin
       req.user = decoded;
-
       // fire next middleware
       return next();
     } catch (error) {

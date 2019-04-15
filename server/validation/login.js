@@ -1,6 +1,7 @@
 import validator from 'validator';
 import isEmpty from './is_empty';
 
+//validate log in input
 const validateLoginInput = (data) => {
   const errors = {};
   const body = data;
@@ -10,16 +11,12 @@ const validateLoginInput = (data) => {
 
   if (validator.isEmpty(body.email)) {
     errors.email = 'Email field is required';
-  }
-
-  else if (validator.isEmpty(body.password)) {
-    errors.password = 'Password field is required';
-  }
-
-  else if (!validator.isEmail(body.email)) {
+  } else if (!validator.isEmail(body.email)) {
     errors.email = 'Email is invalid';
   }
-
+  if (validator.isEmpty(body.password)) {
+    errors.password = 'Password field is required';
+  }
   return {
     errors,
     isValid: isEmpty(errors),

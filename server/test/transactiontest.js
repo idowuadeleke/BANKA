@@ -111,21 +111,21 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         });
     });
 
-    // it('it should throw an error when "amount" in request body is not provided ', (done) => {
-    //   const accountNumber = 45678088;
-    //   const body = {};
-    //   chai.request(app)
-    //     .post(`/api/v1/transactions/${accountNumber}/debit`)
-    //     .set('token', cashierToken)
-    //     .send(body)
-    //     .end((err, res) => {
-    //       const { body } = res;
-    //       expect(body.status).to.be.equals(422);
-    //       expect(body).to.be.an('object');
-    //       expect(body.errors.amount).to.be.equals('amount field is required');
-    //       done();
-    //     });
-    // });
+    it('it should throw an error when "amount" in request body is not provided ', (done) => {
+      const accountNumber = 45678088;
+      const responseBody = {};
+      chai.request(app)
+        .post(`/api/v1/transactions/${accountNumber}/debit`)
+        .set('token', cashierToken)
+        .send(responseBody)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(422);
+          expect(body).to.be.an('object');
+          expect(body.errors.amount).to.be.equals('amount field is required and must be a number');
+          done();
+        });
+    });
 
     it('it should throw an error when "amount" is not a number', (done) => {
       const accountNumber = 8856578900;
@@ -138,7 +138,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           const { body } = res;
           expect(body.status).to.be.equals(422);
           expect(body).to.be.an('object');
-          expect(body.errors.amount).to.be.equals('amount field must be a number');
+          expect(body.errors.amount).to.be.equals('amount field is required and must be a number');
           done();
         });
     });
@@ -203,21 +203,21 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         });
     });
 
-    // it('it should throw an error when "amount" in request body is not provided ', (done) => {
-    //   const accountNumber = 45678088;
-    //   const body = {};
-    //   chai.request(app)
-    //     .post(`/api/v1/transactions/${accountNumber}/credit`)
-    //     .set('token', cashierToken)
-    //     .send(body)
-    //     .end((err, res) => {
-    //       const { body } = res;
-    //       expect(body.status).to.be.equals(422);
-    //       expect(body).to.be.an('object');
-    //       expect(body.errors.amount).to.be.equals('amount field is required');
-    //       done();
-    //     });
-    // });
+    it('it should throw an error when "amount" in request body is not provided ', (done) => {
+      const accountNumber = 45678088;
+      const responseBody = {};
+      chai.request(app)
+        .post(`/api/v1/transactions/${accountNumber}/credit`)
+        .set('token', cashierToken)
+        .send(responseBody)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(422);
+          expect(body).to.be.an('object');
+          expect(body.errors.amount).to.be.equals('amount field is required and must be a number');
+          done();
+        });
+    });
 
     it('it should throw an error when "amount" is not a number', (done) => {
       const accountNumber = 8856578900;
@@ -230,7 +230,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           const { body } = res;
           expect(body.status).to.be.equals(422);
           expect(body).to.be.an('object');
-          expect(body.errors.amount).to.be.equals('amount field must be a number');
+          expect(body.errors.amount).to.be.equals('amount field is required and must be a number');
           done();
         });
     });

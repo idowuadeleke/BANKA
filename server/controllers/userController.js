@@ -17,35 +17,26 @@ class UserController {
    * @param {*} req
    * @param {*} res
    */
-
   static createAccount(req, res) {
     // check if user pass valid and required data
     const { errors, isValid } = validateSignUpInput(req.body);
-
-    // check if user inputs are valid
     if (!isValid) {
       return res.status(422).json({
         status: 422,
         errors,
-      });
-    }
-
+      });}
     try {
       // check if user already exists
       const emailExists = findUserByEmail(userData, req.body.email);
-
       if (emailExists) {
         return res.status(409).json({
           status: 409,
           error: 'user already exists',
         });
       }
-
       const { body } = req;
-
       const salt = genSaltSync(10);
       const hash = hashSync(body.password, salt);
-
       const values = {
         id: generateId(userData, 0),
         firstname: body.firstname,
@@ -55,19 +46,16 @@ class UserController {
         password: hash,
         isAdmin: body.isAdmin,
       };
-
       const filePath = 'server/data/users.json';
       const savedData = saveDataToFile(filePath, userData, values);
-
       // create token
       const token = createToken(values.email, values.id);
-
+      const {isAdmin, password, ...data} = savedData;
       return res.status(201).json({
         status: 201,
         data: {
-          username: savedData.lastname,
           token,
-        },
+          ...data}
       });
     } catch (e) {
       return res.status(500).json({
@@ -86,7 +74,6 @@ class UserController {
     // check if user pass valid and required data
     const { errors, isValid } = validateLoginInput(req.body);
     const { email, password } = req.body;
-
     // check if user inputs are valid
     if (!isValid) {
       return res.status(400).json({
@@ -94,10 +81,8 @@ class UserController {
         errors,
       });
     }
-
     // find user by email
     const UserExists = findUserByEmail(userData, email);
-
     // check if user exists in our data structure
     if (!UserExists) {
       return res.status(404).json({
@@ -105,7 +90,6 @@ class UserController {
         error: 'User does not exist',
       });
     }
-
     // check if user provided password matches user's hashed password in data structure
     if (!compareSync(password, UserExists.password)) {
       return res.status(401).json({
@@ -115,16 +99,18 @@ class UserController {
     }
     // create token
     const token = createToken(UserExists.email, UserExists.id);
-
     return res.status(200).json({
       status: 200,
       data: {
         token,
+        id: UserExists.id,
+        firstname: UserExists.firstname,
+        lastname: UserExists.lastname,
+        email: UserExists.email,
+        type: UserExists.type,
       },
     });
   }
-
-  
 }
 
 export default UserController;

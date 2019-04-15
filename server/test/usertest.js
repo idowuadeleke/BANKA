@@ -19,7 +19,6 @@ const newUser = {
 
 
 describe('Test user login and signup', () => {
-  let UserToken;
   // Test suite for POST /signup route
   describe('POST api/v1/auth/signup', () => {
     it('Should successfully create a user account if inputs are valid', (done) => {
@@ -30,7 +29,6 @@ describe('Test user login and signup', () => {
         .end((err, res) => {
           if (err) done();
           const { body } = res;
-          UserToken = body.data.token;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(201);
@@ -280,7 +278,6 @@ describe('Test user login and signup', () => {
         .end((err, res) => {
           if (err) done();
           const { body } = res;
-          UserToken = body.data.token;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(200);
