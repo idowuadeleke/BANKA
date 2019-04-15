@@ -75,6 +75,7 @@ header{
     border: 5px solid transparent;
     border-radius:0 7px 0 0;
     border-right: none;
+    border-left: none;
 } 
 
 
