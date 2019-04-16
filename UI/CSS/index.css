@@ -192,6 +192,9 @@ textarea, select {
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;
   -webkit-box-sizing:content-box; 
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
   box-sizing:content-box;
   color:  #000564;
 }
