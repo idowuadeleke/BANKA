@@ -779,6 +779,9 @@ select {
   -webkit-box-sizing:content-box; 
   box-sizing:content-box;
   color:  #000000;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 .submit-account, .submit-user {
