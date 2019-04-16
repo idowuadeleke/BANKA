@@ -31,7 +31,7 @@ describe('Test user login and signup', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(200);
+          expect(body.status).to.be.equals(201);
           expect(body.data).to.be.an('object');
           expect(body.data.token).to.be.a('string');
           done();
