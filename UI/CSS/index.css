@@ -187,7 +187,7 @@ textarea, select {
   padding: 4%!important;
   display: inline-block;
   border: none!important;
-  border-bottom: solid  #1433c4  ;
+  border-bottom: solid  #1433c4 !important ;
   outline: 0;
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;

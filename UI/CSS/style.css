@@ -715,7 +715,7 @@ select {
   padding: 10px 7px 10px 7px!important;
   display: inline-block;
   border: none!important;
-  border-bottom: solid #1433c4;
+  border-bottom: solid #1433c4 !important;
   outline: 0;
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;
