@@ -75,13 +75,12 @@ header{
     border: 5px solid transparent;
     border-radius:0 7px 0 0;
     border-right: none;
-    border-left: none;
 } 
 
 
 @media screen and (max-width:1024px){
     .main-container .image-holder{display:none}
-    .main-container .form-container{width:100% !important; }
+    .main-container .form-container{width:100%; }
     .form-header{border-radius:7px 7px 0 0 !important}
 }
 
@@ -184,10 +183,10 @@ input[type="email"],
 textarea, select {
   text-align: left;
   width: 70%;
-  padding: 4%!important;
+  padding: 4%;
   display: inline-block;
-  border: none!important;
-  border-bottom: solid  #1433c4 !important ;
+  border: none;
+  border-bottom: solid  #1433c4  ;
   outline: 0;
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;
