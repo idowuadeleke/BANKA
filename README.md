@@ -87,7 +87,7 @@ Banka is a light-weight core banking application that powers banking operations 
 
 `- POST /api/v1/auth/signup Create a new user account.`
 
-`- POST /api/v1/auth/signin log a user in.`
+`- POST /api/v1/auth/ log a user in.`
 
 `- POST /api/v1/accounts Create a bank account.`
 
