@@ -178,12 +178,18 @@ input, textarea, select, button {
   text-align: start;
   margin: 0em;
   font: 400 13.3333px Arial;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 button, input, optgroup, select, textarea {
   color: inherit;
   font: inherit;
   margin: 0;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 .general-side-bar {
