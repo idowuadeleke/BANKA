@@ -184,9 +184,9 @@ input[type="email"],
 textarea, select {
   text-align: left;
   width: 70%;
-  padding: 4%;
+  padding: 4%!important;
   display: inline-block;
-  border: none;
+  border: none!important;
   border-bottom: solid  #1433c4  ;
   outline: 0;
   -ms-box-sizing:content-box;
@@ -268,4 +268,3 @@ textarea, select {
     cursor: pointer;
     top: 10px;
   }
-  
