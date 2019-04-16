@@ -51,8 +51,8 @@ class UserController {
       // create token
       const token = createToken(values.email, values.id);
       const {isAdmin, password, ...data} = savedData;
-      return res.status(200).json({
-        status: 200,
+      return res.status(201).json({
+        status: 201,
         data: {
           token,
           ...data}

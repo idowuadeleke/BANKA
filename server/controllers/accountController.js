@@ -56,8 +56,8 @@ class accountController {
         };
         const filePath = 'server/data/accounts.json';
         const newAccount = saveDataToFile(filePath, accountData, values);
-        return res.status(200).json({
-          status: 200,
+        return res.status(201).json({
+          status: 201,
           data: {
             accountNumber: newAccount.accountNumber,
             firstName: user.firstname,
