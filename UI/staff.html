@@ -424,7 +424,102 @@
           </div>
         </div>
       </div>
-  
+
+      <div id="admin-delete-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="admin-close">&times;</span>
+        <h2>Delete confirmation</h2>
+      </div>
+      <div class="modal-body">
+        <p>Account name: Idowu Adeleke</p>
+        <p>Account number: 0123456789</p>
+        <p> Are you sure you want to delete this account ?</p>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Delete" class="submit-account admin-modal-button" id="admin-delete-success"/>
+      <input type="submit" value="Cancel" class="submit-account admin-modal-button" />	
+      </div>
+    </div>
+    </div>
+
+    <div id="delete-success-modal-admin" class="modal" >
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="admin-close">&times;</span>
+        <h2>Account deleted</h2>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Okay" class="submit-account admin-modal-button"  />	
+      </div>
+    </div>
+    </div>
+
+    <div id="deactivate-success-modal" class="modal" >
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="admin-close">&times;</span>
+        <h2>Account deactivated</h2>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Okay" class="submit-account admin-modal-button"  />	
+      </div>
+    </div>
+    </div>
+
+    <div id="activate-success-modal" class="modal" >
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="admin-close">&times;</span>
+        <h2>Account activated</h2>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Okay" class="submit-account admin-modal-button"  />	
+      </div>
+    </div>
+    </div>
+
+    <div id="admin-deactivate-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="admin-close">&times;</span>
+        <h2>Deactivate confirmation</h2>
+      </div>
+      <div class="modal-body">
+        <p>User name: Idowu Adeleke</p>
+        <p>Email Address: adelekeidowu30@gmail.com</p>
+        <p> Are you sure you want to deactivate this account ?</p>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Deactivate" class="submit-account admin-modal-button" id="admin-deactivate-success" />
+      <input type="submit" value="Cancel" class="submit-account admin-modal-button" />	
+      </div>
+    </div>
+    </div>
+
+    <div id="admin-activate-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="admin-close">&times;</span>
+        <h2>Activate confirmation</h2>
+      </div>
+      <div class="modal-body">
+        <p>User name: Idowu Adeleke</p>
+        <p>Email Address: adelekeidowu30@gmail.com</p>
+        <p> Are you sure you want to activate this account ?</p>
+      </div>
+      <div class= "modal-bottom">
+      <input type="submit" value="Activate" class="submit-account admin-modal-button" id="admin-activate-success" />
+      <input type="submit" value="Cancel" class="submit-account admin-modal-button" />	
+      </div>
+    </div>
+    </div>
 
     <div class= "user-account-record-staffpage" >
       <div  class="mini-profile-container">
@@ -440,9 +535,6 @@
                 
               </div>
             </div>
-            <div class="admin-button">
-                <input type="button" value="Delete" class="change-user-status submit-account staff-delete-button" id="delete-button" />
-            </div> 
              <div  class="main-content trans account-details-container">
               <table id="myTable">
                 <tr class="myheader">
@@ -506,6 +598,11 @@
               </table>
               </div>
               </div>
+              <div class="admin-button">
+                <input type="button" value="Activate" class="change-user-status submit-account activate-button" id="activate-button" />
+                <input type="button" value="Deactivate" class="change-user-status submit-account deactivate-button" id="deactivate-button" />
+                <input type="button" value="Delete" class="change-user-status submit-account staff-delete-button" id="delete-button" />
+            </div> 
           </div>
         </div>
       </div>
