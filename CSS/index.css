@@ -74,14 +74,14 @@ header{
     background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
     border: 5px solid transparent;
     border-radius:0 7px 0 0;
-    border-right: none !important;
-    border-left: none !important;
+    border-right: none;
+    border-left: none;
 } 
 
 
 @media screen and (max-width:1024px){
     .main-container .image-holder{display:none}
-    .main-container .form-container{width:100%; }
+    .main-container .form-container{width:100% !important; }
     .form-header{border-radius:7px 7px 0 0 !important}
 }
 
@@ -184,17 +184,17 @@ input[type="email"],
 textarea, select {
   text-align: left;
   width: 70%;
-  padding: 4%;
+  padding: 4%!important;
   display: inline-block;
-  border: none;
-  border-bottom: solid  #1433c4  ;
+  border: none!important;
+  border-bottom: solid  #1433c4 !important ;
   outline: 0;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;
   -webkit-box-sizing:content-box; 
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
   box-sizing:content-box;
   color:  #000564;
 }
@@ -266,6 +266,7 @@ textarea, select {
     position: absolute;
     right: 5px;
     height: 90px;
+    /* max-width: 90px; */
     width: 30%;
     cursor: pointer;
     top: 10px;

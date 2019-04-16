@@ -64,6 +64,10 @@ body {
   size: 14%;
 }
 
+/* @media only screen and (max-width: 600px)
+{.header .banka-logo {
+    left: 3.957143rem;
+}} */
 
 .profile {
   float: right;
@@ -157,23 +161,6 @@ div {
 
 input, textarea, select, button, meter,select {
   -webkit-writing-mode: horizontal-tb !important;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
-}
-
-input, textarea, select, button {
-  text-rendering: auto;
-  color: initial;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: start;
-  margin: 0em;
-  font: 400 13.3333px Arial;
 }
 
 button, input, optgroup, select, textarea {
@@ -210,9 +197,7 @@ button, input, optgroup, select, textarea {
     width: 230px;
 }
 
-
 }
-
 
 ul:not(.browser-default) {
     padding-left: 0;
@@ -301,9 +286,6 @@ a {
 	}
 
 	.row .col.s1 {
-		/* width: 8.3333333333%;
-		margin-left: auto;
-		left: auto; */
 		right: auto;
 	}
 
@@ -387,7 +369,7 @@ a, a:hover {
 @media screen and (max-width: 1020px)
 {.wrappers .side-bar {
     width: 44px!important;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-left: 10px;
 }
 .wrappers .side-bar:hover{
@@ -531,7 +513,6 @@ a, a:hover {
   line-height: 50px;
   padding-left: 8px;
   color: #000000;
-  /* font-size: 0.7em; */
   transition: .2s;
   text-transform: capitalize;
   font-weight: 400;
@@ -595,17 +576,8 @@ a, a:hover {
 }
 }
 
-
-
 .trans-header{
   font-size: 20px;}
-
-
-
-
-
-
-
 
 .manage-profile-wrapper .main-content .each-menu .link-name {
   /* margin-left: 50px; */
@@ -725,36 +697,11 @@ input {
   line-height: normal;
 }
 
-input, textarea, select, button {
-  text-rendering: auto;
-  color: initial;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: start;
-  margin: 0em;
-  font: 400 13.3333px Arial;
-}
-
 .account-details-container{
   width: 70%;
   margin: 0 auto;
 }
 
-
-/* .account-details {
-  background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
-  color: #ffffff;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  position: absolute;
-  height: 70px;
-  border-radius: 5px 5px 0 0;
-} */
 
 .input {
   text-align: center;
@@ -763,13 +710,16 @@ input, textarea, select, button {
 input[type="text"], input[type="password"], input[type="email"], input[type="text"],input[type="number"],textarea,
 select {
   text-align: left;
-  width: 70%;
+  width: 70% !important;
   margin: 15px 10px 0px 10px!important;
   padding: 10px 7px 10px 7px!important;
   display: inline-block;
-  border: none;
-  border-bottom: solid #1433c4;
+  border: none!important;
+  border-bottom: solid #1433c4 !important;
   outline: 0;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;
   -webkit-box-sizing:content-box; 
@@ -870,15 +820,6 @@ select {
   margin: 0 auto;
 }
 
-/* .deletenumber,.activatenumber, .deactivateNumber{
-  border:solid 2px;
-  width: 50%;
-  height: 37px;
-  font-size: larger;
-  float:left;
-  margin-left:10px; */
-  /* margin-bottom: 40px; */
-/* } */
 
 label{
   /* display: inline-block; */
@@ -942,19 +883,6 @@ a:hover {
   -ms-transform: translate(-50%,-50%);
 }
 
-overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0; 
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
 
 /* The Modal (background) */
 .modal {
@@ -1266,5 +1194,5 @@ resize: none;
     border-radius:0 3px 0 0 !important;}
 
 .profiletransheader{
-  text-align:center;
+  text-align:center !important;
   border-radius:3px 3px 0 0 ;}
