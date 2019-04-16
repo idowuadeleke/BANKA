@@ -74,7 +74,8 @@ header{
     background: linear-gradient(to right,#0097ff 0%,#1433c4 0%,#000564 100%);
     border: 5px solid transparent;
     border-radius:0 7px 0 0;
-    border-right: none;
+    border-right: none !important;
+    border-left: none !important;
 } 
 
 
