@@ -64,10 +64,6 @@ body {
   size: 14%;
 }
 
-/* @media only screen and (max-width: 600px)
-{.header .banka-logo {
-    left: 3.957143rem;
-}} */
 
 .profile {
   float: right;
@@ -178,18 +174,12 @@ input, textarea, select, button {
   text-align: start;
   margin: 0em;
   font: 400 13.3333px Arial;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
 }
 
 button, input, optgroup, select, textarea {
   color: inherit;
   font: inherit;
   margin: 0;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
 }
 
 .general-side-bar {
@@ -785,9 +775,6 @@ select {
   -webkit-box-sizing:content-box; 
   box-sizing:content-box;
   color:  #000000;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
 }
 
 .submit-account, .submit-user {

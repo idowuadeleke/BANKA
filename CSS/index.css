@@ -266,7 +266,6 @@ textarea, select {
     position: absolute;
     right: 5px;
     height: 90px;
-    /* max-width: 90px; */
     width: 30%;
     cursor: pointer;
     top: 10px;
