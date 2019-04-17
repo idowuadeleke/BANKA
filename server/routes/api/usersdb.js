@@ -3,9 +3,10 @@ import userController from '../../controllers/userController';
 
 const router = express.Router();
 
-const { login } = userController;
+const { createAccountDb } = userController;
 
-router.post('/login', login);
+// db user signup route
+router.post('/signup', createAccountDb);
 
 // expose router
 export default router;

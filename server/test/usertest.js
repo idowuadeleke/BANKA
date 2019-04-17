@@ -55,7 +55,6 @@ describe('Test user login and signup', () => {
         });
     });
 
-    // test suite for POST /signup user already exists
     it('should return an error if email already exists', (done) => {
       chai
         .request(app)
@@ -292,7 +291,7 @@ describe('Test user login and signup', () => {
         .post('/api/v1/auth/login')
         .send({
           email: 'idowu@andela.com',
-          password: 'wrongpassword',
+          password: 'wroneegpassword',
         })
         .end((err, res) => {
           if (err) done();
