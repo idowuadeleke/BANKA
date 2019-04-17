@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import users from './routes/api/users';
+import usersdb from './routes/api/usersdb';
 import accounts from './routes/api/accounts';
 import transactions from './routes/api/transactions';
 
@@ -20,6 +21,9 @@ app.get('/', (req, res) => res.status(200).json({
 
 // user routes
 app.use('/api/v1/auth', users);
+
+// db user routes
+app.use('/api/v2/auth', usersdb);
 
 // account route
 app.use('/api/v1', accounts);
