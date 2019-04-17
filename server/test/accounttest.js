@@ -260,7 +260,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
 
     it('it should throw an error when account number is not found', (done) => {
-      const accountNumber = 2220107724455;
+      const accountNumber = 222010744724455;
       chai
         .request(app)
         .get(`/api/v1/accounts/${accountNumber}`)
