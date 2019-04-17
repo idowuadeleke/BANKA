@@ -511,7 +511,7 @@ describe('Test user login and signup', () => {
         .post('/api/v1/auth/login')
         .send({
           email: 'idowu@andela.com',
-          password: 'wrongpassword',
+          password: 'wronegpassword',
         })
         .end((err, res) => {
           if (err) done();
