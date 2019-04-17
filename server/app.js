@@ -23,7 +23,7 @@ app.get('/', (req, res) => res.status(200).json({
 app.use('/api/v1/auth', users);
 
 // db user routes
-app.use('/api/v2/auth', usersdb);
+app.use('/api/v1/auth', usersdb);
 
 // account route
 app.use('/api/v1', accounts);

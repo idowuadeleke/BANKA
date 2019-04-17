@@ -13,61 +13,7 @@ const { createToken } = Auth;
 
 class UserController {
   /**
-   * Create a user account
-   *
-   * @param {*} req
-   * @param {*} res
-   */
-  static createAccount(req, res) {
-    // check if user pass valid and required data
-    const { errors, isValid } = validateSignUpInput(req.body);
-    if (!isValid) {
-      return res.status(400).json({
-        status: 400,
-        errors,
-      });}
-    try {
-      // check if user already exists
-      const emailExists = findUserByEmail(userData, req.body.email);
-      if (emailExists) {
-        return res.status(409).json({
-          status: 409,
-          error: 'user already exists',
-        });
-      }
-      const { body } = req;
-      const salt = genSaltSync(10);
-      const hash = hashSync(body.password, salt);
-      const values = {
-        id: generateId(userData, 0),
-        firstname: body.firstname,
-        lastname: body.lastname,
-        email: body.email,
-        type: body.type,
-        password: hash,
-        isAdmin: body.isAdmin,
-      };
-      const filePath = 'server/data/users.json';
-      const savedData = saveDataToFile(filePath, userData, values);
-      // create token
-      const token = createToken(values.email, values.id);
-      const {isAdmin, password, ...data} = savedData;
-      return res.status(201).json({
-        status: 201,
-        data: {
-          token,
-          ...data}
-      });
-    } catch (e) {
-      return res.status(500).json({
-        status: 500,
-        error: 'Sorry, something went wrong, try again',
-      });
-    }
-  }
-
-  /**
-   *sign up v2(postgresql)
+   *sign up (postgresql)
    * @param {*} req
    * @param {*} res
    */

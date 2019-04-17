@@ -3,9 +3,7 @@ import userController from '../../controllers/userController';
 
 const router = express.Router();
 
-const { createAccount, login } = userController;
-// user signup route
-router.post('/signup', createAccount);
+const { login } = userController;
 
 router.post('/login', login);
 
