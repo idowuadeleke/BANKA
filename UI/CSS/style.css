@@ -717,6 +717,9 @@ select {
   border: none!important;
   border-bottom: solid #1433c4 !important;
   outline: 0;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
   -ms-box-sizing:content-box;
   -moz-box-sizing:content-box;
   -webkit-box-sizing:content-box; 
