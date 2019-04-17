@@ -10,5 +10,3 @@ router.post('/signup', createAccountDb);
 
 // expose router
 export default router;
-
-
