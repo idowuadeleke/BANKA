@@ -19,7 +19,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
     chai
       .request(app)
-      .post('/api/v1/auth/login')
+      .post('/api/v2/auth/login')
       .send(userCredential)
       .end((err, res) => {
         const { body } = res;
@@ -171,7 +171,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v1/auth/login')
+        .post('/api/v2/auth/login')
         .send(userCredential)
         .end((err, res) => {
           const { body } = res;
@@ -260,7 +260,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
 
     it('it should throw an error when account number is not found', (done) => {
-      const accountNumber = 222010744724455;
+      const accountNumber = 2220107724455;
       chai
         .request(app)
         .get(`/api/v1/accounts/${accountNumber}`)

@@ -111,6 +111,67 @@ class UserController {
       },
     });
   }
+
+  /**
+   * db login controller
+   * @param {*} req
+   * @param {*} res
+   */
+  static async loginDb(req, res) {
+    // check if user pass valid and required data
+    const { errors, isValid } = validateLoginInput(req.body);
+    const { email, password } = req.body;
+    const queryString = 'SELECT * FROM users WHERE email = $1';
+
+    // check if user inputs are valid
+    if (!isValid) {
+      return res.status(400).json({
+        status: 400,
+        errors,
+      });
+    }
+
+    try {
+      // Select all user record where email is equal db email
+      const { rows } = await DB.query(queryString, [email]);
+
+      // check if user exist in database
+      if (!rows[0]) {
+        return res.status(404).json({
+          status: 404,
+          error: 'User does not exist',
+        });
+      }
+
+      // check if user provided password matches user's hashed password in database
+      if (!compareSync(password, rows[0].password)) {
+        return res.status(401).json({
+          status: 401,
+          error: 'Invalid Email/Password',
+        });
+      }
+
+      // generate token
+      const token = createToken(rows[0].email, rows[0].id);
+
+      // return success message
+      return res.status(200).json({
+        status: 200,
+        data: {
+          token,
+          firstname: rows[0].firstname,
+          lastname: rows[0].lastname,
+          email: rows[0].email,
+          type: rows[0].type,
+        },
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: 'Something went wrong, try again',
+      });
+    }
+  }
 }
 
 export default UserController;
