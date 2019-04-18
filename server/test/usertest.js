@@ -18,7 +18,7 @@ const newUser = {
 };
 
 
-describe('Test user login and signup', () => {
+describe('Test user signin and signup', () => {
   // Test suite for POST /signup route
   describe('POST api/v1/auth/signup', () => {
     it('Should successfully create a user account if inputs are valid', (done) => {
@@ -242,12 +242,12 @@ describe('Test user login and signup', () => {
     });
   });
 
-  // test for POST /login suite
-  describe('POST api/v1/auth/login', () => {
-    it('should login successfully if user inputs are valid', (done) => {
+  // test for POST /signin suite
+  describe('POST api/v1/auth/signin', () => {
+    it('should signin successfully if user inputs are valid', (done) => {
       chai
         .request(app)
-        .post('/api/v1/auth/login')
+        .post('/api/v1/auth/signin')
         .send({
           email: 'idowu@andela.com',
           password: 'dele1989',
@@ -265,10 +265,31 @@ describe('Test user login and signup', () => {
         });
     });
 
-    it('Should return an error if login email inputs is invalid', (done) => {
+    it('should signin successfully if user inputs are valid', (done) => {
       chai
         .request(app)
-        .post('/api/v1/auth/login')
+        .post('/api/v2/auth/signin')
+        .send({
+          email: 'idowu@andela.com',
+          password: 'dele1989',
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equals(200);
+          expect(body.data).to.be.an('object');
+          expect(body.data.token).to.be.a('string');
+
+          done();
+        });
+    });
+
+    it('Should return an error if signin email inputs is invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signin')
         .send({
           email: 'wrongemail@epicmail.com',
           password: 'cent46',
@@ -285,10 +306,30 @@ describe('Test user login and signup', () => {
         });
     });
 
-    it('Should return an error if login password inputs is invalid', (done) => {
+    it('Should return an error if signin email inputs is invalid', (done) => {
       chai
         .request(app)
-        .post('/api/v1/auth/login')
+        .post('/api/v2/auth/signin')
+        .send({
+          email: 'wrongemail@epicmail.com',
+          password: 'cent46',
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(404);
+          expect(body.error).to.be.a('string');
+          expect(body.error).to.be.equals('User does not exist');
+          done();
+        });
+    });
+
+    it('Should return an error if signin password inputs is invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signin')
         .send({
           email: 'idowu@andela.com',
           password: 'wroneegpassword',
@@ -305,10 +346,30 @@ describe('Test user login and signup', () => {
         });
     });
 
-    it('Should return an error if login inputs are invalid', (done) => {
+    it('Should return an error if signin password inputs is invalid', (done) => {
       chai
         .request(app)
-        .post('/api/v1/auth/login')
+        .post('/api/v2/auth/signin')
+        .send({
+          email: 'idowu@andela.com',
+          password: 'wroneegpassword',
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(401);
+          expect(body.error).to.be.a('string');
+          expect(body.error).to.be.equals('Invalid Email/Password');
+          done();
+        });
+    });
+
+    it('Should return an error if signin inputs are invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signin')
         .send({})
         .end((err, res) => {
           if (err) done();
@@ -321,5 +382,23 @@ describe('Test user login and signup', () => {
           done();
         });
     });
+
+    it('Should return an error if signin inputs are invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v2/auth/signin')
+        .send({})
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.a('object');
+
+          done();
+        });
+    });
+
   });
 });

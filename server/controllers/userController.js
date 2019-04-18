@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import validateSignUpInput from '../validation/signup';
 import userData from '../data/users';
 import helper from '../helper/helper';
-import validateLoginInput from '../validation/login';
+import validatesigninInput from '../validation/signin';
 import Auth from '../middleswares/is-Auth';
 import DB from '../db/index';
 
@@ -66,13 +66,13 @@ class UserController {
   }
 
   /**
-   * login a user
+   * signin a user
    * @param {*} req
    * @param {*} res
    */
-  static login(req, res) {
+  static signin(req, res) {
     // check if user pass valid and required data
-    const { errors, isValid } = validateLoginInput(req.body);
+    const { errors, isValid } = validatesigninInput(req.body);
     const { email, password } = req.body;
     // check if user inputs are valid
     if (!isValid) {
@@ -113,13 +113,13 @@ class UserController {
   }
 
   /**
-   * db login controller
+   * db signin controller
    * @param {*} req
    * @param {*} res
    */
-  static async loginDb(req, res) {
+  static async signinDb(req, res) {
     // check if user pass valid and required data
-    const { errors, isValid } = validateLoginInput(req.body);
+    const { errors, isValid } = validatesigninInput(req.body);
     const { email, password } = req.body;
     const queryString = 'SELECT * FROM users WHERE email = $1';
 
