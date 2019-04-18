@@ -37,7 +37,7 @@ class Auth {
     if (!token) {
       return res.status(403).json({
         status: 403,
-        error: 'Unauthorized!, you have to login',
+        error: 'Unauthorized!, you have to signin',
       });
     }
     try {

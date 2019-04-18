@@ -22,7 +22,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
     };
 
     chai.request(app)
-      .post('/api/v2/auth/login')
+      .post('/api/v2/auth/signin')
       .send(userCredential)
       .end((err, res) => {
         const { body } = res;
@@ -43,7 +43,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
 
     chai
       .request(app)
-      .post('/api/v2/auth/login')
+      .post('/api/v2/auth/signin')
       .send(userCredential)
       .end((err, res) => {
         const { body } = res;

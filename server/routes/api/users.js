@@ -3,9 +3,9 @@ import userController from '../../controllers/userController';
 
 const router = express.Router();
 
-const { login } = userController;
+const { signin } = userController;
 
-router.post('/login', login);
+router.post('/signin', signin);
 
 // expose router
 export default router;

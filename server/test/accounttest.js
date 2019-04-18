@@ -19,7 +19,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
     chai
       .request(app)
-      .post('/api/v2/auth/login')
+      .post('/api/v2/auth/signin')
       .send(userCredential)
       .end((err, res) => {
         const { body } = res;
@@ -47,7 +47,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body.status).to.be.equals(403);
           expect(body).to.be.an('object');
           expect(body).to.haveOwnProperty('error');
-          expect(body.error).to.be.equals('Unauthorized!, you have to login');
+          expect(body.error).to.be.equals('Unauthorized!, you have to signin');
           done();
         });
     });
@@ -171,7 +171,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v2/auth/login')
+        .post('/api/v2/auth/signin')
         .send(userCredential)
         .end((err, res) => {
           const { body } = res;
