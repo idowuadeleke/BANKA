@@ -19,8 +19,8 @@ app.get('/', (req, res) => res.status(200).json({
   message: 'Welcome to BANKA',
 }));
 
-// user routes
-app.use('/api/v1/auth', users);
+ // user routes
+app.use('/api/v2/auth', users);
 
 // db user routes
 app.use('/api/v1/auth', usersdb);
