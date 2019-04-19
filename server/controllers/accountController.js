@@ -3,6 +3,7 @@ import userData from '../data/users';
 import helper from '../helper/helper';
 import validateAccountInput from '../validation/account';
 import validateUpdateStatus from '../validation/updatestatus';
+import DB from '../db/index';
 
 
 const {
@@ -17,12 +18,12 @@ const {
 
 
 class accountController {
-  /**
+    /**
    *create a message
    * @param {*} req
    * @param {*} res
    */
-  static createBankAccount(req, res) {
+  static async createBankAccountdb(req, res) {
     try {
       const { id } = req.user;
       // check if user pass valid and required data
@@ -33,38 +34,39 @@ class accountController {
           errors,
         });
       }
+
       const { type, balance } = req.body;
-      const user = findUserByID(userData, id);
+      const queryString = 'SELECT * FROM users WHERE id = $1';
+      const user = await DB.query(queryString, [id]);
       if (user) {
         // check if user already has a bank account
-        const account = findAccountByOwner(accountData, id);
-        if (account) {
+        const queryString = 'SELECT * FROM accounts WHERE owner = $1';
+        const account = await DB.query(queryString, [id]);
+        if (account.rows[0].accountnumber) {
           return res.status(400).json({
             status: 400,
-            error: `user already have an account  - ${account.accountNumber}`,
+            error: `user already have an account  - ${account.rows[0].accountnumber}`,
           });
         }
+
         //Generate new account data
-        const values = {
-          id: generateId(accountData, 0),
-          accountNumber: generateAccountNumber(accountData),
-          createdOn: new Date().toUTCString(),
-          owner: id,
-          status: 'draft',
-          type,
-          balance,
-        };
-        const filePath = 'server/data/accounts.json';
-        const newAccount = saveDataToFile(filePath, accountData, values);
+        const accountNoQueryString = 'SELECT accountnumber FROM accounts ORDER BY id DESC LIMIT 1';
+        const LastaccountNoRow = await DB.query(accountNoQueryString, []);
+        //change this to a function that checks if account exists
+        const newAccountNo = LastaccountNoRow.rows[0].accountnumber + 100;
+        const values =[newAccountNo,id,'draft',type,balance ]
+
+        const accountqueryString = 'INSERT INTO accounts(accountNumber, owner, status, type, balance) VALUES($1, $2, $3, $4, $5) returning *';
+        const { rows } = await DB.query(accountqueryString, values);
         return res.status(201).json({
           status: 201,
           data: {
-            accountNumber: newAccount.accountNumber,
-            firstName: user.firstname,
-            lastName: user.lastname,
-            email: user.email,
-            type,
-            openingBalance: balance,
+            accountNumber: rows[0].accountnumber,
+            firstName: user.rows[0].firstname,
+            lastName: user.rows[0].lastname,
+            email: user.rows[0].email,
+            type: rows[0].type,
+            openingBalance: rows[0].balance,
           },
         });
       }

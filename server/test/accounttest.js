@@ -9,6 +9,7 @@ chai.use(chaiHttp);
 
 let UserToken;
 let adminToken;
+let userDbToken;
 
 describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
   before('Sign in user to obtain auth token', (done) => {
@@ -31,7 +32,28 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       });
   });
 
+  before('Sign db user to obtain auth token', (done) => {
+    const userCredential = {
+      email: 'idowu@andela.com',
+      password: 'dele1989',
+    };
+
+    chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send(userCredential)
+      .end((err, res) => {
+        const { body } = res;
+        expect(body.status).to.be.equals(200);
+        if (!err) {
+          userDbToken = body.data.token;
+        }
+        done();
+      });
+  });
+
   describe('POST api/v1/accounts', () => {
+
     it('it should check for token in the request header', (done) => {
       const details = {
         type: 'savings',
@@ -39,7 +61,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       };
       chai
         .request(app)
-        .post('/api/v1/accounts')
+        .post('/api/v2/accounts')
         .send(details)
         .end((err, res) => {
           const { body } = res;
@@ -59,9 +81,9 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v1/accounts')
+        .post('/api/v2/accounts')
         .send(details)
-        .set('token', UserToken)
+        .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
@@ -78,8 +100,8 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v1/accounts')
-        .set('token', UserToken)
+        .post('/api/v2/accounts')
+        .set('token', userDbToken)
         .send(details)
         .end((err, res) => {
           const { body } = res;
@@ -90,7 +112,6 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
-
     it('it should throw error when starting balance is not specified', (done) => {
       const details = {
         type: 'savings',
@@ -98,9 +119,9 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v1/accounts')
+        .post('/api/v2/accounts')
         .send(details)
-        .set('token', UserToken)
+        .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
@@ -118,9 +139,9 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v1/accounts')
+        .post('/api/v2/accounts')
         .send(details)
-        .set('token', UserToken)
+        .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
@@ -129,7 +150,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           done();
         });
     });
-  
+
   });
 
   /**

@@ -10,10 +10,9 @@ const { permissionMiddleWare } = checkPermission;
 const router = express.Router();
 
 const {
-  createBankAccount, fetchAllAccounts, getAccount, changeStatus, deleteBankAccount,
+  fetchAllAccounts, getAccount, changeStatus, deleteBankAccount,
 } = accountController;
 // user signup route
-router.post('/accounts', verifyToken, createBankAccount);
 router.get('/accounts', verifyToken, permissionMiddleWare, fetchAllAccounts);
 router.get('/accounts/:accountNumber', verifyToken, permissionMiddleWare, getAccount);
 router.patch('/accounts/:accountNumber', verifyToken, permissionMiddleWare, changeStatus);
