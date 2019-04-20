@@ -1,9 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import users from './routes/api/users';
 import usersdb from './routes/api/usersdb';
 import accountsdb from './routes/api/accountsdb';
-import transactions from './routes/api/transactions';
+import transactionsdb from './routes/api/transactionsdb';
 
 // Initialize express app
 const app = express();
@@ -19,9 +18,6 @@ app.get('/', (req, res) => res.status(200).json({
   message: 'Welcome to BANKA',
 }));
 
- // user routes
-app.use('/api/v2/auth', users);
-
 // db user routes
 app.use('/api/v1/auth', usersdb);
 
@@ -29,7 +25,7 @@ app.use('/api/v1/auth', usersdb);
 app.use('/api/v1', accountsdb);
 
 // account route
-app.use('/api/v1', transactions);
+app.use('/api/v1', transactionsdb);
 
 // Handle non existing route with with proper message
 app.all('*', (req, res) => res.status(404).json({
