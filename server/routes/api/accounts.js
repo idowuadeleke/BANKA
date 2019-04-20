@@ -10,11 +10,9 @@ const { permissionMiddleWare } = checkPermission;
 const router = express.Router();
 
 const {
-  fetchAllAccounts, getAccount, changeStatus, deleteBankAccount,
+    changeStatus, deleteBankAccount,
 } = accountController;
 // user signup route
-router.get('/accounts', verifyToken, permissionMiddleWare, fetchAllAccounts);
-router.get('/accounts/:accountNumber', verifyToken, permissionMiddleWare, getAccount);
 router.patch('/accounts/:accountNumber', verifyToken, permissionMiddleWare, changeStatus);
 router.delete('/accounts/:accountNumber', verifyToken, permissionMiddleWare, deleteBankAccount);
 

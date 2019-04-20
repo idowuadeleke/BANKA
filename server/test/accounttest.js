@@ -9,7 +9,10 @@ chai.use(chaiHttp);
 
 let UserToken;
 let adminToken;
+let adminDbToken;
 let userDbToken;
+let userDbToken2;
+
 
 describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
   before('Sign in user to obtain auth token', (done) => {
@@ -53,7 +56,6 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
   });
 
   describe('POST api/v1/accounts', () => {
-
     it('it should check for token in the request header', (done) => {
       const details = {
         type: 'savings',
@@ -157,11 +159,12 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
    * Test the GET /accounts/ routes
    */
   describe('GET /accounts', () => {
+   
     it('it should throw permission error if user is not an admin', (done) => {
       chai
         .request(app)
-        .get('/api/v1/accounts')
-        .set('token', UserToken)
+        .get('/api/v2/accounts')
+        .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(403);
@@ -174,8 +177,8 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     it('it should get all the bank accounts', (done) => {
       chai
         .request(app)
-        .get('/api/v1/accounts')
-        .set('token', adminToken)
+        .get('/api/v2/accounts')
+        .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
@@ -203,6 +206,25 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           done();
         });
     });
+
+    before('Sign in as an admin/staff222 ', (done) => {
+      const userCredential = {
+        email: 'idowuadeleke@gmail.com',
+        password: 'dele1989',
+      };
+      chai
+        .request(app)
+        .post('/api/v1/auth/signin')
+        .send(userCredential)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(200);
+          if (!err) {
+            adminDbToken = body.data.token;
+          }
+          done();
+        });
+    });
   });
 
   /**
@@ -210,11 +232,11 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
      */
   describe('GET /accounts/:accountNumber', () => {
     it('it should throw an error if a client wants to get other user\'s account', (done) => {
-      const accountNumber = 45677988;
+      const accountNumber = 1449088;
       chai
         .request(app)
-        .get(`/api/v1/accounts/${accountNumber}`)
-        .set('token', UserToken)
+        .get(`/api/v2/accounts/${accountNumber}`)
+        .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(403);
@@ -225,51 +247,51 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     });
 
     it('it should GET a bank account details as a client if i own the account', (done) => {
-      const accountNumber = 45678088;
+      const accountNumber = 1448988;
       chai
         .request(app)
-        .get(`/api/v1/accounts/${accountNumber}`)
-        .set('token', UserToken)
+        .get(`/api/v2/accounts/${accountNumber}`)
+        .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data).to.haveOwnProperty('accountNumber');
-          expect(body.data).to.haveOwnProperty('firstName');
-          expect(body.data).to.haveOwnProperty('lastName');
-          expect(body.data).to.haveOwnProperty('email');
-          expect(body.data).to.haveOwnProperty('type');
-          expect(body.data).to.haveOwnProperty('balance');
+          expect(body.data[0]).to.haveOwnProperty('accountnumber');
+          expect(body.data[0]).to.haveOwnProperty('firstname');
+          expect(body.data[0]).to.haveOwnProperty('lastname');
+          expect(body.data[0]).to.haveOwnProperty('email');
+          expect(body.data[0]).to.haveOwnProperty('type');
+          expect(body.data[0]).to.haveOwnProperty('balance');
           done();
         });
     });
 
     it('it should GET a bank account details as a staff', (done) => {
-      const accountNumber = 45678088;
+      const accountNumber = 1448988;
       chai
         .request(app)
-        .get(`/api/v1/accounts/${accountNumber}`)
-        .set('token', adminToken)
+        .get(`/api/v2/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data).to.haveOwnProperty('accountNumber');
-          expect(body.data).to.haveOwnProperty('firstName');
-          expect(body.data).to.haveOwnProperty('lastName');
-          expect(body.data).to.haveOwnProperty('email');
-          expect(body.data).to.haveOwnProperty('type');
-          expect(body.data).to.haveOwnProperty('balance');
+          expect(body.data[0]).to.haveOwnProperty('accountnumber');
+          expect(body.data[0]).to.haveOwnProperty('firstname');
+          expect(body.data[0]).to.haveOwnProperty('lastname');
+          expect(body.data[0]).to.haveOwnProperty('email');
+          expect(body.data[0]).to.haveOwnProperty('type');
+          expect(body.data[0]).to.haveOwnProperty('balance');
           done();
         });
     });
 
     it('it should throw an error if a client account that doesnt exist', (done) => {
-      const accountNumber = 222567722988;
+      const accountNumber = 222567;
       chai
         .request(app)
-        .get(`/api/v1/accounts/${accountNumber}`)
-        .set('token', UserToken)
+        .get(`/api/v2/accounts/${accountNumber}`)
+        .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
@@ -279,13 +301,12 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
-
     it('it should throw an error when account number is not found', (done) => {
-      const accountNumber = 2220107724455;
+      const accountNumber = 2220107;
       chai
         .request(app)
-        .get(`/api/v1/accounts/${accountNumber}`)
-        .set('token', adminToken)
+        .get(`/api/v2/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(404);

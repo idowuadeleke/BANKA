@@ -34,7 +34,6 @@ class accountController {
           errors,
         });
       }
-
       const { type, balance } = req.body;
       const queryString = 'SELECT * FROM users WHERE id = $1';
       const user = await DB.query(queryString, [id]);
@@ -42,7 +41,7 @@ class accountController {
         // check if user already has a bank account
         const queryString = 'SELECT * FROM accounts WHERE owner = $1';
         const account = await DB.query(queryString, [id]);
-        if (account.rows[0].accountnumber) {
+        if (account.rows.length !== 0) {
           return res.status(400).json({
             status: 400,
             error: `user already have an account  - ${account.rows[0].accountnumber}`,
@@ -55,7 +54,7 @@ class accountController {
         //change this to a function that checks if account exists
         const newAccountNo = LastaccountNoRow.rows[0].accountnumber + 100;
         const values =[newAccountNo,id,'draft',type,balance ]
-
+        
         const accountqueryString = 'INSERT INTO accounts(accountNumber, owner, status, type, balance) VALUES($1, $2, $3, $4, $5) returning *';
         const { rows } = await DB.query(accountqueryString, values);
         return res.status(201).json({
@@ -83,22 +82,15 @@ class accountController {
     }
   }
 
-  //gets all bank accounts
-  static fetchAllAccounts(req, res) {
-    const accounts = accountData.map((account) => {
-      const { owner, ...data } = account;
-      const user = findUserByID(userData, owner);
-      return {
-        ...data,
-        firstName: user.firstname,
-        lastName: user.lastname,
-        email: user.email,
-      };
-    });
-    if (accounts.length > 0) {
+  static async fetchAllAccountsDb(req, res) {
+    const allAccountQueryString = `select accounts.id, accounts.accountnumber, accounts.createdon,
+     accounts.status, accounts.type, accounts.balance,users.firstname,users.lastname,
+      users.email from accounts LEFT JOIN users ON accounts.owner = users.id`;
+    const allAccounts = await DB.query(allAccountQueryString, []);
+    if (allAccounts.rows.length > 0) {
       return res.status(200).json({
         status: 200,
-        data: accounts,
+        data: allAccounts.rows,
       });
     }
     //return error if no acccount has been created 
@@ -109,29 +101,25 @@ class accountController {
   }
 
   //get a specific bank account
-  static getAccount(req, res) {
+  static async getAccountDb(req, res) {
     const { accountNumber } = req.params;
     try {
-      const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
-      if (foundAccount) {
-        const { owner, ...data } = foundAccount;
-        const user = findUserByID(userData, owner);
-        const userAccount = {
-          ...data,
-          firstName: user.firstname,
-          lastName: user.lastname,
-          email: user.email,
-        };
-        return res.status(200).json({
-          status: 200,
-          data: userAccount,
-        });
-      }
-      //return error if account number does not exist 
-      return res.status(404).json({
-        status: 404,
-        error: 'account number doesn\'t exist',
+      const accountQueryString = `select accounts.id, accounts.accountnumber, accounts.createdon,
+     accounts.status, accounts.type, accounts.balance,users.firstname,users.lastname,
+      users.email from accounts LEFT JOIN users ON accounts.owner = users.id WHERE  
+      accounts.accountnumber = $1`;
+    const accounts = await DB.query(accountQueryString, [accountNumber]);
+    if (accounts.rows.length > 0) {
+      return res.status(200).json({
+        status: 200,
+        data: accounts.rows,
       });
+    }
+    //return error if no acccount has been created 
+    return res.status(404).json({
+      status: 404,
+      error: 'account number doesn\'t exist',
+    });
     } catch (e) {
       return res.status(500).json({
         status: 500,
