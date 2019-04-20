@@ -1,19 +1,10 @@
-import accountData from '../data/accounts';
-import transactionData from '../data/transactions';
-import helper from '../helper/helper';
 import validateCashierInput from '../validation/cashierInput';
-
-const {
-  findByAccountNumber,
-  updateData,
-  generateId,
-  saveDataToFile,
-} = helper;
+import DB from '../db/index';
 
 
 class transactionController {
- //debit user account
-  static debitUserAccount(req, res) {
+  //debit user account
+  static async debitUserAccountDb(req, res) {
     try {
       const { id } = req.user;
       const { accountNumber } = req.params;
@@ -27,48 +18,40 @@ class transactionController {
         });
       }
       const { amount } = req.body;
-      const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
-      if (foundAccount) {
-        if (foundAccount.balance > amount) {
-          const newBalance = foundAccount.balance - amount;
-          foundAccount.balance = newBalance;
-          const filePath = 'server/data/accounts.json';
-          // update balance in account data
-          updateData(filePath, accountData);
-          const transactionfilepath = 'server/data/transactions.json';
-          const value = {
-            id: generateId(transactionData, 0),
-            createdOn: new Date().toUTCString(),
-            type: 'debit',
-            accountNumber,
-            cashier: id,
-            amount,
-            oldBalance: foundAccount.balance,
-            newBalance,
-          };
-          //save transaction into transaction data
-          const newAccount = saveDataToFile(transactionfilepath, transactionData, value);
-          return res.status(200).json({
-            status: 200,
-            data: {
-              transactionId: newAccount.id,
-              accountNumber: newAccount.accountNumber,
-              amount: newAccount.amount,
-              cashier: newAccount.cashier,
-              transactionType: newAccount.type,
-              accountBalance: newAccount.newBalance,
-            },
-          });
-        }
+
+      const foundAccountQueryString = 'SELECT balance FROM accounts WHERE accountnumber = $1';
+      const foundAccountDb= await DB.query(foundAccountQueryString, [accountNumber]);
+      if (foundAccountDb.rows.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'account number doesn\'t exist',
+        });
+      }
+      const oldBalance = foundAccountDb.rows[0].balance
+      if (oldBalance < amount) {
         return res.status(400).json({
           status: 400,
           error: 'account balance is not sufficient',
         });
       }
-      return res.status(404).json({
-        status: 404,
-        error: 'account number doesn\'t exist',
-      });
+      const newBalance = oldBalance - amount
+      const values = ['debit', accountNumber, id,amount,oldBalance,newBalance]
+      const accountqueryString = `INSERT INTO transactions(type, accountnumber, cashier,amount, oldbalance, newbalance)
+                                  VALUES($1, $2, $3, $4, $5, $6)returning *`;
+      const { rows } = await DB.query(accountqueryString, values);
+      const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE accountnumber = $2';
+      await DB.query(updatebalanceQueryString, [newBalance,accountNumber]);
+      return res.status(200).json({
+              status: 200,
+              data: {
+                transactionId: rows[0].id,
+                accountNumber: rows[0].accountnumber,
+                amount: rows[0].amount,
+                cashier: rows[0].cashier,
+                transactionType: rows[0].type,
+                accountBalance: rows[0].newbalance,
+              },
+            });
     } catch (error) {
       return res.status(500).json({
         status: 500,
@@ -76,9 +59,8 @@ class transactionController {
       });
     }
   }
-  
-  // Credit a user account
-  static creditUserAccount(req, res) {
+
+  static async creditUserAccountDb(req, res) {
     try {
       const { id } = req.user;
       const { accountNumber } = req.params;
@@ -92,42 +74,34 @@ class transactionController {
         });
       }
       const { amount } = req.body;
-      const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
-      if (foundAccount) {
-        const newBalance = foundAccount.balance + amount;
-        foundAccount.balance = newBalance;
-        const accountfilePath = 'server/data/accounts.json';
-        //update balance in account data
-        updateData(accountfilePath, accountData);
-        const transactionfilepath = 'server/data/transactions.json';
-        const value = {
-          id: generateId(transactionData, 0),
-          createdOn: new Date().toUTCString(),
-          type: 'credit',
-          accountNumber,
-          cashier: id,
-          amount,
-          oldBalance: foundAccount.balance,
-          newBalance,
-        };
-        //save data to transation data
-        const newAccount = saveDataToFile(transactionfilepath, transactionData, value);
-        return res.status(200).json({
-          status: 200,
-          data: {
-            transactionId: newAccount.id,
-            accountNumber: newAccount.accountNumber,
-            amount: newAccount.amount,
-            cashier: newAccount.cashier,
-            transactionType: newAccount.type,
-            accountBalance: newAccount.newBalance,
-          },
+
+      const foundAccountQueryString = 'SELECT balance FROM accounts WHERE accountnumber = $1';
+      const foundAccountDb= await DB.query(foundAccountQueryString, [accountNumber]);
+      if (foundAccountDb.rows.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'account number doesn\'t exist',
         });
       }
-      return res.status(404).json({
-        status: 404,
-        error: 'account number doesn\'t exist',
-      });
+      const oldBalance = foundAccountDb.rows[0].balance
+      const newBalance = oldBalance + amount
+      const values = ['credit', accountNumber, id,amount,oldBalance,newBalance]
+      const accountqueryString = `INSERT INTO transactions(type, accountnumber, cashier,amount, oldbalance, newbalance)
+                                  VALUES($1, $2, $3, $4, $5, $6)returning *`;
+      const { rows } = await DB.query(accountqueryString, values);
+      const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE accountnumber = $2';
+      await DB.query(updatebalanceQueryString, [newBalance,accountNumber]);
+      return res.status(200).json({
+              status: 200,
+              data: {
+                transactionId: rows[0].id,
+                accountNumber: rows[0].accountnumber,
+                amount: rows[0].amount,
+                cashier: rows[0].cashier,
+                transactionType: rows[0].type,
+                accountBalance: rows[0].newbalance,
+              },
+            });
     } catch (error) {
       return res.status(500).json({
         status: 500,

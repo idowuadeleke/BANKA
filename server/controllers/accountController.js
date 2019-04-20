@@ -1,15 +1,6 @@
-import accountData from '../data/accounts';
-import userData from '../data/users';
-import helper from '../helper/helper';
 import validateAccountInput from '../validation/account';
 import validateUpdateStatus from '../validation/updatestatus';
 import DB from '../db/index';
-
-
-const {
-  findByAccountNumber,
-  updateData,
-} = helper;
 
 
 class accountController {

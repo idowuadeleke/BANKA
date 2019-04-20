@@ -265,51 +265,10 @@ describe('Test user signin and signup', () => {
         });
     });
 
-    it('should signin successfully if user inputs are valid', (done) => {
-      chai
-        .request(app)
-        .post('/api/v2/auth/signin')
-        .send({
-          email: 'idowu@andela.com',
-          password: 'dele1989',
-        })
-        .end((err, res) => {
-          if (err) done();
-          const { body } = res;
-          expect(body).to.be.an('object');
-          expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equals(200);
-          expect(body.data).to.be.an('object');
-          expect(body.data.token).to.be.a('string');
-
-          done();
-        });
-    });
-
     it('Should return an error if signin email inputs is invalid', (done) => {
       chai
         .request(app)
         .post('/api/v1/auth/signin')
-        .send({
-          email: 'wrongemail@epicmail.com',
-          password: 'cent46',
-        })
-        .end((err, res) => {
-          if (err) done();
-          const { body } = res;
-          expect(body).to.be.an('object');
-          expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equal(404);
-          expect(body.error).to.be.a('string');
-          expect(body.error).to.be.equals('User does not exist');
-          done();
-        });
-    });
-
-    it('Should return an error if signin email inputs is invalid', (done) => {
-      chai
-        .request(app)
-        .post('/api/v2/auth/signin')
         .send({
           email: 'wrongemail@epicmail.com',
           password: 'cent46',
@@ -346,47 +305,10 @@ describe('Test user signin and signup', () => {
         });
     });
 
-    it('Should return an error if signin password inputs is invalid', (done) => {
-      chai
-        .request(app)
-        .post('/api/v2/auth/signin')
-        .send({
-          email: 'idowu@andela.com',
-          password: 'wroneegpassword',
-        })
-        .end((err, res) => {
-          if (err) done();
-          const { body } = res;
-          expect(body).to.be.an('object');
-          expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equal(401);
-          expect(body.error).to.be.a('string');
-          expect(body.error).to.be.equals('Invalid Email/Password');
-          done();
-        });
-    });
-
     it('Should return an error if signin inputs are invalid', (done) => {
       chai
         .request(app)
         .post('/api/v1/auth/signin')
-        .send({})
-        .end((err, res) => {
-          if (err) done();
-          const { body } = res;
-          expect(body).to.be.an('object');
-          expect(body.status).to.be.a('number');
-          expect(body.status).to.be.equal(400);
-          expect(body.errors).to.be.a('object');
-
-          done();
-        });
-    });
-
-    it('Should return an error if signin inputs are invalid', (done) => {
-      chai
-        .request(app)
-        .post('/api/v2/auth/signin')
         .send({})
         .end((err, res) => {
           if (err) done();
