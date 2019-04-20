@@ -7,7 +7,7 @@ import Auth from '../middleswares/is-Auth';
 import DB from '../db/index';
 
 const { genSaltSync, hashSync, compareSync } = bcrypt;
-const { saveDataToFile, generateId, findUserByEmail } = helper;
+const {  findUserByEmail } = helper;
 
 const { createToken } = Auth;
 
