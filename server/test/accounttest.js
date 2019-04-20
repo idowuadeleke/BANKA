@@ -326,8 +326,8 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const requestBody = { status: 'active' };
       chai
         .request(app)
-        .patch(`/api/v1/accounts/${accountNumber}`)
-        .set('token', UserToken)
+        .patch(`/api/v2/accounts/${accountNumber}`)
+        .set('token', userDbToken)
         .send(requestBody)
         .end((err, res) => {
           const { body } = res;
@@ -339,12 +339,12 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     });
 
     it('it should activate a user bank account', (done) => {
-      const accountNumber = 45677988;
+      const accountNumber = 1448988;
       const requestBody = { status: 'active' };
       chai
         .request(app)
-        .patch(`/api/v1/accounts/${accountNumber}`)
-        .set('token', adminToken)
+        .patch(`/api/v2/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
         .send(requestBody)
         .end((err, res) => {
           const { body } = res;
@@ -357,12 +357,12 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     });
 
     it('it should throw an error when account number is not found', (done) => {
-      const accountNumber = 33333333333333333333;
+      const accountNumber = 33333;
       const requestBody = { status: 'dormant' };
       chai
         .request(app)
-        .patch(`/api/v1/accounts/${accountNumber}`)
-        .set('token', adminToken)
+        .patch(`/api/v2/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
         .send(requestBody)
         .end((err, res) => {
           const { body } = res;
@@ -378,8 +378,8 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const requestBody = { status: 'waiting' };
       chai
         .request(app)
-        .patch(`/api/v1/accounts/${accountNumber}`)
-        .set('token', adminToken)
+        .patch(`/api/v2/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
         .send(requestBody)
         .end((err, res) => {
           const { body } = res;
@@ -395,8 +395,8 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const requestBody = { status: '' };
       chai
         .request(app)
-        .patch(`/api/v1/accounts/${accountNumber}`)
-        .set('token', adminToken)
+        .patch(`/api/v2/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
         .send(requestBody)
         .end((err, res) => {
           const { body } = res;

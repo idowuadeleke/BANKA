@@ -7,11 +7,6 @@ import DB from '../db/index';
 
 
 const {
-  saveDataToFile,
-  findUserByID,
-  findAccountByOwner,
-  generateId,
-  generateAccountNumber,
   findByAccountNumber,
   updateData,
 } = helper;
@@ -129,7 +124,7 @@ class accountController {
   }
 
   //Activate or deactivate a user account status
-  static changeStatus(req, res) {
+  static async changeStatusDb(req, res) {
     try {
       const { accountNumber } = req.params;
       const { errors, isValid } = validateUpdateStatus(req.body);
@@ -141,22 +136,22 @@ class accountController {
         });
       }
       const { status } = req.body;
-      const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
-      if (foundAccount) {
-        foundAccount.status = status;
-        const filePath = 'server/data/accounts.json';
-        updateData(filePath, accountData);
-        return res.status(200).json({
-          status: 200,
-          data: {
-            accountNumber: foundAccount.accountNumber,
-            status,
-          },
+      const foundAccountQueryString = 'SELECT * FROM accounts WHERE accountnumber = $1';
+      const foundAccount= await DB.query(foundAccountQueryString, [accountNumber]);
+      if (foundAccount.rows.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'account number doesn\'t exist',
         });
       }
-      return res.status(404).json({
-        status: 404,
-        error: 'account number doesn\'t exist',
+      const updateStatusQueryString = 'UPDATE accounts SET status = $1 WHERE accountnumber = $2 returning *';
+      const updatedStatus= await DB.query(updateStatusQueryString, [status,accountNumber]);
+      return res.status(200).json({
+        status: 200,
+        data: {
+          accountNumber: updatedStatus.rows[0].accountnumber,
+          status,status: updatedStatus.rows[0].status,
+        },
       });
     } catch (e) {
       return res.status(500).json({
