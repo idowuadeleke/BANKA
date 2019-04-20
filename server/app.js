@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import users from './routes/api/users';
 import usersdb from './routes/api/usersdb';
-import accounts from './routes/api/accounts';
 import accountsdb from './routes/api/accountsdb';
 import transactions from './routes/api/transactions';
 
@@ -26,11 +25,8 @@ app.use('/api/v2/auth', users);
 // db user routes
 app.use('/api/v1/auth', usersdb);
 
-// account route
-app.use('/api/v1', accounts);
-
 // db account route
-app.use('/api/v2', accountsdb);
+app.use('/api/v1', accountsdb);
 
 // account route
 app.use('/api/v1', transactions);
