@@ -7,34 +7,10 @@ const { expect } = chai;
 // using chai-http middleware
 chai.use(chaiHttp);
 
-let UserToken;
-let adminToken;
 let adminDbToken;
 let userDbToken;
-let userDbToken2;
-
 
 describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
-  before('Sign in user to obtain auth token', (done) => {
-    const userCredential = {
-      email: 'idowu@andela.com',
-      password: 'dele1989',
-    };
-
-    chai
-      .request(app)
-      .post('/api/v2/auth/signin')
-      .send(userCredential)
-      .end((err, res) => {
-        const { body } = res;
-        expect(body.status).to.be.equals(200);
-        if (!err) {
-          UserToken = body.data.token;
-        }
-        done();
-      });
-  });
-
   before('Sign db user to obtain auth token', (done) => {
     const userCredential = {
       email: 'idowu@andela.com',
@@ -63,7 +39,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       };
       chai
         .request(app)
-        .post('/api/v2/accounts')
+        .post('/api/v1/accounts')
         .send(details)
         .end((err, res) => {
           const { body } = res;
@@ -83,7 +59,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v2/accounts')
+        .post('/api/v1/accounts')
         .send(details)
         .set('token', userDbToken)
         .end((err, res) => {
@@ -102,7 +78,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v2/accounts')
+        .post('/api/v1/accounts')
         .set('token', userDbToken)
         .send(details)
         .end((err, res) => {
@@ -121,7 +97,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v2/accounts')
+        .post('/api/v1/accounts')
         .send(details)
         .set('token', userDbToken)
         .end((err, res) => {
@@ -141,7 +117,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
       chai
         .request(app)
-        .post('/api/v2/accounts')
+        .post('/api/v1/accounts')
         .send(details)
         .set('token', userDbToken)
         .end((err, res) => {
@@ -163,7 +139,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     it('it should throw permission error if user is not an admin', (done) => {
       chai
         .request(app)
-        .get('/api/v2/accounts')
+        .get('/api/v1/accounts')
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -177,32 +153,12 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     it('it should get all the bank accounts', (done) => {
       chai
         .request(app)
-        .get('/api/v2/accounts')
+        .get('/api/v1/accounts')
         .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body.data).to.be.an('array');
-          done();
-        });
-    });
-
-    before('Sign in as an admin/staff ', (done) => {
-      const userCredential = {
-        email: 'Jennings_Heathcote57@gmail.com',
-        password: 'dele1989',
-      };
-
-      chai
-        .request(app)
-        .post('/api/v2/auth/signin')
-        .send(userCredential)
-        .end((err, res) => {
-          const { body } = res;
-          expect(body.status).to.be.equals(200);
-          if (!err) {
-            adminToken = body.data.token;
-          }
           done();
         });
     });
@@ -235,7 +191,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const accountNumber = 1449088;
       chai
         .request(app)
-        .get(`/api/v2/accounts/${accountNumber}`)
+        .get(`/api/v1/accounts/${accountNumber}`)
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -250,7 +206,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const accountNumber = 1448988;
       chai
         .request(app)
-        .get(`/api/v2/accounts/${accountNumber}`)
+        .get(`/api/v1/accounts/${accountNumber}`)
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -270,7 +226,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const accountNumber = 1448988;
       chai
         .request(app)
-        .get(`/api/v2/accounts/${accountNumber}`)
+        .get(`/api/v1/accounts/${accountNumber}`)
         .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -290,7 +246,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const accountNumber = 222567;
       chai
         .request(app)
-        .get(`/api/v2/accounts/${accountNumber}`)
+        .get(`/api/v1/accounts/${accountNumber}`)
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -305,7 +261,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const accountNumber = 2220107;
       chai
         .request(app)
-        .get(`/api/v2/accounts/${accountNumber}`)
+        .get(`/api/v1/accounts/${accountNumber}`)
         .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -326,7 +282,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const requestBody = { status: 'active' };
       chai
         .request(app)
-        .patch(`/api/v2/accounts/${accountNumber}`)
+        .patch(`/api/v1/accounts/${accountNumber}`)
         .set('token', userDbToken)
         .send(requestBody)
         .end((err, res) => {
@@ -343,7 +299,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const requestBody = { status: 'active' };
       chai
         .request(app)
-        .patch(`/api/v2/accounts/${accountNumber}`)
+        .patch(`/api/v1/accounts/${accountNumber}`)
         .set('token', adminDbToken)
         .send(requestBody)
         .end((err, res) => {
@@ -361,7 +317,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const requestBody = { status: 'dormant' };
       chai
         .request(app)
-        .patch(`/api/v2/accounts/${accountNumber}`)
+        .patch(`/api/v1/accounts/${accountNumber}`)
         .set('token', adminDbToken)
         .send(requestBody)
         .end((err, res) => {
@@ -378,7 +334,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const requestBody = { status: 'waiting' };
       chai
         .request(app)
-        .patch(`/api/v2/accounts/${accountNumber}`)
+        .patch(`/api/v1/accounts/${accountNumber}`)
         .set('token', adminDbToken)
         .send(requestBody)
         .end((err, res) => {
@@ -395,7 +351,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       const requestBody = { status: '' };
       chai
         .request(app)
-        .patch(`/api/v2/accounts/${accountNumber}`)
+        .patch(`/api/v1/accounts/${accountNumber}`)
         .set('token', adminDbToken)
         .send(requestBody)
         .end((err, res) => {
@@ -417,7 +373,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       chai
         .request(app)
         .delete(`/api/v1/accounts/${accountNumber}`)
-        .set('token', UserToken)
+        .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(403);
@@ -428,11 +384,11 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     });
 
     it('it should throw an error when account number is not found', (done) => {
-      const accountNumber = 211110872;
+      const accountNumber = 211110;
       chai
         .request(app)
         .delete(`/api/v1/accounts/${accountNumber}`)
-        .set('token', adminToken)
+        .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(404);

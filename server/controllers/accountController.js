@@ -161,24 +161,22 @@ class accountController {
     }
   }
 
-//delete a specified user account
-  static deleteBankAccount(req, res) {
+  static async deleteBankAccountDb(req, res) {
     try {
       const { accountNumber } = req.params;
-      const foundAccount = findByAccountNumber(accountData, Number(accountNumber));
-      if (foundAccount) {
-        const index = accountData.indexOf(foundAccount);
-        accountData.splice(index, 1);
-        const filePath = 'server/data/accounts.json';
-        updateData(filePath, accountData);
-        return res.status(200).json({
-          status: 200,
-          message: 'Account successfully deleted',
+      const foundAccountQueryString = 'SELECT * FROM accounts WHERE accountnumber = $1';
+      const foundAccount= await DB.query(foundAccountQueryString, [accountNumber]);
+      if (foundAccount.rows.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'account number doesn\'t exist',
         });
       }
-      return res.status(404).json({
-        status: 404,
-        error: 'account number doesn\'t exist',
+      const deleteAccountQueryString = 'DELETE FROM accounts WHERE accountnumber = $1 returning *';
+      const deleteAccount = await DB.query(deleteAccountQueryString, [accountNumber]);
+      return res.status(200).json({
+        status: 200,
+        message: 'Account successfully deleted',
       });
     } catch (e) {
       return res.status(500).json({
