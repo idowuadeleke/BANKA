@@ -11,11 +11,12 @@ const router = express.Router();
 
 const {
   createBankAccountdb, fetchAllAccountsDb, getAccountDb, changeStatusDb, deleteBankAccountDb,
-  getSpecificUserAccount } = accountController;
+  getSpecificUserAccount, getAccountTransactions } = accountController;
 
 // user signup route
 router.post('/accounts', verifyTokendb, createBankAccountdb);
 router.get('/accounts', verifyTokendb, permissionMiddleWareDb, fetchAllAccountsDb);
+router.get('/accounts/:accountNumber/transactions', verifyTokendb, permissionMiddleWareDb, getAccountTransactions);
 router.get('/accounts/:accountNumber', verifyTokendb, permissionMiddleWareDb, getAccountDb);
 router.patch('/accounts/:accountNumber', verifyTokendb, permissionMiddleWareDb, changeStatusDb);
 router.delete('/accounts/:accountNumber', verifyTokendb, permissionMiddleWareDb, deleteBankAccountDb);

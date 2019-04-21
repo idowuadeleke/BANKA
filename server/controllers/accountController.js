@@ -145,6 +145,41 @@ class accountController {
     }
   }
 
+  
+  // get a specific account transactions
+  static async getAccountTransactions(req, res) {
+    const { accountNumber } = req.params;
+    try {
+      const checkAccountQueryString = `select * FROM accounts WHERE accountnumber = $1 `;
+      const foundAccount = await DB.query(checkAccountQueryString, [accountNumber]);
+      if (foundAccount.rows.length === 0) {
+        return res.status(404).json({
+          status: 404,
+          error: 'account number doesn\'t exist',
+        });
+      }
+      const accountQueryString = `select id, accountnumber,createdon, type,oldbalance,
+       newbalance FROM transactions  WHERE accountnumber = $1`;
+      const accounts = await DB.query(accountQueryString, [accountNumber]);
+      if (accounts.rows.length > 0) {
+        return res.status(200).json({
+          status: 200,
+          data: accounts.rows,
+        });
+      }
+      // return error if no transaction made
+      return res.status(404).json({
+        status: 404,
+        error: 'no transaction exist for this account',
+      });
+    } catch (e) {
+      return res.status(500).json({
+        status: 500,
+        error: 'Sorry, something went wrong, try again',
+      });
+    }
+  }
+
   // get a specific bank account
   static async getSpecificUserAccount(req, res) {
     const { email } = req.params;

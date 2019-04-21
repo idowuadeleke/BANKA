@@ -331,6 +331,97 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
   });
 
   /**
+     * Test the GET /accounts/:accountNumber route
+     */
+    describe('GET /accounts/:accountNumber/transactions', () => {
+      it('it should throw an error if a client wants to get other user\'s transactions', (done) => {
+        const accountNumber = 1449088;
+        chai
+          .request(app)
+          .get(`/api/v1/accounts/${accountNumber}/transactions`)
+          .set('token', userDbToken)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(403);
+            expect(body).to.be.an('object');
+            expect(body.error).to.be.equals('only a staff has the permission to get users transaction details');
+            done();
+          });
+      });
+  
+      // it('it should GET a bank account  transaction details as a client if i own the account', (done) => {
+      //   const accountNumber = 1448988;
+      //   chai
+      //     .request(app)
+      //     .get(`/api/v1/accounts/${accountNumber}`)
+      //     .set('token', userDbToken)
+      //     .end((err, res) => {
+      //       const { body } = res;
+      //       expect(body.status).to.be.equals(200);
+      //       expect(body).to.be.an('object');
+      //       expect(body.data[0]).to.haveOwnProperty('accountnumber');
+      //       expect(body.data[0]).to.haveOwnProperty('firstname');
+      //       expect(body.data[0]).to.haveOwnProperty('lastname');
+      //       expect(body.data[0]).to.haveOwnProperty('email');
+      //       expect(body.data[0]).to.haveOwnProperty('type');
+      //       expect(body.data[0]).to.haveOwnProperty('balance');
+      //       done();
+      //     });
+      // });
+  
+      it('it should GET a bank account details as a staff', (done) => {
+        const accountNumber = 1448888;
+        chai
+          .request(app)
+          .get(`/api/v1/accounts/${accountNumber}/transactions`)
+          .set('token', adminDbToken)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(200);
+            expect(body).to.be.an('object');
+            expect(body.data[0]).to.haveOwnProperty('id');
+            expect(body.data[0]).to.haveOwnProperty('accountnumber');
+            expect(body.data[0]).to.haveOwnProperty('createdon');
+            expect(body.data[0]).to.haveOwnProperty('type');
+            expect(body.data[0]).to.haveOwnProperty('oldbalance');
+            expect(body.data[0]).to.haveOwnProperty('newbalance');
+            done();
+          });
+      });
+  
+      it('it should throw an error if account transaction doesnt exist', (done) => {
+        const accountNumber = 1448988;
+        chai
+          .request(app)
+          .get(`/api/v1/accounts/${accountNumber}/transactions`)
+          .set('token', adminDbToken)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(404);
+            expect(body).to.be.an('object');
+            expect(body.error).to.be.equals('no transaction exist for this account');
+            done();
+          });
+      });
+  
+      it('it should throw an error when account number is not found', (done) => {
+        const accountNumber = 9994;
+        chai
+          .request(app)
+          .get(`/api/v1/accounts/${accountNumber}/transactions`)
+          .set('token', adminDbToken)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(404);
+            expect(body).to.be.an('object');
+            expect(body.error).to.be.equals('account number doesn\'t exist');
+            done();
+          });
+      });
+    });
+  
+
+  /**
      * Test the GET /user/:email/accounts route
      */
     describe('GET /user/:email/accounts', () => {
