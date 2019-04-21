@@ -9,10 +9,11 @@ const { permissionMiddleWareDb } = checkPermission;
 
 const router = express.Router();
 
-const { debitUserAccountDb, creditUserAccountDb } = transactionController;
+const { debitUserAccountDb, creditUserAccountDb, getSpecificTransaction } = transactionController;
 
 router.post('/transactions/:accountNumber/debit', verifyTokendb, permissionMiddleWareDb, debitUserAccountDb);
 router.post('/transactions/:accountNumber/credit', verifyTokendb, permissionMiddleWareDb, creditUserAccountDb);
+router.get('/transactions/:transactionId', verifyTokendb, permissionMiddleWareDb, getSpecificTransaction);
 
 
 // expose router

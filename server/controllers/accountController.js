@@ -146,7 +146,7 @@ class accountController {
   }
 
   
-  // get a specific account transactions
+  // get a specific account transactions history
   static async getAccountTransactions(req, res) {
     const { accountNumber } = req.params;
     try {

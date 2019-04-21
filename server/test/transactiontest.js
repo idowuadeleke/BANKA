@@ -255,4 +255,95 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         });
     });
   });
+
+   /**
+     * Test the GET /accounts/:accountNumber route
+     */
+    describe('GET /transactions/:transactionId', () => {
+      it('it should throw an error if a client wants to get other user\'s account', (done) => {
+        const transactionId = 1;
+        chai
+          .request(app)
+          .get(`/api/v1/transactions/${transactionId}`)
+          .set('token', userTokenDb)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(403);
+            expect(body).to.be.an('object');
+            expect(body.error).to.be.equals('only a staff has the permission to get other users transaction details');
+            done();
+          });
+      });
+  
+      // it('it should GET a bank account details as a client if i own the account', (done) => {
+      //   const accountNumber = 1448988;
+      //   chai
+      //     .request(app)
+      //     .get(`/api/v1/accounts/${accountNumber}`)
+      //     .set('token', userDbToken)
+      //     .end((err, res) => {
+      //       const { body } = res;
+      //       expect(body.status).to.be.equals(200);
+      //       expect(body).to.be.an('object');
+      //       expect(body.data[0]).to.haveOwnProperty('accountnumber');
+      //       expect(body.data[0]).to.haveOwnProperty('firstname');
+      //       expect(body.data[0]).to.haveOwnProperty('lastname');
+      //       expect(body.data[0]).to.haveOwnProperty('email');
+      //       expect(body.data[0]).to.haveOwnProperty('type');
+      //       expect(body.data[0]).to.haveOwnProperty('balance');
+      //       done();
+      //     });
+      // });
+  
+      it('it should GET a bank account details as a staff', (done) => {
+        const transactionId = 1;
+        chai
+          .request(app)
+          .get(`/api/v1/transactions/${transactionId}`)
+          .set('token', cashierTokenDb)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(200);
+            expect(body).to.be.an('object');
+            expect(body.data[0]).to.haveOwnProperty('id');
+            expect(body.data[0]).to.haveOwnProperty('accountnumber');
+            expect(body.data[0]).to.haveOwnProperty('createdon');
+            expect(body.data[0]).to.haveOwnProperty('type');
+            expect(body.data[0]).to.haveOwnProperty('oldbalance');
+            expect(body.data[0]).to.haveOwnProperty('newbalance');
+            done();
+          });
+      });
+  
+  
+      it('it should throw an error if a transaction doesnt exist', (done) => {
+        const transactionId = 5000;
+        chai
+          .request(app)
+          .get(`/api/v1/transactions/${transactionId}`)
+          .set('token', cashierTokenDb)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(404);
+            expect(body).to.be.an('object');
+            expect(body.error).to.be.equals('no transaction exist for this id');
+            done();
+          });
+      });
+  
+      // it('it should throw an error when account number is not found', (done) => {
+      //   const accountNumber = 2220107;
+      //   chai
+      //     .request(app)
+      //     .get(`/api/v1/accounts/${accountNumber}`)
+      //     .set('token', adminDbToken)
+      //     .end((err, res) => {
+      //       const { body } = res;
+      //       expect(body.status).to.be.equals(404);
+      //       expect(body).to.be.an('object');
+      //       expect(body.error).to.be.equals('account number doesn\'t exist');
+      //       done();
+      //     });
+      // });
+    });
 });
