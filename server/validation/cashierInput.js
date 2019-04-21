@@ -1,7 +1,7 @@
 // import validator from 'validator';
 import isEmpty from './is_empty';
 
-//validate cashier input when crediting or debiting an account
+// validate cashier input when crediting or debiting an account
 const validateCashierInput = (data) => {
   const errors = {};
   const body = data;

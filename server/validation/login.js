@@ -1,7 +1,7 @@
 import validator from 'validator';
 import isEmpty from './is_empty';
 
-//validate log in input
+// validate log in input
 const validatesigninInput = (data) => {
   const errors = {};
   const body = data;

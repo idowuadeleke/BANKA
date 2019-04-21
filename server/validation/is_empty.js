@@ -1,4 +1,4 @@
-//check if value is empty
+// check if value is empty
 const isEmpty = val => val === undefined
   || val == null
   || val === ''

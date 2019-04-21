@@ -9,12 +9,10 @@ chai.use(chaiHttp);
 
 
 describe('Test transaction related endpoints - Debit and Credit an account', () => {
-  let cashierToken;
   let cashierTokenDb;
-  let UserToken;
   let userTokenDb;
 
-    /**
+  /**
      * Sign in as a cashier to generate user token before test
      */
   before('Sign in cashier to obtain auth token to be used in other account operations', (done) => {
@@ -36,7 +34,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
       });
   });
 
-    /**
+  /**
      * Sign in as a user to generate user token before test
      */
   before('Sign in user to obtain auth token for test', (done) => {

@@ -2,7 +2,7 @@ import DB from '../db/index';
 
 
 class checkPermissions {
-  //check and give reqired permmision to diffent users
+  // check and give reqired permmision to diffent users
   static async permissionMiddleWareDb(req, res, next) {
     if (!req.user) {
       return res.status(401).json({
@@ -25,14 +25,14 @@ class checkPermissions {
     }
     if ((route === '/accounts/:accountNumber') && method === 'get' && type !== 'staff') {
       const foundAccountQueryString = 'SELECT * FROM accounts WHERE accountnumber = $1';
-      const foundAccount= await DB.query(foundAccountQueryString, [accountNumber]);
+      const foundAccount = await DB.query(foundAccountQueryString, [accountNumber]);
       if (foundAccount.rows.length === 0) {
         return res.status(404).json({
           status: 404,
           error: 'account number doesn\'t exist',
         });
       }
-      //check if user wants to access his own or another client account
+      // check if user wants to access his own or another client account
       if (foundAccount.rows[0].owner !== Number(id)) {
         return res.status(403).json({
           status: 403,
