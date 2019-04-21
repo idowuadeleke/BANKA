@@ -1,7 +1,7 @@
 import validator from 'validator';
 import isEmpty from './is_empty';
 
-//validate input of user when creating new bank account
+// validate input of user when creating new bank account
 const validateAccountInput = (data) => {
   const errors = {};
   const body = data;

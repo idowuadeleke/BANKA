@@ -128,14 +128,12 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           done();
         });
     });
-
   });
 
   /**
    * Test the GET /accounts/ routes
    */
   describe('GET /accounts', () => {
-   
     it('it should throw permission error if user is not an admin', (done) => {
       chai
         .request(app)
@@ -159,6 +157,65 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body.data).to.be.an('array');
+          done();
+        });
+    });
+
+    it('it should get all active bank accounts', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/accounts')
+        .query({"status":"active"})
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(200);
+          expect(body.data).to.be.an('array');
+          done();
+        });
+    });
+
+    it('it should throw error if no dormant account has been created', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/accounts')
+        .query({"status":"dormant"})
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.equals(404);
+          expect(body.error).to.be.equals('no dormant account has been created');
+          done();
+        });
+    });
+
+    it('it should return error if status query is empty ', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/accounts')
+        .query({"status":""})
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.equals(400);
+          expect(body.errors.status).to.be.equals('status query field cannot be empty');
+          done();
+        });
+    });
+
+    it('it should return error if status query is invalid ', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/accounts')
+        .query({"status":"www"})
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.equals(400);
+          expect(body.errors.status).to.be.equals('status must be one of [dormant, active]');
           done();
         });
     });

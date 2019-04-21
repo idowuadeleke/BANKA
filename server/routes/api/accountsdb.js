@@ -9,7 +9,9 @@ const { permissionMiddleWareDb } = checkPermission;
 
 const router = express.Router();
 
-const { createBankAccountdb,fetchAllAccountsDb, getAccountDb, changeStatusDb, deleteBankAccountDb} = accountController;
+const {
+  createBankAccountdb, fetchAllAccountsDb, getAccountDb, changeStatusDb, deleteBankAccountDb,
+} = accountController;
 
 // user signup route
 router.post('/accounts', verifyTokendb, createBankAccountdb);

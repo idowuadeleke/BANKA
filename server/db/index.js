@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { Pool } from 'pg';
 
 dotenv.config();
-let connectionString 
+let connectionString;
 
 if (process.env.NODE_ENV === 'test') {
   connectionString = process.env.TEST;

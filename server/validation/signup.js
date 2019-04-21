@@ -1,7 +1,7 @@
 import validator from 'validator';
 import isEmpty from './is_empty';
 
-//validate signup input
+// validate signup input
 const validateSignUpInput = (data) => {
   const errors = {};
   const body = data;

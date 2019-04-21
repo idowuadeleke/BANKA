@@ -321,6 +321,5 @@ describe('Test user signin and signup', () => {
           done();
         });
     });
-
   });
 });
