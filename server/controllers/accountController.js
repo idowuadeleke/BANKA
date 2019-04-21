@@ -1,3 +1,4 @@
+import validator from 'validator';
 import validateAccountInput from '../validation/account';
 import validateUpdateStatus from '../validation/updatestatus';
 import validateAccountStatusInput from '../validation/accountquery';
@@ -143,6 +144,40 @@ class accountController {
       });
     }
   }
+
+  // get a specific bank account
+  static async getSpecificUserAccount(req, res) {
+    const { email } = req.params;
+    try {
+      if (!validator.isEmail(email)) {
+        return res.status(404).json({
+          status: 404,
+          error: 'enter a valid email address',
+        });
+      }
+      const accountQueryString = `select accounts.id, accounts.accountnumber, accounts.createdon,
+     accounts.status, accounts.type, accounts.balance from accounts LEFT JOIN users ON accounts.owner = users.id WHERE  
+      users.email = $1`;
+      const accounts = await DB.query(accountQueryString, [email]);
+      if (accounts.rows.length > 0) {
+        return res.status(200).json({
+          status: 200,
+          data: accounts.rows,
+        });
+      }
+      // return error if no acccount has been created
+      return res.status(404).json({
+        status: 404,
+        error: 'no account found with given email address',
+      });
+    } catch (e) {
+      return res.status(500).json({
+        status: 500,
+        error: 'Sorry, something went wrong, try again',
+      });
+    }
+  }
+
 
   // Activate or deactivate a user account status
   static async changeStatusDb(req, res) {
