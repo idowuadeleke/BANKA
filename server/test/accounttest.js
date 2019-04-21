@@ -331,6 +331,61 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
   });
 
   /**
+     * Test the GET /user/:email/accounts route
+     */
+    describe('GET /user/:email/accounts', () => {
+      it('it should throw an error if a client wants to get other user\'s account', (done) => {
+        const email = "idowu@andela.com";
+        chai
+          .request(app)
+          .get(`/api/v1/user/${email}/accounts`)
+          .set('token', userDbToken)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(403);
+            expect(body).to.be.an('object');
+            expect(body.error).to.be.equals('only a staff has the permission to get other user\'s account');
+            done();
+          });
+      });
+  
+      it('it should GET a bank account details as a staff', (done) => {
+        const email = "idowu@andela.com";
+        chai
+          .request(app)
+          .get(`/api/v1/user/${email}/accounts`)
+          .set('token', adminDbToken)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(200);
+            expect(body).to.be.an('object');
+            expect(body.data[0]).to.haveOwnProperty('accountnumber');
+            expect(body.data[0]).to.haveOwnProperty('createdon');
+            expect(body.data[0]).to.haveOwnProperty('status');
+            expect(body.data[0]).to.haveOwnProperty('type');
+            expect(body.data[0]).to.haveOwnProperty('balance');
+            done();
+          });
+      });
+  
+      it('it should throw an error when email address is not found', (done) => {
+        const email = "idow333u@andela.com";
+        chai
+          .request(app)
+          .get(`/api/v1/user/${email}/accounts`)
+          .set('token', adminDbToken)
+          .end((err, res) => {
+            const { body } = res;
+            expect(body.status).to.be.equals(404);
+            expect(body).to.be.an('object');
+            expect(body.error).to.be.equals('no account found with given email address');
+            done();
+          });
+      });
+    });
+  
+
+  /**
    * Test the PATCH /accounts/:accountNumber route
    */
   describe('PATCH /accounts/:accountNumber', () => {

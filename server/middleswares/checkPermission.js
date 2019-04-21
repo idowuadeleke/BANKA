@@ -23,6 +23,13 @@ class checkPermissions {
         error: 'only a staff has the permission to get all bank accounts',
       });
     }
+    //check if it is my account
+    if ((route === '/user/:email/accounts') && method === 'get' && type !== 'staff') {
+      return res.status(403).json({
+        status: 403,
+        error: 'only a staff has the permission to get other user\'s account',
+      });
+    }
     if ((route === '/accounts/:accountNumber') && method === 'get' && type !== 'staff') {
       const foundAccountQueryString = 'SELECT * FROM accounts WHERE accountnumber = $1';
       const foundAccount = await DB.query(foundAccountQueryString, [accountNumber]);
