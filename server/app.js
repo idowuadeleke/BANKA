@@ -1,5 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 import usersdb from './routes/api/usersdb';
 import accountsdb from './routes/api/accountsdb';
 import transactionsdb from './routes/api/transactionsdb';
@@ -7,10 +9,16 @@ import transactionsdb from './routes/api/transactionsdb';
 // Initialize express app
 const app = express();
 
+const swaggerDocument = YAML.load(`${__dirname}/../swagger.yaml`);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // body-parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
+
+
 
 // Home page route
 app.get('/', (req, res) => res.status(200).json({
