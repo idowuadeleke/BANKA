@@ -361,27 +361,6 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
-    // it('it should GET a bank account  transaction details as a client if i
-    // own the account', (done) => {
-    //   const accountNumber = 1448988;
-    //   chai
-    //     .request(app)
-    //     .get(`/api/v1/accounts/${accountNumber}`)
-    //     .set('token', userDbToken)
-    //     .end((err, res) => {
-    //       const { body } = res;
-    //       expect(body.status).to.be.equals(200);
-    //       expect(body).to.be.an('object');
-    //       expect(body.data[0]).to.haveOwnProperty('accountnumber');
-    //       expect(body.data[0]).to.haveOwnProperty('firstname');
-    //       expect(body.data[0]).to.haveOwnProperty('lastname');
-    //       expect(body.data[0]).to.haveOwnProperty('email');
-    //       expect(body.data[0]).to.haveOwnProperty('type');
-    //       expect(body.data[0]).to.haveOwnProperty('balance');
-    //       done();
-    //     });
-    // });
-
     it('it should GET a bank account details as a staff', (done) => {
       const accountNumber = 1448888;
       chai
@@ -486,28 +465,6 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           done();
         });
     });
-
-
-    // it('it should GET a bank account  transaction details as a client if i
-    // own the account', (done) => {
-    //   const accountNumber = 1448988;
-    //   chai
-    //     .request(app)
-    //     .get(`/api/v1/accounts/${accountNumber}`)
-    //     .set('token', userDbToken)
-    //     .end((err, res) => {
-    //       const { body } = res;
-    //       expect(body.status).to.be.equals(200);
-    //       expect(body).to.be.an('object');
-    //       expect(body.data[0]).to.haveOwnProperty('accountnumber');
-    //       expect(body.data[0]).to.haveOwnProperty('firstname');
-    //       expect(body.data[0]).to.haveOwnProperty('lastname');
-    //       expect(body.data[0]).to.haveOwnProperty('email');
-    //       expect(body.data[0]).to.haveOwnProperty('type');
-    //       expect(body.data[0]).to.haveOwnProperty('balance');
-    //       done();
-    //     });
-    // });
 
     it('it should throw an error when email address is not found', (done) => {
       const email = 'idow333u@andela.com';
