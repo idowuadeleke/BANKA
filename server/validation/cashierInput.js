@@ -1,4 +1,4 @@
-// import validator from 'validator';
+import validator from 'validator';
 import isEmpty from './is_empty';
 
 // validate cashier input when crediting or debiting an account
@@ -8,8 +8,10 @@ const validateCashierInput = (data) => {
 
   body.amount = !isEmpty(body.amount) ? body.amount : '';
 
-  if (!(typeof (body.amount) === 'number')) {
-    errors.amount = 'amount field is required and must be a number';
+  if (Number.isNaN(Number(body.amount))) {
+    errors.amount = 'amount field is must be a number';
+  } else if (validator.isEmpty(body.amount.toString())) {
+    errors.amount = 'amount field is required';
   }
 
   return {

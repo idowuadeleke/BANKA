@@ -19,7 +19,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-
 // Home page route
 app.get('/', (req, res) => res.status(200).json({
   status: 200,
