@@ -47,7 +47,7 @@ const validateSignUpInput = (data) => {
 
   if (validator.isEmpty(body.type)) {
     errors.type = 'Type field is required';
-  } else if (!(['client', 'staff'].includes(body.type))) {
+  } else if (!(['client', 'staff'].includes(body.type.toLowerCase()))) {
     errors.type = 'Type must either be client or staff';
   }
 

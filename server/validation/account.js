@@ -9,14 +9,14 @@ const validateAccountInput = (data) => {
   body.type = !isEmpty(body.type) ? body.type : '';
   body.balance = !isEmpty(body.balance) ? body.balance : '';
 
-  if (!(typeof (body.balance) === 'number')) {
-    errors.balance = 'balance field is required and must be a number';
-  }
-
   if (validator.isEmpty(body.type)) {
     errors.type = 'Type field is required';
-  } else if (!(['savings', 'current'].includes(body.type))) {
+  } else if (!(['savings', 'current'].includes(body.type.toLowerCase()))) {
     errors.type = 'Type must be one of [savings, current]';
+  } else if (validator.isEmpty(body.balance.toString())) {
+    errors.balance = 'balance field is required';
+  } else if (Number.isNaN(Number(body.balance))) {
+    errors.balance = 'balance field is must be a number';
   }
 
   return {

@@ -2,6 +2,7 @@ import validator from 'validator';
 import validateAccountInput from '../validation/account';
 import validateUpdateStatus from '../validation/updatestatus';
 import validateAccountStatusInput from '../validation/accountquery';
+import validateParam from '../validation/checkparam';
 import DB from '../db/index';
 
 
@@ -27,8 +28,8 @@ class accountController {
       const user = await DB.query(queryString, [id]);
       if (user) {
         // check if user already has a bank account
-        const queryString = 'SELECT * FROM accounts WHERE owner = $1';
-        const account = await DB.query(queryString, [id]);
+        const accountQueryString = 'SELECT * FROM accounts WHERE owner = $1';
+        const account = await DB.query(accountQueryString, [id]);
         if (account.rows.length !== 0) {
           return res.status(400).json({
             status: 400,
@@ -74,14 +75,14 @@ class accountController {
     try {
       let allAccounts;
       let allAccountQueryString;
-      let statustype 
+      let statustype;
 
       if (req.query.status === undefined) {
         allAccountQueryString = `select accounts.id, accounts.accountnumber, accounts.createdon,
-        accounts.status, accounts.type, accounts.balance,users.firstname,users.lastname,
-         users.email from accounts LEFT JOIN users ON accounts.owner = users.id`;
+        accounts.status, accounts.type, accounts.balance,users.email from accounts
+         LEFT JOIN users ON accounts.owner = users.id`;
         allAccounts = await DB.query(allAccountQueryString, []);
-        statustype = ""
+        statustype = '';
       } else {
         // check if user pass valid and required data
         const { errors, isValid } = validateAccountStatusInput(req.query);
@@ -93,10 +94,10 @@ class accountController {
         }
         const { status } = req.query;
         allAccountQueryString = `select accounts.id, accounts.accountnumber, accounts.createdon,
-        accounts.status, accounts.type, accounts.balance,users.firstname,users.lastname,
-        users.email from accounts LEFT JOIN users ON accounts.owner = users.id WHERE accounts.status = $1`;
+        accounts.status, accounts.type, accounts.balance,users.email from accounts
+         LEFT JOIN users ON accounts.owner = users.id WHERE accounts.status = $1`;
         allAccounts = await DB.query(allAccountQueryString, [status]);
-        statustype = status;  
+        statustype = status;
       }
       if (allAccounts.rows.length > 0) {
         return res.status(200).json({
@@ -119,11 +120,19 @@ class accountController {
 
   // get a specific bank account
   static async getAccountDb(req, res) {
-    const { accountNumber } = req.params;
     try {
+      const { errors, isValid } = validateParam(req.params, 'account number');
+      // check if user inputs are valid
+      if (!isValid) {
+        return res.status(400).json({
+          status: 400,
+          errors,
+        });
+      }
+      const { accountNumber } = req.params;
       const accountQueryString = `select accounts.id, accounts.accountnumber, accounts.createdon,
-     accounts.status, accounts.type, accounts.balance,users.firstname,users.lastname,
-      users.email from accounts LEFT JOIN users ON accounts.owner = users.id WHERE  
+     accounts.status, accounts.type, accounts.balance,users.email
+      from accounts LEFT JOIN users ON accounts.owner = users.id WHERE  
       accounts.accountnumber = $1`;
       const accounts = await DB.query(accountQueryString, [accountNumber]);
       if (accounts.rows.length > 0) {
@@ -145,12 +154,20 @@ class accountController {
     }
   }
 
-  
+
   // get a specific account transactions history
   static async getAccountTransactions(req, res) {
-    const { accountNumber } = req.params;
     try {
-      const checkAccountQueryString = `select * FROM accounts WHERE accountnumber = $1 `;
+      const { errors, isValid } = validateParam(req.params, 'account number');
+      // check if user inputs are valid
+      if (!isValid) {
+        return res.status(400).json({
+          status: 400,
+          errors,
+        });
+      }
+      const { accountNumber } = req.params;
+      const checkAccountQueryString = 'select * FROM accounts WHERE accountnumber = $1 ';
       const foundAccount = await DB.query(checkAccountQueryString, [accountNumber]);
       if (foundAccount.rows.length === 0) {
         return res.status(404).json({
@@ -158,7 +175,7 @@ class accountController {
           error: 'account number doesn\'t exist',
         });
       }
-      const accountQueryString = `select id, accountnumber,createdon, type,oldbalance,
+      const accountQueryString = `select id, accountnumber,createdon, type,amount, oldbalance,
        newbalance FROM transactions  WHERE accountnumber = $1`;
       const accounts = await DB.query(accountQueryString, [accountNumber]);
       if (accounts.rows.length > 0) {
@@ -185,8 +202,8 @@ class accountController {
     const { email } = req.params;
     try {
       if (!validator.isEmail(email)) {
-        return res.status(404).json({
-          status: 404,
+        return res.status(400).json({
+          status: 400,
           error: 'enter a valid email address',
         });
       }
@@ -197,7 +214,7 @@ class accountController {
       if (accounts.rows.length > 0) {
         return res.status(200).json({
           status: 200,
-          data: accounts.rows,
+          accounts: accounts.rows,
         });
       }
       // return error if no acccount has been created
@@ -217,6 +234,14 @@ class accountController {
   // Activate or deactivate a user account status
   static async changeStatusDb(req, res) {
     try {
+      const validate = validateParam(req.params, 'account number');
+      // check if user inputs are valid
+      if (!validate.isValid) {
+        return res.status(400).json({
+          status: 400,
+          errors: validate.errors,
+        });
+      }
       const { accountNumber } = req.params;
       const { errors, isValid } = validateUpdateStatus(req.body);
       // check if user inputs are valid
@@ -255,6 +280,14 @@ class accountController {
 
   static async deleteBankAccountDb(req, res) {
     try {
+      const { errors, isValid } = validateParam(req.params, 'account number');
+      // check if user inputs are valid
+      if (!isValid) {
+        return res.status(400).json({
+          status: 400,
+          errors,
+        });
+      }
       const { accountNumber } = req.params;
       const foundAccountQueryString = 'SELECT * FROM accounts WHERE accountnumber = $1';
       const foundAccount = await DB.query(foundAccountQueryString, [accountNumber]);
@@ -265,7 +298,7 @@ class accountController {
         });
       }
       const deleteAccountQueryString = 'DELETE FROM accounts WHERE accountnumber = $1 returning *';
-      const deleteAccount = await DB.query(deleteAccountQueryString, [accountNumber]);
+      await DB.query(deleteAccountQueryString, [accountNumber]);
       return res.status(200).json({
         status: 200,
         message: 'Account successfully deleted',

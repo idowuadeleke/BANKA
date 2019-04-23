@@ -104,7 +104,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
-          expect(body.errors.balance).to.be.equals('balance field is required and must be a number');
+          expect(body.errors.balance).to.be.equals('balance field is required');
           done();
         });
     });
@@ -124,7 +124,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
-          expect(body.errors.balance).to.be.equals('balance field is required and must be a number');
+          expect(body.errors.balance).to.be.equals('balance field is must be a number');
           done();
         });
     });
@@ -165,7 +165,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       chai
         .request(app)
         .get('/api/v1/accounts')
-        .query({"status":"active"})
+        .query({ status: 'active' })
         .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -179,7 +179,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       chai
         .request(app)
         .get('/api/v1/accounts')
-        .query({"status":"dormant"})
+        .query({ status: 'dormant' })
         .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -194,7 +194,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       chai
         .request(app)
         .get('/api/v1/accounts')
-        .query({"status":""})
+        .query({ status: '' })
         .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -209,7 +209,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       chai
         .request(app)
         .get('/api/v1/accounts')
-        .query({"status":"www"})
+        .query({ status: 'www' })
         .set('token', adminDbToken)
         .end((err, res) => {
           const { body } = res;
@@ -270,8 +270,6 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
           expect(body.data[0]).to.haveOwnProperty('accountnumber');
-          expect(body.data[0]).to.haveOwnProperty('firstname');
-          expect(body.data[0]).to.haveOwnProperty('lastname');
           expect(body.data[0]).to.haveOwnProperty('email');
           expect(body.data[0]).to.haveOwnProperty('type');
           expect(body.data[0]).to.haveOwnProperty('balance');
@@ -290,8 +288,6 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
           expect(body.data[0]).to.haveOwnProperty('accountnumber');
-          expect(body.data[0]).to.haveOwnProperty('firstname');
-          expect(body.data[0]).to.haveOwnProperty('lastname');
           expect(body.data[0]).to.haveOwnProperty('email');
           expect(body.data[0]).to.haveOwnProperty('type');
           expect(body.data[0]).to.haveOwnProperty('balance');
@@ -314,6 +310,22 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
+    it('it should throw an error if a client puts in an invalid account number', (done) => {
+      const accountNumber = '111rrr';
+      chai
+        .request(app)
+        .get(`/api/v1/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('account number must be an integer');
+          done();
+        });
+    });
+
+
     it('it should throw an error when account number is not found', (done) => {
       const accountNumber = 2220107;
       chai
@@ -333,169 +345,200 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
   /**
      * Test the GET /accounts/:accountNumber route
      */
-    describe('GET /accounts/:accountNumber/transactions', () => {
-      it('it should throw an error if a client wants to get other user\'s transactions', (done) => {
-        const accountNumber = 1449088;
-        chai
-          .request(app)
-          .get(`/api/v1/accounts/${accountNumber}/transactions`)
-          .set('token', userDbToken)
-          .end((err, res) => {
-            const { body } = res;
-            expect(body.status).to.be.equals(403);
-            expect(body).to.be.an('object');
-            expect(body.error).to.be.equals('only a staff has the permission to get other users transaction details');
-            done();
-          });
-      });
-  
-      // it('it should GET a bank account  transaction details as a client if i own the account', (done) => {
-      //   const accountNumber = 1448988;
-      //   chai
-      //     .request(app)
-      //     .get(`/api/v1/accounts/${accountNumber}`)
-      //     .set('token', userDbToken)
-      //     .end((err, res) => {
-      //       const { body } = res;
-      //       expect(body.status).to.be.equals(200);
-      //       expect(body).to.be.an('object');
-      //       expect(body.data[0]).to.haveOwnProperty('accountnumber');
-      //       expect(body.data[0]).to.haveOwnProperty('firstname');
-      //       expect(body.data[0]).to.haveOwnProperty('lastname');
-      //       expect(body.data[0]).to.haveOwnProperty('email');
-      //       expect(body.data[0]).to.haveOwnProperty('type');
-      //       expect(body.data[0]).to.haveOwnProperty('balance');
-      //       done();
-      //     });
-      // });
-  
-      it('it should GET a bank account details as a staff', (done) => {
-        const accountNumber = 1448888;
-        chai
-          .request(app)
-          .get(`/api/v1/accounts/${accountNumber}/transactions`)
-          .set('token', adminDbToken)
-          .end((err, res) => {
-            const { body } = res;
-            expect(body.status).to.be.equals(200);
-            expect(body).to.be.an('object');
-            expect(body.data[0]).to.haveOwnProperty('id');
-            expect(body.data[0]).to.haveOwnProperty('accountnumber');
-            expect(body.data[0]).to.haveOwnProperty('createdon');
-            expect(body.data[0]).to.haveOwnProperty('type');
-            expect(body.data[0]).to.haveOwnProperty('oldbalance');
-            expect(body.data[0]).to.haveOwnProperty('newbalance');
-            done();
-          });
-      });
-  
-      it('it should throw an error if account transaction doesnt exist', (done) => {
-        const accountNumber = 1448988;
-        chai
-          .request(app)
-          .get(`/api/v1/accounts/${accountNumber}/transactions`)
-          .set('token', adminDbToken)
-          .end((err, res) => {
-            const { body } = res;
-            expect(body.status).to.be.equals(404);
-            expect(body).to.be.an('object');
-            expect(body.error).to.be.equals('no transaction exist for this account');
-            done();
-          });
-      });
-  
-      it('it should throw an error when account number is not found', (done) => {
-        const accountNumber = 9994;
-        chai
-          .request(app)
-          .get(`/api/v1/accounts/${accountNumber}/transactions`)
-          .set('token', adminDbToken)
-          .end((err, res) => {
-            const { body } = res;
-            expect(body.status).to.be.equals(404);
-            expect(body).to.be.an('object');
-            expect(body.error).to.be.equals('account number doesn\'t exist');
-            done();
-          });
-      });
+  describe('GET /accounts/:accountNumber/transactions', () => {
+    it('it should throw an error if a client wants to get other user\'s transactions', (done) => {
+      const accountNumber = 1449088;
+      chai
+        .request(app)
+        .get(`/api/v1/accounts/${accountNumber}/transactions`)
+        .set('token', userDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(403);
+          expect(body).to.be.an('object');
+          expect(body.error).to.be.equals('only a staff has the permission to get other users transaction details');
+          done();
+        });
     });
-  
+
+    // it('it should GET a bank account  transaction details as a client if i
+    // own the account', (done) => {
+    //   const accountNumber = 1448988;
+    //   chai
+    //     .request(app)
+    //     .get(`/api/v1/accounts/${accountNumber}`)
+    //     .set('token', userDbToken)
+    //     .end((err, res) => {
+    //       const { body } = res;
+    //       expect(body.status).to.be.equals(200);
+    //       expect(body).to.be.an('object');
+    //       expect(body.data[0]).to.haveOwnProperty('accountnumber');
+    //       expect(body.data[0]).to.haveOwnProperty('firstname');
+    //       expect(body.data[0]).to.haveOwnProperty('lastname');
+    //       expect(body.data[0]).to.haveOwnProperty('email');
+    //       expect(body.data[0]).to.haveOwnProperty('type');
+    //       expect(body.data[0]).to.haveOwnProperty('balance');
+    //       done();
+    //     });
+    // });
+
+    it('it should GET a bank account details as a staff', (done) => {
+      const accountNumber = 1448888;
+      chai
+        .request(app)
+        .get(`/api/v1/accounts/${accountNumber}/transactions`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(200);
+          expect(body).to.be.an('object');
+          expect(body.data[0]).to.haveOwnProperty('id');
+          expect(body.data[0]).to.haveOwnProperty('accountnumber');
+          expect(body.data[0]).to.haveOwnProperty('createdon');
+          expect(body.data[0]).to.haveOwnProperty('type');
+          expect(body.data[0]).to.haveOwnProperty('oldbalance');
+          expect(body.data[0]).to.haveOwnProperty('newbalance');
+          done();
+        });
+    });
+
+    it('it should throw an error if account transaction doesnt exist', (done) => {
+      const accountNumber = 1448988;
+      chai
+        .request(app)
+        .get(`/api/v1/accounts/${accountNumber}/transactions`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(404);
+          expect(body).to.be.an('object');
+          expect(body.error).to.be.equals('no transaction exist for this account');
+          done();
+        });
+    });
+
+    it('it should throw an error if account number is invalid', (done) => {
+      const accountNumber = '1448988yyy';
+      chai
+        .request(app)
+        .get(`/api/v1/accounts/${accountNumber}/transactions`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('account number must be an integer');
+          done();
+        });
+    });
+
+    it('it should throw an error when account number is not found', (done) => {
+      const accountNumber = 9994;
+      chai
+        .request(app)
+        .get(`/api/v1/accounts/${accountNumber}/transactions`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(404);
+          expect(body).to.be.an('object');
+          expect(body.error).to.be.equals('account number doesn\'t exist');
+          done();
+        });
+    });
+  });
+
 
   /**
      * Test the GET /user/:email/accounts route
      */
-    describe('GET /user/:email/accounts', () => {
-      it('it should throw an error if a client wants to get other user\'s account', (done) => {
-        const email = "idowu@andela.com";
-        chai
-          .request(app)
-          .get(`/api/v1/user/${email}/accounts`)
-          .set('token', userDbToken)
-          .end((err, res) => {
-            const { body } = res;
-            expect(body.status).to.be.equals(403);
-            expect(body).to.be.an('object');
-            expect(body.error).to.be.equals('only a staff has the permission to get other user\'s account');
-            done();
-          });
-      });
-  
-      it('it should GET a bank account details as a staff', (done) => {
-        const email = "idowu@andela.com";
-        chai
-          .request(app)
-          .get(`/api/v1/user/${email}/accounts`)
-          .set('token', adminDbToken)
-          .end((err, res) => {
-            const { body } = res;
-            expect(body.status).to.be.equals(200);
-            expect(body).to.be.an('object');
-            expect(body.data[0]).to.haveOwnProperty('accountnumber');
-            expect(body.data[0]).to.haveOwnProperty('createdon');
-            expect(body.data[0]).to.haveOwnProperty('status');
-            expect(body.data[0]).to.haveOwnProperty('type');
-            expect(body.data[0]).to.haveOwnProperty('balance');
-            done();
-          });
-      });
-
-      
-      // it('it should GET a bank account  transaction details as a client if i own the account', (done) => {
-      //   const accountNumber = 1448988;
-      //   chai
-      //     .request(app)
-      //     .get(`/api/v1/accounts/${accountNumber}`)
-      //     .set('token', userDbToken)
-      //     .end((err, res) => {
-      //       const { body } = res;
-      //       expect(body.status).to.be.equals(200);
-      //       expect(body).to.be.an('object');
-      //       expect(body.data[0]).to.haveOwnProperty('accountnumber');
-      //       expect(body.data[0]).to.haveOwnProperty('firstname');
-      //       expect(body.data[0]).to.haveOwnProperty('lastname');
-      //       expect(body.data[0]).to.haveOwnProperty('email');
-      //       expect(body.data[0]).to.haveOwnProperty('type');
-      //       expect(body.data[0]).to.haveOwnProperty('balance');
-      //       done();
-      //     });
-      // });
-  
-      it('it should throw an error when email address is not found', (done) => {
-        const email = "idow333u@andela.com";
-        chai
-          .request(app)
-          .get(`/api/v1/user/${email}/accounts`)
-          .set('token', adminDbToken)
-          .end((err, res) => {
-            const { body } = res;
-            expect(body.status).to.be.equals(404);
-            expect(body).to.be.an('object');
-            expect(body.error).to.be.equals('no account found with given email address');
-            done();
-          });
-      });
+  describe('GET /user/:email/accounts', () => {
+    it('it should throw an error if a client wants to get other user\'s account', (done) => {
+      const email = 'solamatt@gmail.com';
+      chai
+        .request(app)
+        .get(`/api/v1/user/${email}/accounts`)
+        .set('token', userDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(403);
+          expect(body).to.be.an('object');
+          expect(body.error).to.be.equals('only a staff has the permission to get other user\'s account');
+          done();
+        });
     });
-  
+
+    it('it should GET a bank account details as a staff', (done) => {
+      const email = 'idowu@andela.com';
+      chai
+        .request(app)
+        .get(`/api/v1/user/${email}/accounts`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(200);
+          expect(body).to.be.an('object');
+          expect(body.accounts[0]).to.haveOwnProperty('accountnumber');
+          expect(body.accounts[0]).to.haveOwnProperty('createdon');
+          expect(body.accounts[0]).to.haveOwnProperty('status');
+          expect(body.accounts[0]).to.haveOwnProperty('type');
+          expect(body.accounts[0]).to.haveOwnProperty('balance');
+          done();
+        });
+    });
+
+
+    // it('it should GET a bank account  transaction details as a client if i
+    // own the account', (done) => {
+    //   const accountNumber = 1448988;
+    //   chai
+    //     .request(app)
+    //     .get(`/api/v1/accounts/${accountNumber}`)
+    //     .set('token', userDbToken)
+    //     .end((err, res) => {
+    //       const { body } = res;
+    //       expect(body.status).to.be.equals(200);
+    //       expect(body).to.be.an('object');
+    //       expect(body.data[0]).to.haveOwnProperty('accountnumber');
+    //       expect(body.data[0]).to.haveOwnProperty('firstname');
+    //       expect(body.data[0]).to.haveOwnProperty('lastname');
+    //       expect(body.data[0]).to.haveOwnProperty('email');
+    //       expect(body.data[0]).to.haveOwnProperty('type');
+    //       expect(body.data[0]).to.haveOwnProperty('balance');
+    //       done();
+    //     });
+    // });
+
+    it('it should throw an error when email address is not found', (done) => {
+      const email = 'idow333u@andela.com';
+      chai
+        .request(app)
+        .get(`/api/v1/user/${email}/accounts`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(404);
+          expect(body).to.be.an('object');
+          expect(body.error).to.be.equals('no account found with given email address');
+          done();
+        });
+    });
+
+    it('it should throw an error when email address is invalid', (done) => {
+      const email = 'idow333ucom';
+      chai
+        .request(app)
+        .get(`/api/v1/user/${email}/accounts`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.error).to.be.equals('enter a valid email address');
+          done();
+        });
+    });
+  });
 
   /**
    * Test the PATCH /accounts/:accountNumber route
@@ -570,6 +613,23 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
+    it('it should throw error when account number is invalid', (done) => {
+      const accountNumber = '22201jjj';
+      const requestBody = { status: 'active' };
+      chai
+        .request(app)
+        .patch(`/api/v1/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
+        .send(requestBody)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('account number must be an integer');
+          done();
+        });
+    });
+
     it('it should throw error when request body status is empty', (done) => {
       const accountNumber = 222010872;
       const requestBody = { status: '' };
@@ -618,6 +678,21 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body.status).to.be.equals(404);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('account number doesn\'t exist');
+          done();
+        });
+    });
+
+    it('it should throw an error when account number is not valid', (done) => {
+      const accountNumber = '211110jj';
+      chai
+        .request(app)
+        .delete(`/api/v1/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });
     });

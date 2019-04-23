@@ -1,11 +1,19 @@
 import validateCashierInput from '../validation/cashierInput';
 import DB from '../db/index';
-
+import validateParam from '../validation/checkparam';
 
 class transactionController {
   // debit user account
   static async debitUserAccountDb(req, res) {
     try {
+      const validate = validateParam(req.params, 'account number');
+      // check if user inputs are valid
+      if (!validate.isValid) {
+        return res.status(400).json({
+          status: 400,
+          errors: validate.errors,
+        });
+      }
       const { id } = req.user;
       const { accountNumber } = req.params;
       // check if user pass valid and required data
@@ -62,6 +70,14 @@ class transactionController {
 
   static async creditUserAccountDb(req, res) {
     try {
+      const validate = validateParam(req.params, 'account number');
+      // check if user inputs are valid
+      if (!validate.isValid) {
+        return res.status(400).json({
+          status: 400,
+          errors: validate.errors,
+        });
+      }
       const { id } = req.user;
       const { accountNumber } = req.params;
       // check if user pass valid and required data
@@ -112,9 +128,17 @@ class transactionController {
 
   // get a specific account transactions
   static async getSpecificTransaction(req, res) {
-    const { transactionId } = req.params;
     try {
-      const accountQueryString = `select id, accountnumber,createdon, type,oldbalance,
+      const validate = validateParam(req.params, 'transaction id');
+      // check if user inputs are valid
+      if (!validate.isValid) {
+        return res.status(400).json({
+          status: 400,
+          errors: validate.errors,
+        });
+      }
+      const { transactionId } = req.params;
+      const accountQueryString = `select id, accountnumber,createdon, type,amount, oldbalance,
        newbalance FROM transactions  WHERE id = $1`;
       const accounts = await DB.query(accountQueryString, [transactionId]);
       if (accounts.rows.length > 0) {
@@ -135,7 +159,5 @@ class transactionController {
       });
     }
   }
-
-  
 }
 export default transactionController;

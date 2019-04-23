@@ -9,7 +9,7 @@ const validateAccountStatusInput = (data) => {
 
   if (validator.isEmpty(body.status)) {
     errors.status = 'status query field cannot be empty';
-  } else if (!(['dormant', 'active'].includes(body.status))) {
+  } else if (!(['dormant', 'active'].includes(body.status.toLowerCase()))) {
     errors.status = 'status must be one of [dormant, active]';
   }
 
