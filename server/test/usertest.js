@@ -55,6 +55,78 @@ describe('Test user signin and signup', () => {
         });
     });
 
+    it('Should return an error if signup firstname and last name contains symbol', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          firstname: "@$%jdd",
+          lastname: "@$%jdd",
+          email: faker.internet.email(),
+          password: 'dele1989',
+          type: 'client',
+          isAdmin: false,
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.a('object');
+
+          done();
+        });
+    });
+
+    it('Should return an error if signup firstname and last is less than 2 characters', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          firstname: "d",
+          lastname: "d",
+          email: faker.internet.email(),
+          password: 'dele1989',
+          type: 'client',
+          isAdmin: false,
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.a('object');
+
+          done();
+        });
+    });
+
+    it('Should return an error if email address is invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          firstname: "defi",
+          lastname: "defi",
+          email: "andela",
+          password: 'de',
+          type: 'client4',
+          isAdmin: false,
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.a('object');
+
+          done();
+        });
+    });
+
     it('should return an error if email already exists', (done) => {
       chai
         .request(app)
@@ -301,6 +373,26 @@ describe('Test user signin and signup', () => {
           expect(body.status).to.be.equal(401);
           expect(body.error).to.be.a('string');
           expect(body.error).to.be.equals('Invalid Email/Password');
+          done();
+        });
+    });
+
+    it('Should return an error if signin email is invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signin')
+        .send({
+          email: 'idowu',
+          password: 'wroneegpassword',
+        })
+        .end((err, res) => {
+          if (err) done();
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.an('object');
+          expect(body.errors.email).to.be.equals('Email is invalid');
           done();
         });
     });

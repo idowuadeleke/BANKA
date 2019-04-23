@@ -1,6 +1,4 @@
 import bcrypt from 'bcryptjs';
-import validateSignUpInput from '../validation/signup';
-import validatesigninInput from '../validation/signin';
 import Auth from '../middleswares/is-Auth';
 import DB from '../db/index';
 
@@ -17,15 +15,6 @@ class UserController {
 
   static async createAccountDb(req, res) {
     // check if user pass valid and required data
-    const { errors, isValid } = validateSignUpInput(req.body);
-    // check if user inputs are valid
-    if (!isValid) {
-      return res.status(400).json({
-        status: 400,
-        errors,
-      });
-    }
-
     const { body } = req;
     const salt = genSaltSync(10);
     const hash = hashSync(body.password, salt);
@@ -68,19 +57,8 @@ class UserController {
    * @param {*} res
    */
   static async signinDb(req, res) {
-    // check if user pass valid and required data
-    const { errors, isValid } = validatesigninInput(req.body);
     const { email, password } = req.body;
     const queryString = 'SELECT * FROM users WHERE email = $1';
-
-    // check if user inputs are valid
-    if (!isValid) {
-      return res.status(400).json({
-        status: 400,
-        errors,
-      });
-    }
-
     try {
       // Select all user record where email is equal db email
       const { rows } = await DB.query(queryString, [email]);
