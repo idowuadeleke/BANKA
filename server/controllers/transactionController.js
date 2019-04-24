@@ -1,7 +1,7 @@
 import DB from '../db/index';
-import helper from '../helper/helper';
+import EmailNotificationMarshal from '../helper/emailNotification';
 
-const { sendEmail } = helper;
+const { sendEmail } = EmailNotificationMarshal;
 
 class transactionController {
   // debit user account

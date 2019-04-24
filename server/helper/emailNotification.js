@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-class Helper {
+class EmailNotificationMarshal {
   static async sendEmail(receiver, data, req, res) {
     try {
       // create reusable transporter object using the default SMTP transport
@@ -16,7 +16,7 @@ class Helper {
       await transporter.sendMail({
         from: '"BANKA" <noreply.banka@gmail.com>',
         to: receiver,
-        subject: `${data.type} alert notification`,
+        subject: `${data.type} notification`,
         html: ` Hi,
                 <p>Your account ${data.accountnumber} has been ${data.type}ed with ₦${data.amount}.<p>
                 <p> Balance : ₦${data.newbalance} </p>`,
@@ -32,4 +32,4 @@ class Helper {
   }
 }
 
-export default Helper;
+export default EmailNotificationMarshal;
