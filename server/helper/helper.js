@@ -17,7 +17,7 @@ class Helper {
         from: '"BANKA" <noreply.banka@gmail.com>',
         to: receiver,
         subject: `${data.type} alert notification`,
-        html: ` Hi <b>Idowu,</b>
+        html: ` Hi,
                 <p>Your account ${data.accountnumber} has been ${data.type}ed with ₦${data.amount}.<p>
                 <p> Balance : ₦${data.newbalance} </p>`,
       });
