@@ -60,8 +60,8 @@ describe('Test user signin and signup', () => {
         .request(app)
         .post('/api/v1/auth/signup')
         .send({
-          firstname: "@$%jdd",
-          lastname: "@$%jdd",
+          firstname: '@$%jdd',
+          lastname: '@$%jdd',
           email: faker.internet.email(),
           password: 'dele1989',
           type: 'client',
@@ -84,8 +84,8 @@ describe('Test user signin and signup', () => {
         .request(app)
         .post('/api/v1/auth/signup')
         .send({
-          firstname: "d",
-          lastname: "d",
+          firstname: 'd',
+          lastname: 'd',
           email: faker.internet.email(),
           password: 'dele1989',
           type: 'client',
@@ -108,9 +108,9 @@ describe('Test user signin and signup', () => {
         .request(app)
         .post('/api/v1/auth/signup')
         .send({
-          firstname: "defi",
-          lastname: "defi",
-          email: "andela",
+          firstname: 'defi',
+          lastname: 'defi',
+          email: 'andela',
           password: 'de',
           type: 'client4',
           isAdmin: false,
