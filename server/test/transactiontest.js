@@ -27,9 +27,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
       .end((err, res) => {
         const { body } = res;
         expect(body.status).to.be.equals(200);
-        if (!err) {
-          cashierTokenDb = body.data.token;
-        }
+        cashierTokenDb = body.data.token;
         done();
       });
   });
@@ -50,9 +48,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
       .end((err, res) => {
         const { body } = res;
         expect(body.status).to.be.equals(200);
-        if (!err) {
-          userTokenDb = body.data.token;
-        }
+        userTokenDb = body.data.token;
         done();
       });
   });
