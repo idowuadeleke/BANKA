@@ -357,6 +357,5 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           done();
         });
     });
-
   });
 });

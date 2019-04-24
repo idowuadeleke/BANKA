@@ -15,19 +15,21 @@ class validateInput {
       errors.type = 'transaction id must be an integer';
     }
 
-    if ( !isEmpty(errors)){
+    if (!isEmpty(errors)) {
       return res.status(400).json({
         status: 400,
         errors,
       });
     }
-     // fire next middleware
-     return next();
+    // fire next middleware
+    return next();
   }
 
   static async validateSignUpInput(req, res, next) {
     const errors = {};
-    let { email, firstname, lastname, password , type, isAdmin} = req.body;
+    let {
+      email, firstname, lastname, password, type, isAdmin,
+    } = req.body;
 
     email = !isEmpty(email) ? email : '';
     firstname = !isEmpty(firstname) ? firstname : '';
@@ -73,7 +75,7 @@ class validateInput {
     } else if (!(['client', 'staff'].includes(type.toLowerCase()))) {
       errors.type = 'Type must either be client or staff';
     }
-    if ( !isEmpty(errors)){
+    if (!isEmpty(errors)) {
       return res.status(400).json({
         status: 400,
         errors,
@@ -98,7 +100,7 @@ class validateInput {
     if (validator.isEmpty(password)) {
       errors.password = 'Password field is required';
     }
-    if ( !isEmpty(errors)){
+    if (!isEmpty(errors)) {
       return res.status(400).json({
         status: 400,
         errors,
@@ -111,10 +113,10 @@ class validateInput {
   static async validateAccountInput(req, res, next) {
     const errors = {};
     let { balance, type } = req.body;
-  
+
     type = !isEmpty(type) ? type : '';
     balance = !isEmpty(balance) ? balance : '';
-  
+
     if (validator.isEmpty(type)) {
       errors.type = 'Type field is required';
     } else if (!(['savings', 'current'].includes(type.toLowerCase()))) {
@@ -125,7 +127,7 @@ class validateInput {
       errors.balance = 'balance field is must be a number';
     }
 
-    if ( !isEmpty(errors)){
+    if (!isEmpty(errors)) {
       return res.status(400).json({
         status: 400,
         errors,
@@ -138,7 +140,7 @@ class validateInput {
   static async validateCashierInput(req, res, next) {
     const errors = {};
     let { amount } = req.body;
-    
+
     amount = !isEmpty(amount) ? amount : '';
 
     if (Number.isNaN(Number(amount))) {
@@ -146,7 +148,7 @@ class validateInput {
     } else if (validator.isEmpty(amount.toString())) {
       errors.amount = 'amount field is required';
     }
-    if ( !isEmpty(errors)){
+    if (!isEmpty(errors)) {
       return res.status(400).json({
         status: 400,
         errors,
@@ -159,7 +161,7 @@ class validateInput {
   static async validateUpdateStatus(req, res, next) {
     const errors = {};
     let { status } = req.body;
-    
+
     status = !isEmpty(status) ? status : '';
 
     if (validator.isEmpty(status)) {
@@ -167,7 +169,7 @@ class validateInput {
     } else if (!(['active', 'dormant'].includes(status.toLowerCase()))) {
       errors.updatestatus = 'status must be one of [dormant, active]';
     }
-    if ( !isEmpty(errors)){
+    if (!isEmpty(errors)) {
       return res.status(400).json({
         status: 400,
         errors,
@@ -180,16 +182,16 @@ class validateInput {
   static async validateAccountStatusInput(req, res, next) {
     const errors = {};
     let { status } = req.query;
-    
+
     status = !isEmpty(status) ? status : '';
-    if (req.query.status !== undefined){
+    if (req.query.status !== undefined) {
       if (validator.isEmpty(status)) {
         errors.status = 'status query field cannot be empty';
       } else if (!(['active', 'dormant'].includes(status.toLowerCase()))) {
         errors.status = 'status must be one of [dormant, active]';
       }
     }
-    if ( !isEmpty(errors)){
+    if (!isEmpty(errors)) {
       return res.status(400).json({
         status: 400,
         errors,
@@ -210,8 +212,8 @@ class validateInput {
         error: 'enter a valid email address',
       });
     }
-     // fire next middleware
-     return next();
+    // fire next middleware
+    return next();
   }
 }
 

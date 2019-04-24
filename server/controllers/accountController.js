@@ -207,7 +207,6 @@ class accountController {
         status: 200,
         data: {
           accountNumber: updatedStatus.rows[0].accountnumber,
-          status,
           status: updatedStatus.rows[0].status,
         },
       });

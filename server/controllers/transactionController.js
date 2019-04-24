@@ -1,4 +1,7 @@
 import DB from '../db/index';
+import EmailNotificationMarshal from '../helper/emailNotification';
+
+const { sendEmail } = EmailNotificationMarshal;
 
 class transactionController {
   // debit user account
@@ -7,7 +10,8 @@ class transactionController {
       const { id } = req.user;
       const { accountNumber } = req.params;
       const { amount } = req.body;
-      const foundAccountQueryString = 'SELECT balance FROM accounts WHERE accountnumber = $1';
+      const foundAccountQueryString = `select accounts.balance, users.email from accounts
+                            LEFT JOIN users ON accounts.owner = users.id WHERE accountnumber = $1`;
       const foundAccountDb = await DB.query(foundAccountQueryString, [accountNumber]);
       if (foundAccountDb.rows.length === 0) {
         return res.status(404).json({
@@ -15,6 +19,7 @@ class transactionController {
           error: 'account number doesn\'t exist',
         });
       }
+      const userEmail = foundAccountDb.rows[0].email;
       const oldBalance = foundAccountDb.rows[0].balance;
       if (oldBalance < amount) {
         return res.status(400).json({
@@ -29,6 +34,8 @@ class transactionController {
       const { rows } = await DB.query(accountqueryString, values);
       const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE accountnumber = $2';
       await DB.query(updatebalanceQueryString, [newBalance, accountNumber]);
+      sendEmail(userEmail, rows[0], req, res);
+
       return res.status(200).json({
         status: 200,
         data: {
@@ -53,7 +60,8 @@ class transactionController {
       const { id } = req.user;
       const { accountNumber } = req.params;
       const { amount } = req.body;
-      const foundAccountQueryString = 'SELECT balance FROM accounts WHERE accountnumber = $1';
+      const foundAccountQueryString = `select accounts.balance, users.email from accounts
+                            LEFT JOIN users ON accounts.owner = users.id WHERE accountnumber = $1`;
       const foundAccountDb = await DB.query(foundAccountQueryString, [accountNumber]);
       if (foundAccountDb.rows.length === 0) {
         return res.status(404).json({
@@ -61,6 +69,7 @@ class transactionController {
           error: 'account number doesn\'t exist',
         });
       }
+      const userEmail = foundAccountDb.rows[0].email;
       const oldBalance = foundAccountDb.rows[0].balance;
       const newBalance = oldBalance + amount;
       const values = ['credit', accountNumber, id, amount, oldBalance, newBalance];
@@ -69,6 +78,7 @@ class transactionController {
       const { rows } = await DB.query(accountqueryString, values);
       const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE accountnumber = $2';
       await DB.query(updatebalanceQueryString, [newBalance, accountNumber]);
+      sendEmail(userEmail, rows[0], req, res);
       return res.status(200).json({
         status: 200,
         data: {
