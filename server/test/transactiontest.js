@@ -314,11 +314,11 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
           expect(body.data[0]).to.haveOwnProperty('id');
-          expect(body.data[0]).to.haveOwnProperty('accountnumber');
-          expect(body.data[0]).to.haveOwnProperty('createdon');
+          expect(body.data[0]).to.haveOwnProperty('accountNumber');
+          expect(body.data[0]).to.haveOwnProperty('createdOn');
           expect(body.data[0]).to.haveOwnProperty('type');
-          expect(body.data[0]).to.haveOwnProperty('oldbalance');
-          expect(body.data[0]).to.haveOwnProperty('newbalance');
+          expect(body.data[0]).to.haveOwnProperty('oldBalance');
+          expect(body.data[0]).to.haveOwnProperty('newBalance');
           done();
         });
     });

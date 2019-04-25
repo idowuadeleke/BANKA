@@ -19,21 +19,21 @@ class UserController {
     const salt = genSaltSync(10);
     const hash = hashSync(body.password, salt);
     const values = [body.firstname, body.lastname, body.email, body.type, hash, body.isAdmin];
-
     try {
-      const queryString = 'INSERT INTO users(firstname, lastname, email, type, password, isAdmin) VALUES($1, $2, $3, $4, $5,$6) returning *';
+      
+      const queryString = 'INSERT INTO users("firstName", "lastName", email, type, password, "isAdmin") VALUES($1, $2, $3, $4, $5,$6) returning *';
       const { rows } = await DB.query(queryString, values);
-
       // create token
       const token = createToken(rows[0].email, rows[0].id);
-
-      const { isAdmin, password, ...data } = rows[0];
 
       return res.status(201).json({
         status: 201,
         data: {
           token,
-          ...data,
+          firstName: rows[0].firstName,
+          lastName: rows[0].lastName,
+          email: rows[0].email,
+          type: rows[0].type,
         },
       });
     } catch (error) {
@@ -87,8 +87,8 @@ class UserController {
         status: 200,
         data: {
           token,
-          firstname: rows[0].firstname,
-          lastname: rows[0].lastname,
+          firstName: rows[0].firstName,
+          lastName: rows[0].lastName,
           email: rows[0].email,
           type: rows[0].type,
         },

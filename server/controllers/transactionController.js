@@ -11,7 +11,7 @@ class transactionController {
       const { accountNumber } = req.params;
       const { amount } = req.body;
       const foundAccountQueryString = `select accounts.balance, users.email from accounts
-                            LEFT JOIN users ON accounts.owner = users.id WHERE accountnumber = $1`;
+                            LEFT JOIN users ON accounts.owner = users.id WHERE "accountNumber" = $1`;
       const foundAccountDb = await DB.query(foundAccountQueryString, [accountNumber]);
       if (foundAccountDb.rows.length === 0) {
         return res.status(404).json({
@@ -29,10 +29,10 @@ class transactionController {
       }
       const newBalance = oldBalance - amount;
       const values = ['debit', accountNumber, id, amount, oldBalance, newBalance];
-      const accountqueryString = `INSERT INTO transactions(type, accountnumber, cashier,amount, oldbalance, newbalance)
+      const accountqueryString = `INSERT INTO transactions(type, "accountNumber", cashier,amount, "oldBalance", "newBalance")
                                   VALUES($1, $2, $3, $4, $5, $6)returning *`;
       const { rows } = await DB.query(accountqueryString, values);
-      const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE accountnumber = $2';
+      const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE "accountNumber" = $2';
       await DB.query(updatebalanceQueryString, [newBalance, accountNumber]);
       sendEmail(userEmail, rows[0], req, res);
 
@@ -40,11 +40,11 @@ class transactionController {
         status: 200,
         data: {
           transactionId: rows[0].id,
-          accountNumber: rows[0].accountnumber,
+          accountNumber: rows[0].accountNumber,
           amount: rows[0].amount,
           cashier: rows[0].cashier,
           transactionType: rows[0].type,
-          accountBalance: rows[0].newbalance,
+          accountBalance: rows[0].newBalance,
         },
       });
     } catch (error) {
@@ -61,7 +61,7 @@ class transactionController {
       const { accountNumber } = req.params;
       const { amount } = req.body;
       const foundAccountQueryString = `select accounts.balance, users.email from accounts
-                            LEFT JOIN users ON accounts.owner = users.id WHERE accountnumber = $1`;
+                            LEFT JOIN users ON accounts.owner = users.id WHERE "accountNumber" = $1`;
       const foundAccountDb = await DB.query(foundAccountQueryString, [accountNumber]);
       if (foundAccountDb.rows.length === 0) {
         return res.status(404).json({
@@ -73,21 +73,21 @@ class transactionController {
       const oldBalance = foundAccountDb.rows[0].balance;
       const newBalance = oldBalance + amount;
       const values = ['credit', accountNumber, id, amount, oldBalance, newBalance];
-      const accountqueryString = `INSERT INTO transactions(type, accountnumber, cashier,amount, oldbalance, newbalance)
+      const accountqueryString = `INSERT INTO transactions(type, "accountNumber", cashier,amount, "oldBalance", "newBalance")
                                   VALUES($1, $2, $3, $4, $5, $6)returning *`;
       const { rows } = await DB.query(accountqueryString, values);
-      const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE accountnumber = $2';
+      const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE "accountNumber" = $2';
       await DB.query(updatebalanceQueryString, [newBalance, accountNumber]);
       sendEmail(userEmail, rows[0], req, res);
       return res.status(200).json({
         status: 200,
         data: {
           transactionId: rows[0].id,
-          accountNumber: rows[0].accountnumber,
+          accountNumber: rows[0].accountNumber,
           amount: rows[0].amount,
           cashier: rows[0].cashier,
           transactionType: rows[0].type,
-          accountBalance: rows[0].newbalance,
+          accountBalance: rows[0].newBalance,
         },
       });
     } catch (error) {
@@ -102,8 +102,8 @@ class transactionController {
   static async getSpecificTransaction(req, res) {
     try {
       const { transactionId } = req.params;
-      const accountQueryString = `select id, accountnumber,createdon, type,amount, oldbalance,
-       newbalance FROM transactions  WHERE id = $1`;
+      const accountQueryString = `select id, "accountNumber","createdOn", type,amount, "oldBalance",
+       "newBalance" FROM transactions  WHERE id = $1`;
       const accounts = await DB.query(accountQueryString, [transactionId]);
       if (accounts.rows.length > 0) {
         return res.status(200).json({

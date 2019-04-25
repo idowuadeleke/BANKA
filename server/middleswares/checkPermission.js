@@ -9,7 +9,7 @@ class checkPermissions {
     const queryString = 'SELECT * FROM users WHERE id = $1';
     const users = await DB.query(queryString, [id]);
     const { type } = users.rows[0];
-    const { isadmin } = users.rows[0];
+    const { isAdmin } = users.rows[0];
     const route = req.route.path;
     const method = req.method.toLowerCase();
     if ((route === '/accounts') && method === 'get' && type !== 'staff') {
@@ -39,7 +39,7 @@ class checkPermissions {
 
 
     if ((route === '/accounts/:accountNumber/transactions') && method === 'get' && type !== 'staff') {
-      const foundAccountQueryString = 'SELECT owner FROM accounts WHERE accountnumber = $1';
+      const foundAccountQueryString = 'SELECT owner FROM accounts WHERE "accountNumber" = $1';
       const { rows } = await DB.query(foundAccountQueryString, [accountNumber]);
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
@@ -55,7 +55,7 @@ class checkPermissions {
     // check if it is my account
     if ((route === '/transactions/:transactionId') && method === 'get' && type !== 'staff') {
       const foundTransactionQueryString = `select accounts.owner from accounts LEFT JOIN transactions
-       ON accounts.accountnumber = transactions.accountnumber WHERE  transactions.id= $1`;
+       ON accounts."accountNumber" = transactions."accountNumber" WHERE  transactions.id= $1`;
       const { rows } = await DB.query(foundTransactionQueryString, [transactionId]);
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
@@ -69,7 +69,7 @@ class checkPermissions {
     }
 
     if ((route === '/accounts/:accountNumber') && method === 'get' && type !== 'staff') {
-      const foundAccountQueryString = 'SELECT owner FROM accounts WHERE accountnumber = $1';
+      const foundAccountQueryString = 'SELECT owner FROM accounts WHERE "accountNumber" = $1';
       const { rows } = await DB.query(foundAccountQueryString, [accountNumber]);
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
@@ -95,28 +95,28 @@ class checkPermissions {
         error: 'only a staffs can delete an account',
       });
     }
-    if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isadmin)) {
+    if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isAdmin)) {
       return res.status(403).json({
         status: 403,
         error: 'only cashier can credit account',
       });
     }
 
-    if (route === '/transactions/:accountNumber/debit' && method === 'post' && (type !== 'staff' || isadmin)) {
+    if (route === '/transactions/:accountNumber/debit' && method === 'post' && (type !== 'staff' || isAdmin)) {
       return res.status(403).json({
         status: 403,
         error: 'only cashier can debit account',
       });
     }
 
-    if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isadmin)) {
+    if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isAdmin)) {
       return res.status(403).json({
         status: 403,
         error: 'only cashier can credit account',
       });
     }
 
-    if (route === '/user' && method === 'post' && (type !== 'staff' || !isadmin)) {
+    if (route === '/user' && method === 'post' && (type !== 'staff' || !isAdmin)) {
       return res.status(403).json({
         status: 403,
         error: 'only admin can create staff or admin account',
