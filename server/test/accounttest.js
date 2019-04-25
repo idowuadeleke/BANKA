@@ -347,7 +347,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data[0]).to.haveOwnProperty('accountnumber');
+          expect(body.data[0]).to.haveOwnProperty('accountNumber');
           expect(body.data[0]).to.haveOwnProperty('email');
           expect(body.data[0]).to.haveOwnProperty('type');
           expect(body.data[0]).to.haveOwnProperty('balance');
@@ -365,7 +365,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data[0]).to.haveOwnProperty('accountnumber');
+          expect(body.data[0]).to.haveOwnProperty('accountNumber');
           expect(body.data[0]).to.haveOwnProperty('email');
           expect(body.data[0]).to.haveOwnProperty('type');
           expect(body.data[0]).to.haveOwnProperty('balance');
@@ -450,11 +450,11 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
           expect(body.data[0]).to.haveOwnProperty('id');
-          expect(body.data[0]).to.haveOwnProperty('accountnumber');
-          expect(body.data[0]).to.haveOwnProperty('createdon');
+          expect(body.data[0]).to.haveOwnProperty('accountNumber');
+          expect(body.data[0]).to.haveOwnProperty('createdOn');
           expect(body.data[0]).to.haveOwnProperty('type');
-          expect(body.data[0]).to.haveOwnProperty('oldbalance');
-          expect(body.data[0]).to.haveOwnProperty('newbalance');
+          expect(body.data[0]).to.haveOwnProperty('oldBalance');
+          expect(body.data[0]).to.haveOwnProperty('newBalance');
           done();
         });
     });
@@ -535,8 +535,8 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.accounts[0]).to.haveOwnProperty('accountnumber');
-          expect(body.accounts[0]).to.haveOwnProperty('createdon');
+          expect(body.accounts[0]).to.haveOwnProperty('accountNumber');
+          expect(body.accounts[0]).to.haveOwnProperty('createdOn');
           expect(body.accounts[0]).to.haveOwnProperty('status');
           expect(body.accounts[0]).to.haveOwnProperty('type');
           expect(body.accounts[0]).to.haveOwnProperty('balance');
