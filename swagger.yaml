@@ -13,6 +13,66 @@ consumes:
 produces:
 - application/json
 paths:
+  /auth/signup:
+    post:
+      description: Allows users to signup and create an account
+      summary: signup
+      tags:
+      - Auth
+      operationId: AuthSignupPost
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/signupRequest'
+      responses:
+        201:
+          description: ''
+          schema:
+            $ref: '#/definitions/signup'
+          examples:
+            application/json; charset=utf-8:
+              status: 201
+              data:
+                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlZG5lc3NAZ21haWwuY29tIiwiaWQiOjMzLCJpYXQiOjE1NTYxODAxNzgsImV4cCI6MTU1NjI2NjU3OH0.F-IVLBec-aTYUltmhZl2PyZAl4V75uU9SzbP6OlsaXU
+                id: 33
+                firstname: Goodness
+                lastname: Greatness
+                email: gedness@gmail.com
+                type: client
+                isadmin: false
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 324
+            Etag:
+              type: string
+              default: W/"144-ZldFG0DxeZaZPI11vKHM1dQOoto"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:16:18 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
   /auth/signin:
     post:
       description: Users can login to their BANKA Account
@@ -22,7 +82,7 @@ paths:
       operationId: AuthSigninPost
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
       - name: Content-Type
         in: header
@@ -38,33 +98,39 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
-  /auth/signup:
-    post:
-      description: Allows users to signup and create an account
-      summary: signup
-      tags:
-      - Auth
-      operationId: AuthSignupPost
-      deprecated: false
-      produces:
-      - application/json
-      parameters:
-      - name: Content-Type
-        in: header
-        required: true
-        type: string
-        description: ''
-      - name: Body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/signupRequest'
-      responses:
-        200:
-          description: ''
-          headers: {}
+          schema:
+            $ref: '#/definitions/signin'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyZWF0bmVzc0BnbWFpbC5jb20iLCJpZCI6MjEsImlhdCI6MTU1NjE4MDMyNCwiZXhwIjoxNTU2MjY2NzI0fQ.E1NSiVDKKKLgjAdjJnOuxUpVB0vlh4KWu5eU4EvQItM
+                firstname: Greatness
+                lastname: Greatness
+                email: greatness@gmail.com
+                type: staff
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 305
+            Etag:
+              type: string
+              default: W/"131-vwNQrkiV1hE2tWyxe6dbDeeE2M0"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:18:44 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
   /accounts:
     post:
       description: Authorized Users can create a bank account
@@ -74,7 +140,7 @@ paths:
       operationId: AccountsPost
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
       - name: Content-Type
         in: header
@@ -93,9 +159,42 @@ paths:
         schema:
           $ref: '#/definitions/CreateBankAccountRequest'
       responses:
-        200:
+        201:
           description: ''
-          headers: {}
+          schema:
+            $ref: '#/definitions/CreateBankAccount'
+          examples:
+            application/json; charset=utf-8:
+              status: 201
+              data:
+                accountNumber: 1899
+                firstName: Goodness
+                lastName: Greatness
+                email: gedness@gmail.com
+                type: savings
+                openingBalance: 400
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 156
+            Etag:
+              type: string
+              default: W/"9c-QCepo33fatThM6RP/nVTdGqWALE"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:17:53 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
     get:
       description: Admin and staff can get all bank accounts
       summary: Get All Bank Accounts
@@ -104,7 +203,7 @@ paths:
       operationId: AccountsGet
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
       - name: token
         in: header
@@ -114,18 +213,46 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
-  /accounts/999:
+          schema:
+            $ref: '#/definitions/GetAllBankAccounts'
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 1066
+            Etag:
+              type: string
+              default: W/"42a-yMqY9oMbUlhntIDMigt+7inT7YI"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:19:05 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+  /accounts/{accountNumber}:
     get:
       description: Admin,staff or Authourized user can get a specific bank account details
       summary: Get Specific Bank Account
       tags:
       - Accounts
-      operationId: Accounts999Get
+      operationId: AccountsByAccountNumberGet
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
+      - name: accountNumber
+        in: path
+        required: true
+        type: string
+        description: ''
       - name: token
         in: header
         required: true
@@ -134,17 +261,107 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
+          schema:
+            $ref: '#/definitions/GetSpecificBankAccount'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+              - id: 1
+                accountnumber: 999
+                createdon: 2019-04-19T10:48:59.096Z
+                status: active
+                type: savings
+                balance: 398
+                email: aduhhdla@gmail.com
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 169
+            Etag:
+              type: string
+              default: W/"a9-VcqMDm/k/s/gN/CcX7b7BSuhnm0"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:19:43 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+    delete:
+      description: Admin and staff can delete a bank account
+      summary: Delete Bank Account
+      tags:
+      - Accounts
+      operationId: AccountsByAccountNumberDelete
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: accountNumber
+        in: path
+        required: true
+        type: string
+        description: ''
+      - name: token
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        200:
+          description: ''
+          schema:
+            $ref: '#/definitions/DeleteBankAccount'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              message: Account successfully deleted
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 55
+            Etag:
+              type: string
+              default: W/"37-Ey6xkeOIHErtysb982Ky/zmTnKc"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:21:55 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
     patch:
       description: Admin and staff can activate a bank account
       summary: Activate Bank Account
       tags:
       - Accounts
-      operationId: Accounts999Patch
+      operationId: AccountsByAccountNumberPatch
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
+      - name: accountNumber
+        in: path
+        required: true
+        type: string
+        description: ''
       - name: Content-Type
         in: header
         required: true
@@ -164,27 +381,36 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
-  /accounts/1699:
-    delete:
-      description: Admin and staff can delete a bank account
-      summary: Delete Bank Account
-      tags:
-      - Accounts
-      operationId: Accounts1699Delete
-      deprecated: false
-      produces:
-      - application/json
-      parameters:
-      - name: token
-        in: header
-        required: true
-        type: string
-        description: ''
-      responses:
-        200:
-          description: ''
-          headers: {}
+          schema:
+            $ref: '#/definitions/ActivateBankAccount'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+                accountNumber: 999
+                status: active
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 61
+            Etag:
+              type: string
+              default: W/"3d-0aVpZaUHTwKw/3SKDCoSg1yt6rA"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:28:33 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
   /accounts/1099:
     patch:
       description: Admin and staff can deactivate a bank account
@@ -194,7 +420,7 @@ paths:
       operationId: Accounts1099Patch
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
       - name: Content-Type
         in: header
@@ -215,18 +441,52 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
-  /user/idowuadeleke@gmail.com/accounts:
+          schema:
+            $ref: '#/definitions/DeactivateBankAccount'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+                accountNumber: 1099
+                status: dormant
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 63
+            Etag:
+              type: string
+              default: W/"3f-0E4nyJBP8+KC/cbocmUgYb0QfRM"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:29:14 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+  /user/{email}/accounts:
     get:
       description: Admin and staff can get a specific user bank account
       summary: Get a User Bank Account
       tags:
       - Accounts
-      operationId: UserIdowuadelekeGmailComAccountsGet
+      operationId: UserAccountsByEmailGet
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
+      - name: email
+        in: path
+        required: true
+        type: string
+        description: ''
       - name: token
         in: header
         required: true
@@ -235,18 +495,46 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
-  /transactions/1099/credit:
+          schema:
+            $ref: '#/definitions/GetaUserBankAccount'
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 266
+            Etag:
+              type: string
+              default: W/"10a-hBbqhCTyAEsW8j8NXu2xbIBNmgw"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:30:53 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+  /transactions/{accountNumber}/credit:
     post:
       description: staff(cashier) can credit a bank account
       summary: Credit Bank Account
       tags:
       - Transactions
-      operationId: Transactions1099CreditPost
+      operationId: TransactionsCreditByAccountNumberPost
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
+      - name: accountNumber
+        in: path
+        required: true
+        type: string
+        description: ''
       - name: Content-Type
         in: header
         required: true
@@ -266,18 +554,56 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
-  /transactions/1099/debit:
+          schema:
+            $ref: '#/definitions/CreditBankAccount'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+                transactionId: 20
+                accountNumber: 1099
+                amount: 200
+                cashier: 21
+                transactionType: credit
+                accountBalance: 1079.75
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 143
+            Etag:
+              type: string
+              default: W/"8f-Ah9KsbYy9R4dBdXNPPqSX/FQlio"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:32:22 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+  /transactions/{accountNumber}/debit:
     post:
       description: Staff cashier can debit a bank account
       summary: Debit Bank Account
       tags:
       - Transactions
-      operationId: Transactions1099DebitPost
+      operationId: TransactionsDebitByAccountNumberPost
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
+      - name: accountNumber
+        in: path
+        required: true
+        type: string
+        description: ''
       - name: Content-Type
         in: header
         required: true
@@ -297,18 +623,56 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
-  /transactions/1:
+          schema:
+            $ref: '#/definitions/DebitBankAccount'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+                transactionId: 23
+                accountNumber: 1099
+                amount: 20.050000000000001
+                cashier: 21
+                transactionType: debit
+                accountBalance: 1019.6
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 143
+            Etag:
+              type: string
+              default: W/"8f-S3z+If4Pl9glGdF++PTDUUQKhtc"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:36:44 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+  /transactions/{transactionId}:
     get:
       description: Admin and staff can get a specific account transaction detail
       summary: Get a Specific Transaction Detail
       tags:
       - Transactions
-      operationId: Transactions1Get
+      operationId: TransactionsByTransactionIdGet
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
+      - name: transactionId
+        in: path
+        required: true
+        type: string
+        description: ''
       - name: Content-Type
         in: header
         required: true
@@ -322,18 +686,57 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
-  /accounts/999/transactions:
+          schema:
+            $ref: '#/definitions/GetaSpecificTransactionDetail'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+              - id: 1
+                accountnumber: 999
+                createdon: 2019-04-20T15:54:49.193Z
+                type: debit
+                amount: 2
+                oldbalance: 400
+                newbalance: 398
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 153
+            Etag:
+              type: string
+              default: W/"99-MKmom5ckXCaXwy2eHpQsCHi2WEA"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:38:08 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+  /accounts/{accountNumber}/transactions:
     get:
       description: Admin and staff can get a bank account transaction history
       summary: Get Account Transaction History
       tags:
       - Transactions
-      operationId: Accounts999TransactionsGet
+      operationId: AccountsTransactionsByAccountNumberGet
       deprecated: false
       produces:
-      - application/json
+      - application/json; charset=utf-8
       parameters:
+      - name: accountNumber
+        in: path
+        required: true
+        type: string
+        description: ''
       - name: token
         in: header
         required: true
@@ -342,28 +745,235 @@ paths:
       responses:
         200:
           description: ''
-          headers: {}
+          schema:
+            $ref: '#/definitions/GetAccountTransactionHistory'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+              - id: 1
+                accountnumber: 999
+                createdon: 2019-04-20T15:54:49.193Z
+                type: debit
+                amount: 2
+                oldbalance: 400
+                newbalance: 398
+              - id: 2
+                accountnumber: 999
+                createdon: 2019-04-20T15:56:15.463Z
+                type: debit
+                amount: 2
+                oldbalance: 400
+                newbalance: 398
+              - id: 3
+                accountnumber: 999
+                createdon: 2019-04-20T15:58:59.887Z
+                type: debit
+                amount: 2
+                oldbalance: 400
+                newbalance: 398
+              - id: 4
+                accountnumber: 999
+                createdon: 2019-04-20T15:59:22.74Z
+                type: debit
+                amount: 2
+                oldbalance: 400
+                newbalance: 398
+              - id: 5
+                accountnumber: 999
+                createdon: 2019-04-20T15:59:42.351Z
+                type: debit
+                amount: 2
+                oldbalance: 398
+                newbalance: 396
+              - id: 6
+                accountnumber: 999
+                createdon: 2019-04-20T16:05:14.287Z
+                type: debit
+                amount: 2
+                oldbalance: 396
+                newbalance: 394
+              - id: 7
+                accountnumber: 999
+                createdon: 2019-04-20T16:05:47.804Z
+                type: debit
+                amount: 2
+                oldbalance: 394
+                newbalance: 392
+              - id: 8
+                accountnumber: 999
+                createdon: 2019-04-20T16:08:22.838Z
+                type: credit
+                amount: 2
+                oldbalance: 392
+                newbalance: 394
+              - id: 9
+                accountnumber: 999
+                createdon: 2019-04-20T16:08:28.606Z
+                type: credit
+                amount: 2
+                oldbalance: 394
+                newbalance: 396
+              - id: 10
+                accountnumber: 999
+                createdon: 2019-04-20T16:08:32.733Z
+                type: credit
+                amount: 2
+                oldbalance: 396
+                newbalance: 398
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 1327
+            Etag:
+              type: string
+              default: W/"52f-t5UfuAYN8nPwS5fgDESnqjTRb84"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:39:20 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+  /user:
+    post:
+      description: This endpoint enables admin to create new admin or staff account
+      summary: Admin can create admin or staff account
+      tags:
+      - User
+      operationId: UserPost
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: token
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/AdmincancreateadminorstaffaccountRequest'
+      responses:
+        201:
+          description: ''
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json; charset=utf-8:
+              status: 201
+              data:
+                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdvb2RhZG1pbkBnbWFpbC5jb20iLCJpZCI6MzUsImlhdCI6MTU1NjE4MTkzMSwiZXhwIjoxNTU2MjY4MzMxfQ.j-oY6nwhnYzq4ZA5SISUK0mHiM6nZNzgwtFh72Kf5Ek
+                id: 35
+                firstname: Good
+                lastname: Great
+                email: goodadmin@gmail.com
+                type: staff
+                isadmin: false
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 320
+            Etag:
+              type: string
+              default: W/"140-x66NSshMrH+ohCQdGNR0lalm8hg"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:45:31 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
+  /user/resetPassword:
+    post:
+      description: This endpoint enables users to reset their password
+      summary: user can reset password
+      tags:
+      - User
+      operationId: UserResetPasswordPost
+      deprecated: false
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+      - name: token
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Content-Type
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/usercanresetpasswordRequest'
+      responses:
+        200:
+          description: ''
+          schema:
+            $ref: '#/definitions/usercanresetpassword'
+          examples:
+            application/json; charset=utf-8:
+              status: 200
+              data:
+                newPassword: dele1989
+          headers:
+            Server:
+              type: string
+              default: Cowboy
+            Connection:
+              type: string
+              default: keep-alive
+            X-Powered-By:
+              type: string
+              default: Express
+            Content-Length:
+              type: string
+              default: 48
+            Etag:
+              type: string
+              default: W/"30-W2TPKnIujKC16nZSa0ddGJMB+Ro"
+            Date:
+              type: string
+              default: Thu, 25 Apr 2019 08:48:11 GMT
+            Via:
+              type: string
+              default: 1.1 vegur
 definitions:
-  signinRequest:
-    title: signinRequest
-    example:
-      email: goo2dness@gmail.com
-      password: dele1989
-    type: object
-    properties:
-      email:
-        type: string
-      password:
-        type: string
-    required:
-    - email
-    - password
   signupRequest:
     title: signupRequest
     example:
       firstname: Goodness
       lastname: Greatness
-      email: gos829dness@gmail.com
+      email: gedness@gmail.com
       password: dele1989
       type: client
       isAdmin: false
@@ -388,6 +998,109 @@ definitions:
     - password
     - type
     - isAdmin
+  signup:
+    title: signup
+    example:
+      status: 201
+      data:
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlZG5lc3NAZ21haWwuY29tIiwiaWQiOjMzLCJpYXQiOjE1NTYxODAxNzgsImV4cCI6MTU1NjI2NjU3OH0.F-IVLBec-aTYUltmhZl2PyZAl4V75uU9SzbP6OlsaXU
+        id: 33
+        firstname: Goodness
+        lastname: Greatness
+        email: gedness@gmail.com
+        type: client
+        isadmin: false
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data'
+    required:
+    - status
+    - data
+  Data:
+    title: Data
+    type: object
+    properties:
+      token:
+        type: string
+      id:
+        type: integer
+        format: int32
+      firstname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      type:
+        type: string
+      isadmin:
+        type: boolean
+    required:
+    - token
+    - id
+    - firstname
+    - lastname
+    - email
+    - type
+    - isadmin
+  signinRequest:
+    title: signinRequest
+    example:
+      email: greatness@gmail.com
+      password: dele1989
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+  signin:
+    title: signin
+    example:
+      status: 200
+      data:
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyZWF0bmVzc0BnbWFpbC5jb20iLCJpZCI6MjEsImlhdCI6MTU1NjE4MDMyNCwiZXhwIjoxNTU2MjY2NzI0fQ.E1NSiVDKKKLgjAdjJnOuxUpVB0vlh4KWu5eU4EvQItM
+        firstname: Greatness
+        lastname: Greatness
+        email: greatness@gmail.com
+        type: staff
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data1'
+    required:
+    - status
+    - data
+  Data1:
+    title: Data1
+    type: object
+    properties:
+      token:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      type:
+        type: string
+    required:
+    - token
+    - firstname
+    - lastname
+    - email
+    - type
   CreateBankAccountRequest:
     title: CreateBankAccountRequest
     example:
@@ -403,6 +1116,225 @@ definitions:
     required:
     - type
     - balance
+  CreateBankAccount:
+    title: CreateBankAccount
+    example:
+      status: 201
+      data:
+        accountNumber: 1899
+        firstName: Goodness
+        lastName: Greatness
+        email: gedness@gmail.com
+        type: savings
+        openingBalance: 400
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data2'
+    required:
+    - status
+    - data
+  Data2:
+    title: Data2
+    type: object
+    properties:
+      accountNumber:
+        type: integer
+        format: int32
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      type:
+        type: string
+      openingBalance:
+        type: integer
+        format: int32
+    required:
+    - accountNumber
+    - firstName
+    - lastName
+    - email
+    - type
+    - openingBalance
+  GetAllBankAccounts:
+    title: GetAllBankAccounts
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Data3'
+    required:
+    - status
+    - data
+  Data3:
+    title: Data3
+    type: object
+    properties:
+      id:
+        example: 3
+        type: integer
+        format: int32
+      accountnumber:
+        example: 1199
+        type: integer
+        format: int32
+      createdon:
+        example: 2019-04-20T12:14:48.25Z
+        type: string
+      status:
+        example: draft
+        type: string
+      type:
+        example: savings
+        type: string
+      balance:
+        example: 400
+        type: integer
+        format: int32
+      email:
+        example: idowuadeleke@gmail.com
+        type: string
+    required:
+    - id
+    - accountnumber
+    - createdon
+    - status
+    - type
+    - balance
+    - email
+  Viewalistofallactivebankaccounts.:
+    title: Viewalistofallactivebankaccounts.
+    example:
+      status: 200
+      data:
+      - id: 1
+        accountnumber: 999
+        createdon: 2019-04-19T10:48:59.096Z
+        status: active
+        type: savings
+        balance: 398
+        email: aduhhdla@gmail.com
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Data3'
+    required:
+    - status
+    - data
+  Viewalistofalldormantbankaccounts:
+    title: Viewalistofalldormantbankaccounts
+    example:
+      status: 200
+      data:
+      - id: 2
+        accountnumber: 1099
+        createdon: 2019-04-20T11:40:17.243Z
+        status: dormant
+        type: savings
+        balance: 1019.6
+        email: idowuadeleke@gmail.com
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Data5'
+    required:
+    - status
+    - data
+  Data5:
+    title: Data5
+    type: object
+    properties:
+      id:
+        example: 2
+        type: integer
+        format: int32
+      accountnumber:
+        example: 1099
+        type: integer
+        format: int32
+      createdon:
+        example: 2019-04-20T11:40:17.243Z
+        type: string
+      status:
+        example: dormant
+        type: string
+      type:
+        example: savings
+        type: string
+      balance:
+        example: 1019.6
+        type: number
+        format: double
+      email:
+        example: idowuadeleke@gmail.com
+        type: string
+    required:
+    - id
+    - accountnumber
+    - createdon
+    - status
+    - type
+    - balance
+    - email
+  GetSpecificBankAccount:
+    title: GetSpecificBankAccount
+    example:
+      status: 200
+      data:
+      - id: 1
+        accountnumber: 999
+        createdon: 2019-04-19T10:48:59.096Z
+        status: active
+        type: savings
+        balance: 398
+        email: aduhhdla@gmail.com
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Data3'
+    required:
+    - status
+    - data
+  DeleteBankAccount:
+    title: DeleteBankAccount
+    example:
+      status: 200
+      message: Account successfully deleted
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      message:
+        type: string
+    required:
+    - status
+    - message
   ActivateBankAccountRequest:
     title: ActivateBankAccountRequest
     example:
@@ -412,6 +1344,35 @@ definitions:
       status:
         type: string
     required:
+    - status
+  ActivateBankAccount:
+    title: ActivateBankAccount
+    example:
+      status: 200
+      data:
+        accountNumber: 999
+        status: active
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data7'
+    required:
+    - status
+    - data
+  Data7:
+    title: Data7
+    type: object
+    properties:
+      accountNumber:
+        type: integer
+        format: int32
+      status:
+        type: string
+    required:
+    - accountNumber
     - status
   DeactivateBankAccountRequest:
     title: DeactivateBankAccountRequest
@@ -423,6 +1384,69 @@ definitions:
         type: string
     required:
     - status
+  DeactivateBankAccount:
+    title: DeactivateBankAccount
+    example:
+      status: 200
+      data:
+        accountNumber: 1099
+        status: dormant
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data7'
+    required:
+    - status
+    - data
+  GetaUserBankAccount:
+    title: GetaUserBankAccount
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      accounts:
+        type: array
+        items:
+          $ref: '#/definitions/Account'
+    required:
+    - status
+    - accounts
+  Account:
+    title: Account
+    type: object
+    properties:
+      id:
+        example: 3
+        type: integer
+        format: int32
+      accountnumber:
+        example: 1199
+        type: integer
+        format: int32
+      createdon:
+        example: 2019-04-20T12:14:48.25Z
+        type: string
+      status:
+        example: draft
+        type: string
+      type:
+        example: savings
+        type: string
+      balance:
+        example: 400
+        type: integer
+        format: int32
+    required:
+    - id
+    - accountnumber
+    - createdon
+    - status
+    - type
+    - balance
   CreditBankAccountRequest:
     title: CreditBankAccountRequest
     example:
@@ -434,10 +1458,58 @@ definitions:
         format: int32
     required:
     - amount
+  CreditBankAccount:
+    title: CreditBankAccount
+    example:
+      status: 200
+      data:
+        transactionId: 20
+        accountNumber: 1099
+        amount: 200
+        cashier: 21
+        transactionType: credit
+        accountBalance: 1079.75
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data9'
+    required:
+    - status
+    - data
+  Data9:
+    title: Data9
+    type: object
+    properties:
+      transactionId:
+        type: integer
+        format: int32
+      accountNumber:
+        type: string
+      amount:
+        type: integer
+        format: int32
+      cashier:
+        type: integer
+        format: int32
+      transactionType:
+        type: string
+      accountBalance:
+        type: number
+        format: double
+    required:
+    - transactionId
+    - accountNumber
+    - amount
+    - cashier
+    - transactionType
+    - accountBalance
   DebitBankAccountRequest:
     title: DebitBankAccountRequest
     example:
-      amount: 20.05
+      amount: 20.050000000000001
     type: object
     properties:
       amount:
@@ -445,7 +1517,294 @@ definitions:
         format: double
     required:
     - amount
+  DebitBankAccount:
+    title: DebitBankAccount
+    example:
+      status: 200
+      data:
+        transactionId: 23
+        accountNumber: 1099
+        amount: 20.050000000000001
+        cashier: 21
+        transactionType: debit
+        accountBalance: 1019.6
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data10'
+    required:
+    - status
+    - data
+  Data10:
+    title: Data10
+    type: object
+    properties:
+      transactionId:
+        type: integer
+        format: int32
+      accountNumber:
+        type: string
+      amount:
+        type: number
+        format: double
+      cashier:
+        type: integer
+        format: int32
+      transactionType:
+        type: string
+      accountBalance:
+        type: number
+        format: double
+    required:
+    - transactionId
+    - accountNumber
+    - amount
+    - cashier
+    - transactionType
+    - accountBalance
+  GetaSpecificTransactionDetail:
+    title: GetaSpecificTransactionDetail
+    example:
+      status: 200
+      data:
+      - id: 1
+        accountnumber: 999
+        createdon: 2019-04-20T15:54:49.193Z
+        type: debit
+        amount: 2
+        oldbalance: 400
+        newbalance: 398
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Data11'
+    required:
+    - status
+    - data
+  Data11:
+    title: Data11
+    type: object
+    properties:
+      id:
+        example: 1
+        type: integer
+        format: int32
+      accountnumber:
+        example: 999
+        type: string
+      createdon:
+        example: 2019-04-20T15:54:49.193Z
+        type: string
+      type:
+        example: debit
+        type: string
+      amount:
+        example: 2
+        type: integer
+        format: int32
+      oldbalance:
+        example: 400
+        type: integer
+        format: int32
+      newbalance:
+        example: 398
+        type: integer
+        format: int32
+    required:
+    - id
+    - accountnumber
+    - createdon
+    - type
+    - amount
+    - oldbalance
+    - newbalance
+  GetAccountTransactionHistory:
+    title: GetAccountTransactionHistory
+    example:
+      status: 200
+      data:
+      - id: 1
+        accountnumber: 999
+        createdon: 2019-04-20T15:54:49.193Z
+        type: debit
+        amount: 2
+        oldbalance: 400
+        newbalance: 398
+      - id: 2
+        accountnumber: 999
+        createdon: 2019-04-20T15:56:15.463Z
+        type: debit
+        amount: 2
+        oldbalance: 400
+        newbalance: 398
+      - id: 3
+        accountnumber: 999
+        createdon: 2019-04-20T15:58:59.887Z
+        type: debit
+        amount: 2
+        oldbalance: 400
+        newbalance: 398
+      - id: 4
+        accountnumber: 999
+        createdon: 2019-04-20T15:59:22.74Z
+        type: debit
+        amount: 2
+        oldbalance: 400
+        newbalance: 398
+      - id: 5
+        accountnumber: 999
+        createdon: 2019-04-20T15:59:42.351Z
+        type: debit
+        amount: 2
+        oldbalance: 398
+        newbalance: 396
+      - id: 6
+        accountnumber: 999
+        createdon: 2019-04-20T16:05:14.287Z
+        type: debit
+        amount: 2
+        oldbalance: 396
+        newbalance: 394
+      - id: 7
+        accountnumber: 999
+        createdon: 2019-04-20T16:05:47.804Z
+        type: debit
+        amount: 2
+        oldbalance: 394
+        newbalance: 392
+      - id: 8
+        accountnumber: 999
+        createdon: 2019-04-20T16:08:22.838Z
+        type: credit
+        amount: 2
+        oldbalance: 392
+        newbalance: 394
+      - id: 9
+        accountnumber: 999
+        createdon: 2019-04-20T16:08:28.606Z
+        type: credit
+        amount: 2
+        oldbalance: 394
+        newbalance: 396
+      - id: 10
+        accountnumber: 999
+        createdon: 2019-04-20T16:08:32.733Z
+        type: credit
+        amount: 2
+        oldbalance: 396
+        newbalance: 398
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Data11'
+    required:
+    - status
+    - data
+  AdmincancreateadminorstaffaccountRequest:
+    title: AdmincancreateadminorstaffaccountRequest
+    example:
+      firstname: Good
+      lastname: Great
+      email: goodadmin@gmail.com
+      password: dele1989
+      type: staff
+      isAdmin: false
+    type: object
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      type:
+        type: string
+      isAdmin:
+        type: boolean
+    required:
+    - firstname
+    - lastname
+    - email
+    - password
+    - type
+    - isAdmin
+  Admincancreateadminorstaffaccount:
+    title: Admincancreateadminorstaffaccount
+    example:
+      status: 201
+      data:
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdvb2RhZG1pbkBnbWFpbC5jb20iLCJpZCI6MzUsImlhdCI6MTU1NjE4MTkzMSwiZXhwIjoxNTU2MjY4MzMxfQ.j-oY6nwhnYzq4ZA5SISUK0mHiM6nZNzgwtFh72Kf5Ek
+        id: 35
+        firstname: Good
+        lastname: Great
+        email: goodadmin@gmail.com
+        type: staff
+        isadmin: false
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data'
+    required:
+    - status
+    - data
+  usercanresetpasswordRequest:
+    title: usercanresetpasswordRequest
+    example:
+      password: dele1989
+      confirmPassword: dele1989
+    type: object
+    properties:
+      password:
+        type: string
+      confirmPassword:
+        type: string
+    required:
+    - password
+    - confirmPassword
+  usercanresetpassword:
+    title: usercanresetpassword
+    example:
+      status: 200
+      data:
+        newPassword: dele1989
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/Data14'
+    required:
+    - status
+    - data
+  Data14:
+    title: Data14
+    type: object
+    properties:
+      newPassword:
+        type: string
+    required:
+    - newPassword
 tags:
 - name: Auth
 - name: Accounts
 - name: Transactions
+- name: User
