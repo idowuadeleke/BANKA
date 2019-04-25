@@ -19,7 +19,7 @@ class EmailNotificationMarshal {
         subject: `${data.type} notification`,
         html: ` Hi,
                 <p>Your account ${data.accountnumber} has been ${data.type}ed with ₦${data.amount}.<p>
-                <p> Balance : ₦${data.newbalance} </p>`,
+                <p> Balance : ₦${data.newBalance} </p>`,
       });
 
       return 'email sent';
