@@ -14,7 +14,6 @@ describe('GET /', () => {
       .request(app)
       .get('/')
       .end((err, res) => {
-        if (err) done();
         const { body } = res;
         expect(body).to.be.an('object');
         expect(body.status).to.be.a('number');
@@ -33,7 +32,6 @@ describe('GET *', () => {
       .request(app)
       .get('/dsd')
       .end((err, res) => {
-        if (err) done();
         const { body } = res;
         expect(body).to.be.an('object');
         expect(body.status).to.be.a('number');

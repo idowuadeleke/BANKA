@@ -24,9 +24,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       .end((err, res) => {
         const { body } = res;
         expect(body.status).to.be.equals(200);
-        if (!err) {
-          userDbToken = body.data.token;
-        }
+        userDbToken = body.data.token;
         done();
       });
   });
@@ -125,6 +123,88 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
           expect(body.errors.balance).to.be.equals('balance field is must be a number');
+          done();
+        });
+    });
+  });
+
+  describe('POST /api/v1/user/resetPassword', () => {
+    it('it should throw error when pasword and confirm password is not specified', (done) => {
+      const details = { };
+
+      chai
+        .request(app)
+        .post('/api/v1/user/resetPassword')
+        .send(details)
+        .set('token', userDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.password).to.be.equals('Password field is required');
+          expect(body.errors.confirmPassword).to.be.equals('Confirm Password field is required');
+          done();
+        });
+    });
+
+    it('it should throw error when input is invalid', (done) => {
+      const details = {
+        password: 'www',
+        confirmPassword: 'meree',
+      };
+
+      chai
+        .request(app)
+        .post('/api/v1/user/resetPassword')
+        .send(details)
+        .set('token', userDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.password).to.be.equals('Password must be at least 6 characters');
+          expect(body.errors.confirmPassword).to.be.equals('password and confirm password must be the same');
+          done();
+        });
+    });
+
+    it('it should check for token in header', (done) => {
+      const details = {
+        password: 'www',
+        confirmPassword: 'meree',
+      };
+
+      chai
+        .request(app)
+        .post('/api/v1/user/resetPassword')
+        .send(details)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equals(403);
+          expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('error');
+          expect(body.error).to.be.equals('Unauthorized!, you have to signin');
+          done();
+        });
+    });
+
+    it('it should reset password', (done) => {
+      const details = {
+        password: 'dele1989',
+        confirmPassword: 'dele1989',
+      };
+
+      chai
+        .request(app)
+        .post('/api/v1/user/resetPassword')
+        .send(details)
+        .set('token', userDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(200);
+          expect(body).to.be.an('object');
+          expect(body.data).to.haveOwnProperty('newPassword');
           done();
         });
     });
@@ -232,9 +312,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
-          if (!err) {
-            adminDbToken = body.data.token;
-          }
+          adminDbToken = body.data.token;
           done();
         });
     });

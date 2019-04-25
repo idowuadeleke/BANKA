@@ -215,6 +215,37 @@ class validateInput {
     // fire next middleware
     return next();
   }
+
+  static async validateResetPassword(req, res, next) {
+    const errors = {};
+    let {
+      password, confirmPassword,
+    } = req.body;
+
+    password = !isEmpty(password) ? password : '';
+    confirmPassword = !isEmpty(confirmPassword) ? confirmPassword : '';
+
+    if (validator.isEmpty(password)) {
+      errors.password = 'Password field is required';
+    } else if (!validator.isLength(password, { min: 6, max: 30 })) {
+      errors.password = 'Password must be at least 6 characters';
+    }
+
+    if (validator.isEmpty(confirmPassword)) {
+      errors.confirmPassword = 'Confirm Password field is required';
+    } else if (password !== confirmPassword) {
+      errors.confirmPassword = 'password and confirm password must be the same';
+    }
+
+    if (!isEmpty(errors)) {
+      return res.status(400).json({
+        status: 400,
+        errors,
+      });
+    }
+    // fire next middleware
+    return next();
+  }
 }
 
 // expose checkPermissions

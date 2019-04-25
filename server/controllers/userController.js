@@ -100,6 +100,32 @@ class UserController {
       });
     }
   }
+
+  static async resetPassword(req, res) {
+    // check if user pass valid and required data
+    const { id } = req.user;
+    const { body } = req;
+    const salt = genSaltSync(10);
+    const hash = hashSync(body.password, salt);
+    const values = [hash, id];
+
+    try {
+      const queryString = 'UPDATE users SET password = $1 WHERE id = $2';
+      await DB.query(queryString, values);
+
+      return res.status(200).json({
+        status: 200,
+        data: {
+          newPassword: body.password,
+        },
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        errors: error,
+      });
+    }
+  }
 }
 
 export default UserController;

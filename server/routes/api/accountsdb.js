@@ -16,13 +16,15 @@ const {
   getSpecificUserAccount, getAccountTransactions,
 } = accountController;
 
-const { createAccountDb } = userController;
+const { createAccountDb, resetPassword } = userController;
 const {
+  validateSignUpInput,
   validateAccountInput,
   validateParam,
   validateEmail,
   validateUpdateStatus,
   validateAccountStatusInput,
+  validateResetPassword,
 } = validateInput;
 
 // user signup route
@@ -71,8 +73,13 @@ router.get('/user/:email/accounts',
 router.post('/user',
   verifyTokendb,
   permissionMiddleWareDb,
-  validateAccountInput,
+  validateSignUpInput,
   createAccountDb);
+
+router.post('/user/resetPassword',
+  verifyTokendb,
+  validateResetPassword,
+  resetPassword);
 // router.get('/user',verifyTokendb, permissionMiddleWareDb,getAllUsers);
 
 
