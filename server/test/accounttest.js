@@ -221,7 +221,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only a staff has the permission to get all bank accounts');
           done();
@@ -330,7 +330,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only a staff has the permission to get other user\'s account');
           done();
@@ -432,7 +432,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only a staff has the permission to get other users transaction details');
           done();
@@ -518,7 +518,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only a staff has the permission to get other user\'s account');
           done();
@@ -573,6 +573,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           done();
         });
     });
+    
   });
 
   /**
@@ -589,7 +590,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .send(requestBody)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only a admin has the permission to change account status');
           done();
@@ -695,7 +696,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .set('token', userDbToken)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only a staffs can delete an account');
           done();

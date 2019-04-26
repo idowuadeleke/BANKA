@@ -121,7 +121,8 @@ class validateInput {
       errors.type = 'Type field is required';
     } else if (!(['savings', 'current'].includes(type.toLowerCase()))) {
       errors.type = 'Type must be one of [savings, current]';
-    } else if (validator.isEmpty(balance.toString())) {
+    }
+    if (validator.isEmpty(balance.toString())) {
       errors.balance = 'balance field is required';
     } else if (Number.isNaN(Number(balance))) {
       errors.balance = 'balance field is must be a number';
@@ -205,7 +206,7 @@ class validateInput {
     let { email } = req.params;
 
     email = !isEmpty(email) ? email : '';
-
+    
     if (!validator.isEmail(email)) {
       return res.status(400).json({
         status: 400,

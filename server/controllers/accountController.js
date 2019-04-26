@@ -24,7 +24,7 @@ class accountController {
         const { rows } = await DB.query(accountqueryString, values);
         return res.status(201).json({
           status: 201,
-          data: [rows[0]]
+          data: [rows[0]],
         });
       }
       // return error if requesting user does not exist
