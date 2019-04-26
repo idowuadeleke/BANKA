@@ -5,6 +5,7 @@ import DB from '../db/index';
 dotenv.config();
 
 class Auth {
+
   /**
    *create a token
    * @param {*} email

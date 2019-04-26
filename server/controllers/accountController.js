@@ -1,5 +1,7 @@
 import DB from '../db/index';
+import helper from '../helper/helper';
 
+const {selectFromDb, updateDb, insertToDb} = helper;
 
 class accountController {
   /**
@@ -11,8 +13,7 @@ class accountController {
     try {
       const { id } = req.user;
       const { type, balance } = req.body;
-      const queryString = 'SELECT * FROM users WHERE id = $1';
-      const user = await DB.query(queryString, [id]);
+      const user = await selectFromDb('*','users','id',id)
       if (user) {
         // Generate new account data
         const accountNoQueryString = 'SELECT "accountNumber" FROM accounts ORDER BY id DESC LIMIT 1';
@@ -20,8 +21,7 @@ class accountController {
         // change this to a function that checks if account exists
         const newAccountNo = LastaccountNoRow.rows[0].accountNumber + 100;
         const values = [newAccountNo, id, 'draft', type, balance];
-        const accountqueryString = 'INSERT INTO accounts("accountNumber", owner, status, type, balance) VALUES($1, $2, $3, $4, $5) returning *';
-        const { rows } = await DB.query(accountqueryString, values);
+        const rows = await insertToDb("accounts", '"accountNumber", owner, status, type, balance', '$1, $2, $3, $4, $5',values)
         return res.status(201).json({
           status: 201,
           data: [rows[0]],
@@ -112,21 +112,19 @@ class accountController {
   static async getAccountTransactions(req, res) {
     try {
       const { accountNumber } = req.params;
-      const checkAccountQueryString = 'select * FROM accounts WHERE "accountNumber" = $1 ';
-      const foundAccount = await DB.query(checkAccountQueryString, [accountNumber]);
-      if (foundAccount.rows.length === 0) {
+      const rows = await selectFromDb('*','accounts','"accountNumber"',accountNumber)
+      if (rows.length === 0) {
         return res.status(404).json({
           status: 404,
           error: 'account number doesn\'t exist',
         });
       }
-      const accountQueryString = `select id, "accountNumber","createdOn", type,amount, "oldBalance",
-       "newBalance" FROM transactions  WHERE "accountNumber" = $1`;
-      const accounts = await DB.query(accountQueryString, [accountNumber]);
-      if (accounts.rows.length > 0) {
+      const _rows = await selectFromDb(`id, "accountNumber","createdOn", type,amount, "oldBalance",
+      "newBalance"`,'transactions','"accountNumber"',accountNumber)
+      if (_rows.length > 0) {
         return res.status(200).json({
           status: 200,
-          data: accounts.rows,
+          data: _rows,
         });
       }
       // return error if no transaction made
@@ -175,21 +173,19 @@ class accountController {
     try {
       const { accountNumber } = req.params;
       const { status } = req.body;
-      const foundAccountQueryString = 'SELECT * FROM accounts WHERE "accountNumber" = $1';
-      const foundAccount = await DB.query(foundAccountQueryString, [accountNumber]);
-      if (foundAccount.rows.length === 0) {
+      const rows = await selectFromDb('*','accounts','"accountNumber"',accountNumber)
+      if (rows.length === 0) {
         return res.status(404).json({
           status: 404,
           error: 'account number doesn\'t exist',
         });
       }
-      const updateStatusQueryString = 'UPDATE accounts SET status = $1 WHERE "accountNumber" = $2 returning *';
-      const updatedStatus = await DB.query(updateStatusQueryString, [status, accountNumber]);
+      const _rows = await updateDb('accounts','status','"accountNumber"',[status,accountNumber])
       return res.status(200).json({
         status: 200,
         data: {
-          accountNumber: updatedStatus.rows[0].accountNumber,
-          status: updatedStatus.rows[0].status,
+          accountNumber: _rows[0].accountNumber,
+          status: _rows[0].status,
         },
       });
     } catch (e) {
@@ -203,9 +199,8 @@ class accountController {
   static async deleteBankAccountDb(req, res) {
     try {
       const { accountNumber } = req.params;
-      const foundAccountQueryString = 'SELECT * FROM accounts WHERE "accountNumber" = $1';
-      const foundAccount = await DB.query(foundAccountQueryString, [accountNumber]);
-      if (foundAccount.rows.length === 0) {
+      const rows = await selectFromDb('*','accounts','"accountNumber"',accountNumber)
+      if (rows.length === 0) {
         return res.status(404).json({
           status: 404,
           error: 'account number doesn\'t exist',
