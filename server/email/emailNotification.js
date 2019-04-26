@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 
 dotenv.config();
 
+
 class EmailNotificationMarshal {
   static async sendEmail(receiver, data, req, res) {
     try {
@@ -11,7 +12,7 @@ class EmailNotificationMarshal {
         service: 'gmail',
         auth: {
           user: process.env.EMAIL,
-          pass: process.env.EMAILPASSWORD,
+          pass: process.env.EMAIL_PASSWORD,
         },
       });
 

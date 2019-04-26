@@ -1,5 +1,8 @@
 import DB from '../db/index';
 import EmailNotificationMarshal from '../email/emailNotification';
+import helper from '../helper/helper';
+
+const {selectFromDb, updateDb, insertToDb} = helper;
 
 const { sendEmail } = EmailNotificationMarshal;
 
@@ -29,11 +32,8 @@ class transactionController {
       }
       const newBalance = oldBalance - amount;
       const values = ['debit', accountNumber, id, amount, oldBalance, newBalance];
-      const accountqueryString = `INSERT INTO transactions(type, "accountNumber", cashier,amount, "oldBalance", "newBalance")
-                                  VALUES($1, $2, $3, $4, $5, $6)returning *`;
-      const { rows } = await DB.query(accountqueryString, values);
-      const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE "accountNumber" = $2';
-      await DB.query(updatebalanceQueryString, [newBalance, accountNumber]);
+      const rows = await insertToDb("transactions", 'type, "accountNumber", cashier,amount, "oldBalance", "newBalance"', '$1, $2, $3, $4, $5, $6',values)
+      await updateDb('accounts','balance','"accountNumber"',[newBalance, accountNumber])
       sendEmail(userEmail, rows[0], req, res);
 
       return res.status(200).json({
@@ -73,11 +73,8 @@ class transactionController {
       const oldBalance = foundAccountDb.rows[0].balance;
       const newBalance = oldBalance + amount;
       const values = ['credit', accountNumber, id, amount, oldBalance, newBalance];
-      const accountqueryString = `INSERT INTO transactions(type, "accountNumber", cashier,amount, "oldBalance", "newBalance")
-                                  VALUES($1, $2, $3, $4, $5, $6)returning *`;
-      const { rows } = await DB.query(accountqueryString, values);
-      const updatebalanceQueryString = 'UPDATE accounts SET balance = $1 WHERE "accountNumber" = $2';
-      await DB.query(updatebalanceQueryString, [newBalance, accountNumber]);
+      const rows = await insertToDb("transactions", 'type, "accountNumber", cashier,amount, "oldBalance", "newBalance"', '$1, $2, $3, $4, $5, $6',values)
+      await updateDb('accounts','balance','"accountNumber"',[newBalance, accountNumber])
       sendEmail(userEmail, rows[0], req, res);
       return res.status(200).json({
         status: 200,
@@ -102,13 +99,12 @@ class transactionController {
   static async getSpecificTransaction(req, res) {
     try {
       const { transactionId } = req.params;
-      const accountQueryString = `select id, "accountNumber","createdOn", type,amount, "oldBalance",
-       "newBalance" FROM transactions  WHERE id = $1`;
-      const accounts = await DB.query(accountQueryString, [transactionId]);
-      if (accounts.rows.length > 0) {
+      const rows = await selectFromDb(`id, "accountNumber","createdOn", type,amount, "oldBalance",
+      "newBalance"`,'transactions','id',transactionId)
+      if (rows.length > 0) {
         return res.status(200).json({
           status: 200,
-          data: accounts.rows,
+          data: rows,
         });
       }
       // return error if no transaction made

@@ -35,45 +35,45 @@ router.post('/accounts',
 
 router.get('/accounts',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateAccountStatusInput,
+  permissionMiddleWareDb,
   fetchAllAccountsDb);
 
 router.get('/accounts/:accountNumber/transactions',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateParam,
+  permissionMiddleWareDb,
   getAccountTransactions);
 
 router.get('/accounts/:accountNumber',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateParam,
+  permissionMiddleWareDb,
   getAccountDb);
 
 router.patch('/accounts/:accountNumber',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateParam,
   validateUpdateStatus,
+  permissionMiddleWareDb,
   changeStatusDb);
 
 router.delete('/accounts/:accountNumber',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateParam,
+  permissionMiddleWareDb,
   deleteBankAccountDb);
 
 router.get('/user/:email/accounts',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateEmail,
+  permissionMiddleWareDb,
   getSpecificUserAccount);
 
 router.post('/user',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateSignUpInput,
+  permissionMiddleWareDb,
   createAccountDb);
 
 router.post('/user/resetPassword',

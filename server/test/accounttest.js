@@ -69,6 +69,25 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
+    it('it should create a bank account', (done) => {
+      const details = {
+        balance: 400.00,
+        type: 'savings',
+      };
+
+      chai
+        .request(app)
+        .post('/api/v1/accounts')
+        .send(details)
+        .set('token', userDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(201);
+          expect(body).to.be.an('object');
+          done();
+        });
+    });
+
     it('it should throw error when account type is different from savings and account', (done) => {
       const details = {
         type: 'somethingdifferent',

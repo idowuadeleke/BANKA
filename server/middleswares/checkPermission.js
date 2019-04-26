@@ -1,4 +1,7 @@
 import DB from '../db/index';
+import helper from '../helper/helper';
+
+const {selectFromDb} = helper;
 
 
 class checkPermissions {
@@ -6,10 +9,8 @@ class checkPermissions {
   static async permissionMiddleWareDb(req, res, next) {
     const { id } = req.user;
     const { accountNumber, transactionId, email } = req.params;
-    const queryString = 'SELECT * FROM users WHERE id = $1';
-    const users = await DB.query(queryString, [id]);
-    const { type } = users.rows[0];
-    const { isAdmin } = users.rows[0];
+    const user = await selectFromDb('*','users','id',id)
+    const { type, isAdmin } = user[0];
     const route = req.route.path;
     const method = req.method.toLowerCase();
     if ((route === '/accounts') && method === 'get' && type !== 'staff') {
@@ -20,8 +21,7 @@ class checkPermissions {
     }
     // check if it is my account
     if ((route === '/user/:email/accounts') && method === 'get' && type !== 'staff') {
-      const foundAccountQueryString = 'SELECT id FROM users WHERE email = $1';
-      const { rows } = await DB.query(foundAccountQueryString, [email]);
+      const rows = await selectFromDb('id','users','email',email)
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
         if (rows[0].id !== Number(id)) {
@@ -33,10 +33,8 @@ class checkPermissions {
       }
     }
 
-
     if ((route === '/accounts/:accountNumber/transactions') && method === 'get' && type !== 'staff') {
-      const foundAccountQueryString = 'SELECT owner FROM accounts WHERE "accountNumber" = $1';
-      const { rows } = await DB.query(foundAccountQueryString, [accountNumber]);
+      const rows = await selectFromDb('owner','accounts','"accountNumber"',accountNumber)
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
         if (rows[0].owner !== Number(id)) {
@@ -65,8 +63,7 @@ class checkPermissions {
     }
 
     if ((route === '/accounts/:accountNumber') && method === 'get' && type !== 'staff') {
-      const foundAccountQueryString = 'SELECT owner FROM accounts WHERE "accountNumber" = $1';
-      const { rows } = await DB.query(foundAccountQueryString, [accountNumber]);
+      const rows = await selectFromDb('owner','accounts','"accountNumber"',accountNumber)
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
         if (rows[0].owner !== Number(id)) {

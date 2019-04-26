@@ -1,6 +1,9 @@
 import bcrypt from 'bcryptjs';
 import Auth from '../middleswares/is-Auth';
 import DB from '../db/index';
+import helper from '../helper/helper';
+
+const {selectFromDb, updateDb, insertToDb} = helper;
 
 const { genSaltSync, hashSync, compareSync } = bcrypt;
 
@@ -20,9 +23,7 @@ class UserController {
     const hash = hashSync(body.password, salt);
     const values = [body.firstname, body.lastname, body.email, body.type, hash, body.isAdmin];
     try {
-      const queryString = 'INSERT INTO users("firstName", "lastName", email, type, password, "isAdmin") VALUES($1, $2, $3, $4, $5,$6) returning *';
-      const { rows } = await DB.query(queryString, values);
-      // create token
+      const rows = await insertToDb("users", '"firstName", "lastName", email, type, password, "isAdmin"', '$1, $2, $3, $4, $5,$6',values)
       const token = createToken(rows[0].email, rows[0].id);
 
       return res.status(201).json({
@@ -57,10 +58,9 @@ class UserController {
    */
   static async signinDb(req, res) {
     const { email, password } = req.body;
-    const queryString = 'SELECT * FROM users WHERE email = $1';
+    
     try {
-      // Select all user record where email is equal db email
-      const { rows } = await DB.query(queryString, [email]);
+      const rows = await selectFromDb('*','users','email',email)
 
       // check if user exist in database
       if (!rows[0]) {
@@ -109,8 +109,7 @@ class UserController {
     const values = [hash, id];
 
     try {
-      const queryString = 'UPDATE users SET password = $1 WHERE id = $2';
-      await DB.query(queryString, values);
+      await updateDb('users','password','id',values)
 
       return res.status(200).json({
         status: 200,
