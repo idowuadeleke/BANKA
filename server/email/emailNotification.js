@@ -1,4 +1,7 @@
+import dotenv from 'dotenv';
 const nodemailer = require('nodemailer');
+
+dotenv.config();
 
 class EmailNotificationMarshal {
   static async sendEmail(receiver, data, req, res) {
@@ -7,14 +10,14 @@ class EmailNotificationMarshal {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'noreply.banka@gmail.com',
-          pass: '@delek34567',
+          user: process.env.EMAIL,
+          pass: process.env.EMAILPASSWORD,
         },
       });
 
       // send mail with defined transport object
       await transporter.sendMail({
-        from: '"BANKA" <noreply.banka@gmail.com>',
+        from: `"BANKA" <${process.env.EMAIL}>`,
         to: receiver,
         subject: `${data.type} notification`,
         html: ` Hi,
