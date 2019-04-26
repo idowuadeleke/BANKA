@@ -68,7 +68,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         .send(details)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only cashier can debit account');
           done();
@@ -191,7 +191,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         .send(details)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only cashier can credit account');
           done();
@@ -296,7 +296,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         .set('token', userTokenDb)
         .end((err, res) => {
           const { body } = res;
-          expect(body.status).to.be.equals(403);
+          expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
           expect(body.error).to.be.equals('only a staff has the permission to get other users transaction details');
           done();

@@ -20,7 +20,6 @@ class UserController {
     const hash = hashSync(body.password, salt);
     const values = [body.firstname, body.lastname, body.email, body.type, hash, body.isAdmin];
     try {
-      
       const queryString = 'INSERT INTO users("firstName", "lastName", email, type, password, "isAdmin") VALUES($1, $2, $3, $4, $5,$6) returning *';
       const { rows } = await DB.query(queryString, values);
       // create token

@@ -13,8 +13,8 @@ class checkPermissions {
     const route = req.route.path;
     const method = req.method.toLowerCase();
     if ((route === '/accounts') && method === 'get' && type !== 'staff') {
-      return res.status(403).json({
-        status: 403,
+      return res.status(401).json({
+        status: 401,
         error: 'only a staff has the permission to get all bank accounts',
       });
     }
@@ -25,16 +25,12 @@ class checkPermissions {
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
         if (rows[0].id !== Number(id)) {
-          return res.status(403).json({
-            status: 403,
+          return res.status(401).json({
+            status: 401,
             error: 'only a staff has the permission to get other user\'s account',
           });
         }
       }
-      // return res.status(403).json({
-      //   status: 403,
-      //   error: 'only a staff has the permission to get other user\'s account',
-      // });
     }
 
 
@@ -44,8 +40,8 @@ class checkPermissions {
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
         if (rows[0].owner !== Number(id)) {
-          return res.status(403).json({
-            status: 403,
+          return res.status(401).json({
+            status: 401,
             error: 'only a staff has the permission to get other users transaction details',
           });
         }
@@ -60,8 +56,8 @@ class checkPermissions {
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
         if (rows[0].owner !== Number(id)) {
-          return res.status(403).json({
-            status: 403,
+          return res.status(401).json({
+            status: 401,
             error: 'only a staff has the permission to get other users transaction details',
           });
         }
@@ -74,8 +70,8 @@ class checkPermissions {
       if (rows.length !== 0) {
         // check if user wants to access his own or another client account
         if (rows[0].owner !== Number(id)) {
-          return res.status(403).json({
-            status: 403,
+          return res.status(401).json({
+            status: 401,
             error: 'only a staff has the permission to get other user\'s account',
           });
         }
@@ -83,42 +79,42 @@ class checkPermissions {
     }
 
     if (route === '/accounts/:accountNumber' && method === 'patch' && type !== 'staff') {
-      return res.status(403).json({
-        status: 403,
+      return res.status(401).json({
+        status: 401,
         error: 'only a admin has the permission to change account status',
       });
     }
 
     if (route === '/accounts/:accountNumber' && method === 'delete' && type !== 'staff') {
-      return res.status(403).json({
-        status: 403,
+      return res.status(401).json({
+        status: 401,
         error: 'only a staffs can delete an account',
       });
     }
     if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isAdmin)) {
-      return res.status(403).json({
-        status: 403,
+      return res.status(401).json({
+        status: 401,
         error: 'only cashier can credit account',
       });
     }
 
     if (route === '/transactions/:accountNumber/debit' && method === 'post' && (type !== 'staff' || isAdmin)) {
-      return res.status(403).json({
-        status: 403,
+      return res.status(401).json({
+        status: 401,
         error: 'only cashier can debit account',
       });
     }
 
     if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isAdmin)) {
-      return res.status(403).json({
-        status: 403,
+      return res.status(401).json({
+        status: 401,
         error: 'only cashier can credit account',
       });
     }
 
     if (route === '/user' && method === 'post' && (type !== 'staff' || !isAdmin)) {
-      return res.status(403).json({
-        status: 403,
+      return res.status(401).json({
+        status: 401,
         error: 'only admin can create staff or admin account',
       });
     }

@@ -18,7 +18,7 @@ class EmailNotificationMarshal {
         to: receiver,
         subject: `${data.type} notification`,
         html: ` Hi,
-                <p>Your account ${data.accountnumber} has been ${data.type}ed with ₦${data.amount}.<p>
+                <p>Your account ${data.accountNumber} has been ${data.type}ed with ₦${data.amount}.<p>
                 <p> Balance : ₦${data.newBalance} </p>`,
       });
 

@@ -1,5 +1,5 @@
 import DB from '../db/index';
-import EmailNotificationMarshal from '../helper/emailNotification';
+import EmailNotificationMarshal from '../email/emailNotification';
 
 const { sendEmail } = EmailNotificationMarshal;
 
