@@ -31,8 +31,8 @@ describe('Test user signin and signup', () => {
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(201);
-          expect(body.data).to.be.an('object');
-          expect(body.data.token).to.be.a('string');
+          expect(body.data[0]).to.be.an('object');
+          expect(body.data[0].token).to.be.a('string');
           done();
         });
     });
@@ -339,8 +339,8 @@ describe('Test user signin and signup', () => {
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(200);
-          expect(body.data).to.be.an('object');
-          expect(body.data.token).to.be.a('string');
+          expect(body.data[0]).to.be.an('object');
+          expect(body.data[0].token).to.be.a('string');
 
           done();
         });
@@ -453,7 +453,7 @@ describe('Test user signin and signup', () => {
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
-          adminDbToken = body.data.token;
+          adminDbToken = body.data[0].token;
           done();
         });
     });
@@ -476,8 +476,8 @@ describe('Test user signin and signup', () => {
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(201);
-          expect(body.data).to.be.an('object');
-          expect(body.data.token).to.be.a('string');
+          expect(body.data[0]).to.be.an('object');
+          expect(body.data[0].token).to.be.a('string');
           done();
         });
     });

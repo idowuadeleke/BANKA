@@ -28,13 +28,13 @@ class UserController {
 
       return res.status(201).json({
         status: 201,
-        data: {
+        data: [{
           token,
           firstName: rows[0].firstName,
           lastName: rows[0].lastName,
           email: rows[0].email,
           type: rows[0].type,
-        },
+        }],
       });
     } catch (error) {
       // check if user exist
@@ -84,13 +84,13 @@ class UserController {
       // return success message
       return res.status(200).json({
         status: 200,
-        data: {
+        data: [{
           token,
           firstName: rows[0].firstName,
           lastName: rows[0].lastName,
           email: rows[0].email,
           type: rows[0].type,
-        },
+        }],
       });
     } catch (error) {
       return res.status(500).json({
@@ -113,9 +113,9 @@ class UserController {
 
       return res.status(200).json({
         status: 200,
-        data: {
+        data: [{
           newPassword: body.password,
-        },
+        }],
       });
     } catch (error) {
       return res.status(400).json({
