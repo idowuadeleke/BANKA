@@ -82,6 +82,5 @@ router.post('/user/resetPassword',
   resetPassword);
 // router.get('/user',verifyTokendb, permissionMiddleWareDb,getAllUsers);
 
-
 // expose router
 export default router;

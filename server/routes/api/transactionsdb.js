@@ -8,7 +8,7 @@ const { verifyTokendb } = isAuth;
 
 const { permissionMiddleWareDb } = checkPermission;
 
-const { validateCashierInput, validateParam } = validateInput;
+const { validateCashierInput, validateParam ,validateTransParam} = validateInput;
 
 const router = express.Router();
 
@@ -16,22 +16,22 @@ const { debitUserAccountDb, creditUserAccountDb, getSpecificTransaction } = tran
 
 router.post('/transactions/:accountNumber/debit',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateParam,
   validateCashierInput,
+  permissionMiddleWareDb,
   debitUserAccountDb);
 
 router.post('/transactions/:accountNumber/credit',
   verifyTokendb,
-  permissionMiddleWareDb,
   validateParam,
   validateCashierInput,
+  permissionMiddleWareDb,
   creditUserAccountDb);
 
 router.get('/transactions/:transactionId',
   verifyTokendb,
+  validateTransParam,
   permissionMiddleWareDb,
-  validateParam,
   getSpecificTransaction);
 
 

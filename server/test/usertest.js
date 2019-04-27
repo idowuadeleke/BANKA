@@ -76,6 +76,29 @@ describe('Test user signin and signup', () => {
         });
     });
 
+    it('Should return an error if signup input type is invalid', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          firstname: true,
+          lastname: true,
+          email: true,
+          password: true,
+          type: true,
+          isAdmin: "www",
+        })
+        .end((err, res) => {
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.a('object');
+
+          done();
+        });
+    });
+
     it('Should return an error if signup firstname and last is less than 2 characters', (done) => {
       chai
         .request(app)
@@ -86,7 +109,7 @@ describe('Test user signin and signup', () => {
           email: faker.internet.email(),
           password: 'dele1989',
           type: 'client',
-          isAdmin: false,
+          isAdmin: "",
         })
         .end((err, res) => {
           const { body } = res;
@@ -376,6 +399,26 @@ describe('Test user signin and signup', () => {
           expect(body.status).to.be.equal(400);
           expect(body.errors).to.be.an('object');
           expect(body.errors.email).to.be.equals('Email is invalid');
+          done();
+        });
+    });
+
+    it('Should return an error if signin email and password is boolean', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signin')
+        .send({
+          email: true,
+          password: true,
+        })
+        .end((err, res) => {
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equal(400);
+          expect(body.errors).to.be.an('object');
+          expect(body.errors.email).to.be.equals('Email is invalid');
+          expect(body.errors.password).to.be.equals('password field must be a string');
           done();
         });
     });

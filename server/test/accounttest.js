@@ -69,6 +69,26 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
+    it('it should throw error when account type is number', (done) => {
+      const details = {
+        balance: 0.00,
+        type:33
+      };
+
+      chai
+        .request(app)
+        .post('/api/v1/accounts')
+        .send(details)
+        .set('token', userDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('type field must be a string');
+          done();
+        });
+    });
+
     it('it should create a bank account', (done) => {
       const details = {
         balance: 400.00,
@@ -183,6 +203,27 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body).to.be.an('object');
           expect(body.errors.password).to.be.equals('Password must be at least 6 characters');
           expect(body.errors.confirmPassword).to.be.equals('password and confirm password must be the same');
+          done();
+        });
+    });
+
+    it('it should throw error when input is invalid', (done) => {
+      const details = {
+        password: true,
+        confirmPassword: true,
+      };
+
+      chai
+        .request(app)
+        .post('/api/v1/user/resetPassword')
+        .send(details)
+        .set('token', userDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.password).to.be.equals('password field must be a string');
+          expect(body.errors.confirmPassword).to.be.equals('confirm password field must be a string');
           done();
         });
     });
@@ -422,6 +463,21 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
+    it('it should throw an error if a client puts is boolean', (done) => {
+      const accountNumber = true;
+      chai
+        .request(app)
+        .get(`/api/v1/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('account number must be an integer');
+          done();
+        });
+    });
+
 
     it('it should throw an error when account number is not found', (done) => {
       const accountNumber = 2220107;
@@ -495,6 +551,21 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
     it('it should throw an error if account number is invalid', (done) => {
       const accountNumber = '1448988yyy';
+      chai
+        .request(app)
+        .get(`/api/v1/accounts/${accountNumber}/transactions`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('account number must be an integer');
+          done();
+        });
+    });
+
+    it('it should throw an error if account number is boolean', (done) => {
+      const accountNumber = true;
       chai
         .request(app)
         .get(`/api/v1/accounts/${accountNumber}/transactions`)
@@ -668,8 +739,42 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         });
     });
 
+    it('it should throw error when request body status is boolean', (done) => {
+      const accountNumber = 222010872;
+      const requestBody = { status: true };
+      chai
+        .request(app)
+        .patch(`/api/v1/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
+        .send(requestBody)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.updatestatus).to.be.equals('status field must be a string');
+          done();
+        });
+    });
+
     it('it should throw error when account number is invalid', (done) => {
       const accountNumber = '22201jjj';
+      const requestBody = { status: 'active' };
+      chai
+        .request(app)
+        .patch(`/api/v1/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
+        .send(requestBody)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('account number must be an integer');
+          done();
+        });
+    });
+
+    it('it should throw error when account number boolean', (done) => {
+      const accountNumber = true;
       const requestBody = { status: 'active' };
       chai
         .request(app)
@@ -739,6 +844,21 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
 
     it('it should throw an error when account number is not valid', (done) => {
       const accountNumber = '211110jj';
+      chai
+        .request(app)
+        .delete(`/api/v1/accounts/${accountNumber}`)
+        .set('token', adminDbToken)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.type).to.be.equals('account number must be an integer');
+          done();
+        });
+    });
+
+    it('it should throw an error when account number is boolean', (done) => {
+      const accountNumber = true;
       chai
         .request(app)
         .delete(`/api/v1/accounts/${accountNumber}`)
