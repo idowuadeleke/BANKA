@@ -183,10 +183,10 @@ class accountController {
       const _rows = await updateDb('accounts','status','"accountNumber"',[status,accountNumber])
       return res.status(200).json({
         status: 200,
-        data: {
+        data: [{
           accountNumber: _rows[0].accountNumber,
           status: _rows[0].status,
-        },
+        }],
       });
     } catch (e) {
       return res.status(500).json({

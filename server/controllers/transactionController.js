@@ -38,14 +38,14 @@ class transactionController {
 
       return res.status(200).json({
         status: 200,
-        data: {
+        data: [{
           transactionId: rows[0].id,
           accountNumber: rows[0].accountNumber,
           amount: rows[0].amount,
           cashier: rows[0].cashier,
           transactionType: rows[0].type,
           accountBalance: rows[0].newBalance,
-        },
+        }],
       });
     } catch (error) {
       return res.status(500).json({
@@ -78,14 +78,14 @@ class transactionController {
       sendEmail(userEmail, rows[0], req, res);
       return res.status(200).json({
         status: 200,
-        data: {
+        data: [{
           transactionId: rows[0].id,
           accountNumber: rows[0].accountNumber,
           amount: rows[0].amount,
           cashier: rows[0].cashier,
           transactionType: rows[0].type,
           accountBalance: rows[0].newBalance,
-        },
+        }],
       });
     } catch (error) {
       return res.status(500).json({
