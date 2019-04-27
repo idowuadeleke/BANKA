@@ -27,7 +27,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
       .end((err, res) => {
         const { body } = res;
         expect(body.status).to.be.equals(200);
-        cashierTokenDb = body.data.token;
+        cashierTokenDb = body.data[0].token;
         done();
       });
   });
@@ -48,7 +48,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
       .end((err, res) => {
         const { body } = res;
         expect(body.status).to.be.equals(200);
-        userTokenDb = body.data.token;
+        userTokenDb = body.data[0].token;
         done();
       });
   });
@@ -166,12 +166,12 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data).to.haveOwnProperty('accountNumber');
-          expect(body.data).to.haveOwnProperty('transactionId');
-          expect(body.data).to.haveOwnProperty('amount');
-          expect(body.data).to.haveOwnProperty('cashier');
-          expect(body.data).to.haveOwnProperty('transactionType');
-          expect(body.data).to.haveOwnProperty('accountBalance');
+          expect(body.data[0]).to.haveOwnProperty('accountNumber');
+          expect(body.data[0]).to.haveOwnProperty('transactionId');
+          expect(body.data[0]).to.haveOwnProperty('amount');
+          expect(body.data[0]).to.haveOwnProperty('cashier');
+          expect(body.data[0]).to.haveOwnProperty('transactionType');
+          expect(body.data[0]).to.haveOwnProperty('accountBalance');
           done();
         });
     });
@@ -273,12 +273,12 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data).to.haveOwnProperty('accountNumber');
-          expect(body.data).to.haveOwnProperty('transactionId');
-          expect(body.data).to.haveOwnProperty('amount');
-          expect(body.data).to.haveOwnProperty('cashier');
-          expect(body.data).to.haveOwnProperty('transactionType');
-          expect(body.data).to.haveOwnProperty('accountBalance');
+          expect(body.data[0]).to.haveOwnProperty('accountNumber');
+          expect(body.data[0]).to.haveOwnProperty('transactionId');
+          expect(body.data[0]).to.haveOwnProperty('amount');
+          expect(body.data[0]).to.haveOwnProperty('cashier');
+          expect(body.data[0]).to.haveOwnProperty('transactionType');
+          expect(body.data[0]).to.haveOwnProperty('accountBalance');
           done();
         });
     });

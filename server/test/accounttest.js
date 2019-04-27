@@ -24,7 +24,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
       .end((err, res) => {
         const { body } = res;
         expect(body.status).to.be.equals(200);
-        userDbToken = body.data.token;
+        userDbToken = body.data[0].token;
         done();
       });
   });
@@ -264,7 +264,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data).to.haveOwnProperty('newPassword');
+          expect(body.data[0]).to.haveOwnProperty('newPassword');
           done();
         });
     });
@@ -372,7 +372,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
         .end((err, res) => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
-          adminDbToken = body.data.token;
+          adminDbToken = body.data[0].token;
           done();
         });
     });
@@ -699,8 +699,8 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data).to.haveOwnProperty('accountNumber');
-          expect(body.data).to.haveOwnProperty('status');
+          expect(body.data[0]).to.haveOwnProperty('accountNumber');
+          expect(body.data[0]).to.haveOwnProperty('status');
           done();
         });
     });
