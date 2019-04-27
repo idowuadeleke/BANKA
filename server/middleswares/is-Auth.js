@@ -6,6 +6,33 @@ dotenv.config();
 
 class Auth {
 
+   /**
+   * trim input whitespaces
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
+  static trimmer(req, res, next) {
+    const { body } = req;
+    const {isAdmin} = body
+    try{
+      delete body["isAdmin"]
+      const trimmed = {};
+
+      Object.keys(body).forEach((key) => {
+        const value = body[key];
+        Object.assign(trimmed, { [key]: value.trim() });
+      });
+      req.body = trimmed;
+      req.body.isAdmin = isAdmin
+      
+    }
+    catch(e){
+      req.body = body
+    }
+    next();
+  }
+
   /**
    *create a token
    * @param {*} email

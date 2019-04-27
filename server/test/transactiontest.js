@@ -134,7 +134,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
-          expect(body.errors.amount).to.be.equals('amount field is required');
+          expect(body.errors.amount).to.be.equals('amount field is must be a number');
           done();
         });
     });
@@ -241,7 +241,7 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
-          expect(body.errors.amount).to.be.equals('amount field is required');
+          expect(body.errors.amount).to.be.equals('amount field is must be a number');
           done();
         });
     });
@@ -353,5 +353,6 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
           done();
         });
     });
+
   });
 });
