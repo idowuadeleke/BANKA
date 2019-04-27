@@ -14,7 +14,7 @@ const { validateSignUpInput, validatesignInInput } = validateInput;
 router.post('/signup',trimmer, validateSignUpInput, createAccountDb);
 
 // db user signin route
-router.post('/signin', validatesignInInput, signinDb);
+router.post('/signin',trimmer, validatesignInInput, signinDb);
 
 
 // expose router
