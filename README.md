@@ -1,9 +1,9 @@
 # BANKA
-Banka is a light-weight core banking application that powers banking operations like account creation, customer deposit and withdrawals. This app is meant to support a single bank, where users **can signup and create bank accounts online, but must visit the branch to withdraw or deposit money..
+Banka is a light-weight core banking application that powers banking operations like account creation, customer deposit and withdrawals. This app is meant to support a single bank, where users can signup and create bank accounts online, but must visit the branch to withdraw or deposit money..
 
 
 [![Build Status](https://travis-ci.com/idowuadeleke/BANKA.svg?branch=develop)](https://travis-ci.com/idowuadeleke/BANKA)
-[![Coverage Status](https://coveralls.io/repos/github/idowuadeleke/BANKA/badge.svg)](https://coveralls.io/github/idowuadeleke/BANKA)
+[![Coverage Status](https://coveralls.io/repos/github/idowuadeleke/BANKA/badge.svg?branch=develop)](https://coveralls.io/github/idowuadeleke/BANKA?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6063d53fa1f8c4cdad9a/maintainability)](https://codeclimate.com/github/idowuadeleke/BANKA/maintainability)
 
 ## Required Features
@@ -114,7 +114,7 @@ The API is currently in version 1 (v1)  is hosted at [https://bankaapplication.h
 
 
 ## API Documentation
-API Documentation was generated with [swagger](link).
+API Documentation was generated with [swagger](https://bankaapplication.herokuapp.com/api-docs/).
 
 ## Acknowledgments
 
