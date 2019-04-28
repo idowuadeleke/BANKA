@@ -86,7 +86,7 @@ describe('Test user signin and signup', () => {
           email: true,
           password: true,
           type: true,
-          isAdmin: "www",
+          isAdmin: 'www',
         })
         .end((err, res) => {
           const { body } = res;
@@ -109,7 +109,7 @@ describe('Test user signin and signup', () => {
           email: faker.internet.email(),
           password: 'dele1989',
           type: 'client',
-          isAdmin: "",
+          isAdmin: '',
         })
         .end((err, res) => {
           const { body } = res;
@@ -275,6 +275,28 @@ describe('Test user signin and signup', () => {
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(400);
           expect(body.errors.type).to.be.equals('Type field is required');
+          done();
+        });
+    });
+
+    it('should return an error if isAdmin field is a string', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          firstname: 'Idowu',
+          lastname: 'Adeleke',
+          email: 'idowu@andela.com',
+          password: 'dele1989',
+          type: 'client',
+          isAdmin: "howdy",
+        })
+        .end((err, res) => {
+          const { body } = res;
+          expect(body).to.be.an('object');
+          expect(body.status).to.be.a('number');
+          expect(body.status).to.be.equals(400);
+          expect(body.errors.isAdmin).to.be.equals('isAdmin field must be a boolean value and is required');
           done();
         });
     });

@@ -23,7 +23,6 @@ Banka is a light-weight core banking application that powers banking operations 
 ## Optional Features
 - User can reset password.
 - Integrate real time email notification upon credit/debit transaction on user account.
-- User can upload a photo to their profile.
 
 ## Technologies
 
@@ -91,13 +90,28 @@ Banka is a light-weight core banking application that powers banking operations 
 
 `- POST /api/v1/accounts Create a bank account.`
 
+`- GET /api/v1/accounts Get all bank accounts.`
+
+`- GET /api/v1/accounts​/<accountNumber> Get Specific Bank Account`
+
 `- PATCH /api/v1/account/<account-number> Activate or deactivate an account.`
 
 `- DELETE /api/v1/accounts/<account-number> Delete a user account.`
 
+`- GET /api/v1/user/<email>/accounts Get a user bank account`
+
 `- POST /api/v1/transactions/<account-number>/debit Debit a bank account.`
 
-`- POST /transactions/<account-number>/credit Credit a bank account..`
+`- POST /api/v1/transactions/<account-number>/credit Credit a bank account..`
+
+`- POST /api/v1/transactions/<transactionId> Get a specific transaction detail`
+
+`- GET /api/v1/accounts​/<accountNumber>/transactions Get Specific Bank Account transaction history`
+
+`- POST /api/vi/user Admin can create a staff or admin user`
+
+`- POST /api/v1/resetPassword User can reset password`
+
 
 ## Pivotal Tracker stories
 

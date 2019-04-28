@@ -72,7 +72,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
     it('it should throw error when account type is number', (done) => {
       const details = {
         balance: 0.00,
-        type:33
+        type: 33,
       };
 
       chai
@@ -663,7 +663,6 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           done();
         });
     });
-    
   });
 
   /**

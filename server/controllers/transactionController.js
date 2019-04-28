@@ -2,7 +2,7 @@ import DB from '../db/index';
 import EmailNotificationMarshal from '../email/emailNotification';
 import helper from '../helper/helper';
 
-const {selectFromDb, updateDb, insertToDb} = helper;
+const { selectFromDb, updateDb, insertToDb } = helper;
 
 const { sendEmail } = EmailNotificationMarshal;
 
@@ -32,8 +32,8 @@ class transactionController {
       }
       const newBalance = oldBalance - amount;
       const values = ['debit', accountNumber, id, amount, oldBalance, newBalance];
-      const rows = await insertToDb("transactions", 'type, "accountNumber", cashier,amount, "oldBalance", "newBalance"', '$1, $2, $3, $4, $5, $6',values)
-      await updateDb('accounts','balance','"accountNumber"',[newBalance, accountNumber])
+      const rows = await insertToDb('transactions', 'type, "accountNumber", cashier,amount, "oldBalance", "newBalance"', '$1, $2, $3, $4, $5, $6', values);
+      await updateDb('accounts', 'balance', '"accountNumber"', [newBalance, accountNumber]);
       sendEmail(userEmail, rows[0], req, res);
 
       return res.status(200).json({
@@ -73,8 +73,8 @@ class transactionController {
       const oldBalance = foundAccountDb.rows[0].balance;
       const newBalance = oldBalance + amount;
       const values = ['credit', accountNumber, id, amount, oldBalance, newBalance];
-      const rows = await insertToDb("transactions", 'type, "accountNumber", cashier,amount, "oldBalance", "newBalance"', '$1, $2, $3, $4, $5, $6',values)
-      await updateDb('accounts','balance','"accountNumber"',[newBalance, accountNumber])
+      const rows = await insertToDb('transactions', 'type, "accountNumber", cashier,amount, "oldBalance", "newBalance"', '$1, $2, $3, $4, $5, $6', values);
+      await updateDb('accounts', 'balance', '"accountNumber"', [newBalance, accountNumber]);
       sendEmail(userEmail, rows[0], req, res);
       return res.status(200).json({
         status: 200,
@@ -100,7 +100,7 @@ class transactionController {
     try {
       const { transactionId } = req.params;
       const rows = await selectFromDb(`id, "accountNumber","createdOn", type,amount, "oldBalance",
-      "newBalance"`,'transactions','id',transactionId)
+      "newBalance"`, 'transactions', 'id', transactionId);
       if (rows.length > 0) {
         return res.status(200).json({
           status: 200,

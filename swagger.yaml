@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: BANKA
+  title: BANKA APP
   description: Banka is a light-weight core banking application that powers banking operations like account creation, customer deposit and withdrawals. This app is meant to support a single bank, where users can signup and create bank accounts online, but must visit the branch to withdraw or deposit money..
   contact: {}
 host: bankaapplication.herokuapp.com
@@ -39,18 +39,16 @@ paths:
         201:
           description: ''
           schema:
-            $ref: '#/definitions/signup'
+            $ref: '#/definitions/signupwithvaliddata'
           examples:
             application/json; charset=utf-8:
               status: 201
               data:
-                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlZG5lc3NAZ21haWwuY29tIiwiaWQiOjMzLCJpYXQiOjE1NTYxODAxNzgsImV4cCI6MTU1NjI2NjU3OH0.F-IVLBec-aTYUltmhZl2PyZAl4V75uU9SzbP6OlsaXU
-                id: 33
-                firstname: Goodness
-                lastname: Greatness
-                email: gedness@gmail.com
+              - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdlb291eXVkb25lc3NAZ21haWwuY29tIiwiaWQiOjY2LCJpYXQiOjE1NTYzODI2MTYsImV4cCI6MTU1NjQ2OTAxNn0.EHvRjUExsMIMzt1lTt_S9PZlXvA1FBK0JUq83h2RiPk
+                firstName: Goodness
+                lastName: Greatness
+                email: geoouyudoness@gmail.com
                 type: client
-                isadmin: false
           headers:
             Server:
               type: string
@@ -63,16 +61,35 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 324
+              default: 316
             Etag:
               type: string
-              default: W/"144-ZldFG0DxeZaZPI11vKHM1dQOoto"
+              default: W/"13c-iEdiczNYGpaVx/RbmW//H1PvGwo"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:16:18 GMT
+              default: Sat, 27 Apr 2019 16:30:16 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/signupinvaliddata'
+          examples:
+            application/json:
+              status: 400
+              errors:
+                firstname: First Name field is required
+                lastname: Last Name field is required
+                email: Email field is required
+        409:
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 409
+              error: User already exist
   /auth/signin:
     post:
       description: Users can login to their BANKA Account
@@ -99,15 +116,15 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/signin'
+            $ref: '#/definitions/signinvaliddata'
           examples:
             application/json; charset=utf-8:
               status: 200
               data:
-                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyZWF0bmVzc0BnbWFpbC5jb20iLCJpZCI6MjEsImlhdCI6MTU1NjE4MDMyNCwiZXhwIjoxNTU2MjY2NzI0fQ.E1NSiVDKKKLgjAdjJnOuxUpVB0vlh4KWu5eU4EvQItM
-                firstname: Greatness
-                lastname: Greatness
-                email: greatness@gmail.com
+              - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imlkb3d1YWRlbGVrZUBnbWFpbC5jb20iLCJpZCI6MTgsImlhdCI6MTU1NjM4Mjg0MSwiZXhwIjoxNTU2NDY5MjQxfQ.Xj4AXSIwcVJcnrMAJuQe-e_9M0VqhH4bICXRTxnF9bs
+                firstName: Idowu
+                lastName: Adeleke
+                email: idowuadeleke@gmail.com
                 type: staff
           headers:
             Server:
@@ -121,16 +138,25 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 305
+              default: 308
             Etag:
               type: string
-              default: W/"131-vwNQrkiV1hE2tWyxe6dbDeeE2M0"
+              default: W/"134-RgwoVU6UxUCHMvihk7fcRAM8KIw"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:18:44 GMT
+              default: Sat, 27 Apr 2019 16:34:01 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/signinwithoutemail'
+          examples:
+            application/json:
+              status: 400
+              errors:
+                email: Email field is required
   /accounts:
     post:
       description: Authorized Users can create a bank account
@@ -157,7 +183,7 @@ paths:
         required: true
         description: ''
         schema:
-          $ref: '#/definitions/CreateBankAccountRequest'
+          type: object
       responses:
         201:
           description: ''
@@ -167,12 +193,13 @@ paths:
             application/json; charset=utf-8:
               status: 201
               data:
-                accountNumber: 1899
-                firstName: Goodness
-                lastName: Greatness
-                email: gedness@gmail.com
+              - id: 25
+                accountNumber: 1401
+                createdOn: 2019-04-27T16:36:44.95Z
+                owner: 18
                 type: savings
-                openingBalance: 400
+                status: draft
+                balance: 400
           headers:
             Server:
               type: string
@@ -185,16 +212,26 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 156
+              default: 152
             Etag:
               type: string
-              default: W/"9c-QCepo33fatThM6RP/nVTdGqWALE"
+              default: W/"98-pvS5jBgUzRoTJw9Y8Ft6TjaqKm0"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:17:53 GMT
+              default: Sat, 27 Apr 2019 16:36:44 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/CreateBankAccountwithnodata'
+          examples:
+            application/json:
+              status: 400
+              errors:
+                type: type field must be a string
+                balance: balance field is must be a number
     get:
       description: Admin and staff can get all bank accounts
       summary: Get All Bank Accounts
@@ -227,16 +264,24 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 1066
+              default: 2814
             Etag:
               type: string
-              default: W/"42a-yMqY9oMbUlhntIDMigt+7inT7YI"
+              default: W/"afe-FY3xBXlD9qxexhjQgVA3VDJ5kOU"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:19:05 GMT
+              default: Sat, 27 Apr 2019 16:38:36 GMT
             Via:
               type: string
               default: 1.1 vegur
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 403
+              error: Unauthorized!, you have to signin
   /accounts/{accountNumber}:
     get:
       description: Admin,staff or Authourized user can get a specific bank account details
@@ -246,7 +291,7 @@ paths:
       operationId: AccountsByAccountNumberGet
       deprecated: false
       produces:
-      - application/json; charset=utf-8
+      - application/json
       parameters:
       - name: accountNumber
         in: path
@@ -261,41 +306,24 @@ paths:
       responses:
         200:
           description: ''
+          headers: {}
+        400:
+          description: Bad Request
           schema:
-            $ref: '#/definitions/GetSpecificBankAccount'
+            $ref: '#/definitions/GetaSpecificTransactionDetail1'
           examples:
-            application/json; charset=utf-8:
-              status: 200
-              data:
-              - id: 1
-                accountnumber: 999
-                createdon: 2019-04-19T10:48:59.096Z
-                status: active
-                type: savings
-                balance: 398
-                email: aduhhdla@gmail.com
-          headers:
-            Server:
-              type: string
-              default: Cowboy
-            Connection:
-              type: string
-              default: keep-alive
-            X-Powered-By:
-              type: string
-              default: Express
-            Content-Length:
-              type: string
-              default: 169
-            Etag:
-              type: string
-              default: W/"a9-VcqMDm/k/s/gN/CcX7b7BSuhnm0"
-            Date:
-              type: string
-              default: Thu, 25 Apr 2019 08:19:43 GMT
-            Via:
-              type: string
-              default: 1.1 vegur
+            application/json:
+              status: 400
+              errors:
+                type: account number must be an integer
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 404
+              error: account number doesn't exist
     delete:
       description: Admin and staff can delete a bank account
       summary: Delete Bank Account
@@ -343,10 +371,18 @@ paths:
               default: W/"37-Ey6xkeOIHErtysb982Ky/zmTnKc"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:21:55 GMT
+              default: Sat, 27 Apr 2019 16:43:21 GMT
             Via:
               type: string
               default: 1.1 vegur
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 404
+              error: account number doesn't exist
     patch:
       description: Admin and staff can activate a bank account
       summary: Activate Bank Account
@@ -387,68 +423,8 @@ paths:
             application/json; charset=utf-8:
               status: 200
               data:
-                accountNumber: 999
+              - accountNumber: 999
                 status: active
-          headers:
-            Server:
-              type: string
-              default: Cowboy
-            Connection:
-              type: string
-              default: keep-alive
-            X-Powered-By:
-              type: string
-              default: Express
-            Content-Length:
-              type: string
-              default: 61
-            Etag:
-              type: string
-              default: W/"3d-0aVpZaUHTwKw/3SKDCoSg1yt6rA"
-            Date:
-              type: string
-              default: Thu, 25 Apr 2019 08:28:33 GMT
-            Via:
-              type: string
-              default: 1.1 vegur
-  /accounts/1099:
-    patch:
-      description: Admin and staff can deactivate a bank account
-      summary: Deactivate Bank Account
-      tags:
-      - Accounts
-      operationId: Accounts1099Patch
-      deprecated: false
-      produces:
-      - application/json; charset=utf-8
-      parameters:
-      - name: Content-Type
-        in: header
-        required: true
-        type: string
-        description: ''
-      - name: token
-        in: header
-        required: true
-        type: string
-        description: ''
-      - name: Body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/DeactivateBankAccountRequest'
-      responses:
-        200:
-          description: ''
-          schema:
-            $ref: '#/definitions/DeactivateBankAccount'
-          examples:
-            application/json; charset=utf-8:
-              status: 200
-              data:
-                accountNumber: 1099
-                status: dormant
           headers:
             Server:
               type: string
@@ -464,13 +440,22 @@ paths:
               default: 63
             Etag:
               type: string
-              default: W/"3f-0E4nyJBP8+KC/cbocmUgYb0QfRM"
+              default: W/"3f-8og/i00AGiAx4o7AYXoeR2EiyTs"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:29:14 GMT
+              default: Sat, 27 Apr 2019 16:44:20 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/DeactivateBankAccount1'
+          examples:
+            application/json:
+              status: 400
+              errors:
+                updatestatus: status must be one of [dormant, active]
   /user/{email}/accounts:
     get:
       description: Admin and staff can get a specific user bank account
@@ -509,16 +494,32 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 266
+              default: 503
             Etag:
               type: string
-              default: W/"10a-hBbqhCTyAEsW8j8NXu2xbIBNmgw"
+              default: W/"1f7-8+2tpuOzUdXT446gQ8IKdNyQy8w"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:30:53 GMT
+              default: Sat, 27 Apr 2019 16:47:01 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 400
+              error: enter a valid email address
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 404
+              error: no account found with given email address
   /transactions/{accountNumber}/credit:
     post:
       description: staff(cashier) can credit a bank account
@@ -555,17 +556,17 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/CreditBankAccount'
+            $ref: '#/definitions/CreditBankAccount1'
           examples:
             application/json; charset=utf-8:
               status: 200
               data:
-                transactionId: 20
+              - transactionId: 39
                 accountNumber: 1099
                 amount: 200
                 cashier: 21
                 transactionType: credit
-                accountBalance: 1079.75
+                accountBalance: 3319.3499999999999
           headers:
             Server:
               type: string
@@ -578,16 +579,33 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 143
+              default: 145
             Etag:
               type: string
-              default: W/"8f-Ah9KsbYy9R4dBdXNPPqSX/FQlio"
+              default: W/"91-3hYEaXEHx579KzNIL3V4N8Np7uY"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:32:22 GMT
+              default: Sat, 27 Apr 2019 16:50:10 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/CreditBankAccount2'
+          examples:
+            application/json:
+              status: 400
+              errors:
+                amount: amount field is must be a number
+        401:
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 401
+              error: only cashier can credit account
   /transactions/{accountNumber}/debit:
     post:
       description: Staff cashier can debit a bank account
@@ -629,12 +647,12 @@ paths:
             application/json; charset=utf-8:
               status: 200
               data:
-                transactionId: 23
+              - transactionId: 41
                 accountNumber: 1099
                 amount: 20.050000000000001
                 cashier: 21
                 transactionType: debit
-                accountBalance: 1019.6
+                accountBalance: 3279.25
           headers:
             Server:
               type: string
@@ -647,13 +665,13 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 143
+              default: 146
             Etag:
               type: string
-              default: W/"8f-S3z+If4Pl9glGdF++PTDUUQKhtc"
+              default: W/"92-sUjEloTFcGph02DNV/t5K7d76hg"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:36:44 GMT
+              default: Sat, 27 Apr 2019 16:51:47 GMT
             Via:
               type: string
               default: 1.1 vegur
@@ -693,12 +711,12 @@ paths:
               status: 200
               data:
               - id: 1
-                accountnumber: 999
-                createdon: 2019-04-20T15:54:49.193Z
+                accountNumber: 999
+                createdOn: 2019-04-20T15:54:49.193Z
                 type: debit
                 amount: 2
-                oldbalance: 400
-                newbalance: 398
+                oldBalance: 400
+                newBalance: 398
           headers:
             Server:
               type: string
@@ -714,13 +732,30 @@ paths:
               default: 153
             Etag:
               type: string
-              default: W/"99-MKmom5ckXCaXwy2eHpQsCHi2WEA"
+              default: W/"99-1HobPAcPNcCj/xJ0YtLfWMi+aDA"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:38:08 GMT
+              default: Sat, 27 Apr 2019 16:52:18 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/GetaSpecificTransactionDetail1'
+          examples:
+            application/json:
+              status: 400
+              errors:
+                type: transaction id must be an integer
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 404
+              error: no transaction exist for this id
   /accounts/{accountNumber}/transactions:
     get:
       description: Admin and staff can get a bank account transaction history
@@ -752,75 +787,82 @@ paths:
               status: 200
               data:
               - id: 1
-                accountnumber: 999
-                createdon: 2019-04-20T15:54:49.193Z
+                accountNumber: 999
+                createdOn: 2019-04-20T15:54:49.193Z
                 type: debit
                 amount: 2
-                oldbalance: 400
-                newbalance: 398
+                oldBalance: 400
+                newBalance: 398
               - id: 2
-                accountnumber: 999
-                createdon: 2019-04-20T15:56:15.463Z
+                accountNumber: 999
+                createdOn: 2019-04-20T15:56:15.463Z
                 type: debit
                 amount: 2
-                oldbalance: 400
-                newbalance: 398
+                oldBalance: 400
+                newBalance: 398
               - id: 3
-                accountnumber: 999
-                createdon: 2019-04-20T15:58:59.887Z
+                accountNumber: 999
+                createdOn: 2019-04-20T15:58:59.887Z
                 type: debit
                 amount: 2
-                oldbalance: 400
-                newbalance: 398
+                oldBalance: 400
+                newBalance: 398
               - id: 4
-                accountnumber: 999
-                createdon: 2019-04-20T15:59:22.74Z
+                accountNumber: 999
+                createdOn: 2019-04-20T15:59:22.74Z
                 type: debit
                 amount: 2
-                oldbalance: 400
-                newbalance: 398
+                oldBalance: 400
+                newBalance: 398
               - id: 5
-                accountnumber: 999
-                createdon: 2019-04-20T15:59:42.351Z
+                accountNumber: 999
+                createdOn: 2019-04-20T15:59:42.351Z
                 type: debit
                 amount: 2
-                oldbalance: 398
-                newbalance: 396
+                oldBalance: 398
+                newBalance: 396
               - id: 6
-                accountnumber: 999
-                createdon: 2019-04-20T16:05:14.287Z
+                accountNumber: 999
+                createdOn: 2019-04-20T16:05:14.287Z
                 type: debit
                 amount: 2
-                oldbalance: 396
-                newbalance: 394
+                oldBalance: 396
+                newBalance: 394
               - id: 7
-                accountnumber: 999
-                createdon: 2019-04-20T16:05:47.804Z
+                accountNumber: 999
+                createdOn: 2019-04-20T16:05:47.804Z
                 type: debit
                 amount: 2
-                oldbalance: 394
-                newbalance: 392
+                oldBalance: 394
+                newBalance: 392
               - id: 8
-                accountnumber: 999
-                createdon: 2019-04-20T16:08:22.838Z
+                accountNumber: 999
+                createdOn: 2019-04-20T16:08:22.838Z
                 type: credit
                 amount: 2
-                oldbalance: 392
-                newbalance: 394
+                oldBalance: 392
+                newBalance: 394
               - id: 9
-                accountnumber: 999
-                createdon: 2019-04-20T16:08:28.606Z
+                accountNumber: 999
+                createdOn: 2019-04-20T16:08:28.606Z
                 type: credit
                 amount: 2
-                oldbalance: 394
-                newbalance: 396
+                oldBalance: 394
+                newBalance: 396
               - id: 10
-                accountnumber: 999
-                createdon: 2019-04-20T16:08:32.733Z
+                accountNumber: 999
+                createdOn: 2019-04-20T16:08:32.733Z
                 type: credit
                 amount: 2
-                oldbalance: 396
-                newbalance: 398
+                oldBalance: 396
+                newBalance: 398
+              - id: 38
+                accountNumber: 999
+                createdOn: 2019-04-27T15:36:34.266Z
+                type: credit
+                amount: 200
+                oldBalance: 398
+                newBalance: 598
           headers:
             Server:
               type: string
@@ -833,16 +875,24 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 1327
+              default: 1461
             Etag:
               type: string
-              default: W/"52f-t5UfuAYN8nPwS5fgDESnqjTRb84"
+              default: W/"5b5-lfWRhL+uQNrQ69UpmjteE1T5grM"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:39:20 GMT
+              default: Sat, 27 Apr 2019 16:53:37 GMT
             Via:
               type: string
               default: 1.1 vegur
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 404
+              error: account number doesn't exist
   /user:
     post:
       description: This endpoint enables admin to create new admin or staff account
@@ -869,23 +919,21 @@ paths:
         required: true
         description: ''
         schema:
-          $ref: '#/definitions/AdmincancreateadminorstaffaccountRequest'
+          type: object
       responses:
         201:
           description: ''
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json; charset=utf-8:
               status: 201
               data:
-                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdvb2RhZG1pbkBnbWFpbC5jb20iLCJpZCI6MzUsImlhdCI6MTU1NjE4MTkzMSwiZXhwIjoxNTU2MjY4MzMxfQ.j-oY6nwhnYzq4ZA5SISUK0mHiM6nZNzgwtFh72Kf5Ek
-                id: 35
-                firstname: Good
-                lastname: Great
-                email: goodadmin@gmail.com
+              - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvMjJvZGFkbWluQGdtYWlsLmNvbSIsImlkIjo3MSwiaWF0IjoxNTU2Mzg0MTk3LCJleHAiOjE1NTY0NzA1OTd9.mGezZDpIkB8UL6tT1T4M-mDscnDayh9mVb25WQuJs94
+                firstName: Good
+                lastName: Great
+                email: go22odadmin@gmail.com
                 type: staff
-                isadmin: false
           headers:
             Server:
               type: string
@@ -898,16 +946,38 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 320
+              default: 302
             Etag:
               type: string
-              default: W/"140-x66NSshMrH+ohCQdGNR0lalm8hg"
+              default: W/"12e-WyoSwvtGHSf/yscblZb6jw0Z9zo"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:45:31 GMT
+              default: Sat, 27 Apr 2019 16:56:37 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount2'
+          examples:
+            application/json:
+              status: 400
+              errors:
+                firstname: First Name field is required
+                lastname: Last Name field is required
+                email: Email field is required
+                password: Password field is required
+                type: Type field is required
+                isAdmin: isAdmin field must be a boolean value and is required
+        401:
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+          examples:
+            application/json:
+              status: 401
+              error: only admin can create staff or admin account
   /user/resetPassword:
     post:
       description: This endpoint enables users to reset their password
@@ -939,12 +1009,12 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/usercanresetpassword'
+            $ref: '#/definitions/usercanresetpassword1'
           examples:
             application/json; charset=utf-8:
               status: 200
               data:
-                newPassword: dele1989
+              - newPassword: dele1989
           headers:
             Server:
               type: string
@@ -957,23 +1027,33 @@ paths:
               default: Express
             Content-Length:
               type: string
-              default: 48
+              default: 50
             Etag:
               type: string
-              default: W/"30-W2TPKnIujKC16nZSa0ddGJMB+Ro"
+              default: W/"32-0M27p5LpPbwRiQLjXufx1ZIjdPE"
             Date:
               type: string
-              default: Thu, 25 Apr 2019 08:48:11 GMT
+              default: Sat, 27 Apr 2019 16:55:40 GMT
             Via:
               type: string
               default: 1.1 vegur
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/usercanresetpassword'
+          examples:
+            application/json:
+              status: 400
+              errors:
+                password: password field must be a string
+                confirmPassword: password and confirm password must be the same
 definitions:
   signupRequest:
     title: signupRequest
     example:
       firstname: Goodness
       lastname: Greatness
-      email: gedness@gmail.com
+      email: geyudness@gmail.com
       password: dele1989
       type: client
       isAdmin: false
@@ -998,59 +1078,89 @@ definitions:
     - password
     - type
     - isAdmin
-  signup:
-    title: signup
+  signupwithvaliddata:
+    title: signupwithvaliddata
     example:
       status: 201
       data:
-        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlZG5lc3NAZ21haWwuY29tIiwiaWQiOjMzLCJpYXQiOjE1NTYxODAxNzgsImV4cCI6MTU1NjI2NjU3OH0.F-IVLBec-aTYUltmhZl2PyZAl4V75uU9SzbP6OlsaXU
-        id: 33
-        firstname: Goodness
-        lastname: Greatness
-        email: gedness@gmail.com
+      - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdlb291eXVkb25lc3NAZ21haWwuY29tIiwiaWQiOjY2LCJpYXQiOjE1NTYzODI2MTYsImV4cCI6MTU1NjQ2OTAxNn0.EHvRjUExsMIMzt1lTt_S9PZlXvA1FBK0JUq83h2RiPk
+        firstName: Goodness
+        lastName: Greatness
+        email: geoouyudoness@gmail.com
         type: client
-        isadmin: false
     type: object
     properties:
       status:
         type: integer
         format: int32
       data:
-        $ref: '#/definitions/Data'
+        type: array
+        items:
+          $ref: '#/definitions/Datum'
     required:
     - status
     - data
-  Data:
-    title: Data
+  Datum:
+    title: Datum
     type: object
     properties:
       token:
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdlb291eXVkb25lc3NAZ21haWwuY29tIiwiaWQiOjY2LCJpYXQiOjE1NTYzODI2MTYsImV4cCI6MTU1NjQ2OTAxNn0.EHvRjUExsMIMzt1lTt_S9PZlXvA1FBK0JUq83h2RiPk
         type: string
-      id:
+      firstName:
+        example: Goodness
+        type: string
+      lastName:
+        example: Greatness
+        type: string
+      email:
+        example: geoouyudoness@gmail.com
+        type: string
+      type:
+        example: client
+        type: string
+    required:
+    - token
+    - firstName
+    - lastName
+    - email
+    - type
+  signupinvaliddata:
+    title: signupinvaliddata
+    example:
+      status: 400
+      errors:
+        firstname: First Name field is required
+        lastname: Last Name field is required
+        email: Email field is required
+    type: object
+    properties:
+      status:
         type: integer
         format: int32
+      errors:
+        $ref: '#/definitions/Errors'
+    required:
+    - status
+    - errors
+  Errors:
+    title: Errors
+    type: object
+    properties:
       firstname:
         type: string
       lastname:
         type: string
       email:
         type: string
-      type:
-        type: string
-      isadmin:
-        type: boolean
     required:
-    - token
-    - id
     - firstname
     - lastname
     - email
-    - type
-    - isadmin
   signinRequest:
     title: signinRequest
     example:
-      email: greatness@gmail.com
+      email: idowuadeleke@gmail.com
       password: dele1989
     type: object
     properties:
@@ -1061,15 +1171,15 @@ definitions:
     required:
     - email
     - password
-  signin:
-    title: signin
+  signinvaliddata:
+    title: signinvaliddata
     example:
       status: 200
       data:
-        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyZWF0bmVzc0BnbWFpbC5jb20iLCJpZCI6MjEsImlhdCI6MTU1NjE4MDMyNCwiZXhwIjoxNTU2MjY2NzI0fQ.E1NSiVDKKKLgjAdjJnOuxUpVB0vlh4KWu5eU4EvQItM
-        firstname: Greatness
-        lastname: Greatness
-        email: greatness@gmail.com
+      - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imlkb3d1YWRlbGVrZUBnbWFpbC5jb20iLCJpZCI6MTgsImlhdCI6MTU1NjM4Mjg0MSwiZXhwIjoxNTU2NDY5MjQxfQ.Xj4AXSIwcVJcnrMAJuQe-e_9M0VqhH4bICXRTxnF9bs
+        firstName: Idowu
+        lastName: Adeleke
+        email: idowuadeleke@gmail.com
         type: staff
     type: object
     properties:
@@ -1077,91 +1187,153 @@ definitions:
         type: integer
         format: int32
       data:
-        $ref: '#/definitions/Data1'
+        type: array
+        items:
+          $ref: '#/definitions/Datum'
     required:
     - status
     - data
-  Data1:
-    title: Data1
-    type: object
-    properties:
-      token:
-        type: string
-      firstname:
-        type: string
-      lastname:
-        type: string
-      email:
-        type: string
-      type:
-        type: string
-    required:
-    - token
-    - firstname
-    - lastname
-    - email
-    - type
-  CreateBankAccountRequest:
-    title: CreateBankAccountRequest
+  signinwithoutemail:
+    title: signinwithoutemail
     example:
-      type: savings
-      balance: 400
+      status: 400
+      errors:
+        email: Email field is required
     type: object
     properties:
-      type:
-        type: string
-      balance:
+      status:
         type: integer
         format: int32
+      errors:
+        $ref: '#/definitions/Errors1'
     required:
-    - type
-    - balance
+    - status
+    - errors
+  Errors1:
+    title: Errors1
+    type: object
+    properties:
+      email:
+        type: string
+    required:
+    - email
+  signinwithinvaliddata:
+    title: signinwithinvaliddata
+    example:
+      status: 400
+      errors:
+        email: Email is invalid
+        password: password field must be a string
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors3'
+    required:
+    - status
+    - errors
+  Errors3:
+    title: Errors3
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
   CreateBankAccount:
     title: CreateBankAccount
     example:
       status: 201
       data:
-        accountNumber: 1899
-        firstName: Goodness
-        lastName: Greatness
-        email: gedness@gmail.com
+      - id: 25
+        accountNumber: 1401
+        createdOn: 2019-04-27T16:36:44.95Z
+        owner: 18
         type: savings
-        openingBalance: 400
+        status: draft
+        balance: 400
     type: object
     properties:
       status:
         type: integer
         format: int32
       data:
-        $ref: '#/definitions/Data2'
+        type: array
+        items:
+          $ref: '#/definitions/Datum2'
     required:
     - status
     - data
-  Data2:
-    title: Data2
+  Datum2:
+    title: Datum2
     type: object
     properties:
-      accountNumber:
+      id:
+        example: 25
         type: integer
         format: int32
-      firstName:
+      accountNumber:
+        example: 1401
+        type: integer
+        format: int32
+      createdOn:
+        example: 2019-04-27T16:36:44.95Z
         type: string
-      lastName:
-        type: string
-      email:
-        type: string
+      owner:
+        example: 18
+        type: integer
+        format: int32
       type:
+        example: savings
         type: string
-      openingBalance:
+      status:
+        example: draft
+        type: string
+      balance:
+        example: 400
         type: integer
         format: int32
     required:
+    - id
     - accountNumber
-    - firstName
-    - lastName
-    - email
+    - createdOn
+    - owner
     - type
-    - openingBalance
+    - status
+    - balance
+  Errors4:
+    title: Errors4
+    type: object
+    properties:
+      type:
+        type: string
+      balance:
+        type: string
+    required:
+    - type
+    - balance
+  CreateBankAccountwithnodata:
+    title: CreateBankAccountwithnodata
+    example:
+      status: 400
+      errors:
+        type: Type field is required
+        balance: balance field is required
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors4'
+    required:
+    - status
+    - errors
   GetAllBankAccounts:
     title: GetAllBankAccounts
     type: object
@@ -1172,23 +1344,23 @@ definitions:
       data:
         type: array
         items:
-          $ref: '#/definitions/Data3'
+          $ref: '#/definitions/Datum3'
     required:
     - status
     - data
-  Data3:
-    title: Data3
+  Datum3:
+    title: Datum3
     type: object
     properties:
       id:
         example: 3
         type: integer
         format: int32
-      accountnumber:
+      accountNumber:
         example: 1199
         type: integer
         format: int32
-      createdon:
+      createdOn:
         example: 2019-04-20T12:14:48.25Z
         type: string
       status:
@@ -1206,8 +1378,8 @@ definitions:
         type: string
     required:
     - id
-    - accountnumber
-    - createdon
+    - accountNumber
+    - createdOn
     - status
     - type
     - balance
@@ -1218,12 +1390,19 @@ definitions:
       status: 200
       data:
       - id: 1
-        accountnumber: 999
-        createdon: 2019-04-19T10:48:59.096Z
+        accountNumber: 999
+        createdOn: 2019-04-19T10:48:59.096Z
         status: active
         type: savings
-        balance: 398
+        balance: 598
         email: aduhhdla@gmail.com
+      - id: 19
+        accountNumber: 801
+        createdOn: 2019-04-25T11:07:44.147Z
+        status: active
+        type: savings
+        balance: 400
+        email: ges93@gmail.com
     type: object
     properties:
       status:
@@ -1232,7 +1411,7 @@ definitions:
       data:
         type: array
         items:
-          $ref: '#/definitions/Data3'
+          $ref: '#/definitions/Datum3'
     required:
     - status
     - data
@@ -1242,11 +1421,11 @@ definitions:
       status: 200
       data:
       - id: 2
-        accountnumber: 1099
-        createdon: 2019-04-20T11:40:17.243Z
+        accountNumber: 1099
+        createdOn: 2019-04-20T11:40:17.243Z
         status: dormant
         type: savings
-        balance: 1019.6
+        balance: 3119.3499999999999
         email: idowuadeleke@gmail.com
     type: object
     properties:
@@ -1256,23 +1435,23 @@ definitions:
       data:
         type: array
         items:
-          $ref: '#/definitions/Data5'
+          $ref: '#/definitions/Datum5'
     required:
     - status
     - data
-  Data5:
-    title: Data5
+  Datum5:
+    title: Datum5
     type: object
     properties:
       id:
         example: 2
         type: integer
         format: int32
-      accountnumber:
+      accountNumber:
         example: 1099
         type: integer
         format: int32
-      createdon:
+      createdOn:
         example: 2019-04-20T11:40:17.243Z
         type: string
       status:
@@ -1282,7 +1461,7 @@ definitions:
         example: savings
         type: string
       balance:
-        example: 1019.6
+        example: 3119.3499999999999
         type: number
         format: double
       email:
@@ -1290,36 +1469,20 @@ definitions:
         type: string
     required:
     - id
-    - accountnumber
-    - createdon
+    - accountNumber
+    - createdOn
     - status
     - type
     - balance
     - email
-  GetSpecificBankAccount:
-    title: GetSpecificBankAccount
-    example:
-      status: 200
-      data:
-      - id: 1
-        accountnumber: 999
-        createdon: 2019-04-19T10:48:59.096Z
-        status: active
-        type: savings
-        balance: 398
-        email: aduhhdla@gmail.com
+  Errors6:
+    title: Errors6
     type: object
     properties:
-      status:
-        type: integer
-        format: int32
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/Data3'
+      type:
+        type: string
     required:
-    - status
-    - data
+    - type
   DeleteBankAccount:
     title: DeleteBankAccount
     example:
@@ -1350,7 +1513,7 @@ definitions:
     example:
       status: 200
       data:
-        accountNumber: 999
+      - accountNumber: 999
         status: active
     type: object
     properties:
@@ -1358,22 +1521,34 @@ definitions:
         type: integer
         format: int32
       data:
-        $ref: '#/definitions/Data7'
+        type: array
+        items:
+          $ref: '#/definitions/Datum6'
     required:
     - status
     - data
-  Data7:
-    title: Data7
+  Datum6:
+    title: Datum6
     type: object
     properties:
       accountNumber:
+        example: 999
         type: integer
         format: int32
       status:
+        example: active
         type: string
     required:
     - accountNumber
     - status
+  Errors7:
+    title: Errors7
+    type: object
+    properties:
+      updatestatus:
+        type: string
+    required:
+    - updatestatus
   DeactivateBankAccountRequest:
     title: DeactivateBankAccountRequest
     example:
@@ -1389,7 +1564,7 @@ definitions:
     example:
       status: 200
       data:
-        accountNumber: 1099
+      - accountNumber: 999
         status: dormant
     type: object
     properties:
@@ -1397,10 +1572,28 @@ definitions:
         type: integer
         format: int32
       data:
-        $ref: '#/definitions/Data7'
+        type: array
+        items:
+          $ref: '#/definitions/Datum6'
     required:
     - status
     - data
+  DeactivateBankAccount1:
+    title: DeactivateBankAccount1
+    example:
+      status: 400
+      errors:
+        updatestatus: status must be one of [dormant, active]
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors7'
+    required:
+    - status
+    - errors
   GetaUserBankAccount:
     title: GetaUserBankAccount
     type: object
@@ -1423,11 +1616,11 @@ definitions:
         example: 3
         type: integer
         format: int32
-      accountnumber:
+      accountNumber:
         example: 1199
         type: integer
         format: int32
-      createdon:
+      createdOn:
         example: 2019-04-20T12:14:48.25Z
         type: string
       status:
@@ -1442,8 +1635,8 @@ definitions:
         format: int32
     required:
     - id
-    - accountnumber
-    - createdon
+    - accountNumber
+    - createdOn
     - status
     - type
     - balance
@@ -1458,45 +1651,53 @@ definitions:
         format: int32
     required:
     - amount
-  CreditBankAccount:
-    title: CreditBankAccount
+  CreditBankAccount1:
+    title: CreditBankAccount1
     example:
       status: 200
       data:
-        transactionId: 20
+      - transactionId: 39
         accountNumber: 1099
         amount: 200
         cashier: 21
         transactionType: credit
-        accountBalance: 1079.75
+        accountBalance: 3319.3499999999999
     type: object
     properties:
       status:
         type: integer
         format: int32
       data:
-        $ref: '#/definitions/Data9'
+        type: array
+        items:
+          $ref: '#/definitions/Datum8'
     required:
     - status
     - data
-  Data9:
-    title: Data9
+  Datum8:
+    title: Datum8
     type: object
     properties:
       transactionId:
+        example: 39
         type: integer
         format: int32
       accountNumber:
+        example: 1099
         type: string
       amount:
+        example: 200
         type: integer
         format: int32
       cashier:
+        example: 21
         type: integer
         format: int32
       transactionType:
+        example: credit
         type: string
       accountBalance:
+        example: 3319.3499999999999
         type: number
         format: double
     required:
@@ -1506,6 +1707,30 @@ definitions:
     - cashier
     - transactionType
     - accountBalance
+  CreditBankAccount2:
+    title: CreditBankAccount2
+    example:
+      status: 400
+      errors:
+        amount: amount field is must be a number
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors13'
+    required:
+    - status
+    - errors
+  Errors13:
+    title: Errors13
+    type: object
+    properties:
+      amount:
+        type: string
+    required:
+    - amount
   DebitBankAccountRequest:
     title: DebitBankAccountRequest
     example:
@@ -1522,40 +1747,48 @@ definitions:
     example:
       status: 200
       data:
-        transactionId: 23
+      - transactionId: 41
         accountNumber: 1099
         amount: 20.050000000000001
         cashier: 21
         transactionType: debit
-        accountBalance: 1019.6
+        accountBalance: 3279.25
     type: object
     properties:
       status:
         type: integer
         format: int32
       data:
-        $ref: '#/definitions/Data10'
+        type: array
+        items:
+          $ref: '#/definitions/Datum9'
     required:
     - status
     - data
-  Data10:
-    title: Data10
+  Datum9:
+    title: Datum9
     type: object
     properties:
       transactionId:
+        example: 41
         type: integer
         format: int32
       accountNumber:
+        example: 1099
         type: string
       amount:
+        example: 20.050000000000001
         type: number
         format: double
       cashier:
+        example: 21
         type: integer
         format: int32
       transactionType:
+        example: debit
         type: string
       accountBalance:
+        example: 3279.25
         type: number
         format: double
     required:
@@ -1571,12 +1804,12 @@ definitions:
       status: 200
       data:
       - id: 1
-        accountnumber: 999
-        createdon: 2019-04-20T15:54:49.193Z
+        accountNumber: 999
+        createdOn: 2019-04-20T15:54:49.193Z
         type: debit
         amount: 2
-        oldbalance: 400
-        newbalance: 398
+        oldBalance: 400
+        newBalance: 398
     type: object
     properties:
       status:
@@ -1585,22 +1818,22 @@ definitions:
       data:
         type: array
         items:
-          $ref: '#/definitions/Data11'
+          $ref: '#/definitions/Datum10'
     required:
     - status
     - data
-  Data11:
-    title: Data11
+  Datum10:
+    title: Datum10
     type: object
     properties:
       id:
         example: 1
         type: integer
         format: int32
-      accountnumber:
+      accountNumber:
         example: 999
         type: string
-      createdon:
+      createdOn:
         example: 2019-04-20T15:54:49.193Z
         type: string
       type:
@@ -1610,97 +1843,120 @@ definitions:
         example: 2
         type: integer
         format: int32
-      oldbalance:
+      oldBalance:
         example: 400
         type: integer
         format: int32
-      newbalance:
+      newBalance:
         example: 398
         type: integer
         format: int32
     required:
     - id
-    - accountnumber
-    - createdon
+    - accountNumber
+    - createdOn
     - type
     - amount
-    - oldbalance
-    - newbalance
+    - oldBalance
+    - newBalance
+  GetaSpecificTransactionDetail1:
+    title: GetaSpecificTransactionDetail1
+    example:
+      status: 400
+      errors:
+        type: transaction id must be an integer
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors6'
+    required:
+    - status
+    - errors
   GetAccountTransactionHistory:
     title: GetAccountTransactionHistory
     example:
       status: 200
       data:
       - id: 1
-        accountnumber: 999
-        createdon: 2019-04-20T15:54:49.193Z
+        accountNumber: 999
+        createdOn: 2019-04-20T15:54:49.193Z
         type: debit
         amount: 2
-        oldbalance: 400
-        newbalance: 398
+        oldBalance: 400
+        newBalance: 398
       - id: 2
-        accountnumber: 999
-        createdon: 2019-04-20T15:56:15.463Z
+        accountNumber: 999
+        createdOn: 2019-04-20T15:56:15.463Z
         type: debit
         amount: 2
-        oldbalance: 400
-        newbalance: 398
+        oldBalance: 400
+        newBalance: 398
       - id: 3
-        accountnumber: 999
-        createdon: 2019-04-20T15:58:59.887Z
+        accountNumber: 999
+        createdOn: 2019-04-20T15:58:59.887Z
         type: debit
         amount: 2
-        oldbalance: 400
-        newbalance: 398
+        oldBalance: 400
+        newBalance: 398
       - id: 4
-        accountnumber: 999
-        createdon: 2019-04-20T15:59:22.74Z
+        accountNumber: 999
+        createdOn: 2019-04-20T15:59:22.74Z
         type: debit
         amount: 2
-        oldbalance: 400
-        newbalance: 398
+        oldBalance: 400
+        newBalance: 398
       - id: 5
-        accountnumber: 999
-        createdon: 2019-04-20T15:59:42.351Z
+        accountNumber: 999
+        createdOn: 2019-04-20T15:59:42.351Z
         type: debit
         amount: 2
-        oldbalance: 398
-        newbalance: 396
+        oldBalance: 398
+        newBalance: 396
       - id: 6
-        accountnumber: 999
-        createdon: 2019-04-20T16:05:14.287Z
+        accountNumber: 999
+        createdOn: 2019-04-20T16:05:14.287Z
         type: debit
         amount: 2
-        oldbalance: 396
-        newbalance: 394
+        oldBalance: 396
+        newBalance: 394
       - id: 7
-        accountnumber: 999
-        createdon: 2019-04-20T16:05:47.804Z
+        accountNumber: 999
+        createdOn: 2019-04-20T16:05:47.804Z
         type: debit
         amount: 2
-        oldbalance: 394
-        newbalance: 392
+        oldBalance: 394
+        newBalance: 392
       - id: 8
-        accountnumber: 999
-        createdon: 2019-04-20T16:08:22.838Z
+        accountNumber: 999
+        createdOn: 2019-04-20T16:08:22.838Z
         type: credit
         amount: 2
-        oldbalance: 392
-        newbalance: 394
+        oldBalance: 392
+        newBalance: 394
       - id: 9
-        accountnumber: 999
-        createdon: 2019-04-20T16:08:28.606Z
+        accountNumber: 999
+        createdOn: 2019-04-20T16:08:28.606Z
         type: credit
         amount: 2
-        oldbalance: 394
-        newbalance: 396
+        oldBalance: 394
+        newBalance: 396
       - id: 10
-        accountnumber: 999
-        createdon: 2019-04-20T16:08:32.733Z
+        accountNumber: 999
+        createdOn: 2019-04-20T16:08:32.733Z
         type: credit
         amount: 2
-        oldbalance: 396
-        newbalance: 398
+        oldBalance: 396
+        newBalance: 398
+      - id: 38
+        accountNumber: 999
+        createdOn: 2019-04-27T15:36:34.266Z
+        type: credit
+        amount: 200
+        oldBalance: 398
+        newBalance: 598
     type: object
     properties:
       status:
@@ -1709,19 +1965,70 @@ definitions:
       data:
         type: array
         items:
-          $ref: '#/definitions/Data11'
+          $ref: '#/definitions/Datum10'
     required:
     - status
     - data
-  AdmincancreateadminorstaffaccountRequest:
-    title: AdmincancreateadminorstaffaccountRequest
+  Admincancreateadminorstaffaccount:
+    title: Admincancreateadminorstaffaccount
     example:
-      firstname: Good
-      lastname: Great
-      email: goodadmin@gmail.com
-      password: dele1989
-      type: staff
-      isAdmin: false
+      status: 401
+      error: only admin can create staff or admin account
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      error:
+        type: string
+    required:
+    - status
+    - error
+  Admincancreateadminorstaffaccount1:
+    title: Admincancreateadminorstaffaccount1
+    example:
+      status: 201
+      data:
+      - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvMjJvZGFkbWluQGdtYWlsLmNvbSIsImlkIjo3MSwiaWF0IjoxNTU2Mzg0MTk3LCJleHAiOjE1NTY0NzA1OTd9.mGezZDpIkB8UL6tT1T4M-mDscnDayh9mVb25WQuJs94
+        firstName: Good
+        lastName: Great
+        email: go22odadmin@gmail.com
+        type: staff
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Datum'
+    required:
+    - status
+    - data
+  Admincancreateadminorstaffaccount2:
+    title: Admincancreateadminorstaffaccount2
+    example:
+      status: 400
+      errors:
+        firstname: First Name field is required
+        lastname: Last Name field is required
+        email: Email field is required
+        password: Password field is required
+        type: Type field is required
+        isAdmin: isAdmin field must be a boolean value and is required
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors16'
+    required:
+    - status
+    - errors
+  Errors16:
+    title: Errors16
     type: object
     properties:
       firstname:
@@ -1735,7 +2042,7 @@ definitions:
       type:
         type: string
       isAdmin:
-        type: boolean
+        type: string
     required:
     - firstname
     - lastname
@@ -1743,28 +2050,6 @@ definitions:
     - password
     - type
     - isAdmin
-  Admincancreateadminorstaffaccount:
-    title: Admincancreateadminorstaffaccount
-    example:
-      status: 201
-      data:
-        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdvb2RhZG1pbkBnbWFpbC5jb20iLCJpZCI6MzUsImlhdCI6MTU1NjE4MTkzMSwiZXhwIjoxNTU2MjY4MzMxfQ.j-oY6nwhnYzq4ZA5SISUK0mHiM6nZNzgwtFh72Kf5Ek
-        id: 35
-        firstname: Good
-        lastname: Great
-        email: goodadmin@gmail.com
-        type: staff
-        isadmin: false
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      data:
-        $ref: '#/definitions/Data'
-    required:
-    - status
-    - data
   usercanresetpasswordRequest:
     title: usercanresetpasswordRequest
     example:
@@ -1782,24 +2067,55 @@ definitions:
   usercanresetpassword:
     title: usercanresetpassword
     example:
+      status: 400
+      errors:
+        password: password field must be a string
+        confirmPassword: password and confirm password must be the same
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors17'
+    required:
+    - status
+    - errors
+  Errors17:
+    title: Errors17
+    type: object
+    properties:
+      password:
+        type: string
+      confirmPassword:
+        type: string
+    required:
+    - password
+    - confirmPassword
+  usercanresetpassword1:
+    title: usercanresetpassword1
+    example:
       status: 200
       data:
-        newPassword: dele1989
+      - newPassword: dele1989
     type: object
     properties:
       status:
         type: integer
         format: int32
       data:
-        $ref: '#/definitions/Data14'
+        type: array
+        items:
+          $ref: '#/definitions/Datum13'
     required:
     - status
     - data
-  Data14:
-    title: Data14
+  Datum13:
+    title: Datum13
     type: object
     properties:
       newPassword:
+        example: dele1989
         type: string
     required:
     - newPassword

@@ -11,10 +11,10 @@ const { signinDb, createAccountDb } = userController;
 const { validateSignUpInput, validatesignInInput } = validateInput;
 
 // db user signup route
-router.post('/signup',trimmer, validateSignUpInput, createAccountDb);
+router.post('/signup', trimmer, validateSignUpInput, createAccountDb);
 
 // db user signin route
-router.post('/signin',trimmer, validatesignInInput, signinDb);
+router.post('/signin', trimmer, validatesignInInput, signinDb);
 
 
 // expose router
