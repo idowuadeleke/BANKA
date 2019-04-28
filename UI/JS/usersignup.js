@@ -1,3 +1,20 @@
+const firstname = document.getElementById('firstname').value;
+const lastname = document.getElementById('lastname').value;
+const email = document.getElementById('email').value;
+const password = document.getElementById('password').value;
+const confirmPassword = document.getElementById('password2').value;  
+const userEmail = document.getElementById('sign-in-email').value;
+const userPassword = document.getElementById('sign-in-password').value;
+const feedbackContainerLogin = document.querySelector('.feedback-message-login');
+const feedbackContainerLogin2 = document.querySelector('.feedback-message-login2');
+const feedbackContainerLogin3 = document.querySelector('.feedback-message-login3');
+const feedbackContainer = document.querySelector('.feedback_container');
+const feedbackContainer2 = document.querySelector('.feedback_container2');
+const feedbackContainer3 = document.querySelector('.feedback_container3');
+const feedbackContainer4 = document.querySelector('.feedback_container4');
+const feedbackContainer5 = document.querySelector('.feedback_container5');
+const feedbackContainer6 = document.querySelector('.feedback_container6');
+
 const displayFeedback = (responseData) => {
   let listItem = '';
 
@@ -12,29 +29,19 @@ const displayFeedback = (responseData) => {
   return listItem;
 };
 
-
 const signUp = (e) => {
   e.preventDefault();
-  const firstname = document.getElementById('firstname').value;
-  const lastname = document.getElementById('lastname').value;
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('password2').value;
-  const feedbackContainer = document.querySelector('.feedback_container');
-  const feedbackContainer2 = document.querySelector('.feedback_container2');
-  const feedbackContainer3 = document.querySelector('.feedback_container3');
-  const feedbackContainer4 = document.querySelector('.feedback_container4');
-  const feedbackContainer5 = document.querySelector('.feedback_container5');
-  const feedbackContainer6 = document.querySelector('.feedback_container6');
-
-  const url = 'http://127.0.0.1:3000/api/v1/auth/signup';
-
+  const url = 'https://bankaapplication.herokuapp.com/api/v1/auth/signup';
   feedbackContainer.innerHTML = '';
   feedbackContainer2.innerHTML = '';
   feedbackContainer3.innerHTML = '';
   feedbackContainer4.innerHTML = '';
   feedbackContainer5.innerHTML = '';
   feedbackContainer6.innerHTML = '';
+  feedbackContainerLogin.innerHTML = '';
+  feedbackContainerLogin2.innerHTML = '';
+  feedbackContainerLogin3.innerHTML = '';
+
 
   if ((confirmPassword !== password)) {
     feedbackContainer6.innerHTML = 'comfirm password does not match password';
@@ -51,7 +58,6 @@ const signUp = (e) => {
     };
 
     console.log(formData);
-
     // Make a post request to sign up endpoint
     fetch(
       url,
@@ -110,19 +116,17 @@ signupbtn.addEventListener('click', signUp);
 
 const signIn = (e) => {
   e.preventDefault();
-
-  // get form data
-  const userEmail = document.getElementById('sign-in-email').value;
-  const userPassword = document.getElementById('sign-in-password').value;
-  const feedbackContainerLogin = document.querySelector('.feedback-message-login');
-  const feedbackContainerLogin2 = document.querySelector('.feedback-message-login2');
-  const feedbackContainerLogin3 = document.querySelector('.feedback-message-login3');
-
+  feedbackContainer.innerHTML = '';
+  feedbackContainer2.innerHTML = '';
+  feedbackContainer3.innerHTML = '';
+  feedbackContainer4.innerHTML = '';
+  feedbackContainer5.innerHTML = '';
+  feedbackContainer6.innerHTML = '';
   feedbackContainerLogin.innerHTML = '';
   feedbackContainerLogin2.innerHTML = '';
   feedbackContainerLogin3.innerHTML = '';
 
-  const url = 'http://127.0.0.1:3000/api/v1/auth/signin';
+  const url = 'https://bankaapplication.herokuapp.com/api/v1/auth/signin';
 
   const formData = {
     email: userEmail,
@@ -144,7 +148,6 @@ const signIn = (e) => {
       // check for success status
       if (body.status === 200) {
         // store user data in browser local storage
-
         const userData = JSON.stringify({
           username: body.data[0].firstName,
           token: body.data[0].token,

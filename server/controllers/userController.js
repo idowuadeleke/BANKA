@@ -89,7 +89,7 @@ class UserController {
           lastName: rows[0].lastName,
           email: rows[0].email,
           type: rows[0].type,
-          isAdmin:rows[0].isAdmin,
+          isAdmin: rows[0].isAdmin,
         }],
       });
     } catch (error) {
