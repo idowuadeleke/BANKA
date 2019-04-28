@@ -208,7 +208,7 @@ describe('Test user signin and signup', () => {
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(400);
-          expect(body.errors.firstname).to.be.equals('First Name field is required');
+          expect(body.errors.firstname).to.be.equals('First name field is required');
           done();
         });
     });
@@ -230,7 +230,7 @@ describe('Test user signin and signup', () => {
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(400);
-          expect(body.errors.lastname).to.be.equals('Last Name field is required');
+          expect(body.errors.lastname).to.be.equals('Last name field is required');
           done();
         });
     });
@@ -289,7 +289,7 @@ describe('Test user signin and signup', () => {
           email: 'idowu@andela.com',
           password: 'dele1989',
           type: 'client',
-          isAdmin: "howdy",
+          isAdmin: 'howdy',
         })
         .end((err, res) => {
           const { body } = res;
@@ -659,7 +659,7 @@ describe('Test user signin and signup', () => {
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(400);
-          expect(body.errors.firstname).to.be.equals('First Name field is required');
+          expect(body.errors.firstname).to.be.equals('First name field is required');
           done();
         });
     });
@@ -682,7 +682,7 @@ describe('Test user signin and signup', () => {
           expect(body).to.be.an('object');
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(400);
-          expect(body.errors.lastname).to.be.equals('Last Name field is required');
+          expect(body.errors.lastname).to.be.equals('Last name field is required');
           done();
         });
     });

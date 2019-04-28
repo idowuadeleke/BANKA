@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
+import morgan from 'morgan';
 import YAML from 'yamljs';
 import usersdb from './routes/api/usersdb';
 import accountsdb from './routes/api/accountsdb';
@@ -17,6 +19,25 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
+
+app.use(morgan('combined'));
+
+app.use(
+  cors({
+    origin: '*',
+    methods: 'GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  }),
+);
+
+app.all('/*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  next();
+});
+
+app.use(cors());
 
 
 // Home page route
