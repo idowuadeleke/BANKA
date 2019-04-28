@@ -1,10 +1,5 @@
-const firstname = document.getElementById('firstname').value;
-const lastname = document.getElementById('lastname').value;
-const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
-const confirmPassword = document.getElementById('password2').value;  
-const userEmail = document.getElementById('sign-in-email').value;
-const userPassword = document.getElementById('sign-in-password').value;
+
+
 const feedbackContainerLogin = document.querySelector('.feedback-message-login');
 const feedbackContainerLogin2 = document.querySelector('.feedback-message-login2');
 const feedbackContainerLogin3 = document.querySelector('.feedback-message-login3');
@@ -31,6 +26,12 @@ const displayFeedback = (responseData) => {
 
 const signUp = (e) => {
   e.preventDefault();
+  const firstname = document.getElementById('firstname').value;
+  const lastname = document.getElementById('lastname').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('password2').value;
+
   const url = 'https://bankaapplication.herokuapp.com/api/v1/auth/signup';
   feedbackContainer.innerHTML = '';
   feedbackContainer2.innerHTML = '';
@@ -116,6 +117,8 @@ signupbtn.addEventListener('click', signUp);
 
 const signIn = (e) => {
   e.preventDefault();
+  const userEmail = document.getElementById('sign-in-email').value;
+  const userPassword = document.getElementById('sign-in-password').value;
   feedbackContainer.innerHTML = '';
   feedbackContainer2.innerHTML = '';
   feedbackContainer3.innerHTML = '';
