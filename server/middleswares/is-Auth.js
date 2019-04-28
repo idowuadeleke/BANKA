@@ -5,8 +5,7 @@ import DB from '../db/index';
 dotenv.config();
 
 class Auth {
-
-   /**
+  /**
    * trim input whitespaces
    * @param {*} req
    * @param {*} res
@@ -14,9 +13,9 @@ class Auth {
    */
   static trimmer(req, res, next) {
     const { body } = req;
-    const {isAdmin} = body
-    try{
-      delete body["isAdmin"]
+    const { isAdmin } = body;
+    try {
+      delete body.isAdmin;
       const trimmed = {};
 
       Object.keys(body).forEach((key) => {
@@ -24,11 +23,9 @@ class Auth {
         Object.assign(trimmed, { [key]: value.trim() });
       });
       req.body = trimmed;
-      req.body.isAdmin = isAdmin
-      
-    }
-    catch(e){
-      req.body = body
+      req.body.isAdmin = isAdmin;
+    } catch (e) {
+      req.body = body;
     }
     next();
   }

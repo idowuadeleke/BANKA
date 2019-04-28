@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+
 const nodemailer = require('nodemailer');
 
 dotenv.config();

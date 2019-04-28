@@ -8,7 +8,7 @@ const { verifyTokendb } = isAuth;
 
 const { permissionMiddleWareDb } = checkPermission;
 
-const { validateCashierInput, validateParam ,validateTransParam} = validateInput;
+const { validateCashierInput, validateParam, validateTransParam } = validateInput;
 
 const router = express.Router();
 
