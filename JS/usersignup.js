@@ -97,10 +97,6 @@ const signUp = (e) => {
               const returnedError = body.errors[element];
               document.querySelector(`#${element}`).nextElementSibling.style.color = 'red';
               document.querySelector(`#${element}`).nextElementSibling.innerHTML = returnedError;
-              console.log(body.errors[element]);
-
-              console.log(element);
-              console.log(key);
             }
           });
         });
