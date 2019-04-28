@@ -63,26 +63,30 @@
 					<h3 class="header-text" >
 						Join <span><em>B</em></span>ANKA 
 					</h3>
-				</div><div class="feedback_container"></div>
+				</div><div class="feedback_container error-display"></div>
 
-				<form action="user.html" class = "form-fields" >
+				<form action="user.html" class = "form-fields" method="POST">
 
 					<div class = "input"  >
 						<input type="text" placeholder="First Name" name="Firstname" id="firstname" required />
+						<div class="feedback_container2 error-text"></div>
 
 						<input type="text" placeholder="Last Name" name="Lastname" id= "lastname" required />
+							<div class="feedback_container3 error-text"></div>
 
 						<input type="email" placeholder="Email Address" name="email" id= "email" required />
-						
+						<div class="feedback_container4 error-text"></div>
+
 						<input type="password" placeholder="Enter Password" name="psw" id="password" required />
 
-						<div class="feedback_container2"></div>
+						<div class="feedback_container5 error-text"></div>
 
 						<input type="password" placeholder="Confirm Password" name="psw2" id="password2" required />
-					
+							<div class="feedback_container6 error-text"></div>
+
 					</div>
 					<div class="bottom">
-						<button type="submit" class="Signup" formaction="user.html">
+						<button type="button" class="Signup" id="create" formaction="user.html">
 							<!---->
 							<!----><span>Sign Up</span>
 						</button>
@@ -99,24 +103,21 @@
 						<span><em>W</em></span>elcome back 
 					</h3>
 				</div>
-				
+				<div class="feedback-message-login error-display"></div>
+
 				<form class = "form-fields">
 
 					<div class = "input"  >
-						<input type="email" placeholder="Email Address" name="email" required />
-						
+						<input type="email" placeholder="Email Address" id= "sign-in-email" name="email" required />
+						<div class="feedback-message-login2 error-text"></div>
 
-						<select id="user-role" name="login-account-type" required>
-							<option value="" disabled selected>Role</option>
-							<option value="customer">Client</option>
-							<option value="staff">Staff</option>
-							<option value="admin">Admin</option>
-						</select>
+						<input type="password" placeholder="Enter Password" name="psw" id="sign-in-password" required />
+						<div class="feedback-message-login3 error-text"></div>
 					
 					
 					</div>
 					<div class="bottom">
-						<button type="submit" id="user-login-btn" class="Login" formaction="">
+						<button type="button" id="user-login-btn" class="Login" formaction="">
 							<!---->
 							<!----><span>Log In</span>
 						</button>
@@ -162,7 +163,7 @@
 	</div>
 	</div>
 	<script src="JS/signup.js"></script>
-	<script src="JS/fetchSignup.js"></script>
+	<script src="JS/usersignup.js"></script>
 </body>
 </html>
 

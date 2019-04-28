@@ -66,23 +66,23 @@ class validateInput {
     }
 
     if (typeof (firstname) !== 'string') {
-      errors.firstname = 'Firstname field must be a string';
+      errors.firstname = 'First name field must be a string';
     } else if (validator.isEmpty(firstname)) {
-      errors.firstname = 'First Name field is required';
+      errors.firstname = 'First name field is required';
     } else if (!/^[a-zA-Z ]+$/.test(firstname)) {
-      errors.firstname = 'First Name field cannot contain numbers and symbols';
+      errors.firstname = 'First name field cannot contain numbers and symbols';
     } else if (!validator.isLength(firstname, { min: 2, max: 30 })) {
-      errors.firstname = 'First Name must be between 2 and 30 characters';
+      errors.firstname = 'First name must be between 2 and 30 characters';
     }
 
     if (typeof (lastname) !== 'string') {
-      errors.lastname = 'Lastname field must be a string';
+      errors.lastname = 'Last name field must be a string';
     } else if (validator.isEmpty(lastname)) {
-      errors.lastname = 'Last Name field is required';
+      errors.lastname = 'Last name field is required';
     } else if (!/^[a-zA-Z ]+$/.test(lastname)) {
-      errors.firstname = 'Last Name field cannot contain numbers and symbols';
+      errors.lastname = 'Last name field cannot contain numbers and symbols';
     } else if (!validator.isLength(lastname, { min: 2, max: 30 })) {
-      errors.lastname = 'Last Name must be between 2 and 30 characters';
+      errors.lastname = 'Last name must be between 2 and 30 characters';
     }
 
     if (typeof (email) !== 'string') {
@@ -94,7 +94,7 @@ class validateInput {
     }
 
     if (typeof (password) !== 'string') {
-      errors.password = 'password field must be a string';
+      errors.password = 'Password field must be a string';
     } else if (validator.isEmpty(password)) {
       errors.password = 'Password field is required';
     } else if (!validator.isLength(password, { min: 6, max: 30 })) {
@@ -102,7 +102,7 @@ class validateInput {
     }
 
     if (typeof (type) !== 'string') {
-      errors.type = 'type field must be a string';
+      errors.type = 'Type field must be a string';
     } else if (validator.isEmpty(type)) {
       errors.type = 'Type field is required';
     } else if (!(['client', 'staff'].includes(type.toLowerCase()))) {
