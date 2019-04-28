@@ -1,26 +1,26 @@
-const userLogin = document.getElementById('user-login-btn');
-const userRole = document.getElementById('user-role');
+// const userLogin = document.getElementById('user-login-btn');
+// const userRole = document.getElementById('user-role');
 
-let role;
-userRole.onchange = function changeRole() {
-  role = document.getElementById('user-role').value;
-};
-
-
-function gotoUserPage() {
-  if (role === 'customer') {
-    userLogin.formAction = 'user.html';
-  } else if (role === 'staff') {
-    userLogin.formAction = 'staff.html';
-  } else if (role === 'admin') {
-    userLogin.formAction = 'admin.html';
-  }
-}
+// let role;
+// userRole.onchange = function changeRole() {
+//   role = document.getElementById('user-role').value;
+// };
 
 
-userLogin.onclick = function userPage() {
-  gotoUserPage();
-};
+// function gotoUserPage() {
+//   if (role === 'customer') {
+//     userLogin.formAction = 'user.html';
+//   } else if (role === 'staff') {
+//     userLogin.formAction = 'staff.html';
+//   } else if (role === 'admin') {
+//     userLogin.formAction = 'admin.html';
+//   }
+// }
+
+
+// userLogin.onclick = function userPage() {
+//   gotoUserPage();
+// };
 
 let myIndex = 0;
 

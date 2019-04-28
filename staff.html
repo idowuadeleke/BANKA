@@ -30,7 +30,7 @@
           <div  class="side-bar col s1 m3" id="menu">
             <ul  class="nav">
               <li  >
-                <a  >
+                <a class = "menu" >
                   <i class="fa fa-bars"></i>
                   <span class="menu-link">Menu</span>
                 </a>
@@ -45,6 +45,12 @@
                 <a  class="btn ">
                   <i  class="fa fa-plus-square"></i>
                   <span class="staff-credit-account" >Credit Account</span>
+                </a>
+              </li>
+              <li >
+                <a  class="btn ">
+                  <i  class="staff fa fa-certificate"></i>
+                  <span class="staff-change-status" >Change status</span>
                 </a>
               </li>
               <li>
@@ -229,7 +235,41 @@
     </div>
     </div>
 
-   
+    <div class="change-status-staff" >
+      <div class="mini-profile-container">
+        <div class="manage-profile-wrapper">
+          <div class="main-content statusAccountContainer">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Activate Account</h4>
+              </div>
+
+              <form class = "form-fields">
+                <div class = "input">
+                <input type="text" name="account-email" placeholder="Email Address" required /></br>
+                </div>
+                <input type="button" value="Activate" class="submit-account staff-activate-button" />	
+              </form>
+            </div>
+          </div>
+          <div class="main-content statusAccountContainer reduce-margin">        
+            <div>
+              <div class="account-details">
+                <h4 class="header-text"> Deactivate Account</h4>
+              </div>
+
+              <form class = "form-fields">
+                <div class = "input">
+                <input type="text" name="account-email" placeholder="Email Address" required /></br>
+                </div>
+                <input type="button" value="Deactivate" class="submit-account staff-deactivate-button" />	
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="staff-delete-account" >
       <div class="mini-profile-container">
         <div class="manage-profile-wrapper">
@@ -256,10 +296,146 @@
       <div class="mini-profile-container all-bank">
         <div class="manage-profile-wrapper account-list-container" >
         <h1> Bank Accounts</h1>
-        <div class="main-content trans">
+        <div class="main-content trans marg">
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By Name" title="Type in a name">
-        </div>  
-          <div class="main-content trans" >
+        </div> 
+                    <div  class="main-content trans marg  small-trans">
+              <table id="myTable">
+                <tr>
+                  <td>Account Name</td>
+                  <td>Gloria Tambo</td>
+
+                </tr>  
+                <tr>
+                  <td>Account Number</td>
+                  <td>0198765432</td>
+                </tr> 
+                <tr>
+                  <td>Status</td>
+                  <td>Inactive</td>
+                </tr>  
+                <tr> 
+                  <td>Type</td>
+                  <td>Savings</td>
+                </tr> 
+
+                <tr> 
+                   <td><button type="submit" class="view-record-btn">
+                    <span class="staff-view-record"> view </span>
+                  </button>
+                  </td>
+                  <td>
+                  <button type="submit" class="delete-record-btn">
+                    <span class="staff-delete-record">delete</span>
+                  </button>
+                  </td>
+                </tr> 
+              </table>
+              </div>
+
+                      <div  class="main-content trans marg  small-trans">
+              <table id="myTable">
+                <tr>
+                  <td>Account Name</td>
+                  <td>Gloria Tambo</td>
+
+                </tr>  
+                <tr>
+                  <td>Account Number</td>
+                  <td>0198765432</td>
+                </tr> 
+                <tr>
+                  <td>Status</td>
+                  <td>Inactive</td>
+                </tr>  
+                <tr> 
+                  <td>Type</td>
+                  <td>Savings</td>
+                </tr> 
+
+                <tr> 
+                   <td><button type="submit" class="view-record-btn">
+                    <span class="staff-view-record"> view </span>
+                  </button>
+                  </td>
+                  <td>
+                  <button type="submit" class="delete-record-btn">
+                    <span class="staff-delete-record">delete</span>
+                  </button>
+                  </td>
+                </tr> 
+              </table>
+              </div>
+
+                      <div  class="main-content trans marg  small-trans">
+              <table id="myTable">
+                <tr>
+                  <td>Account Name</td>
+                  <td>Gloria Tambo</td>
+
+                </tr>  
+                <tr>
+                  <td>Account Number</td>
+                  <td>0198765432</td>
+                </tr> 
+                <tr>
+                  <td>Status</td>
+                  <td>Inactive</td>
+                </tr>  
+                <tr> 
+                  <td>Type</td>
+                  <td>Savings</td>
+                </tr> 
+
+                <tr> 
+                   <td><button type="submit" class="view-record-btn">
+                    <span class="staff-view-record"> view </span>
+                  </button>
+                  </td>
+                  <td>
+                  <button type="submit" class="delete-record-btn">
+                    <span class="staff-delete-record">delete</span>
+                  </button>
+                  </td>
+                </tr> 
+              </table>
+              </div>
+
+              <div  class="main-content trans marg  small-trans">
+              <table id="myTable">
+                <tr>
+                  <td>Account Name</td>
+                  <td>Gloria Tambo</td>
+
+                </tr>  
+                <tr>
+                  <td>Account Number</td>
+                  <td>0198765432</td>
+                </tr> 
+                <tr>
+                  <td>Status</td>
+                  <td>Inactive</td>
+                </tr>  
+                <tr> 
+                  <td>Type</td>
+                  <td>Savings</td>
+                </tr> 
+
+                <tr> 
+                   <td><button type="submit" class="view-record-btn">
+                    <span class="staff-view-record"> view </span>
+                  </button>
+                  </td>
+                  <td>
+                  <button type="submit" class="delete-record-btn">
+                    <span class="staff-delete-record">delete</span>
+                  </button>
+                  </td>
+                </tr> 
+              </table>
+              </div>
+ 
+          <div class="main-content trans marg big-trans" >
                <div class="overflow">
               <table id="myTable">
                 <tr class="myheader">
@@ -422,72 +598,44 @@
               </div>
             </div>
           </div>
+
+         
         </div>
       </div>
 
-      <div id="admin-delete-modal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="admin-close">&times;</span>
-        <h2>Delete confirmation</h2>
-      </div>
-      <div class="modal-body">
-        <p>Account name: Idowu Adeleke</p>
-        <p>Account number: 0123456789</p>
-        <p> Are you sure you want to delete this account ?</p>
-      </div>
-      <div class= "modal-bottom">
-      <input type="submit" value="Delete" class="submit-account admin-modal-button" id="admin-delete-success"/>
-      <input type="submit" value="Cancel" class="submit-account admin-modal-button" />	
-      </div>
-    </div>
-    </div>
+     
 
-    <div id="delete-success-modal-admin" class="modal" >
+    <div id="staff-deactivate-success-modal"  class="modal" >
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
-        <span class="admin-close">&times;</span>
-        <h2>Account deleted</h2>
-      </div>
-      <div class= "modal-bottom">
-      <input type="submit" value="Okay" class="submit-account admin-modal-button"  />	
-      </div>
-    </div>
-    </div>
-
-    <div id="deactivate-success-modal" class="modal" >
-    <!-- Modal content -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="admin-close">&times;</span>
+        <span class="close">&times;</span>
         <h2>Account deactivated</h2>
       </div>
       <div class= "modal-bottom">
-      <input type="submit" value="Okay" class="submit-account admin-modal-button"  />	
+      <input type="submit" value="Okay" class="submit-account modal-button"  />	
       </div>
     </div>
     </div>
 
-    <div id="activate-success-modal" class="modal" >
+    <div id="staff-activate-success-modal" class="modal" >
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
-        <span class="admin-close">&times;</span>
+        <span class="close">&times;</span>
         <h2>Account activated</h2>
       </div>
       <div class= "modal-bottom">
-      <input type="submit" value="Okay" class="submit-account admin-modal-button"  />	
+      <input type="submit" value="Okay" class="submit-account modal-button"  />	
       </div>
     </div>
     </div>
 
-    <div id="admin-deactivate-modal" class="modal">
+    <div id="staff-deactivate-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
-        <span class="admin-close">&times;</span>
+        <span class="close">&times;</span>
         <h2>Deactivate confirmation</h2>
       </div>
       <div class="modal-body">
@@ -496,17 +644,17 @@
         <p> Are you sure you want to deactivate this account ?</p>
       </div>
       <div class= "modal-bottom">
-      <input type="submit" value="Deactivate" class="submit-account admin-modal-button" id="admin-deactivate-success" />
-      <input type="submit" value="Cancel" class="submit-account admin-modal-button" />	
+      <input type="submit" value="Deactivate" class="submit-account modal-button" id="deactivate-success" />
+      <input type="submit" value="Cancel" class="submit-account modal-button" />	
       </div>
     </div>
     </div>
 
-    <div id="admin-activate-modal" class="modal">
+    <div id="staff-activate-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
-        <span class="admin-close">&times;</span>
+        <span class="close">&times;</span>
         <h2>Activate confirmation</h2>
       </div>
       <div class="modal-body">
@@ -515,8 +663,8 @@
         <p> Are you sure you want to activate this account ?</p>
       </div>
       <div class= "modal-bottom">
-      <input type="submit" value="Activate" class="submit-account admin-modal-button" id="admin-activate-success" />
-      <input type="submit" value="Cancel" class="submit-account admin-modal-button" />	
+      <input type="submit" value="Activate" class="submit-account modal-button" id="activate-success" />
+      <input type="submit" value="Cancel" class="submit-account modal-button" />	
       </div>
     </div>
     </div>
@@ -561,7 +709,92 @@
               </table>
               </div>
               <p class="trans-header"><b>Top 3 Transactions</b></p>
-              <div class="main-content trans account-details-container">
+
+              <div  class="main-content trans account-details-container small-trans" >
+              <table id="myTable">
+                <tr>
+                  <td>Date</td>
+                  <td>15/03/2019</td>
+
+                </tr>  
+                <tr>
+                  <td>Debits</td>
+                  <td>--------</td>
+                </tr> 
+                <tr>
+                  <td>Credits</td>
+                  <td>₦10,000.00</td>
+                </tr>  
+                <tr> 
+                  <td>Account Type</td>
+                  <td>Savings</td>
+                </tr> 
+
+                <tr> 
+                  <td>Balance</td>
+                  <td>Savings</td>
+                </tr> 
+                <u></u>
+              </table>
+              </div>
+
+              <div  class="main-content trans account-details-container small-trans" >
+              <table id="myTable">
+                <tr>
+                  <td>Date</td>
+                  <td>15/03/2019</td>
+
+                </tr>  
+                <tr>
+                  <td>Debits</td>
+                  <td>--------</td>
+                </tr> 
+                <tr>
+                  <td>Credits</td>
+                  <td>₦10,000.00</td>
+                </tr>  
+                <tr> 
+                  <td>Account Type</td>
+                  <td>Savings</td>
+                </tr> 
+
+                <tr> 
+                  <td>Balance</td>
+                  <td>Savings</td>
+                </tr> 
+                <u></u>
+              </table>
+              </div>
+
+              <div  class="main-content trans account-details-container small-trans" >
+              <table id="myTable">
+                <tr>
+                  <td>Date</td>
+                  <td>15/03/2019</td>
+
+                </tr>  
+                <tr>
+                  <td>Debits</td>
+                  <td>--------</td>
+                </tr> 
+                <tr>
+                  <td>Credits</td>
+                  <td>₦10,000.00</td>
+                </tr>  
+                <tr> 
+                  <td>Account Type</td>
+                  <td>Savings</td>
+                </tr> 
+
+                <tr> 
+                  <td>Balance</td>
+                  <td>Savings</td>
+                </tr> 
+                <u></u>
+              </table>
+              </div>
+
+              <div class="main-content trans account-details-container big-trans">
                <div class="overflow">
                 <table id="myTable" class="trans-table">
                 <tr class="myheader">
@@ -599,8 +832,8 @@
               </div>
               </div>
               <div class="admin-button">
-                <input type="button" value="Activate" class="change-user-status submit-account activate-button" id="activate-button" />
-                <input type="button" value="Deactivate" class="change-user-status submit-account deactivate-button" id="deactivate-button" />
+                <input type="button" value="Activate" class="change-user-status submit-account staff-activate-button" id="activate-button" />
+                <input type="button" value="Deactivate" class="change-user-status submit-account staff-deactivate-button" id="deactivate-button" />
                 <input type="button" value="Delete" class="change-user-status submit-account staff-delete-button" id="delete-button" />
             </div> 
           </div>

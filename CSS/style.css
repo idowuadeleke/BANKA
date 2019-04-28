@@ -194,7 +194,7 @@ button, input, optgroup, select, textarea {
 @media only screen and (min-width: 992px)
 {
 .wrappers .side-bar {
-    width: 230px;
+    width: 200px;
 }
 
 }
@@ -372,22 +372,33 @@ a, a:hover {
     margin-top: 0px;
     margin-left: 10px;
 }
-.wrappers .side-bar:hover{
+/* .wrappers .side-bar:hover{
   width: 200px !important;
-}
+} */
 .transaction, .watch,.create-account,.staff-all-bank-accounts,.all-bank-accounts,.user-profile,
-.delete-account,.staff-delete-account,.change-status,.user-account-record,.debit-account,.credit-account,
+.delete-account,.staff-delete-account,.change-status,.change-status-staff,
+.user-account-record,.debit-account,.credit-account,
  .user-account,.user-account-record-staffpage{
   width: 95%!important
 
 
  }
+ .account-details-container{
+   width: 100%!important;
+ }
+}
+
+@media screen and (max-width: 578px){
+  .account-details-container{
+    width: 90%!important;
+  }
 }
 
 
 
 .transaction, .watch,.create-account,.staff-all-bank-accounts,.all-bank-accounts,.user-profile,
-.delete-account,.staff-delete-account,.change-status,.user-account-record,.debit-account,.credit-account,
+.delete-account,.staff-delete-account,.change-status,.change-status-staff,
+.user-account-record,.debit-account,.credit-account,
  .user-account,.user-account-record-staffpage{
   /* position: fixed; */
   display:none;
@@ -396,8 +407,8 @@ a, a:hover {
   font-size: 15px;
   margin:auto;
   height: 80%;
-  width: 80%;
-  text-align: center;
+  width: 95%!important;
+  text-align: center!important;
   float: right;
   
 }
@@ -412,7 +423,7 @@ a, a:hover {
 }
 
 .manage-profile-wrapper {
-  width: 94%;
+  width: 90%;
   height: auto;
   margin: 0 auto;
   margin-left: 6%;
@@ -791,7 +802,7 @@ select {
 .deleteAccountContainer,.statusAccountContainer{
   width: 65%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 125px;
 }
 
 
@@ -1196,3 +1207,46 @@ resize: none;
 .profiletransheader{
   text-align:center !important;
   border-radius:3px 3px 0 0 ;}
+
+  .menu-link {
+    pointer-events: none;
+ }
+
+ .menu{display: none!important;}
+
+ .small-trans{
+   display:none;
+ }
+
+ @media screen and (max-width: 700px)
+{.small-trans{
+  display: block;
+}
+#myInput{
+  display:none;
+}
+.big-trans{
+  display:none;
+}
+
+}
+
+@media screen and (max-width: 1450px)
+{.marg{
+  margin-left: 8%;
+}
+
+}
+
+@media screen and (max-width: 992px)
+{.marg{
+  margin-left: 0%;
+}
+
+}
+
+.reduce-margin{
+  margin-top:30px!important;
+}
+
+
