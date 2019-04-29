@@ -31,7 +31,6 @@ const signUp = (e) => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('password2').value;
-
   const url = 'https://bankaapplication.herokuapp.com/api/v1/auth/signup';
   feedbackContainer.innerHTML = '';
   feedbackContainer2.innerHTML = '';
@@ -79,27 +78,26 @@ const signUp = (e) => {
           // store user data in browser local storage
           const userData = JSON.stringify({
             id: body.data.id,
-            username: body.data.username,
-            token: body.data.token,
+            username: body.data[0].firstName,
+            token: body.data[0].token,
           });
           localStorage.setItem('user', userData);
-          window.scrollTo(0, 0);
 
           // redirect user to dashboard after 2 seconds
           window.location.href = 'user.html';
         } else {
           feedbackContainer.innerHTML = displayFeedback(body);
-          window.scrollTo(0, 0);
-        }
-        Object.keys(body.errors).forEach((element) => {
-          Object.keys(formData).forEach((key) => {
-            if (element === key) {
-              const returnedError = body.errors[element];
-              document.querySelector(`#${element}`).nextElementSibling.style.color = 'red';
-              document.querySelector(`#${element}`).nextElementSibling.innerHTML = returnedError;
-            }
+          Object.keys(body.errors).forEach((element) => {
+            Object.keys(formData).forEach((key) => {
+              if (element === key) {
+                const returnedError = body.errors[element];
+                document.querySelector(`#${element}`).nextElementSibling.style.color = 'red';
+                document.querySelector(`#${element}`).nextElementSibling.innerHTML = returnedError;
+              }
+            });
           });
-        });
+        }
+       
       });
   }
 };
@@ -152,7 +150,6 @@ const signIn = (e) => {
           token: body.data[0].token,
         });
         localStorage.setItem('user', userData);
-        window.scrollTo(0, 0);
         if (body.data[0].type === 'client') {
           window.location.href = 'user.html';
         } else if ((body.data[0].type === 'staff') && (body.data[0].isAdmin === false)) {
@@ -163,7 +160,6 @@ const signIn = (e) => {
       } else {
         feedbackContainerLogin.innerHTML = displayFeedback(body);
         feedbackContainerLogin.classList.add('feedback-message-error');
-        window.scrollTo(0, 0);
 
         Object.keys(body.errors).forEach((element) => {
           Object.keys(formData).forEach((key) => {
