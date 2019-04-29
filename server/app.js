@@ -39,7 +39,6 @@ app.all('/*', (req, res, next) => {
 
 app.use(cors());
 
-
 // Home page route
 app.get('/', (req, res) => res.status(200).json({
   status: 200,
