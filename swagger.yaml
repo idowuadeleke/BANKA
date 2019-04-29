@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: BANKA APP
+  title: BANKA APPLICATION
   description: Banka is a light-weight core banking application that powers banking operations like account creation, customer deposit and withdrawals. This app is meant to support a single bank, where users can signup and create bank accounts online, but must visit the branch to withdraw or deposit money..
   contact: {}
 host: bankaapplication.herokuapp.com
@@ -85,7 +85,7 @@ paths:
         409:
           description: Conflict
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 409
@@ -183,7 +183,7 @@ paths:
         required: true
         description: ''
         schema:
-          type: object
+          $ref: '#/definitions/CreateBankAccountRequest'
       responses:
         201:
           description: ''
@@ -225,13 +225,13 @@ paths:
         400:
           description: Bad Request
           schema:
-            $ref: '#/definitions/CreateBankAccountwithnodata'
+            $ref: '#/definitions/CreateBankAccountinvaliddata'
           examples:
             application/json:
               status: 400
               errors:
-                type: type field must be a string
-                balance: balance field is must be a number
+                type: Type field is required
+                balance: balance field is required
     get:
       description: Admin and staff can get all bank accounts
       summary: Get All Bank Accounts
@@ -277,7 +277,7 @@ paths:
         403:
           description: Forbidden
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 403
@@ -319,7 +319,7 @@ paths:
         404:
           description: Not Found
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 404
@@ -378,7 +378,7 @@ paths:
         404:
           description: Not Found
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 404
@@ -418,7 +418,7 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/ActivateBankAccount'
+            $ref: '#/definitions/ActivateBankAccount2'
           examples:
             application/json; charset=utf-8:
               status: 200
@@ -450,12 +450,12 @@ paths:
         400:
           description: Bad Request
           schema:
-            $ref: '#/definitions/DeactivateBankAccount1'
+            $ref: '#/definitions/DeactivateBankAccount'
           examples:
             application/json:
               status: 400
               errors:
-                updatestatus: status must be one of [dormant, active]
+                updatestatus: Status field is required
   /user/{email}/accounts:
     get:
       description: Admin and staff can get a specific user bank account
@@ -481,7 +481,7 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/GetaUserBankAccount'
+            $ref: '#/definitions/GetaUserBankAccount1'
           headers:
             Server:
               type: string
@@ -507,7 +507,7 @@ paths:
         400:
           description: Bad Request
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 400
@@ -515,7 +515,7 @@ paths:
         404:
           description: Not Found
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 404
@@ -556,7 +556,7 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/CreditBankAccount1'
+            $ref: '#/definitions/CreditBankAccount2'
           examples:
             application/json; charset=utf-8:
               status: 200
@@ -592,7 +592,7 @@ paths:
         400:
           description: Bad Request
           schema:
-            $ref: '#/definitions/CreditBankAccount2'
+            $ref: '#/definitions/CreditBankAccount'
           examples:
             application/json:
               status: 400
@@ -601,7 +601,7 @@ paths:
         401:
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 401
@@ -705,7 +705,7 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/GetaSpecificTransactionDetail'
+            $ref: '#/definitions/GetaSpecificTransactionDetail2'
           examples:
             application/json; charset=utf-8:
               status: 200
@@ -751,7 +751,7 @@ paths:
         404:
           description: Not Found
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 404
@@ -781,7 +781,7 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/GetAccountTransactionHistory'
+            $ref: '#/definitions/GetAccountTransactionHistory1'
           examples:
             application/json; charset=utf-8:
               status: 200
@@ -888,7 +888,7 @@ paths:
         404:
           description: Not Found
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 404
@@ -919,12 +919,12 @@ paths:
         required: true
         description: ''
         schema:
-          type: object
+          $ref: '#/definitions/AdmincancreateadminorstaffaccountRequest'
       responses:
         201:
           description: ''
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount2'
           examples:
             application/json; charset=utf-8:
               status: 201
@@ -959,7 +959,7 @@ paths:
         400:
           description: Bad Request
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount2'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount'
           examples:
             application/json:
               status: 400
@@ -973,7 +973,7 @@ paths:
         401:
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Admincancreateadminorstaffaccount'
+            $ref: '#/definitions/Admincancreateadminorstaffaccount1'
           examples:
             application/json:
               status: 401
@@ -1160,7 +1160,7 @@ definitions:
   signinRequest:
     title: signinRequest
     example:
-      email: idowuadeleke@gmail.com
+      email: greatness@gmail.com
       password: dele1989
     type: object
     properties:
@@ -1245,6 +1245,32 @@ definitions:
     required:
     - email
     - password
+  CreateBankAccountRequest:
+    title: CreateBankAccountRequest
+    example:
+      type: savings
+      balance: 400
+    type: object
+    properties:
+      type:
+        type: string
+      balance:
+        type: integer
+        format: int32
+    required:
+    - type
+    - balance
+  Errors4:
+    title: Errors4
+    type: object
+    properties:
+      type:
+        type: string
+      balance:
+        type: string
+    required:
+    - type
+    - balance
   CreateBankAccount:
     title: CreateBankAccount
     example:
@@ -1306,24 +1332,13 @@ definitions:
     - type
     - status
     - balance
-  Errors4:
-    title: Errors4
-    type: object
-    properties:
-      type:
-        type: string
-      balance:
-        type: string
-    required:
-    - type
-    - balance
-  CreateBankAccountwithnodata:
-    title: CreateBankAccountwithnodata
+  CreateBankAccountinvaliddata:
+    title: CreateBankAccountinvaliddata
     example:
       status: 400
       errors:
-        type: Type field is required
-        balance: balance field is required
+        type: type field must be a string
+        balance: balance field is must be a number
     type: object
     properties:
       status:
@@ -1508,8 +1523,16 @@ definitions:
         type: string
     required:
     - status
-  ActivateBankAccount:
-    title: ActivateBankAccount
+  Errors7:
+    title: Errors7
+    type: object
+    properties:
+      updatestatus:
+        type: string
+    required:
+    - updatestatus
+  ActivateBankAccount2:
+    title: ActivateBankAccount2
     example:
       status: 200
       data:
@@ -1541,14 +1564,6 @@ definitions:
     required:
     - accountNumber
     - status
-  Errors7:
-    title: Errors7
-    type: object
-    properties:
-      updatestatus:
-        type: string
-    required:
-    - updatestatus
   DeactivateBankAccountRequest:
     title: DeactivateBankAccountRequest
     example:
@@ -1561,6 +1576,22 @@ definitions:
     - status
   DeactivateBankAccount:
     title: DeactivateBankAccount
+    example:
+      status: 400
+      errors:
+        updatestatus: status field must be a string
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors7'
+    required:
+    - status
+    - errors
+  DeactivateBankAccount2:
+    title: DeactivateBankAccount2
     example:
       status: 200
       data:
@@ -1578,24 +1609,8 @@ definitions:
     required:
     - status
     - data
-  DeactivateBankAccount1:
-    title: DeactivateBankAccount1
-    example:
-      status: 400
-      errors:
-        updatestatus: status must be one of [dormant, active]
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      errors:
-        $ref: '#/definitions/Errors7'
-    required:
-    - status
-    - errors
-  GetaUserBankAccount:
-    title: GetaUserBankAccount
+  GetaUserBankAccount1:
+    title: GetaUserBankAccount1
     type: object
     properties:
       status:
@@ -1651,8 +1666,32 @@ definitions:
         format: int32
     required:
     - amount
-  CreditBankAccount1:
-    title: CreditBankAccount1
+  CreditBankAccount:
+    title: CreditBankAccount
+    example:
+      status: 400
+      errors:
+        amount: amount field is must be a number
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors13'
+    required:
+    - status
+    - errors
+  Errors13:
+    title: Errors13
+    type: object
+    properties:
+      amount:
+        type: string
+    required:
+    - amount
+  CreditBankAccount2:
+    title: CreditBankAccount2
     example:
       status: 200
       data:
@@ -1707,30 +1746,6 @@ definitions:
     - cashier
     - transactionType
     - accountBalance
-  CreditBankAccount2:
-    title: CreditBankAccount2
-    example:
-      status: 400
-      errors:
-        amount: amount field is must be a number
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      errors:
-        $ref: '#/definitions/Errors13'
-    required:
-    - status
-    - errors
-  Errors13:
-    title: Errors13
-    type: object
-    properties:
-      amount:
-        type: string
-    required:
-    - amount
   DebitBankAccountRequest:
     title: DebitBankAccountRequest
     example:
@@ -1798,8 +1813,24 @@ definitions:
     - cashier
     - transactionType
     - accountBalance
-  GetaSpecificTransactionDetail:
-    title: GetaSpecificTransactionDetail
+  GetaSpecificTransactionDetail1:
+    title: GetaSpecificTransactionDetail1
+    example:
+      status: 400
+      errors:
+        type: transaction id must be an integer
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      errors:
+        $ref: '#/definitions/Errors6'
+    required:
+    - status
+    - errors
+  GetaSpecificTransactionDetail2:
+    title: GetaSpecificTransactionDetail2
     example:
       status: 200
       data:
@@ -1859,24 +1890,8 @@ definitions:
     - amount
     - oldBalance
     - newBalance
-  GetaSpecificTransactionDetail1:
-    title: GetaSpecificTransactionDetail1
-    example:
-      status: 400
-      errors:
-        type: transaction id must be an integer
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      errors:
-        $ref: '#/definitions/Errors6'
-    required:
-    - status
-    - errors
-  GetAccountTransactionHistory:
-    title: GetAccountTransactionHistory
+  GetAccountTransactionHistory1:
+    title: GetAccountTransactionHistory1
     example:
       status: 200
       data:
@@ -1969,45 +1984,38 @@ definitions:
     required:
     - status
     - data
+  AdmincancreateadminorstaffaccountRequest:
+    title: AdmincancreateadminorstaffaccountRequest
+    example:
+      firstname: Goodness
+      lastname: Greatness
+      email: geyudsness@gmail.com
+      password: dele1989
+      type: client
+      isAdmin: false
+    type: object
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      type:
+        type: string
+      isAdmin:
+        type: boolean
+    required:
+    - firstname
+    - lastname
+    - email
+    - password
+    - type
+    - isAdmin
   Admincancreateadminorstaffaccount:
     title: Admincancreateadminorstaffaccount
-    example:
-      status: 401
-      error: only admin can create staff or admin account
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      error:
-        type: string
-    required:
-    - status
-    - error
-  Admincancreateadminorstaffaccount1:
-    title: Admincancreateadminorstaffaccount1
-    example:
-      status: 201
-      data:
-      - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvMjJvZGFkbWluQGdtYWlsLmNvbSIsImlkIjo3MSwiaWF0IjoxNTU2Mzg0MTk3LCJleHAiOjE1NTY0NzA1OTd9.mGezZDpIkB8UL6tT1T4M-mDscnDayh9mVb25WQuJs94
-        firstName: Good
-        lastName: Great
-        email: go22odadmin@gmail.com
-        type: staff
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/Datum'
-    required:
-    - status
-    - data
-  Admincancreateadminorstaffaccount2:
-    title: Admincancreateadminorstaffaccount2
     example:
       status: 400
       errors:
@@ -2050,6 +2058,43 @@ definitions:
     - password
     - type
     - isAdmin
+  Admincancreateadminorstaffaccount1:
+    title: Admincancreateadminorstaffaccount1
+    example:
+      status: 401
+      error: only admin can create staff or admin account
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      error:
+        type: string
+    required:
+    - status
+    - error
+  Admincancreateadminorstaffaccount2:
+    title: Admincancreateadminorstaffaccount2
+    example:
+      status: 201
+      data:
+      - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvMjJvZGFkbWluQGdtYWlsLmNvbSIsImlkIjo3MSwiaWF0IjoxNTU2Mzg0MTk3LCJleHAiOjE1NTY0NzA1OTd9.mGezZDpIkB8UL6tT1T4M-mDscnDayh9mVb25WQuJs94
+        firstName: Good
+        lastName: Great
+        email: go22odadmin@gmail.com
+        type: staff
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Datum'
+    required:
+    - status
+    - data
   usercanresetpasswordRequest:
     title: usercanresetpasswordRequest
     example:
