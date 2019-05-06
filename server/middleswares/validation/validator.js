@@ -6,8 +6,6 @@ class validateInput {
     const errors = {};
     let { accountNumber } = req.params;
 
-    // accountNumber = !isEmpty(accountNumber) ? accountNumber : '';
-    // convert to boolean for chai test scenerio
     if (accountNumber === 'true') {
       accountNumber = true;
     }
@@ -22,6 +20,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid param input"
       });
     }
     // fire next middleware
@@ -32,8 +31,6 @@ class validateInput {
     const errors = {};
     const { transactionId } = req.params;
 
-    // transactionId = !isEmpty(transactionId) ? transactionId : '';
-
     if (typeof (transactionId) === 'boolean' || Number.isNaN(Number(transactionId))) {
       errors.type = 'transaction id must be an integer';
     }
@@ -42,6 +39,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid transaction id"
       });
     }
     // fire next middleware
@@ -117,6 +115,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid input"
       });
     }
     // fire next middleware
@@ -147,6 +146,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid input"
       });
     }
     // fire next middleware
@@ -177,6 +177,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid input"
       });
     }
     // fire next middleware
@@ -191,12 +192,15 @@ class validateInput {
 
     if (typeof (amount) !== 'number' || Number.isNaN(Number(amount))) {
       errors.amount = 'amount field is must be a number';
+    } else if ( amount < 0){
+      errors.amount = "please enter a positive integer"
     }
 
     if (!isEmpty(errors)) {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid input"
       });
     }
     // fire next middleware
@@ -220,6 +224,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid status value"
       });
     }
     // fire next middleware
@@ -244,6 +249,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid status value"
       });
     }
     // fire next middleware
@@ -259,6 +265,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         error: 'enter a valid email address',
+        message: "invalid email address"
       });
     }
     // fire next middleware
@@ -294,6 +301,7 @@ class validateInput {
       return res.status(400).json({
         status: 400,
         errors,
+        message: "invalid password"
       });
     }
     // fire next middleware

@@ -56,6 +56,7 @@ class Auth {
       return res.status(403).json({
         status: 403,
         error: 'Unauthorized!, you have to signin',
+        message : "Unauthenticated user",
       });
     }
 
@@ -71,6 +72,7 @@ class Auth {
         return res.status(401).json({
           status: 401,
           error: 'The token you provided is invalid',
+          message : "Invalid token",
         });
       }
 

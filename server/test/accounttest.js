@@ -45,6 +45,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body.status).to.be.equals(403);
           expect(body).to.be.an('object');
           expect(body).to.haveOwnProperty('error');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('Unauthorized!, you have to signin');
           done();
         });
@@ -64,6 +65,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('Type field is required');
           done();
         });
@@ -84,6 +86,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('type field must be a string');
           done();
         });
@@ -122,6 +125,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('Type must be one of [savings, current]');
           done();
         });
@@ -141,6 +145,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.balance).to.be.equals('balance field is required');
           done();
         });
@@ -161,6 +166,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.balance).to.be.equals('balance field is must be a number');
           done();
         });
@@ -180,6 +186,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.password).to.be.equals('Password field is required');
           expect(body.errors.confirmPassword).to.be.equals('Confirm Password field is required');
           done();
@@ -201,6 +208,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.password).to.be.equals('Password must be at least 6 characters');
           expect(body.errors.confirmPassword).to.be.equals('password and confirm password must be the same');
           done();
@@ -222,6 +230,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.password).to.be.equals('password field must be a string');
           expect(body.errors.confirmPassword).to.be.equals('confirm password field must be a string');
           done();
@@ -243,6 +252,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           expect(body.status).to.be.a('number');
           expect(body.status).to.be.equals(403);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body).to.haveOwnProperty('error');
           expect(body.error).to.be.equals('Unauthorized!, you have to signin');
           done();
@@ -264,7 +274,9 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(200);
           expect(body).to.be.an('object');
-          expect(body.data[0]).to.haveOwnProperty('newPassword');
+          expect(body).to.haveOwnProperty('message');
+          expect(body).to.haveOwnProperty('message');
+          expect(body.message).to.be.equals("password reset successful");
           done();
         });
     });
@@ -283,6 +295,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('only a staff has the permission to get all bank accounts');
           done();
         });
@@ -325,6 +338,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.equals(404);
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('no dormant account has been created');
           done();
         });
@@ -340,6 +354,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.equals(400);
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.status).to.be.equals('status query field cannot be empty');
           done();
         });
@@ -355,6 +370,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body).to.be.an('object');
           expect(body.status).to.be.equals(400);
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.status).to.be.equals('status must be one of [dormant, active]');
           done();
         });
@@ -392,6 +408,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('only a staff has the permission to get other user\'s account');
           done();
         });
@@ -443,6 +460,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('account number doesn\'t exist');
           done();
         });
@@ -458,6 +476,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });
@@ -473,6 +492,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });
@@ -489,6 +509,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('account number doesn\'t exist');
           done();
         });
@@ -509,6 +530,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('only a staff has the permission to get other users transaction details');
           done();
         });
@@ -544,6 +566,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('no transaction exist for this account');
           done();
         });
@@ -559,6 +582,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });
@@ -574,6 +598,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });
@@ -589,6 +614,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('account number doesn\'t exist');
           done();
         });
@@ -610,6 +636,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('only a staff has the permission to get other user\'s account');
           done();
         });
@@ -644,6 +671,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('no account found with given email address');
           done();
         });
@@ -659,6 +687,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('enter a valid email address');
           done();
         });
@@ -681,6 +710,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('only a admin has the permission to change account status');
           done();
         });
@@ -716,6 +746,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('account number doesn\'t exist');
           done();
         });
@@ -733,6 +764,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.updatestatus).to.be.equals('status must be one of [dormant, active]');
           done();
         });
@@ -750,6 +782,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.updatestatus).to.be.equals('status field must be a string');
           done();
         });
@@ -767,6 +800,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });
@@ -784,6 +818,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });
@@ -801,6 +836,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.updatestatus).to.be.equals('Status field is required');
           done();
         });
@@ -821,6 +857,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(401);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('only a staffs can delete an account');
           done();
         });
@@ -836,6 +873,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(404);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.error).to.be.equals('account number doesn\'t exist');
           done();
         });
@@ -851,6 +889,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });
@@ -866,6 +905,7 @@ describe('Test account related endpoints - POST, GET, PATH, DELETE', () => {
           const { body } = res;
           expect(body.status).to.be.equals(400);
           expect(body).to.be.an('object');
+          expect(body).to.haveOwnProperty('message');
           expect(body.errors.type).to.be.equals('account number must be an integer');
           done();
         });

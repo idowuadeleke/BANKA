@@ -43,10 +43,10 @@ class UserController {
           error: 'User already exist',
         });
       }
-      return res.status(400).json({
-        status: 400,
-        errors: error,
-      });
+      // return res.status(400).json({
+      //   status: 400,
+      //   errors: error,
+      // });
     }
   }
 
@@ -113,9 +113,7 @@ class UserController {
 
       return res.status(200).json({
         status: 200,
-        data: [{
-          newPassword: body.password,
-        }],
+        message: "password reset successful"
       });
     } catch (error) {
       return res.status(400).json({

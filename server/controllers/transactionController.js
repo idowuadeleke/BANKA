@@ -111,6 +111,7 @@ class transactionController {
       return res.status(404).json({
         status: 404,
         error: 'no transaction exist for this id',
+        message : "Transaction id not found",
       });
     } catch (e) {
       return res.status(500).json({
