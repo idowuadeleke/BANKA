@@ -17,6 +17,7 @@ class checkPermissions {
       return res.status(401).json({
         status: 401,
         error: 'only a staff has the permission to get all bank accounts',
+        message : "Unauthorized!",
       });
     }
     // check if it is my account
@@ -28,6 +29,7 @@ class checkPermissions {
           return res.status(401).json({
             status: 401,
             error: 'only a staff has the permission to get other user\'s account',
+            message : "Unauthorized!",
           });
         }
       }
@@ -41,6 +43,7 @@ class checkPermissions {
           return res.status(401).json({
             status: 401,
             error: 'only a staff has the permission to get other users transaction details',
+            message : "Unauthorized!",
           });
         }
       }
@@ -57,6 +60,7 @@ class checkPermissions {
           return res.status(401).json({
             status: 401,
             error: 'only a staff has the permission to get other users transaction details',
+            message : "Unauthorized!",
           });
         }
       }
@@ -70,6 +74,7 @@ class checkPermissions {
           return res.status(401).json({
             status: 401,
             error: 'only a staff has the permission to get other user\'s account',
+            message : "Unauthorized!",
           });
         }
       }
@@ -79,6 +84,7 @@ class checkPermissions {
       return res.status(401).json({
         status: 401,
         error: 'only a admin has the permission to change account status',
+        message : "Unauthorized!",
       });
     }
 
@@ -86,12 +92,14 @@ class checkPermissions {
       return res.status(401).json({
         status: 401,
         error: 'only a staffs can delete an account',
+        message : "Unauthorized!",
       });
     }
     if (route === '/transactions/:accountNumber/credit' && method === 'post' && (type !== 'staff' || isAdmin)) {
       return res.status(401).json({
         status: 401,
         error: 'only cashier can credit account',
+        message : "Unauthorized!",
       });
     }
 
@@ -99,6 +107,7 @@ class checkPermissions {
       return res.status(401).json({
         status: 401,
         error: 'only cashier can debit account',
+        message : "Unauthorized!",
       });
     }
 
@@ -106,6 +115,7 @@ class checkPermissions {
       return res.status(401).json({
         status: 401,
         error: 'only cashier can credit account',
+        message : "Unauthorized!",
       });
     }
 
@@ -113,6 +123,7 @@ class checkPermissions {
       return res.status(401).json({
         status: 401,
         error: 'only admin can create staff or admin account',
+        message : "Unauthorized!",
       });
     }
     // fire next middleware

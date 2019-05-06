@@ -31,6 +31,7 @@ class accountController {
       return res.status(404).json({
         status: 404,
         error: 'User not found',
+        message : "user not found, please try again with a valid user",
       });
     } catch (e) {
       return res.status(500).json({
@@ -70,6 +71,7 @@ class accountController {
       return res.status(404).json({
         status: 404,
         error: `no ${statustype} account has been created`,
+        message : "account not found, please create an account",
       });
     } catch (e) {
       return res.status(500).json({
@@ -98,6 +100,7 @@ class accountController {
       return res.status(404).json({
         status: 404,
         error: 'account number doesn\'t exist',
+        message : "please try again with a valid account number",
       });
     } catch (e) {
       return res.status(500).json({
@@ -117,6 +120,8 @@ class accountController {
         return res.status(404).json({
           status: 404,
           error: 'account number doesn\'t exist',
+          message : "account number not found, please enter a valid account number",
+          
         });
       }
       const dataRows = await selectFromDb(`id, "accountNumber","createdOn", type,amount, "oldBalance",
@@ -131,6 +136,7 @@ class accountController {
       return res.status(404).json({
         status: 404,
         error: 'no transaction exist for this account',
+        message : "user has not made any transaction",
       });
     } catch (e) {
       return res.status(500).json({
@@ -158,6 +164,7 @@ class accountController {
       return res.status(404).json({
         status: 404,
         error: 'no account found with given email address',
+        message : "not found",
       });
     } catch (e) {
       return res.status(500).json({
@@ -178,6 +185,7 @@ class accountController {
         return res.status(404).json({
           status: 404,
           error: 'account number doesn\'t exist',
+          message : "not found",
         });
       }
       const dataRows = await updateDb('accounts', 'status', '"accountNumber"', [status, accountNumber]);
@@ -204,6 +212,7 @@ class accountController {
         return res.status(404).json({
           status: 404,
           error: 'account number doesn\'t exist',
+          message : "not found",
         });
       }
       const deleteAccountQueryString = 'DELETE FROM accounts WHERE "accountNumber" = $1 returning *';

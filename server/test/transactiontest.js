@@ -123,6 +123,22 @@ describe('Test transaction related endpoints - Debit and Credit an account', () 
         });
     });
 
+    it('it should throw an error when account number is negative', (done) => {
+      const accountNumber = 8856088;
+      const details = { amount: -200000 };
+      chai.request(app)
+        .post(`/api/v1/transactions/${accountNumber}/debit`)
+        .set('token', cashierTokenDb)
+        .send(details)
+        .end((err, res) => {
+          const { body } = res;
+          expect(body.status).to.be.equals(400);
+          expect(body).to.be.an('object');
+          expect(body.errors.amount).to.be.equals('please enter a positive integer');
+          done();
+        });
+    });
+
     it('it should throw an error when "amount" in request body is not provided ', (done) => {
       const accountNumber = 45678088;
       const responseBody = {};
